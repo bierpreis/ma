@@ -2,5 +2,10 @@ ma.pdf
 ma.log
 ma.toc
 ma.out
+*.bak
+*.sav
+*.aux
+*.bbl
+*.blg
 *.synctex.gz
 

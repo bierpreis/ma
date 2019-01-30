@@ -19,15 +19,25 @@ Konditionale}
 \tableofcontents
 \newpage
 \section{Einleitung}
-Diese Arbeit hat zum Ziel, Wissensbasen aus qualitativen Konditionalen auf eine systematische Art und Weise zu generieren. Dabei soll ergründet werden, welchen Aufwand diese Generierung mit einer steigender Anzahl der darin  enthaltenden Konditionalen verursacht. Die als Ergebnis entstandenen Wissensbasen sollen dann dazu dienen, das System InfOCF (siehe \cite{beierle17}) experimentell zu evaluieren.
+Diese Arbeit hat zum Ziel, Wissensbasen aus qualitativen Konditionalen auf eine systematische Art und Weise zu generieren. Dafür wird der in \cite{beierle19} entwickelte Algoritmus zur Berechnung aller Wissensbasen über einer Signatur implementiert. Dabei soll ergründet werden, welchen Aufwand diese Generierung mit einer steigender Anzahl der darin  enthaltenden Konditionalen verursacht. Die als Ergebnis entstandenen Wissensbasen sollen dann dazu dienen, das System InfOCF (siehe \cite{beierle17}) experimentell zu evaluieren.
 \\
-Der weitere Ablauf dieser Arbeit ist wie folgt: Im nächsten Kapitel werden zuerst die Grundlagen zu Konditionalen und Wissensbasen dargestellt um die Basis für das weitere vorgehen zu schaffen. Anschließend werden die betrachteten Koditionalen in einer Normalform vollständig berechnet und geordnet gespeichert. Im Hauptteil dieser Arbeit wird dann beschrieben, wie aus diesen Kondititionalen mit einem Algoritmus Wissensbasen erzeugt werden können. Die erhaltenen Ergebnisse werden dann in einer geeigneten Form dargestellt.
-\section{Grundlagen}
-Ein Konditional ist die Verbindung aus einer Vorbedingung und einer Folgerung aus der Vorbedingung. Ein qualitatives Konditional ist ein solches unter  Unsicherheit und entspricht einem Zusammenhang in der Form \grqq Wenn $A$, dann normalerweise $B$\grqq . Dargestellt wird so ein Konditional im folgenden in der Form $(B|A)$.
-Diese Arbeit beschränkt sich dabei auf Konditionale, die über der Signatur $\sum_{abc} = \{a, b, c\}$ gebildet werden können.
-\section{Generierung der Konditionale in Normalform}
+Der weitere Ablauf dieser Arbeit ist wie folgt: Im nächsten Kapitel werden zuerst die Grundlagen zu Konditionalen und Wissensbasen dargestellt um die Basis für das weitere vorgehen zu schaffen. Anschließend werden die betrachteten Koditionalen in einer Normalform vollständig berechnet und geordnet gespeichert. Im Hauptteil dieser Arbeit wird dann beschrieben, wie aus diesen Kondititionalen mit einem Algoritmus \cite{beierle19} Wissensbasen erzeugt werden können. Die erhaltenen Ergebnisse werden dann in einer geeigneten Form dargestellt.
+\section{Grundlagen zu den Konditionalen}
+\subsection{Darstellung}
+Im Folgenden wird kurz die Notation beschrieben, mit der die Konditionale im weiteren Verlauf der Arbeit dargestellt werden.\\
+Betrachtet werden 
+Im Folgenden betrachten wir Welten mit existierenden Dingen ,die mit Kleinbuchstaben $a, b, c ...$ bezeichnet werden. Aussagen darüber werden mit den entsprechenden Großbuchstaben $A, B, C$ formuliert. Dabei wird $\neg A$ als $\overline{A}$ und $A \wedge B$ als $AB$ dargestellt. Diese Arbeit beschränkt sich dabei auf die Betrachtung an Aussagen, die über die Signatur $\sum_{abc} = \{a, b, c\}$ gebildet werden können. \\
+Ein Konditional ist die Verbindung aus einer Vorbedingung und einer Folgerung aus der Vorbedingung. Ein qualitatives Konditional ist ein solches unter  Unsicherheit und entspricht einem Zusammenhang in der Form \glqq Wenn $A$, dann normalerweise $B$\grqq . Dargestellt wird so ein Konditional  im folgenden mit dem Symbol $|$ in der Form $(B|A)$.
+
+\subsection{Normalform}
+\subsection{Ordnungsrelation}
+\subsection{Äquivalenzen und Isomorphismen}
 \section{Generierung der Wissensbasen}
-\label{sec:generierung}
+\subsection{Vorüberlegungen}
+\subsection{Der Algoritmus}
+\subsection{Generierung von Wissensbasen}
+\section{Bewertung der Ergebnisse}
+
 \newpage
 \bibliographystyle{alpha}
 \bibliography{lit} 

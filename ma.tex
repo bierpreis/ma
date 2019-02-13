@@ -33,26 +33,13 @@ Ein Konditional ist die Verbindung aus einer Vorbedingung und einer Folgerung au
 Als Semantik verwenden wir ordinale Konditionale nach Wolfgang Spohn, siehe dazu auch \cite{spohn12}. Eine solche Funktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N} $. Hiermit wird einer Welt $\kappa$ aus den Möglichen Welten $\Omega$ eine natürliche Zahl zugeordnet, um den Grad an Plausibilität zu beschreiben. Die normalste aller Welten bekommt den Wert 0, unplausiblerere bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugewiesen. Ein Konditional wird in diesem System akzeptiert, wenn es plausibler ist, also einen geringeren Rang besitzt, als dessen Negation, z.B. $\kappa(AB)<\kappa(A\overline{B})$. \\
 Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Eine Wissensbasis wird als konsistent bezeichnet, wenn eine konditionale Rangfunktion existiert, die alle $\mathcal{R}$ akzeptiert.
 
-\subsection{Äquivalenz und Normalform von Konditionalen}
+
+\subsection{Ordnungsrelation für Konditionale}
 Äquivalenz für Konditionale soll im weiteren Verlauf dadurch definiert sein, dass zwei äquivalente Konditionale die Menge möglicher Welten auf die gleiche Art und Weise aufteilen:
 \begin{equation}
 (B|A)\equiv (B^\prime|A^\prime) \quad iff \quad A\equiv A^\prime \quad and \quad AB \equiv A^\prime B^\prime
 \end{equation}
-Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist, eine klare Definition einer vollständigen und minimalen  Menge an Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet.
-\begin{theorem}
-$NFC(\sum) = \{(B|A)|A \subseteq
- \Omega_A, B \subsetneq A, B \neq \emptyset \}$ ist die Normalform für Konditionale. In diesen gilt dann:
- \begin{itemize}
- 
-
-\item{Nichttrivialität: $NFC$ enthält kein triviales Konditional.}
-\item{Komplettheit: für jedes nichttriviale Konditional in $\sum$ existiert ein äquivalentes Konditional in $NFC$ }
-\item{Minimalität: alle Konditionale in $NFC(\sum)$ sind paarweise nicht äquivalent.}
-  \end{itemize}
- todo hier muss noch was rein zur Menge der Konditionale. wirklich? und hier?
-\end{theorem}
-\subsection{Ordnungsrelation für Konditionale}
-In diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der sie später bearbeitet und gespeichert werden können. Mit $\leq_{lex}$ wird im folgenden eine Ordnungsrelation für Zeichen und mit  $\leq_{set}$ eine Ordnungsrelation für Mengen bezeichnet.
+In Weiteren wird eine Ordnungsrelation für Konditionale definiert, unter der sie später bearbeitet und gespeichert werden können. Mit $\leq_{lex}$ wird im folgenden eine Ordnungsrelation für Zeichen und mit  $\leq_{set}$ eine Ordnungsrelation für Mengen bezeichnet.
 \begin{theorem}[Ordnungsrelation für Zeichen und Mengen]
 \begin{equation}\leq_{lex} \text{entspricht der normalen alphabetischen Ordnung der Buchstaben \ } a, b, c ...
 \end{equation}
@@ -62,8 +49,26 @@ Für geordnete Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = 
 \end{equation}
 \end{theorem}
 Mit der Signatur $\sum = \{ a, b, c\}$ haben wir die Ordnungsrelation $a<b<c$. Daraus ergibt sich dann beispielsweise $\{a\} <_{set} \{b\} <_{set} \{c\} <_{set} \{a,b\} <_{set} \{a, b, c\}$
+
+\begin{theorem}[Ordnungsrelation für Welten und Konditionale]
+
+\end{theorem}
+\subsection{Normalform von Konditionalen}
+
+Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist, eine klare Definition einer vollständigen und minimalen  Menge an Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet.
+\begin{theorem}
+$NFC(\sum) = \{(B|A)|A \subseteq
+ \Omega_A, B \subsetneq A, B \neq \emptyset \}$ ist die Normalform für Konditionale. In diesen gilt dann:
+ \begin{itemize}
+\item{Nichttrivialität: $NFC$ enthält kein triviales Konditional.}
+\item{Komplettheit: für jedes nichttriviale Konditional in $\sum$ existiert ein äquivalentes Konditional in $NFC$ }
+\item{Minimalität: alle Konditionale in $NFC(\sum)$ sind paarweise nicht äquivalent.}
+  \end{itemize}
+ todo hier muss noch was rein zur Menge der Konditionale. wirklich? und hier?
+\end{theorem}
+todo: hier muss auch was rein zur darstellung der conditionale. also omega als set of possible worlds. siehe seite 2 unten
 \subsection{Wissensbasen}
-Was ist das, Konsistenz von Wissensbasen mit Beispiel, Äquivalenzen? und Isomorphismen?
+Was ist das, Konsistenz von Wissensbasen mit Beispiel, Äquivalenzen und Isomorphismen
 \section{Generierung der Wissensbasen}
 \subsection{Vorüberlegungen}
 \subsection{Berechnung der Konditionale}

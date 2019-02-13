@@ -14,7 +14,14 @@ Konditionale}
 
 \newcommand{\lag}{\mathcal{L}}
 
-
+%%the following 2 is to define the dotl command. can this be shorter??
+\newcommand\dotl{\mathrel{%
+    \mathchoice{\QEQ}{\QEQ}{\scriptsize\QEQ}{\tiny\QEQ}%
+}}
+\def\QEQ{{%
+    \setbox0\hbox{<}%
+    \rlap{\hbox to \wd0{\hss$\ \cdot$\hss}}\box0
+}}
 
 \begin{document}
 \maketitle
@@ -51,7 +58,7 @@ Für geordnete Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = 
 Mit der Signatur $\sum = \{ a, b, c\}$ haben wir die Ordnungsrelation $a<b<c$. Daraus ergibt sich dann beispielsweise $\{a\} <_{set} \{b\} <_{set} \{c\} <_{set} \{a,b\} <_{set} \{a, b, c\}$
 Im weiteren Verlauf wird für die Darstellung von Konditionalen auf die Notation mittels Mengen möglicher Welten verwendet in Form von $\Omega_F = \{\omega | \omega \models F \}$, beispielsweise: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{abc,ab\overline{c},a\overline{b}c,a\overline{b}\overline{c},\overline{a}bc,\overline{a}b\overline{c},\overline{a}\overline{b}c,\overline{a}\overline{b}\overline{c}\}$ \\
-Um diese Notation etwas kompakter darzustellen, wird eine Darstellung $[[\omega]]_<$ per Zahl definiert: \
+Um diese Notation etwas kompakter darzustellen, wird eine Darstellung $[[\omega]]_<$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: \\
 $[[abc]]_<  = 7,\ 
 [[ab\overline{c}]]_< = 6,\ 
 [[a\overline{b}c]]_< = 5,\ 
@@ -59,9 +66,22 @@ $[[abc]]_<  = 7,\
 [[\overline{a}bc]]_< = 3,\ 
 [[\overline{a}b\overline{c}]]_< = 2 ,\  
 [[\overline{a}\overline{b}c]]_<  = 1,\ 
-[[\overline{a}\overline{b}\overline{c}]]_< = 0 $
+[[\overline{a}\overline{b}\overline{c}]]_< = 0 $ \\
+Mit dieser neuen Notation sieht das Beispiel von oben wie folgt aus: \\
+$\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$
 \begin{theorem}[Ordnungsrelation für Welten und Konditionale]
+Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation für Welten $\omega, \omega'$ und Konditionale $ (B|A), (B',A')$ definieren:
+\begin{equation}
+\omega \overset{\mathrm{\omega}}{\leq} \omega' \ iff \ [[\omega]]_< \geq [[\omega']]_<
+\end{equation}
+
+\begin{equation}
+(B|A) \overset{\mathrm{c}}{\leq} (B',A') \ iff \ \Omega_A \overset{\mathrm{\omega}}{\leq} \Omega_{A'} oder \Omega_A =  \Omega_{A'} und \Omega_B \overset{\mathrm{\omega}}{\leq} \Omega_{B'}
+\end{equation}
+
 \end{theorem}
+$ \dotl $
+todo: < statt dem komplizierten zeug und beispiele
 \subsection{Normalform von Konditionalen}
 Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist, eine klare Definition einer vollständigen und minimalen  Menge an Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet.
 \begin{theorem}
@@ -74,7 +94,6 @@ $NFC(\sum) = \{(B|A)|A \subseteq
   \end{itemize}
  todo hier muss noch was rein zur Menge der Konditionale. wirklich? und hier?
 \end{theorem}
-todo: hier muss auch was rein zur darstellung der conditionale. also omega als set of possible worlds. siehe seite 2 unten
 \subsection{Wissensbasen}
 Was ist das, Konsistenz von Wissensbasen mit Beispiel, Äquivalenzen und Isomorphismen
 \section{Generierung der Wissensbasen}

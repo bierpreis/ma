@@ -42,10 +42,14 @@ Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist, e
 \begin{theorem}
 $NFC(\sum) = \{(B|A)|A \subseteq
  \Omega_A, B \subsetneq A, B \neq \emptyset \}$ ist die Normalform für Konditionale. In diesen gilt dann:
- Nichttrivialität: $NFC$ enthält kein triviales Konditional.
- Komplettheit: für jedes nichttriviale Konditional in $\sum$ existiert ein äquivalentes Konditional in $NFC$
- Minimal: alle Konditionale in $NFC(\sum)$ sind paarweise nicht äquivalent.
-\\ !!! hier muss noch was rein zur Menge der Konditionale
+ \begin{itemize}
+ 
+
+\item{Nichttrivialität: $NFC$ enthält kein triviales Konditional.}
+\item{Komplettheit: für jedes nichttriviale Konditional in $\sum$ existiert ein äquivalentes Konditional in $NFC$ }
+\item{Minimalität: alle Konditionale in $NFC(\sum)$ sind paarweise nicht äquivalent.}
+  \end{itemize}
+ todo hier muss noch was rein zur Menge der Konditionale. wirklich? und hier?
 \end{theorem}
 \subsection{Ordnungsrelation für Konditionale}
 In diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der sie später bearbeitet und gespeichert werden können. Mit $\leq_{lex}$ wird im folgenden eine Ordnungsrelation für Zeichen und mit  $\leq_{set}$ eine Ordnungsrelation für Mengen bezeichnet.
@@ -57,7 +61,7 @@ Für geordnete Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = 
  S \leq_{set} S ^\prime \quad iff \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leq_{lex}  e_1^\prime ... e_{n^\prime}^\prime
 \end{equation}
 \end{theorem}
-!!hier jetzt ein beispiel. mit a,b.c??
+Mit der Signatur $\sum = \{ a, b, c\}$ haben wir die Ordnungsrelation $a<b<c$. Daraus ergibt sich dann beispielsweise $\{a\} <_{set} \{b\} <_{set} \{c\} <_{set} \{a,b\} <_{set} \{a, b, c\}$
 \subsection{Wissensbasen}
 Was ist das, Konsistenz von Wissensbasen mit Beispiel, Äquivalenzen? und Isomorphismen?
 \section{Generierung der Wissensbasen}

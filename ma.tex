@@ -40,14 +40,14 @@ Ein Konditional ist die Verbindung aus einer Vorbedingung und einer Folgerung au
 Als Semantik verwenden wir ordinale Konditionale nach Wolfgang Spohn, siehe dazu auch \cite{spohn12}. Eine solche Funktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N} $. Hiermit wird einer Welt $\kappa$ aus den Möglichen Welten $\Omega$ eine natürliche Zahl zugeordnet, um den Grad an Plausibilität zu beschreiben. Die normalste aller Welten bekommt den Wert 0, unplausiblerere bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugewiesen. Ein Konditional wird in diesem System akzeptiert, wenn es plausibler ist, also einen geringeren Rang besitzt, als dessen Negation, z.B. $\kappa(AB)<\kappa(A\overline{B})$. \\
 Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Eine Wissensbasis wird als konsistent bezeichnet, wenn eine konditionale Rangfunktion existiert, die alle $\mathcal{R}$ akzeptiert.
 
-
-\subsection{Äquivalenz und eine Ordnungsrelation für Konditionale}
-Äquivalenz für Konditionale soll im weiteren Verlauf dadurch definiert sein, dass zwei äquivalente Konditionale die Menge der möglichen Welten auf die gleiche Art und Weise unterteilen:\\
-todo: wofür eigentlich die äquivalenz??
+\subsection{Äquivalenz für Konditionale}
+Da im Folgenden die Äquivalenz von Konditionalen eine Rolle spielt, wird diese hier kurz definiert.\\
+Äquivalenz für Konditionale soll im weiteren Verlauf dadurch charakterisiert sein, dass zwei äquivalente Konditionale die Menge der möglichen Welten auf die gleiche Art und Weise unterteilen:
 \begin{equation}
 (B|A)\equiv (B^\prime|A^\prime) \quad iff \quad A\equiv A^\prime \quad and \quad AB \equiv A^\prime B^\prime
 \end{equation}
-Im Folgenden wird eine Ordnungsrelation für Konditionale definiert, unter der sie später bearbeitet und gespeichert werden können. Mit $\leq_{lex}$ wird eine Ordnungsrelation für Zeichen und mit  $\leq_{set}$ eine Ordnungsrelation für Mengen bezeichnet.
+\subsection{Ordnungsrelation für Konditionale}
+Im Folgenden wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können. Mit $\leq_{lex}$ wird dabei eine Ordnungsrelation für Zeichen und mit  $\leq_{set}$ eine Ordnungsrelation für Mengen bezeichnet.
 \begin{theorem}[Ordnungsrelation für Zeichen und Mengen]
 \begin{equation}\leq_{lex} \text{entspricht der normalen alphabetischen Ordnung der Buchstaben \ } a, b, c ...
 \end{equation}

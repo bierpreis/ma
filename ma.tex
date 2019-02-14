@@ -41,12 +41,13 @@ Als Semantik verwenden wir ordinale Konditionale nach Wolfgang Spohn, siehe dazu
 Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Eine Wissensbasis wird als konsistent bezeichnet, wenn eine konditionale Rangfunktion existiert, die alle $\mathcal{R}$ akzeptiert.
 
 
-\subsection{Ordnungsrelation für Konditionale}
-Äquivalenz für Konditionale soll im weiteren Verlauf dadurch definiert sein, dass zwei äquivalente Konditionale die Menge möglicher Welten auf die gleiche Art und Weise aufteilen:
+\subsection{Äquivalenz und eine Ordnungsrelation für Konditionale}
+Äquivalenz für Konditionale soll im weiteren Verlauf dadurch definiert sein, dass zwei äquivalente Konditionale die Menge der möglichen Welten auf die gleiche Art und Weise unterteilen:\\
+todo: wofür eigentlich die äquivalenz??
 \begin{equation}
 (B|A)\equiv (B^\prime|A^\prime) \quad iff \quad A\equiv A^\prime \quad and \quad AB \equiv A^\prime B^\prime
 \end{equation}
-In Weiteren wird eine Ordnungsrelation für Konditionale definiert, unter der sie später bearbeitet und gespeichert werden können. Mit $\leq_{lex}$ wird im folgenden eine Ordnungsrelation für Zeichen und mit  $\leq_{set}$ eine Ordnungsrelation für Mengen bezeichnet.
+Im Folgenden wird eine Ordnungsrelation für Konditionale definiert, unter der sie später bearbeitet und gespeichert werden können. Mit $\leq_{lex}$ wird eine Ordnungsrelation für Zeichen und mit  $\leq_{set}$ eine Ordnungsrelation für Mengen bezeichnet.
 \begin{theorem}[Ordnungsrelation für Zeichen und Mengen]
 \begin{equation}\leq_{lex} \text{entspricht der normalen alphabetischen Ordnung der Buchstaben \ } a, b, c ...
 \end{equation}
@@ -92,8 +93,10 @@ $NFC(\sum) = \{(B|A)|A \subseteq
 \item{Komplettheit: für jedes nichttriviale Konditional in $\sum$ existiert ein äquivalentes Konditional in $NFC$ }
 \item{Minimalität: alle Konditionale in $NFC(\sum)$ sind paarweise nicht äquivalent.}
   \end{itemize}
- todo hier muss noch was rein zur Menge der Konditionale. wirklich? und hier?
+
 \end{theorem}
+ todo hier muss noch was rein zur Menge der Konditionale. wirklich? und hier? \\
+ zur menge der konditionale: was ist der betrag, die kardinalität der signatur? hat das was mit der schreibweise, also {1,2,3} vs $\Omega_{a\vee \overline{b}}$
 \subsection{Wissensbasen}
 Was ist das, Konsistenz von Wissensbasen mit Beispiel, Äquivalenzen und Isomorphismen
 \section{Generierung der Wissensbasen}

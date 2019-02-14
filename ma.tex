@@ -12,6 +12,9 @@
 \title{Systematische Generierung konsistenter Mengen qualitativer
 Konditionale}
 
+% this value solves the problem overfull hbox. it defines somehow max empty space in a line.
+\tolerance=600
+
 \newcommand{\lag}{\mathcal{L}}
 
 %%the following 2 is to define the dotl command. can this be shorter??
@@ -48,8 +51,8 @@ Da im Folgenden die Äquivalenz von Konditionalen eine Rolle spielt, wird diese 
 \end{equation}
 \subsection{Ordnungsrelation für Konditionale}
 in diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können. Als Hilfsmittel dazu wird $\leq_{lex}$ verwendet, was die alphabetische Ordnung über die vorkommenden Buchstaben beschreiben soll.
-\begin{theorem}[Ordnungsrelatio für Mengen S]
-!! hier mit neuem operator weitermachen. größer und größer gleich ordentlich auseinanderhalten!!\\
+\begin{theorem}[Ordnungsrelation für Mengen S]
+x\\!! \\hier mit neuem operator weitermachen. größer und größer gleich ordentlich auseinanderhalten!!\\
 Für geordnete Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = \{e_{1}, ... , e_{n\prime}\}$
 \begin{equation}
  S \leq_{set} S ^\prime \quad iff \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leq_{lex}  e_1^\prime ... e_{n^\prime}^\prime

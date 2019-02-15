@@ -26,6 +26,14 @@ Konditionale}
     \rlap{\hbox to \wd0{\hss$\ \cdot$\hss}}\box0
 }}
 
+\newcommand\dotll{\mathrel{%
+    \mathchoice{\QEQQ}{\QEQQ}{\QEQQ}{\QEQQ}%
+}}
+\def\QEQQ{{%
+    \setbox0\hbox{$\leqslant$}%
+    \rlap{\hbox to \wd0{\hss$\ \cdot$\hss}}\box0
+}}
+
 \begin{document}
 \maketitle
 \newpage
@@ -58,7 +66,7 @@ Für geordnete Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = 
  S \leq_{set} S ^\prime \quad iff \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leq_{lex}  e_1^\prime ... e_{n^\prime}^\prime
 \end{equation}
 \end{theorem}
-Mit der Signatur $\sum = \{ a, b, c\}$ haben wir die Ordnungsrelation $a \dotl b \dotl c$. Daraus ergibt sich dann als Ordnung  der Mengen $\{a\} \dotl_{set} \{b\} \dotl_{set} \{c\} \dotl_{set} \{a,b\} \dotl_{set} \{a,c\} \dotl_{set}\{b,c\} \dotl_{set} \{a, b, c\}$
+Mit der Signatur $\sum = \{ a, b, c\}$ haben wir die Ordnungsrelation $a \dotl b \dotl c$. Daraus ergibt sich dann als Ordnung  der Mengen $\{a\} \dotll_{set} \{b\} \dotll_{set} \{c\} \dotll_{set} \{a,b\} \dotll_{set} \{a,c\} \dotll_{set}\{b,c\} \dotll_{set} \{a, b, c\}$
 Im weiteren Verlauf wird für die Darstellung von Konditionalen auf die Notation mittels Mengen möglicher Welten verwendet in Form von $\Omega_F = \{\omega | \omega \models F \}$, beispielsweise: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{abc,ab\overline{c},a\overline{b}c,a\overline{b}\overline{c},\overline{a}bc,\overline{a}b\overline{c},\overline{a}\overline{b}c,\overline{a}\overline{b}\overline{c}\}$ \\
 Um diese Notation etwas kompakter darzustellen, wird eine Darstellung $[[\omega]]_<$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: \\
@@ -73,7 +81,7 @@ $[[abc]]_<  = 7,\
 Mit dieser neuen Notation sieht das Beispiel von oben wie folgt aus: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$
 \begin{theorem}[Ordnungsrelation für Welten und Konditionale]
-Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation für Welten $\omega, \omega'$ und Konditionale $ (B|A), (B',A')$ definieren:
+Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation für Welten $\omega, \omega'$ und Konditionale $(B|A), (B',A')$ definieren:
 \begin{equation}
 \omega \overset{\mathrm{\omega}}{\leq} \omega' \ iff \ [[\omega]]_< \geq [[\omega']]_<
 \end{equation}
@@ -87,16 +95,19 @@ $ \dotl $
 todo: < statt dem komplizierten zeug und beispiele
 \subsection{Normalform von Konditionalen}
 Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist, eine klare Definition einer vollständigen und minimalen  Menge an Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet.
+
 \begin{theorem}
 $NFC(\sum) = \{(B|A)|A \subseteq
  \Omega_A, B \subsetneq A, B \neq \emptyset \}$ ist die Normalform für Konditionale. In diesen gilt dann:
+ 
  \begin{itemize}
 \item{Nichttrivialität: $NFC$ enthält kein triviales Konditional.}
 \item{Komplettheit: für jedes nichttriviale Konditional in $\sum$ existiert ein äquivalentes Konditional in $NFC$ }
 \item{Minimalität: alle Konditionale in $NFC(\sum)$ sind paarweise nicht äquivalent.}
-  \end{itemize}
+\end{itemize}
 
 \end{theorem}
+
  todo hier muss noch was rein zur Menge der Konditionale. wirklich? und hier? \\
  zur menge der konditionale: was ist der betrag, die kardinalität der signatur? hat das was mit der schreibweise, also {1,2,3} vs $\Omega_{a\vee \overline{b}}$
 \subsection{Berechnung der Konditionale in Normalform}

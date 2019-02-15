@@ -59,9 +59,8 @@ Da im Folgenden die Äquivalenz von Konditionalen eine Rolle spielt, wird diese 
 \end{equation}
 \subsection{Ordnungsrelation für Konditionale}
 in diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können. Als Hilfsmittel dazu wird $\leqslant_{lex}$ verwendet, was die alphabetische Ordnung über die vorkommenden Buchstaben beschreiben soll.
-\begin{theorem}[Ordnungsrelation für Mengen S]
-x\\!! \\hier mit neuem operator weitermachen. größer und größer gleich ordentlich auseinanderhalten!!\\
-Für geordnete Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = \{e_{1}, ... , e_{n\prime}\}$
+\begin{theorem}[Ordnungsrelation für Mengen S]\ \\
+Für die geordneten Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = \{e_{1}, ... , e_{n\prime}\}$
 \begin{equation}
  S \leqslant_{set} S ^\prime \quad iff \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leqslant_{lex}  e_1^\prime ... e_{n^\prime}^\prime
 \end{equation}
@@ -78,7 +77,7 @@ $[[abc]]_{\dotl}  = 7,\
 [[\overline{a}b\overline{c}]]_{\dotl} = 2 ,\  
 [[\overline{a}\overline{b}c]]_{\dotl}  = 1,\ 
 [[\overline{a}\overline{b}\overline{c}]]_{\dotl} = 0 $ \\
-Mit dieser neuen Notation sieht das Beispiel von oben wie folgt aus: \\
+Mit dieser Notation sieht das Beispiel von oben wie folgt aus: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$
 \begin{theorem}[Ordnungsrelation für Welten und Konditionale]
 Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation für Welten $\omega, \omega'$ und Konditionale $(B|A), (B',A')$ definieren:
@@ -87,11 +86,13 @@ Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation für 
 \end{equation}
 
 \begin{equation}
-(B|A) \overset{\mathrm{c}}{\dotll} (B',A') \ iff \ \Omega_A \overset{\mathrm{\omega}}{\dotll} \Omega_{A'} oder \Omega_A =  \Omega_{A'} und \Omega_B \overset{\mathrm{\omega}}{\dotll} \Omega_{B'}
+(B|A) \overset{\mathrm{c}}{\dotll} (B',A') \ iff \ \Omega_A \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{A'} oder \Omega_A =  \Omega_{A'} und \Omega_B \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{B'}
 \end{equation}
 
 \end{theorem}
-!!!todo:  beispiele
+Da sich die Unterscheidung von $\overset{\mathrm{\omega}}{\dotll}$ und $\overset{\mathrm{c}}{\dotll} (B',A')$ aus dem Kontext ergibt, wird der Einfachheit halber im weiterem Verlauf $\dotl$ verwendet. \\
+Mit der Signatur $\sum_{abc}$ ergibt sich für mögliche Welten beispielsweise $\{abc\} \dotl \{ab\overline{c}\} \dotl \{\overline{a}bc\} \dotl \{\overline{a} \overline{b} \overline{c}\}$.\\
+!!!todo: bsp für konditonale mit abc \\
 \subsection{Normalform von Konditionalen}
 Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist, eine klare Definition einer vollständigen und minimalen  Menge an Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet.
 

@@ -23,7 +23,7 @@ Konditionale}
 }}
 \def\QEQ{{%
     \setbox0\hbox{<}%
-    \rlap{\hbox to \wd0{\hss$\ \cdot$\hss}}\box0
+    \rlap{\hbox to \wd0{\hss \raisebox {1pt}{$\ \cdot$\hss}}}\box0
 }}
 
 \newcommand\dotll{\mathrel{%
@@ -31,7 +31,7 @@ Konditionale}
 }}
 \def\QEQQ{{%
     \setbox0\hbox{$\leqslant$}%
-    \rlap{\hbox to \wd0{\hss$\ \cdot$\hss}}\box0
+    \rlap{\hbox to \wd0{\hss \raisebox {1pt}{$\ \cdot$\hss}}}\box0
 }}
 
 \begin{document}
@@ -82,6 +82,7 @@ $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$
 \begin{theorem}[Ordnungsrelation für Welten und Konditionale]
 Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation für Welten $\omega, \omega'$ und Konditionale $(B|A), (B',A')$ definieren:
 \begin{equation}
+todo: hier dotll fixen
 \omega \overset{\mathrm{\omega}}{\dotll} \omega' \ iff \ [[\omega]]_{\dotl} \geqslant [[\omega']]_{\dotl}
 \end{equation}
 

@@ -69,15 +69,16 @@ Für geordnete Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = 
 Bei der Signatur $\sum = \{ a, b, c\}$ mit der Ordnungsrelation $a \dotl b \dotl c$ ergibt sich eine Ordnungsrelation für die möglichen Mengen wie folgt: $\{a\} \dotll_{set} \{b\} \dotll_{set} \{c\} \dotll_{set} \{a,b\} \dotll_{set} \{a,c\} \dotll_{set}\{b,c\} \dotll_{set} \{a, b, c\}$. \\
 Im weiteren Verlauf wird für die Darstellung von Konditionalen auf die Notation mittels Mengen möglicher Welten verwendet in Form von $\Omega_F = \{\omega | \omega \models F \}$, beispielsweise: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{abc,ab\overline{c},a\overline{b}c,a\overline{b}\overline{c},\overline{a}bc,\overline{a}b\overline{c},\overline{a}\overline{b}c,\overline{a}\overline{b}\overline{c}\}$ \\
-Um diese Notation etwas kompakter darzustellen, wird eine Darstellung $[[\omega]]_<$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: \\
-$[[abc]]_<  = 7,\ 
-[[ab\overline{c}]]_< = 6,\ 
-[[a\overline{b}c]]_< = 5,\ 
-[[a\overline{b}\overline{c}]]_< = 4 ,\
-[[\overline{a}bc]]_< = 3,\ 
-[[\overline{a}b\overline{c}]]_< = 2 ,\  
-[[\overline{a}\overline{b}c]]_<  = 1,\ 
-[[\overline{a}\overline{b}\overline{c}]]_< = 0 $ \\
+!!!todo: erklärung was das mit den klammern soll?? \\
+Um diese Notation etwas kompakter darzustellen, wird eine Darstellung $[[\omega]]_{\dotl}$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: \\
+$[[abc]]_{\dotl}  = 7,\ 
+[[ab\overline{c}]]_{\dotl} = 6,\ 
+[[a\overline{b}c]]_{\dotl} = 5,\ 
+[[a\overline{b}\overline{c}]]_{\dotl} = 4 ,\
+[[\overline{a}bc]]_{\dotl} = 3,\ 
+[[\overline{a}b\overline{c}]]_{\dotl} = 2 ,\  
+[[\overline{a}\overline{b}c]]_{\dotl}  = 1,\ 
+[[\overline{a}\overline{b}\overline{c}]]_{\dotl} = 0 $ \\
 Mit dieser neuen Notation sieht das Beispiel von oben wie folgt aus: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$
 \begin{theorem}[Ordnungsrelation für Welten und Konditionale]

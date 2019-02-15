@@ -58,7 +58,7 @@ Für geordnete Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = 
  S \leq_{set} S ^\prime \quad iff \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leq_{lex}  e_1^\prime ... e_{n^\prime}^\prime
 \end{equation}
 \end{theorem}
-Mit der Signatur $\sum = \{ a, b, c\}$ haben wir die Ordnungsrelation $a<b<c$. Daraus ergibt sich dann beispielsweise $\{a\} <_{set} \{b\} <_{set} \{c\} <_{set} \{a,b\} <_{set} \{a, b, c\}$
+Mit der Signatur $\sum = \{ a, b, c\}$ haben wir die Ordnungsrelation $a \dotl b \dotl c$. Daraus ergibt sich dann als Ordnung  der Mengen $\{a\} \dotl_{set} \{b\} \dotl_{set} \{c\} \dotl_{set} \{a,b\} \dotl_{set} \{a,c\} \dotl_{set}\{b,c\} \dotl_{set} \{a, b, c\}$
 Im weiteren Verlauf wird für die Darstellung von Konditionalen auf die Notation mittels Mengen möglicher Welten verwendet in Form von $\Omega_F = \{\omega | \omega \models F \}$, beispielsweise: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{abc,ab\overline{c},a\overline{b}c,a\overline{b}\overline{c},\overline{a}bc,\overline{a}b\overline{c},\overline{a}\overline{b}c,\overline{a}\overline{b}\overline{c}\}$ \\
 Um diese Notation etwas kompakter darzustellen, wird eine Darstellung $[[\omega]]_<$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: \\

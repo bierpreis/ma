@@ -58,15 +58,15 @@ Da im Folgenden die Äquivalenz von Konditionalen eine Rolle spielt, wird diese 
 (B|A)\equiv (B^\prime|A^\prime) \quad iff \quad A\equiv A^\prime \quad and \quad AB \equiv A^\prime B^\prime
 \end{equation}
 \subsection{Ordnungsrelation für Konditionale}
-in diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können. Als Hilfsmittel dazu wird $\leq_{lex}$ verwendet, was die alphabetische Ordnung über die vorkommenden Buchstaben beschreiben soll.
+in diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können. Als Hilfsmittel dazu wird $\leqslant_{lex}$ verwendet, was die alphabetische Ordnung über die vorkommenden Buchstaben beschreiben soll.
 \begin{theorem}[Ordnungsrelation für Mengen S]
 x\\!! \\hier mit neuem operator weitermachen. größer und größer gleich ordentlich auseinanderhalten!!\\
 Für geordnete Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = \{e_{1}, ... , e_{n\prime}\}$
 \begin{equation}
- S \leq_{set} S ^\prime \quad iff \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leq_{lex}  e_1^\prime ... e_{n^\prime}^\prime
+ S \leqslant_{set} S ^\prime \quad iff \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leqslant_{lex}  e_1^\prime ... e_{n^\prime}^\prime
 \end{equation}
 \end{theorem}
-Mit der Signatur $\sum = \{ a, b, c\}$ haben wir die Ordnungsrelation $a \dotl b \dotl c$. Daraus ergibt sich dann als Ordnung  der Mengen $\{a\} \dotll_{set} \{b\} \dotll_{set} \{c\} \dotll_{set} \{a,b\} \dotll_{set} \{a,c\} \dotll_{set}\{b,c\} \dotll_{set} \{a, b, c\}$
+Bei der Signatur $\sum = \{ a, b, c\}$ mit der Ordnungsrelation $a \dotl b \dotl c$ ergibt sich eine Ordnungsrelation für die möglichen Mengen wie folgt: $\{a\} \dotll_{set} \{b\} \dotll_{set} \{c\} \dotll_{set} \{a,b\} \dotll_{set} \{a,c\} \dotll_{set}\{b,c\} \dotll_{set} \{a, b, c\}$. \\
 Im weiteren Verlauf wird für die Darstellung von Konditionalen auf die Notation mittels Mengen möglicher Welten verwendet in Form von $\Omega_F = \{\omega | \omega \models F \}$, beispielsweise: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{abc,ab\overline{c},a\overline{b}c,a\overline{b}\overline{c},\overline{a}bc,\overline{a}b\overline{c},\overline{a}\overline{b}c,\overline{a}\overline{b}\overline{c}\}$ \\
 Um diese Notation etwas kompakter darzustellen, wird eine Darstellung $[[\omega]]_<$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: \\
@@ -83,11 +83,11 @@ $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$
 \begin{theorem}[Ordnungsrelation für Welten und Konditionale]
 Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation für Welten $\omega, \omega'$ und Konditionale $(B|A), (B',A')$ definieren:
 \begin{equation}
-\omega \overset{\mathrm{\omega}}{\leq} \omega' \ iff \ [[\omega]]_< \geq [[\omega']]_<
+\omega \overset{\mathrm{\omega}}{\dotll} \omega' \ iff \ [[\omega]]_{\dotl} \geqslant [[\omega']]_{\dotl}
 \end{equation}
 
 \begin{equation}
-(B|A) \overset{\mathrm{c}}{\leq} (B',A') \ iff \ \Omega_A \overset{\mathrm{\omega}}{\leq} \Omega_{A'} oder \Omega_A =  \Omega_{A'} und \Omega_B \overset{\mathrm{\omega}}{\leq} \Omega_{B'}
+(B|A) \overset{\mathrm{c}}{\dotll} (B',A') \ iff \ \Omega_A \overset{\mathrm{\omega}}{\dotll} \Omega_{A'} oder \Omega_A =  \Omega_{A'} und \Omega_B \overset{\mathrm{\omega}}{\dotll} \Omega_{B'}
 \end{equation}
 
 \end{theorem}
@@ -97,8 +97,9 @@ todo: < statt dem komplizierten zeug und beispiele
 Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist, eine klare Definition einer vollständigen und minimalen  Menge an Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet.
 
 \begin{theorem}
-$NFC(\sum) = \{(B|A)|A \subseteq
- \Omega_A, B \subsetneq A, B \neq \emptyset \}$ ist die Normalform für Konditionale. In diesen gilt dann:
+$NFC(\sum) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ ist die Normalform für Konditionale. In diesen gilt dann:\\
+ !!!hier noch iwo erklären, was ein triviales konditional ist \\
+
  
  \begin{itemize}
 \item{Nichttrivialität: $NFC$ enthält kein triviales Konditional.}

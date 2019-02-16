@@ -51,12 +51,13 @@ Ein Konditional ist die Verbindung aus einer Vorbedingung und einer Folgerung au
 Als Semantik verwenden wir ordinale Konditionale nach Wolfgang Spohn, siehe dazu auch \cite{spohn12}. Eine solche Funktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N} $. Hiermit wird einer Welt $\kappa$ aus den Möglichen Welten $\Omega$ eine natürliche Zahl zugeordnet, um den Grad an Plausibilität zu beschreiben. Die normalste aller Welten bekommt den Wert 0, unplausiblerere bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugewiesen. Ein Konditional wird in diesem System akzeptiert, wenn es plausibler ist, also einen geringeren Rang besitzt, als dessen Negation, z.B. $\kappa(AB)<\kappa(A\overline{B})$. \\
 Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Eine Wissensbasis wird als konsistent bezeichnet, wenn eine konditionale Rangfunktion existiert, die alle $\mathcal{R}$ akzeptiert.
 
-\subsection{Äquivalenz für Konditionale}
+\subsection{Äquivalente und triviale Konditionale}
 Da im Folgenden die Äquivalenz von Konditionalen eine Rolle spielt, wird diese hier kurz definiert.\\
 Äquivalenz für Konditionale soll im weiteren Verlauf dadurch charakterisiert sein, dass zwei äquivalente Konditionale die Menge der möglichen Welten auf die gleiche Art und Weise unterteilen:
 \begin{equation}
 (B|A)\equiv (B^\prime|A^\prime) \quad iff \quad A\equiv A^\prime \quad and \quad AB \equiv A^\prime B^\prime
 \end{equation}
+Als triviale Konditionale werden solche beschrieben, die keinen Mehrwert bieten. Das beinhaltet sowohl sich selbst erfüllende in der Form $(A \models A)$ als auch Konditionale, die ein anderes einfach umkehren, in Form von $(A \models \overline{B})$. Solche Konditionale sind bei der weiteren Betrachtung nicht von Interesse und werden daher nicht weiter beachtet.
 \subsection{Ordnungsrelation für Konditionale}
 in diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können. Als Hilfsmittel dazu wird $ <_{lex} $  verwendet, was die alphabetische Ordnung über die vorkommenden Buchstaben beschreiben soll, beispielsweise $a <_{lex} b <_{lex} c ...$ .
 \begin{theorem}[Ordnungsrelation für Mengen S]\ \\
@@ -93,13 +94,12 @@ Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation für 
 Da sich die Unterscheidung von $\overset{\mathrm{\omega}}{\dotll}$ und $\overset{\mathrm{c}}{\dotll} (B',A')$ aus dem Kontext ergibt, wird der Einfachheit halber im weiterem Verlauf $\dotl$ verwendet. \\
 Mit der Signatur $\sum_{abc}$ ergibt sich für mögliche Welten beispielsweise $abc \dotl ab\overline{c} \dotl \overline{a}bc \dotl \overline{a} \overline{b} \overline{c}$. Ein Beispiel für die Ordnungsrelation für Konditionale ist $(abc|abc \vee ab \overline{c}) \dotl (abc | abc \vee \overline{a} \overline{b} \overline{c} )$ oder $(abc \vee \overline{a} \overline{b} \overline{c} | abc \vee ab \overline{c} \vee \overline{a} \overline{b} \overline{c}) \dotl (\overline{a} \overline{b} \overline{c} |  abc \vee ab \overline{c} \vee \overline{a} bc \vee \overline{a} \overline{b} \overline{c})$.
 \subsection{Normalform von Konditionalen}
-Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist, eine klare Definition einer vollständigen und minimalen  Menge an Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet.
+Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist die klare Definition einer vollständigen und minimalen  Menge an Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet. \\
 
 \begin{theorem}
-$NFC(\sum) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ ist die Normalform für Konditionale. In diesen gilt dann:\\
- !!!hier noch iwo erklären, was ein triviales konditional ist \\
+$NFC(\sum) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ ist die Normalform für Konditionale. In diesen gilt dann:\
 
- 
+
  \begin{itemize}
 \item{Nichttrivialität: $NFC$ enthält kein triviales Konditional.}
 \item{Komplettheit: für jedes nichttriviale Konditional in $\sum$ existiert ein äquivalentes Konditional in $NFC$ }
@@ -107,9 +107,6 @@ $NFC(\sum) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ 
 \end{itemize}
 
 \end{theorem}
-
-$\Omega_{a\vee \overline{b}}$
-
 
 \subsection{Wissensbasen}
 Was ist das, Konsistenz von Wissensbasen mit Beispiel, Äquivalenzen und Isomorphismen

@@ -23,7 +23,7 @@ Konditionale}
 }}
 \def\QEQ{{%
     \setbox0\hbox{<}%
-    \rlap{\hbox to \wd0{\hss \raisebox {0.8pt}{$\ \cdot$\hss}}}\box0
+    \rlap{\hbox to \wd0{\hss \raisebox {0.6pt}{$\ \cdot$\hss}}}\box0
 }}
 
 \newcommand\dotll{\mathrel{%
@@ -58,9 +58,9 @@ Da im Folgenden die Äquivalenz von Konditionalen eine Rolle spielt, wird diese 
 (B|A)\equiv (B^\prime|A^\prime) \quad iff \quad A\equiv A^\prime \quad and \quad AB \equiv A^\prime B^\prime
 \end{equation}
 \subsection{Ordnungsrelation für Konditionale}
-in diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können. Als Hilfsmittel dazu wird $\leqslant_{lex}$ verwendet, was die alphabetische Ordnung über die vorkommenden Buchstaben beschreiben soll.
+in diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können. Als Hilfsmittel dazu wird $ <_{lex} $  verwendet, was die alphabetische Ordnung über die vorkommenden Buchstaben beschreiben soll, beispielsweise $a <_{lex} b <_{lex} c ...$ .
 \begin{theorem}[Ordnungsrelation für Mengen S]\ \\
-Für die geordneten Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = \{e_{1}, ... , e_{n\prime}\}$
+Für die geordneten Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = \{e_{1}, ... , e_{n\prime}\}$ gilt:
 \begin{equation}
  S \leqslant_{set} S ^\prime \quad iff \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leqslant_{lex}  e_1^\prime ... e_{n^\prime}^\prime
 \end{equation}
@@ -108,12 +108,16 @@ $NFC(\sum) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ 
 
 \end{theorem}
 
- todo hier muss noch was rein zur Menge der Konditionale. wirklich? und hier? \\
- zur menge der konditionale: was ist der betrag, die kardinalität der signatur? hat das was mit der schreibweise, also {1,2,3} vs $\Omega_{a\vee \overline{b}}$
-\subsection{Berechnung der Konditionale in Normalform}
+$\Omega_{a\vee \overline{b}}$
+
 
 \subsection{Wissensbasen}
 Was ist das, Konsistenz von Wissensbasen mit Beispiel, Äquivalenzen und Isomorphismen
+
+\section{Berechnung der Konditionale in Normalform}
+In diesem Abschnitt werden die Mengen der Konditionale $NFC$ und $cNFC$ berechnet und aufgelistet. Diese entstandene Mengen bilden die Basis um die Wissensbasen im nächsten Abschnitt zu berechnen. \\
+!!! wie viele Konditionale wären theoretisch möglich?  \\
+zur menge der konditionale: was ist der betrag, die kardinalität der signatur? hat das was mit der schreibweise, also {1,2,3} vs $\Omega_{a \vee \overline{b}}$ zu tun?
 \section{Generierung der Wissensbasen}
 \subsection{Vorüberlegungen}
 \subsection{Berechnung der Konditionale}

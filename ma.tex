@@ -23,7 +23,7 @@ Konditionale}
 }}
 \def\QEQ{{%
     \setbox0\hbox{<}%
-    \rlap{\hbox to \wd0{\hss \raisebox {1pt}{$\ \cdot$\hss}}}\box0
+    \rlap{\hbox to \wd0{\hss \raisebox {0.8pt}{$\ \cdot$\hss}}}\box0
 }}
 
 \newcommand\dotll{\mathrel{%
@@ -83,16 +83,16 @@ $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$
 Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation für Welten $\omega, \omega'$ und Konditionale $(B|A), (B',A')$ definieren:
 \begin{equation}
 todo: hier dotll fixen
-\omega \overset{\mathrm{\omega}}{\dotll} \omega' \ iff \ [[\omega]]_{\dotl} \geqslant [[\omega']]_{\dotl}
+\omega \overset{\mathrm{\omega}}{\dotll} \omega' \quad iff \quad [[\omega]]_{\dotl} \geqslant [[\omega']]_{\dotl}
 \end{equation}
 
 \begin{equation}
-(B|A) \overset{\mathrm{c}}{\dotll} (B',A') \ iff \ \Omega_A \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{A'} oder \Omega_A =  \Omega_{A'} und \Omega_B \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{B'}
+(B|A) \overset{\mathrm{c}}{\dotll} (B',A') \quad iff \quad \Omega_A \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{A'} \quad oder \quad \Omega_A =  \Omega_{A'} \quad und \quad  \Omega_B \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{B'}
 \end{equation}
 
 \end{theorem}
 Da sich die Unterscheidung von $\overset{\mathrm{\omega}}{\dotll}$ und $\overset{\mathrm{c}}{\dotll} (B',A')$ aus dem Kontext ergibt, wird der Einfachheit halber im weiterem Verlauf $\dotl$ verwendet. \\
-Mit der Signatur $\sum_{abc}$ ergibt sich für mögliche Welten beispielsweise $\{abc\} \dotl \{ab\overline{c}\} \dotl \{\overline{a}bc\} \dotl \{\overline{a} \overline{b} \overline{c}\}$.\\
+Mit der Signatur $\sum_{abc}$ ergibt sich für mögliche Welten beispielsweise $abc \dotl ab\overline{c} \dotl \overline{a}bc \dotl \overline{a} \overline{b} \overline{c}$. Ein Beispiel für die Ordnungsrelation für Konditionale ist $(abc|abc \vee ab \overline{c}) \dotl (abc | abc \vee \overline{a} \overline{b} \overline{c} )$ oder $(abc \vee \overline{a} \overline{b} \overline{c} | abc \vee ab \overline{c} \vee \overline{a} \overline{b} \overline{c}) \dotl (\overline{a} \overline{b} \overline{c} |  abc \vee ab \overline{c} \vee \overline{a} bc \vee \overline{a} \overline{b} \overline{c})$
 !!!todo: bsp für konditonale mit abc \\
 \subsection{Normalform von Konditionalen}
 Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist, eine klare Definition einer vollständigen und minimalen  Menge an Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet.

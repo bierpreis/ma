@@ -92,20 +92,20 @@ Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation $\ove
 Da sich die Unterscheidung von $\overset{\mathrm{\omega}}{\dotll}$ und $\overset{\mathrm{c}}{\dotll}$ aus dem Kontext ergibt, wird der Einfachheit halber im weiterem Verlauf $\dotl$ verwendet. \\
 Mit der Signatur $\sum_{abc}$ ergibt sich für mögliche Welten beispielsweise $abc \dotl ab\overline{c} \dotl \overline{a}bc \dotl \overline{a} \overline{b} \overline{c}$. Ein Beispiel für die Ordnungsrelation für Konditionale ist $(abc|abc \vee ab \overline{c}) \dotl (abc | abc \vee \overline{a} \overline{b} \overline{c} )$ oder $(abc \vee \overline{a} \overline{b} \overline{c} | abc \vee ab \overline{c} \vee \overline{a} \overline{b} \overline{c}) \dotl (\overline{a} \overline{b} \overline{c} |  abc \vee ab \overline{c} \vee \overline{a} bc \vee \overline{a} \overline{b} \overline{c})$.
 \subsection{Normalform für Konditionale}
-Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist die klare Definition einer vollständigen und minimalen  Menge an nichttrivialen Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet. \\
+Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist die klare Definition einer vollständigen und minimalen  Menge an nichttrivialen Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet.
 
-todo: das ist eigentliche eine "proposition" - was ist das? kann das hier definition bleiben?
 \begin{theorem}
-$NFC(\sum) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ ist die Normalform für Konditionale. In diesen gilt dann:\
+Die folgende charakterisierung beschreibt die Menge der Konditionale in Normalform über einer gegebenen Signatur: \\
+$NFC(\sum) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ \\
+Für diese Menge gelten dann die folgenden drei Eigenschaften:\
  \begin{itemize}
 \item{Nichttrivialität: $NFC$ enthält kein triviales Konditional.}
 \item{Komplettheit: für jedes nichttriviale Konditional in $\sum$ existiert ein äquivalentes Konditional in $NFC$ }
 \item{Minimalität: alle Konditionale in $NFC(\sum)$ sind paarweise nicht äquivalent.}
 \end{itemize}
-
 \end{theorem}
 
-todo: in der orginalquelle steht hier noch zeug unter dem ding. muss das hier mit rein???
+
 \subsection{Wissensbasen}
 \cite{beierle2017b} als Literatur hier besonders. \\
 Dann klären, was sind wissensbasen, vlt was formales. \\
@@ -120,7 +120,7 @@ Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird 
 
 \section{Berechnung der Konditionale in Normalform}
 In diesem Abschnitt werden die Mengen der Konditionale $NFC$ und $cNFC$ berechnet und aufgelistet. Diese entstandene Mengen bilden die Basis um die Wissensbasen im nächsten Abschnitt zu berechnen. \\
-!!! wie viele Konditionale wären theoretisch möglich?  \\
+!!! wie viele Konditionale wären theoretisch möglich?  siehe in orginalquelle auf seite 3 mitte. wie sieht das für abc aus???\\
 zur menge der konditionale: was ist der betrag, die kardinalität der signatur? hat das was mit der schreibweise, also {1,2,3} vs $\Omega_{a \vee \overline{b}}$ zu tun?
 \section{Generierung der Wissensbasen}
 \subsection{Vorüberlegungen}

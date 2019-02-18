@@ -115,8 +115,23 @@ Für diese Menge gelten dann die folgenden drei Eigenschaften:\
 \end{theorem}
 
 \subsection{Wissensbasen}
-Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden ordinale Rangfunktionen verwendet. Eine Wissensbasis wird dann als konsistent bezeichnet, wenn eine konditionale Rangfunktion existiert, die alle Konditionale in $\mathcal{R}$ akzeptiert.\\
-Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn12}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Um mehrere mögliche Welten zu beschreiben, wird eine Menge von Rangfunktionen erstellt. Mit einer Rangfuntion wird einer Welt $\kappa$ aus den möglichen Welten $\Omega$ eine natürliche Zahl zugeordnet, um deren Grad an Plausibilität zu beschreiben. Die normalste aller Welten bekommt den Wert 0 zugewiesen, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Ein Konditional $(B|A)$ wird in diesem System akzeptiert, wenn es plausibler ist und damit einen geringeren Rang besitzt, als dessen Negation, z.B. $\kappa(AB)<\kappa(A\overline{B})$. \\
+Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. \\
+Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn12}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfuntion wird einer Welt $\kappa$ aus den möglichen Welten $\Omega$ eine natürliche Zahl zugeordnet, um deren Grad an Plausibilität zu beschreiben. Die normalste aller Welten bekommt den Wert 0 zugewiesen, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl Aussagen als auch Konditionale betrachtet werden.\\
+Rangfunktion für Aussagen:
+\[
+ \kappa(A)=\begin{cases}
+			min\{\kappa(\omega)|\omega \models A \} \quad wenn \  A \ akzeptiert \ wird \\
+			\infty \quad andernfalls
+            \end{cases}
+\]
+Rangfunktion für Konditionale:
+\[
+\kappa((B|A))=\begin{cases}
+			\kappa(AB) - \kappa(A) \quad wenn \kappa(A) \neq \infty \\
+			\infty \quad andernfalls
+            \end{cases}
+\]
+Eine Aussage oder ein Konditional $(B|A)$ wird in diesem System akzeptiert, wenn es plausibler ist und damit einen geringeren Rang besitzt, als dessen Negation, z.B. $\kappa(AB)<\kappa(A\overline{B})$. \\
 Eine Wissensbasis wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert.\\
 noch irgendwas rein zu rangfunktionen für konditionale vs welten? s. 43 !! \\
 hier noch was daraus? : \cite{beierle2017b} \\

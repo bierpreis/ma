@@ -116,7 +116,7 @@ Für diese Menge gelten dann die folgenden drei Eigenschaften:\
 
 \subsection{Wissensbasen}
 Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. \\
-Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn88}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfuntion wird einer Welt aus den möglichen Welten $\Omega$ eine natürliche Zahl mittels einer Funktion $\kappa$ zugeordnet, um deren Grad an Plausibilität zu beschreiben. Mindestens eine Welt bekommt den Wert 0 zugewiesen und wird damit am meisten plausibel gekennzeichnet, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl einzelne Aussagen als auch Konditionale betrachtet werden.\\
+Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn88}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfuntion wird einer Welt $\omega$ aus den möglichen Welten $\Omega$ eine natürliche Zahl mittels einer Funktion $\kappa$ zugeordnet, um deren Grad an Plausibilität zu beschreiben. Mindestens eine Welt bekommt den Wert 0 zugewiesen und wird damit am meisten plausibel gekennzeichnet, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl einzelne Aussagen als auch Konditionale betrachtet werden.\\
 Rangfunktion für Aussagen:
 \[
  \kappa(A)=\begin{cases}
@@ -132,8 +132,7 @@ Rangfunktion für Konditionale:
             \end{cases}
 \]
 Eine Aussage $A$ oder ein Konditional $(B|A)$ wird in diesem System akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt, als dessen Negation, z.B. $\kappa(A) < \kappa(\overline{A})$ bzw. $\kappa(AB)<\kappa(A\overline{B})$. Eine Wissensbasis wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion $\mathcal{R}$ gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert.\\
-hier noch was daraus? : \cite{beierle2017b} \\
-äquivalenz und isomorphismen aus orginalquelle
+äquivalenz und isomorphismen aus orginalquelle. äquivalenz wird auch in \cite{beierle17b} gut beschrieben
 \section{Berechnung der Konditionale in Normalform}
 In diesem Abschnitt werden die Mengen der Konditionale $NFC$ und $cNFC$ berechnet und aufgelistet. Diese entstandene Mengen bilden die Basis um die Wissensbasen im nächsten Abschnitt zu berechnen. \\
 !!! wie viele Konditionale wären theoretisch möglich?  siehe in orginalquelle auf seite 3 mitte. wie sieht das für abc aus???\\

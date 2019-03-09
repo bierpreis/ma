@@ -40,7 +40,7 @@ Konditionale}
 \tableofcontents
 \newpage
 \section{Einleitung}
-Diese Arbeit hat zum Ziel, Wissensbasen aus qualitativen Konditionalen auf eine systematische Art und Weise zu generieren. Dafür wird der in \cite{beierle19} entwickelte Algorithmus zur Berechnung aller Wissensbasen über der Signatur $\sum_{abc}$ implementiert. Dabei soll ergründet werden, welchen Aufwand diese Generierung mit einer steigender Anzahl der darin  enthaltenden Konditionalen verursacht. Die als Ergebnis entstandenen Wissensbasen sollen dann dazu dienen, das System InfOCF (siehe \cite{beierle17}) experimentell zu evaluieren.
+Diese Arbeit hat zum Ziel, Wissensbasen aus qualitativen Konditionalen auf eine systematische Art und Weise zu generieren. Dafür wird der in \cite{beierle19} entwickelte Algorithmus zur Berechnung aller Wissensbasen über der Signatur $\Sigma_{abc}$ implementiert. Dabei soll ergründet werden, welchen Aufwand diese Generierung mit einer steigender Anzahl der darin  enthaltenden Konditionalen verursacht. Die als Ergebnis entstandenen Wissensbasen sollen dann dazu dienen, das System InfOCF (siehe \cite{beierle17}) experimentell zu evaluieren.
 \\
 Der weitere Ablauf dieser Arbeit ist wie folgt: Im nächsten Kapitel werden zuerst die Grundlagen zu Konditionalen und Wissensbasen dargestellt um die Basis für das weitere vorgehen zu schaffen. Anschließend werden die betrachteten Koditionale in einer Normalform vollständig berechnet, dargestellt und geordnet gespeichert. Im Hauptteil dieser Arbeit wird dann ein Algorithmus aus \cite{beierle19} zur Erzeugung aller Wissensbasen über der Signatur implementiert und die Vorgehensweise dabei beschrieben. Die erhaltenen Ergebnisse werden dann in einer geeigneten Form dargestellt. Abschließend werden die gewonnenen Ergebnisse bewertet.
 \section{Grundlagen}
@@ -71,10 +71,10 @@ Für die geordneten Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\pri
  S \leqslant_{set} S ^\prime \quad gdw. \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leqslant_{lex}  e_1^\prime ... e_{n^\prime}^\prime
 \end{equation}
 \end{theorem}
-Bei der Signatur $\sum = \{ a, b, c\}$ mit der Ordnungsrelation $a \dotl b \dotl c$ ergibt sich eine Ordnungsrelation für die möglichen Mengen wie folgt: $\{a\} \dotll_{set} \{b\} \dotll_{set} \{c\} \dotll_{set} \{a,b\} \dotll_{set} \{a,c\} \dotll_{set}\{b,c\} \dotll_{set} \{a, b, c\}$. \\
+Bei der Signatur $\Sigma = \{ a, b, c\}$ mit der Ordnungsrelation $a \dotl b \dotl c$ ergibt sich eine Ordnungsrelation für die möglichen Mengen wie folgt: $\{a\} \dotll_{set} \{b\} \dotll_{set} \{c\} \dotll_{set} \{a,b\} \dotll_{set} \{a,c\} \dotll_{set}\{b,c\} \dotll_{set} \{a, b, c\}$. \\
 Im weiteren Verlauf wird für die Darstellung von Konditionalen auf die Notation mittels Mengen möglicher Welten verwendet in Form von $\Omega_F = \{\omega | \omega \models F \}$, beispielsweise: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{abc,ab\overline{c},a\overline{b}c,a\overline{b}\overline{c},\overline{a}b\overline{c},\overline{a}\overline{b}c,\overline{a}\overline{b}\overline{c}\}$ \\
-Um diese Notation etwas kompakter darzustellen, wird eine Darstellung $[[\omega]]_{\dotl}$ für eine mögliche Welt unter der Signatur $\sum{abc}$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: \\
+Um diese Notation etwas kompakter darzustellen, wird eine Darstellung $[[\omega]]_{\dotl}$ für eine mögliche Welt unter der Signatur $\Sigma_{abc}$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: \\
 $[[abc]]_{\dotl}  = 7,\ 
 [[ab\overline{c}]]_{\dotl} = 6,\ 
 [[a\overline{b}c]]_{\dotl} = 5,\ 
@@ -97,18 +97,18 @@ Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation $\ove
 
 \end{theorem}
 Da sich die Unterscheidung von $\overset{\mathrm{\omega}}{\dotll}$ und $\overset{\mathrm{c}}{\dotll}$ aus dem Kontext ergibt, wird der Einfachheit halber im weiterem Verlauf $\dotl$ verwendet. \\
-Mit der Signatur $\sum_{abc}$ ergibt sich für mögliche Welten beispielsweise $abc \dotl ab\overline{c} \dotl \overline{a}bc \dotl \overline{a} \overline{b} \overline{c}$. Ein Beispiel für die Ordnungsrelation für Konditionale ist $(abc|abc \vee ab \overline{c}) \dotl (abc | abc \vee \overline{a} \overline{b} \overline{c} )$ oder $(abc \vee \overline{a} \overline{b} \overline{c} | abc \vee ab \overline{c} \vee \overline{a} \overline{b} \overline{c}) \dotl (\overline{a} \overline{b} \overline{c} |  abc \vee ab \overline{c} \vee \overline{a} bc \vee \overline{a} \overline{b} \overline{c})$.
+Mit der Signatur $\Sigma_{abc}$ ergibt sich für mögliche Welten beispielsweise $abc \dotl ab\overline{c} \dotl \overline{a}bc \dotl \overline{a} \overline{b} \overline{c}$. Ein Beispiel für die Ordnungsrelation für Konditionale ist $(abc|abc \vee ab \overline{c}) \dotl (abc | abc \vee \overline{a} \overline{b} \overline{c} )$ oder $(abc \vee \overline{a} \overline{b} \overline{c} | abc \vee ab \overline{c} \vee \overline{a} \overline{b} \overline{c}) \dotl (\overline{a} \overline{b} \overline{c} |  abc \vee ab \overline{c} \vee \overline{a} bc \vee \overline{a} \overline{b} \overline{c})$.
 \subsection{Normalform für Konditionale}
-Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist die klare Definition einer vollständigen und minimalen  Menge an nichttrivialen Konditionalen über einer Signatur $\sum$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\sum)$ bezeichnet.
+Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist die klare Definition einer vollständigen und minimalen  Menge an nichttrivialen Konditionalen über einer Signatur $\Sigma$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\Sigma)$ bezeichnet.
 
 \begin{theorem}
-Die folgende charakterisierung beschreibt die Menge der Konditionale in Normalform über einer gegebenen Signatur: \\
-$NFC(\sum) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ \\
+Die folgende Charakterisierung beschreibt die Menge der Konditionale in Normalform über einer gegebenen Signatur: \\
+$NFC(\Sigma) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ \\
 Für diese Menge gelten dann die folgenden drei Eigenschaften:\
  \begin{itemize}
 \item{Nichttrivialität: $NFC$ enthält kein triviales Konditional.}
-\item{Komplettheit: für jedes nichttriviale Konditional in $\sum$ existiert ein äquivalentes Konditional in $NFC$ }
-\item{Minimalität: alle Konditionale in $NFC(\sum)$ sind paarweise nicht äquivalent.}
+\item{Komplettheit: für jedes nichttriviale Konditional in $\Sigma$ existiert ein äquivalentes Konditional in $NFC$ }
+\item{Minimalität: alle Konditionale in $NFC(\Sigma)$ sind paarweise nicht äquivalent.}
 \end{itemize}
 \end{theorem}
 

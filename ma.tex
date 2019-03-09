@@ -4,6 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{hyperref}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
@@ -48,6 +49,7 @@ In diesem Abschnitt werden kurz die Grundlagen aufgeführt, auf denen der Hauptt
 \subsection{Konditionale}
 Zuerst wird kurz die Notation beschrieben, mit der die Konditionale im weiteren Verlauf der Arbeit dargestellt werden. Die einzelnen Atome, die betrachtet und beschrieben werden, erhalten Bezeichnungen mit Kleinbuchstaben $a, b, c,...\ $. Aussagen über diese werden in Form von Großbuchstaben $A, B, C,...$ formuliert, die Gesamtheit der Sprache wird als $\lag$ bezeichnet. Die Menge der möglichen Welten, die betrachtet werden, wird mit $\Omega$ beschrieben. In einer dieser Welten $\omega \in \Omega$  hat der Ausdruck $\omega \models A$ die Bedeutung, dass $A \in \lag$ in dieser Welt gilt. Des weiteren wird $\neg A$ als $\overline{A}$ und $A \wedge B$ als $AB$ dargestellt.\\
 Ein Konditional ist die Verbindung aus einer Vorbedingung und einer Folgerung aus dieser Vorbedingung. Ein qualitatives Konditional ist ein solches unter  Unsicherheit und entspricht einem Zusammenhang in der Form \glqq Wenn $A$, dann normalerweise $B$\grqq . Dargestellt wird so ein Konditional  im folgenden mit dem Symbol \glqq$|$\grqq \space in der Form $r = ( \lag | \lag)$. Ein Beispiel ist $r = (B|A)$, das dazugehörige gegenteilige Konditional lautet dann $\overline{r} = (\overline{B}|A)$.\\
+Um den Wahrheitsgehalt eines Konditionals zu bestimmen, werden sie oft im Rahmen von ordinalen Rangfunktionwn nach Wolfgang Spohn betrachtet, wie beispielsweise in \cite{spohn88} oder \cite{spohn12} beschrieben. Mehr dazu auch in diesem Text im Abschnitt zu  \hyperref[sec:Wissensbasen]{Wissensbasen}. Ein unsicheres Konditional wird dann als wahr akzeptiert, wenn es plausibler ist als das dazu umgekehrte Konditional. Beispielsweise $(B|A)$ wird dann akzeptiert, wenn $A \and B$ plausibler ist als $A \and \overline{B}$, siehe dazu auch \cite{isberner14}. \\
 Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge möglicher Welten $\Omega$ in drei Teile auf: Welten, die das Konditional bestätigen, Welten die es falsifizieren und Welten, auf die das Konditional nicht zutrifft, weil die Vorbedingung nicht erfüllt ist. Die letztere Möglichkeit wird mit $u$ bezeichnet, was als \textit{unknown} gedeutet werden kann. Damit lässt sich das Konditional als Indikatorfunktion wie folgt darstellen:
 \[
   (B|A)(\omega)=\begin{cases}
@@ -56,7 +58,7 @@ Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge mög
                u \quad wenn \quad \omega \quad \models \overline{A}
             \end{cases}
 \]
-Ein Konditional wird als wahr akzeptiert, wenn es plausibler ist als das zugehörige kontrafaktische Konditional. Beispielsweise $(B|A)$ wird dann akzeptiert, wenn es plausibler ist als $(\overline{B}|A)$.
+
 \subsection{Äquivalente und triviale Konditionale}
 Äquivalenz für Konditionale soll im weiteren Verlauf dadurch charakterisiert sein, dass zwei äquivalente Konditionale die Menge der möglichen Welten auf die gleiche Art und Weise unterteilen:
 \begin{equation}
@@ -113,6 +115,7 @@ Für diese Menge gelten dann die folgenden drei Eigenschaften:\
 \end{theorem}
 
 \subsection{Wissensbasen}
+\label{sec:Wissensbasen}
 Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. \\
 Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn88}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfuntion wird einer Welt $\omega$ aus den möglichen Welten $\Omega$ eine natürliche Zahl mittels einer Funktion $\kappa$ zugeordnet, um deren Grad an Plausibilität zu beschreiben. Mindestens eine Welt bekommt den Wert 0 zugewiesen und wird damit am meisten plausibel gekennzeichnet, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl einzelne Aussagen als auch Konditionale betrachtet werden.\\
 Rangfunktion für Aussagen:

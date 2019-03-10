@@ -50,7 +50,7 @@ In diesem Abschnitt werden kurz die Grundlagen aufgeführt, auf denen der Hauptt
 Zuerst wird kurz die Notation beschrieben, mit der die Konditionale im weiteren Verlauf der Arbeit dargestellt werden. Die einzelnen Atome, die betrachtet und beschrieben werden, erhalten Bezeichnungen mit Kleinbuchstaben $a, b, c,...\ $. Aussagen über diese werden in Form von Großbuchstaben $A, B, C,...$ formuliert, die Gesamtheit der Sprache wird als $\lag$ bezeichnet. Die Menge der möglichen Welten, die betrachtet werden, wird mit $\Omega$ beschrieben. In einer dieser Welten $\omega \in \Omega$  hat der Ausdruck $\omega \models A$ die Bedeutung, dass $A \in \lag$ in dieser Welt gilt. Des weiteren wird $\neg A$ als $\overline{A}$ und $A \wedge B$ als $AB$ abgekürzt.
 \subsection{Konditionale}
 Ein Konditional ist die Verbindung aus einer Vorbedingung und einer Folgerung aus dieser Vorbedingung. Ein qualitatives Konditional ist ein solches unter  Unsicherheit und entspricht einem Zusammenhang in der Form \glqq Wenn $A$, dann normalerweise $B$\grqq . Dargestellt wird so ein Konditional  im folgenden mit dem Symbol \glqq$|$\grqq \space in der Form $r = ( \lag | \lag)$. Ein Beispiel ist $r = (B|A)$, das dazugehörige gegenteilige Konditional lautet dann $\overline{r} = (\overline{B}|A)$.\\
-Um die Akzeptanz eines unsicheren Konditionals zu bestimmen, werden sie oft im Rahmen von ordinalen Rangfunktionen nach Wolfgang Spohn betrachtet, wie beispielsweise in \cite{spohn88} oder \cite{spohn12} beschrieben. Mehr dazu auch in diesem Text im Abschnitt zu  \hyperref[sec:Wissensbasen]{Wissensbasen}. Grundsätzlich wird ein unsicheres Konditional dann als akzeptiert, wenn es plausibler ist als das gegenteilige Konditional. Beispielsweise $(B|A)$ wird  dann akzeptiert, wenn $A \wedge B$ plausibler ist als $A \wedge \overline{B}$, siehe dazu auch \cite{isberner14}. \\
+Um die Akzeptanz eines unsicheren Konditionals zu bestimmen, werden sie oft im Rahmen von ordinalen Rangfunktionen nach Wolfgang Spohn betrachtet, wie beispielsweise in \cite{spohn88} oder \cite{spohn12} beschrieben. Mehr dazu auch in diesem Text im Abschnitt zu  \hyperref[sec:Wissensbasen]{Wissensbasen}. Grundsätzlich wird ein unsicheres Konditional dann  akzeptiert, wenn es plausibler ist als das gegenteilige Konditional. Beispielsweise $(B|A)$ wird  dann akzeptiert, wenn $A \wedge B$ plausibler ist als $A \wedge \overline{B}$, siehe dazu auch \cite{isberner14}. \\
 Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge möglicher Welten $\Omega$ in drei Teile auf: Welten, die das Konditional bestätigen, Welten die es falsifizieren und Welten, auf die das Konditional nicht anwendbar ist, weil die Vorbedingung nicht erfüllt ist. Die letztere Möglichkeit wird mit $u$ bezeichnet, was als \textit{unknown} gedeutet werden kann. Damit lässt sich das Konditional als Indikatorfunktion wie folgt darstellen:
 \[
   (B|A)(\omega)=\begin{cases}
@@ -65,7 +65,7 @@ Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge mög
 \begin{equation}
 (B|A)\equiv (B^\prime|A^\prime) \quad gdw. \quad A\equiv A^\prime \quad and \quad AB \equiv A^\prime B^\prime
 \end{equation}
-Als triviale Konditionale werden solche beschrieben, die keinen Mehrwert bieten, vgl. \cite{beierle19}. Das beinhaltet sowohl sich selbst erfüllende in der Form $(A \models A)$ als auch Konditionale, die ein anderes einfach das Gegenteil eines Anderen Konditionals darstellen, wie beispielsweise $(A \models \overline{B})$. Solche Konditionale sind bei der weiteren Betrachtung nicht von Interesse und werden daher nicht weiter beachtet.
+Als triviale Konditionale werden solche beschrieben, die keinen Mehrwert bieten, vgl. \cite{beierle19}. Das beinhaltet sowohl sich selbst erfüllende in der Form $(A \models A)$ als auch Konditionale, die ein anderes einfach das Gegenteil eines anderen Konditionals darstellen, wie beispielsweise $(A \models \overline{B})$. Solche Konditionale sind bei der weiteren Betrachtung nicht von Interesse und werden daher nicht weiter beachtet.
 \subsection{Ordnungsrelation für Konditionale}
 In diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können. Als Hilfsmittel dazu wird $ <_{lex} $  verwendet, was die alphabetische Ordnung über die vorkommenden Buchstaben beschreiben soll, beispielsweise $a <_{lex} b <_{lex} c ...$ .
 \begin{theorem}[Ordnungsrelation für Mengen S]\ \\
@@ -89,13 +89,13 @@ $[[abc]]_{\dotl}  = 7,\
 Mit dieser Notation sieht das Beispiel von oben wie folgt aus: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$
 \begin{theorem}[Ordnungsrelation für Welten und Konditionale] \ \\
-Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation $\overset{\mathrm{\omega}}{\dotll}$ für Welten $\omega, \omega'$ und $\overset{\mathrm{c}}{\dotll}$ Konditionale $(B|A), (B',A')$ definieren:
+Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation $\overset{\mathrm{\omega}}{\dotll}$ für Welten $\omega, \omega'$ und $\overset{\mathrm{c}}{\dotll}$ Konditionale $(B|A), (B'|A')$ definieren:
 \begin{equation}
 \omega \overset{\mathrm{\omega}}{\dotll} \omega' \quad gdw. \quad [[\omega]]_{\dotl} \geqslant [[\omega']]_{\dotl}
 \end{equation}
 
 \begin{equation}
-(B|A) \overset{\mathrm{c}}{\dotll} (B',A') \quad gdw. \quad \Omega_A \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{A'} \quad oder \quad \Omega_A =  \Omega_{A'} \quad und \quad  \Omega_B \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{B'}
+(B|A) \overset{\mathrm{c}}{\dotll} (B'| A') \quad gdw. \quad \Omega_A \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{A'} \quad oder \quad \Omega_A =  \Omega_{A'} \quad und \quad  \Omega_B \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{B'}
 \end{equation}
 
 \end{theorem}

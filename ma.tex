@@ -65,7 +65,7 @@ Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge mög
 \begin{equation}
 (B|A)\equiv (B^\prime|A^\prime) \quad gdw. \quad A\equiv A^\prime \quad and \quad AB \equiv A^\prime B^\prime
 \end{equation}
-Als triviale Konditionale werden solche beschrieben, die keinen Mehrwert bieten. Das beinhaltet sowohl sich selbst erfüllende in der Form $(A \models A)$ als auch Konditionale, die ein anderes einfach umkehren, in Form von $(A \models \overline{B})$. Solche Konditionale sind bei der weiteren Betrachtung nicht von Interesse und werden daher nicht weiter beachtet.
+Als triviale Konditionale werden solche beschrieben, die keinen Mehrwert bieten, vgl. \cite{beierle19}. Das beinhaltet sowohl sich selbst erfüllende in der Form $(A \models A)$ als auch Konditionale, die ein anderes einfach das Gegenteil eines Anderen Konditionals darstellen, wie beispielsweise $(A \models \overline{B})$. Solche Konditionale sind bei der weiteren Betrachtung nicht von Interesse und werden daher nicht weiter beachtet.
 \subsection{Ordnungsrelation für Konditionale}
 In diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können. Als Hilfsmittel dazu wird $ <_{lex} $  verwendet, was die alphabetische Ordnung über die vorkommenden Buchstaben beschreiben soll, beispielsweise $a <_{lex} b <_{lex} c ...$ .
 \begin{theorem}[Ordnungsrelation für Mengen S]\ \\
@@ -133,7 +133,7 @@ Rangfunktion für Konditionale:
 			\infty \quad andernfalls
             \end{cases}
 \]
-Eine Aussage $A$ wird in diesem System akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt als dessen Umkehrung $\overline{A}$, z.B. $\kappa(A) < \kappa(\overline{A})$. Analaog dazu wird ein Konditional $(B|A)$ akzeptiert, wenn es einen geringeren Rang als dessen gegenteiliges Konditional $(\overline{B}|A)$ besitzt, z.B. $\kappa(AB)<\kappa(A\overline{B})$, vgl. \cite{beierle17}. Eine Wissensbasis $\mathcal{R}$ wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert.\\
+Eine Aussage $A$ wird in diesem System akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt als dessen Gegenteil $\overline{A}$, z.B. $\kappa(A) < \kappa(\overline{A})$. Analaog dazu wird ein Konditional $(B|A)$ akzeptiert, wenn es einen geringeren Rang als dessen gegenteiliges Konditional $(\overline{B}|A)$ besitzt, z.B. $\kappa(AB)<\kappa(A\overline{B})$, vgl. \cite{beierle17}. Eine Wissensbasis $\mathcal{R}$ wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert.\\
 Als nächstes wird die Äquivalenz von Wissensbasen betrachtet. Diese ist bei der Generierung von Wissensbasen von großer Bedeutung, um neue Wissensbasen und syntaktische Varianten bereits vorhandener Wissensbasen unterscheiden zu können. Als Maßstab für Äquivalenz zweier Wissensbasen wird im folgenden die elementweise Äquivalenz verwendet. Diese verfolgt den Grundgedanken, dass Teile einer Wissensbasis mit Teilen von anderen Wissensbasen einzeln verglichen werden können. Die folgende Definition dieser Äquivalenz stammt aus \cite{beierle17b}.
 \begin{theorem}[Elementweise Äquivalenz von Wissensbasen\\]
 $\mathcal{R}$ und $\mathcal{R'}$ sind Wissensbasen. Für diese gilt dann:

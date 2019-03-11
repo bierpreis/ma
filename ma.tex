@@ -68,7 +68,7 @@ Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge mög
 Als triviale Konditionale werden solche beschrieben, die keinen Mehrwert bieten, vgl. \cite{beierle19}. Das beinhaltet sowohl sich selbst erfüllende in der Form $(A \models A)$ als auch Konditionale, die ein anderes einfach das Gegenteil eines anderen Konditionals darstellen, wie beispielsweise $(A \models \overline{B})$. Solche Konditionale sind bei der weiteren Betrachtung nicht von Interesse und werden daher nicht weiter beachtet.
 \subsection{Ordnungsrelation für Konditionale}
 In diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können.
-\begin{theorem}[Ordnungsrelation für Mengen S](entnommen aus \cite{beierle19}) \ \\
+\begin{theorem}[Ordnungsrelation für Zeichen und Mengen](entnommen aus \cite{beierle19}) \ \\
 Für eine Ordnungsrelation $\leqslant$ auf meiner Menge $M$ wird dessen Entsprechung für Zeichen als $\leqslant_{lex}$ notiert. Für die geordneten Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = \{e_{1}, ... , e_{n\prime}\}$ gilt:
 \begin{equation}
  S \leqslant_{set} S ^\prime \quad gdw. \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leqslant_{lex}  e_1^\prime ... e_{n^\prime}^\prime
@@ -88,8 +88,8 @@ $[[abc]]_{\dotl}  = 7,\
 [[\overline{a}\overline{b}\overline{c}]]_{\dotl} = 0 $ \\
 Mit dieser Notation sieht das Beispiel von oben wie folgt aus: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$
-\begin{theorem}[Ordnungsrelation für Welten und Konditionale] \ \\
-Mit der gerade beschriebenen Ordnung lässt sich nun eine Ordnungsrelation $\overset{\mathrm{\omega}}{\dotll}$ für Welten $\omega, \omega'$ und $\overset{\mathrm{c}}{\dotll}$ Konditionale $(B|A), (B'|A')$ definieren:
+\begin{theorem}[Ordnungsrelation für Welten und Konditionale](entnommen aus \cite{beierle19})\ \\
+Mit einer Signatur $\Sigma$ und deren linearer Ordnung $\dotl$ sind die Ordnungen $\overset{\mathrm{\omega}}{\dotll}$ für Welten $\omega, \omega'$ und $\overset{\mathrm{c}}{\dotll}$ Konditionale $(B|A), (B'|A')$ wie folgt definiert:
 \begin{equation}
 \omega \overset{\mathrm{\omega}}{\dotll} \omega' \quad gdw. \quad [[\omega]]_{\dotl} \geqslant [[\omega']]_{\dotl}
 \end{equation}

@@ -24,7 +24,7 @@ Konditionale}
 }}
 \def\QEQ{{%
     \setbox0\hbox{<}%
-    \rlap{\hbox to \wd0{\hss \raisebox {0.6pt}{$\ \cdot$\hss}}}\box0
+    \rlap{\hbox to \wd0{\hss \raisebox {0.4pt}{$\ \cdot$\hss}}}\box0
 }}
 
 \newcommand\dotll{\mathrel{%
@@ -34,11 +34,12 @@ Konditionale}
     \setbox0\hbox{$\leqslant$}%
     \rlap{\hbox to \wd0{\hss \raisebox {1pt}{$\ \cdot$\hss}}}\box0
 }}
+
 % rdotl command
 \newcommand\rdotl{\mathrel{%
-    \mathchoice{\QEQ}{\QEQ}{\QEQ}{\QEQ}%
+    \mathchoice{\RQEQ}{\RQEQ}{\RQEQ}{\RQEQ}%
 }}
-\def\QEQ{{%
+\def\RQEQ{{%
     \setbox0\hbox{$\prec$}%
     \rlap{\hbox to \wd0{\hss \raisebox {0.01pt}{$\ \cdot$\hss}}}\box0
 }}
@@ -161,9 +162,14 @@ Für die Signatur $\Sigma_{abc}$ ergeben sich dann die folgenden Äquivalenzklas
 $[abc]$, $[ab\overline{c}, a\overline{b}c\, \overline{a}bc], [a\overline{b}\overline{c}, \overline{a}b\overline{c}, \overline{a}\overline{b}c], [\overline{a}\overline{b}\overline{c}]$ \\
 !!todo: hier jetzt die notation mit[] und so \\
 Mit Berücksichtigung von Äquivalenzklassen und der Ordnung $\dotl$ aus \autoref{ordnungsrelation} wird in der nächsten Definition eine Ordnungsrelation konstruiert, die diese Äquivalenzen mit einbezieht.
-\begin{theorem}[$cNFC$ und Ordnungsrelation $\rdotl$](entnommen aus \cite{beierle19})
-
-
+\begin{theorem}[$cNFC$ und Ordnungsrelation $\rdotl$](entnommen aus \cite{beierle19}) \ \\
+Gegeben sei eine Signatur $\Sigma$ mit linearer Ordnung $\dotl$. Dann sind $[NFC(\Sigma)]_\simeq=\{[r_1]_\simeq,...,[r_m]_\simeq\}$ die Äquivalenzklassen von $NFC(\Sigma)$ induziert durch Isomorphismus sodass für jedes $i \in \{1, ..., m\}$ das Konditional $r_i$ das minimale Element in $[r_i]_\simeq$ im Sinne von $\dotl$ ist und $r_1\dotl...\dotl r_m$ ist.
+\begin{itemize}
+\item{Die kanonischen Konditionale in Normalform über $\Sigma$ sind $cNFC(\Sigma) = \{r_1, ..., r_m \}$.}
+\item{Die kanonische Ordnung auf $NFC(\Sigma)$ $\rdotl$ ist durch folgendes Schema gegeben: \\
+$r_1\rdotl ... \rdotl r_m \rdotl[r_1]_\simeq \setminus \{r_1\} \rdotl ... \rdotl [r_m]_\simeq \setminus \{r_m\}$ \\ 
+mit $r \rdotl r'$ gdw. $r\dotl r'$ für alle $i \in \{1, ..., m\}$ und alle $r, r' \in [r_i]_\simeq \setminus \{r_i\}$.}
+\end{itemize}
 \end{theorem}
 \section{Berechnung der Konditionale in Normalform}
 In diesem Abschnitt werden die Mengen der Konditionale $NFC$ und $cNFC$ berechnet und aufgelistet. Diese entstandene Mengen bilden die Basis um die Wissensbasen im nächsten Abschnitt zu berechnen.\\

@@ -144,8 +144,12 @@ $\mathcal{R}$ und $\mathcal{R'}$ sind Wissensbasen. Für diese gilt dann:
 \end{itemize}
 \end{theorem}
 \subsection{Isomorphie und Äquivalenzklassen}
-Durch Umbenennung von Variablen ist es möglich, neue Kombinationen von Welten, Konditionalen und Wissensbasen zu schaffen, die sich außer der Umbenennung nicht von den Vorhandenen unterscheiden. Dieses Verhalten wird als Isomorphismus beschrieben. Die Menge an durch diesen Isomorphismus entstandenen Dingen, die sich außer die Umbenennung nicht unterscheiden, wird dann als Äquivalenzklasse bezeichnet. Beispielsweise enthält die Signatur $\Sigma_{abc}$ die mögliche Welt $\overline{a}bc$. Wenn jetzt $a$ in $b$ und $b$ in $a$ umbenannt wird, entsteht der Isomorphismus $a\overline{b}c$. Analog kann durch Umbenennung daraus $ab\overline{c}$ entstehen. Alle drei dieser möglichen Welten bilden zusammen eine Äquivalenzklasse. \\
-!! todo:: isomorphismen und äquivalenzklassen. aber wie funktioniert das??
+Durch Umbenennung von Variablen ist es möglich, neue Kombinationen von Welten, Konditionalen und Wissensbasen zu schaffen, die sich außer der Umbenennung nicht von den Vorhandenen unterscheiden. Dieses Verhalten wird als Isomorphismus beschrieben. Die Menge an durch diesen Isomorphismus entstandenen Dingen wird dann als Äquivalenzklasse bezeichnet. Beispielsweise enthält die Signatur $\Sigma_{abc}$ die mögliche Welt $\overline{a}bc$. Wenn jetzt $a$ in $b$ und $b$ in $a$ umbenannt wird, entsteht der Isomorphismus $a\overline{b}c$. Analog kann durch Umbenennung daraus $ab\overline{c}$ entstehen. Alle drei dieser möglichen Welten bilden zusammen eine Äquivalenzklasse. Entsprechend ergibt sich die folgende Definition.
+\begin{theorem}[Isomorphismus](entnommen aus \cite{beierle19}) \ \\
+$X, X'$ sind Welten, Aussagen, Wissensbasen oder Mengen dieser Dinge. $X$ und $X'$ sind dann isomorph $(X \simeq X')$, wenn eine Umbenennung existiert in der Form  $\rho(X) = X'$.
+\end{theorem}
+Für die Signatur $\Sigma_{abc}$ ergeben sich dann die folgenden Äquivalenzklassen: \\
+$[abc]$, $[ab\overline{c}, a\overline{b}c\, \overline{a}bc], [a\overline{b}\overline{c}, \overline{a}b\overline{c}, \overline{a}\overline{b}c], [\overline{a}\overline{b}\overline{c}]$
 \section{Berechnung der Konditionale in Normalform}
 In diesem Abschnitt werden die Mengen der Konditionale $NFC$ und $cNFC$ berechnet und aufgelistet. Diese entstandene Mengen bilden die Basis um die Wissensbasen im nächsten Abschnitt zu berechnen.\\
 !!! wie viele Konditionale wären theoretisch möglich?  siehe in \cite{beierle19} auf seite 3 mitte. wie sieht das für abc aus???

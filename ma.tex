@@ -59,7 +59,7 @@ In diesem Abschnitt werden kurz die Grundlagen aufgeführt, auf denen der Hauptt
 Zuerst wird kurz die Notation beschrieben, mit der die Konditionale im weiteren Verlauf der Arbeit dargestellt werden. Die einzelnen Atome, die betrachtet und beschrieben werden, erhalten Bezeichnungen mit Kleinbuchstaben $a, b, c,...\ $. Aussagen über diese werden in Form von Großbuchstaben $A, B, C,...$ formuliert, die Gesamtheit der Sprache wird als $\lag$ bezeichnet. Die Menge der möglichen Welten, die betrachtet werden, wird mit $\Omega$ beschrieben. In einer dieser Welten $\omega \in \Omega$  hat der Ausdruck $\omega \models A$ die Bedeutung, dass $A \in \lag$ in dieser Welt gilt. Des weiteren wird $\neg A$ als $\overline{A}$ und $A \wedge B$ als $AB$ abgekürzt.
 \subsection{Konditionale}
 Ein Konditional ist die Verbindung aus einer Vorbedingung und einer Folgerung aus dieser Vorbedingung. Ein qualitatives Konditional ist ein solches unter  Unsicherheit und entspricht einem Zusammenhang in der Form \glqq Wenn $A$, dann normalerweise $B$\grqq . Dargestellt wird so ein Konditional  im folgenden mit dem Symbol \glqq$|$\grqq \space in der Form $r = ( \lag | \lag)$. Ein Beispiel ist $r = (B|A)$, das dazugehörige gegenteilige Konditional lautet dann $\overline{r} = (\overline{B}|A)$.\\
-Um die Akzeptanz eines unsicheren Konditionals zu bestimmen, werden sie oft im Rahmen von ordinalen Rangfunktionen nach Wolfgang Spohn betrachtet, wie beispielsweise in \cite{spohn88} oder \cite{spohn12} beschrieben. Mehr dazu auch in diesem Text im Abschnitt zu  \hyperref[sec:Wissensbasen]{Wissensbasen}. Grundsätzlich wird ein unsicheres Konditional dann  akzeptiert, wenn es plausibler ist als das gegenteilige Konditional. Beispielsweise $(B|A)$ wird  dann akzeptiert, wenn $A \wedge B$ plausibler ist als $A \wedge \overline{B}$, siehe dazu auch \cite{isberner14}. \\
+Um die Akzeptanz eines unsicheren Konditionals zu bestimmen, werden sie oft im Rahmen von ordinalen Rangfunktionen nach Wolfgang Spohn betrachtet, wie beispielsweise in \cite{spohn88} oder \cite{spohn12} beschrieben. Mehr dazu auch in diesem Text im Abschnitt zu  \hyperref[sec:Wissensbasen]{Wissensbasen}. Grundsätzlich wird ein unsicheres Konditional dann  akzeptiert, wenn es plausibler ist als das dazugehörige gegenteilige Konditional. Beispielsweise $(B|A)$ wird  dann akzeptiert, wenn $A \wedge B$ plausibler ist als $A \wedge \overline{B}$, siehe dazu auch \cite{isberner14}. \\
 Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge möglicher Welten $\Omega$ in drei Teile auf: Welten, die das Konditional bestätigen, Welten die es falsifizieren und Welten, auf die das Konditional nicht anwendbar ist, weil die Vorbedingung nicht erfüllt ist. Die letztere Möglichkeit wird mit $u$ bezeichnet, was als \textit{unknown} gedeutet werden kann. Damit lässt sich das Konditional als Indikatorfunktion wie folgt darstellen:
 \[
   (B|A)(\omega)=\begin{cases}
@@ -72,7 +72,7 @@ Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge mög
 \subsection{Äquivalente und triviale Konditionale}
 Äquivalenz für Konditionale soll im weiteren Verlauf dadurch charakterisiert sein, dass zwei äquivalente Konditionale die Menge der möglichen Welten auf die gleiche Art und Weise unterteilen:
 \begin{equation}
-(B|A)\equiv (B^\prime|A^\prime) \quad gdw. \quad A\equiv A^\prime \quad and \quad AB \equiv A^\prime B^\prime
+(B|A)\equiv (B^\prime|A^\prime) \quad gdw. \quad A\equiv A^\prime \quad und \quad AB \equiv A^\prime B^\prime
 \end{equation}
 Als triviale Konditionale werden solche beschrieben, die keinen Mehrwert bieten, vgl. \cite{beierle19}. Das beinhaltet sowohl sich selbst erfüllende in der Form $(A \models A)$ als auch Konditionale, die ein anderes einfach das Gegenteil eines anderen Konditionals darstellen, wie beispielsweise $(A \models \overline{B})$. Solche Konditionale sind bei der weiteren Betrachtung nicht von Interesse und werden daher nicht weiter beachtet.
 \subsection{Ordnungsrelation für Konditionale}
@@ -87,7 +87,7 @@ Für eine Ordnungsrelation $\leqslant$ auf meiner Menge $M$ wird dessen Entsprec
 Bei der Signatur $\Sigma = \{ a, b, c\}$ mit der Ordnungsrelation $a \dotl b \dotl c$ ergibt sich eine Ordnungsrelation für die möglichen Mengen wie folgt: $\{a\} \dotll_{set} \{b\} \dotll_{set} \{c\} \dotll_{set} \{a,b\} \dotll_{set} \{a,c\} \dotll_{set}\{b,c\} \dotll_{set} \{a, b, c\}$. \\
 Im weiteren Verlauf wird oft für die Darstellung von Konditionalen eine Notation mittels möglicher Welten verwendet. Dazu wird anstatt von Aussagevariablen die Menge der möglichen Welten aufgeführt, in denen die Aussage gilt. Für eine Aussage $F$ also in der Form $\Omega_F = \{\omega | \omega \models F \}$. Ein vollständiges Beispiel für die Aussage $A\vee\overline{B}\vee\overline{C}$ sieht dann wie folgt aus: \\
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{abc,ab\overline{c},a\overline{b}c,a\overline{b}\overline{c},\overline{a}b\overline{c},\overline{a}\overline{b}c,\overline{a}\overline{b}\overline{c}\}$ \\
-Um diese Notation etwas kompakter darzustellen, wird eine Darstellung $[[\omega]]_{\dotl}$ für eine mögliche Welt unter der Signatur $\Sigma_{abc}$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: \\
+Um diese Notation etwas kompakter darzustellen, wird eine Repräsentation $[[\omega]]_{\dotl}$ für eine mögliche Welt unter der Signatur $\Sigma_{abc}$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: \\
 $[[abc]]_{\dotl}  = 7,\ 
 [[ab\overline{c}]]_{\dotl} = 6,\ 
 [[a\overline{b}c]]_{\dotl} = 5,\ 
@@ -115,11 +115,11 @@ Mit der Signatur $\Sigma_{abc}$ ergibt sich für mögliche Welten beispielsweise
 Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist die klare Definition einer vollständigen und minimalen  Menge an nichttrivialen Konditionalen über einer Signatur $\Sigma$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\Sigma)$ bezeichnet.
 
 \begin{theorem}[Normalform für Konditionale](entnommen aus \cite{beierle19}) \ \\
-Die folgende Charakterisierung beschreibt die Menge der Konditionale in Normalform über einer gegebenen Signatur: \\
+Die folgende Charakterisierung beschreibt die Menge der Konditionale in Normalform über einer gegebenen Signatur $\Sigma$: \\
 $NFC(\Sigma) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ \\
 Für diese Menge gelten dann die folgenden drei Eigenschaften:\
  \begin{itemize}
-\item{Nichttrivialität: $NFC$ enthält kein triviales Konditional.}
+\item{Nichttrivialität: $NFC(\Sigma)$ enthält kein triviales Konditional.}
 \item{Komplettheit: für jedes nichttriviale Konditional in $\Sigma$ existiert ein äquivalentes Konditional in $NFC$ }
 \item{Minimalität: alle Konditionale in $NFC(\Sigma)$ sind paarweise nicht äquivalent.}
 \end{itemize}
@@ -127,7 +127,7 @@ Für diese Menge gelten dann die folgenden drei Eigenschaften:\
 
 \subsection{Wissensbasen}
 \label{sec:Wissensbasen}
-Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. \\
+Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden oft ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. \\
 Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn88}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfuntion wird einer Welt $\omega$ aus den möglichen Welten $\Omega$ eine natürliche Zahl mittels einer Funktion $\kappa$ zugeordnet, um deren Grad an Plausibilität zu beschreiben. Mindestens eine Welt bekommt den Wert 0 zugewiesen und wird damit am meisten plausibel gekennzeichnet, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl einzelne Aussagen als auch Konditionale betrachtet werden.\\
 Rangfunktion für Aussagen:
 \[
@@ -143,9 +143,9 @@ Rangfunktion für Konditionale:
 			\infty \quad andernfalls
             \end{cases}
 \]
-Eine Aussage $A$ wird in diesem System akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt als dessen Gegenteil $\overline{A}$, z.B. $\kappa(A) < \kappa(\overline{A})$. Analaog dazu wird ein Konditional $(B|A)$ akzeptiert, wenn es einen geringeren Rang als dessen gegenteiliges Konditional $(\overline{B}|A)$ besitzt, z.B. $\kappa(AB)<\kappa(A\overline{B})$, vgl. \cite{beierle17}. Eine Wissensbasis $\mathcal{R}$ wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert.\\
-Als nächstes wird die Äquivalenz von Wissensbasen betrachtet. Diese ist bei der Generierung von Wissensbasen von großer Bedeutung, um neue Wissensbasen und syntaktische Varianten bereits vorhandener Wissensbasen unterscheiden zu können. Als Maßstab für Äquivalenz zweier Wissensbasen wird im folgenden die elementweise Äquivalenz verwendet. Diese verfolgt den Grundgedanken, dass Teile einer Wissensbasis mit Teilen von anderen Wissensbasen einzeln verglichen werden können. Die folgende Definition dieser Äquivalenz stammt aus \cite{beierle17b}.
-\begin{theorem}[Elementweise Äquivalenz von Wissensbasen] (entnommen aus \cite{beierle19}) \ \\
+Eine Aussage $A$ wird von einer Rangfunktion akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt als dessen Gegenteil $\overline{A}$, z.B. $\kappa(A) < \kappa(\overline{A})$. Analaog dazu wird ein Konditional $(B|A)$ akzeptiert, wenn es einen geringeren Rang als dessen gegenteiliges Konditional $(\overline{B}|A)$ besitzt, z.B. $\kappa(AB)<\kappa(A\overline{B})$, vgl. \cite{beierle17}. Eine Wissensbasis $\mathcal{R}$ wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert.\\
+Als nächstes wird die Äquivalenz von Wissensbasen betrachtet. Diese ist bei der Generierung von Wissensbasen von großer Bedeutung, um neue Wissensbasen und syntaktische Varianten bereits vorhandener Wissensbasen unterscheiden zu können. Als Maßstab für Äquivalenz zweier Wissensbasen wird im folgenden die elementweise Äquivalenz verwendet. Diese verfolgt den Grundgedanken, dass Teile einer Wissensbasis mit Teilen von anderen Wissensbasen einzeln verglichen werden können.
+\begin{theorem}[Elementweise Äquivalenz von Wissensbasen] \ \\(entnommen aus \cite{beierle17b} \ \\
 $\mathcal{R}$ und $\mathcal{R'}$ sind Wissensbasen. Für diese gilt dann:
 \begin{itemize}
 \item{$\mathcal{R}$ ist eine elementweise äquivalente untergeordnete ($\ll_{ee}$) Wissensbasis von $\mathcal{R'}$ gdw. für jedes Konditional $(B'|A') \in \mathcal{R'}$, welches nicht selbsterfüllend ist, ein Konditional $(B|A) \in \mathcal{R}$ existiert, sodass gilt $(B|A) \equiv (B'|A')$.}
@@ -164,7 +164,7 @@ $[\Omega_{\Sigma abc}]_{/\simeq}=\{[abc]$, $[ab\overline{c}, a\overline{b}c\, \o
 Die Menge der Äquivalenzklassen in einer Menge $M$ mit dem Element $m \in M$ wird im Folgenden mit $[M]_{/\equiv}$ und die konkrete Äquivalenzklasse welche $m$ enthält mit $[m]_\equiv$ notiert.\\
 Mit Berücksichtigung von Äquivalenzklassen und der Ordnung $\dotl$ aus \autoref{ordnungsrelation} wird in der nächsten Definition eine Ordnungsrelation konstruiert, die diese Äquivalenzen mit einbezieht.
 \begin{theorem}[$cNFC(\Sigma)$ $und$ $Ordnungsrelation$ $\rdotl$](entnommen aus \cite{beierle19}) \ \\
-Gegeben sei eine Signatur $\Sigma$ mit der linearen Ordnung $\dotl$. Dann sind $[NFC(\Sigma)]_{/ \simeq}=\{[r_1]_\simeq,...,[r_m]_\simeq\}$ die Äquivalenzklassen von $NFC(\Sigma)$ induziert durch Isomorphismus sodass für jedes $i \in \{1, ..., m\}$ das Konditional $r_i$ das minimale Element in $[r_i]_\simeq$ im Sinne von $\dotl$ ist und $r_1\dotl...\dotl r_m$ ist.
+Gegeben sei eine Signatur $\Sigma$ mit der linearen Ordnung $\dotl$. Dann sind $[NFC(\Sigma)]_{/ \simeq}=\{[r_1]_\simeq,...,[r_m]_\simeq\}$ die Äquivalenzklassen von $NFC(\Sigma)$ induziert durch Isomorphismus. Für jedes $i \in \{1, ..., m\}$ ist dann das Konditional $r_i$ das minimale Element in $[r_i]_\simeq$ im Sinne von $\dotl$ ist und $r_1\dotl...\dotl r_m$.
 \begin{itemize}
 \item{Die kanonischen Konditionale in Normalform über $\Sigma$ sind $cNFC(\Sigma) = \{r_1, ..., r_m \}$.}
 \item{Die kanonische Ordnung auf $NFC(\Sigma)$ ($\rdotl)$ ist durch folgendes Schema gegeben: \\

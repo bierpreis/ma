@@ -52,14 +52,14 @@ Konditionale}
 \section{Einleitung}
 Diese Arbeit hat zum Ziel, Wissensbasen aus qualitativen Konditionalen auf eine systematische Art und Weise zu generieren. Dafür wird der in \cite{beierle19} entwickelte Algorithmus zur Berechnung aller Wissensbasen über der Signatur $\Sigma_{abc}$ implementiert. Dabei soll ergründet werden, welchen Aufwand diese Generierung mit einer steigender Anzahl der darin  enthaltenden Konditionalen verursacht. Die als Ergebnis entstandenen Wissensbasen sollen dann dazu dienen, das System InfOCF (siehe \cite{beierle17}) experimentell zu evaluieren.
 \\
-Der weitere Ablauf dieser Arbeit ist wie folgt: Im nächsten Kapitel werden zuerst die Grundlagen zu Konditionalen und Wissensbasen dargestellt um die Basis für das weitere vorgehen zu schaffen. Anschließend werden die betrachteten Koditionale in einer Normalform vollständig berechnet, dargestellt und geordnet gespeichert. Im Hauptteil dieser Arbeit wird dann ein Algorithmus aus \cite{beierle19} zur Erzeugung aller Wissensbasen über der Signatur implementiert und die Vorgehensweise dabei beschrieben. Die erhaltenen Ergebnisse werden dann in einer geeigneten Form dargestellt. Abschließend werden die gewonnenen Ergebnisse bewertet.
+Der weitere Ablauf dieser Arbeit ist wie folgt: Im nächsten Kapitel werden zuerst die Grundlagen zu Konditionalen und Wissensbasen dargestellt, um die Basis für das weitere Vorgehen zu schaffen. Anschließend werden die betrachteten Koditionale in einer Normalform vollständig berechnet, dargestellt und geordnet gespeichert. Im Hauptteil dieser Arbeit wird dann ein Algorithmus aus \cite{beierle19} zur Erzeugung aller Wissensbasen über der Signatur implementiert und die Vorgehensweise dabei beschrieben. Die erhaltenen Ergebnisse werden dann in einer geeigneten Form dargestellt. Abschließend werden die gewonnenen Ergebnisse und Erkenntnisse eingeordnet.
 \section{Grundlagen}
 In diesem Abschnitt werden kurz die Grundlagen aufgeführt, auf denen der Hauptteil dieser Arbeit dann basiert. Die Inhalte und Darstellungen sind dabei aus den Kapiteln über Grundlagen aus \cite{beierle19} und \cite{beierle17} übernommen.
 \subsection{Notation}
 Zuerst wird kurz die Notation beschrieben, mit der die Konditionale im weiteren Verlauf der Arbeit dargestellt werden. Die einzelnen Atome, die betrachtet und beschrieben werden, erhalten Bezeichnungen mit Kleinbuchstaben $a, b, c,...\ $. Aussagen über diese werden in Form von Großbuchstaben $A, B, C,...$ formuliert, die Gesamtheit der Sprache wird als $\lag$ bezeichnet. Die Menge der möglichen Welten, die betrachtet werden, wird mit $\Omega$ beschrieben. In einer dieser Welten $\omega \in \Omega$  hat der Ausdruck $\omega \models A$ die Bedeutung, dass $A \in \lag$ in dieser Welt gilt. Des weiteren wird $\neg A$ als $\overline{A}$ und $A \wedge B$ als $AB$ abgekürzt.
 \subsection{Konditionale}
 Ein Konditional ist die Verbindung aus einer Vorbedingung und einer Folgerung aus dieser Vorbedingung. Ein qualitatives Konditional ist ein solches unter  Unsicherheit und entspricht einem Zusammenhang in der Form \glqq Wenn $A$, dann normalerweise $B$\grqq . Dargestellt wird so ein Konditional  im folgenden mit dem Symbol \glqq$|$\grqq \space in der Form $r = ( \lag | \lag)$. Ein Beispiel ist $r = (B|A)$, das dazugehörige gegenteilige Konditional lautet dann $\overline{r} = (\overline{B}|A)$.\\
-Um die Akzeptanz eines unsicheren Konditionals zu bestimmen, werden sie oft im Rahmen von ordinalen Rangfunktionen nach Wolfgang Spohn betrachtet, wie beispielsweise in \cite{spohn88} oder \cite{spohn12} beschrieben. Mehr dazu auch in diesem Text im Abschnitt zu  \hyperref[sec:Wissensbasen]{Wissensbasen}. Grundsätzlich wird ein unsicheres Konditional dann  akzeptiert, wenn es plausibler ist als das dazugehörige gegenteilige Konditional. Beispielsweise $(B|A)$ wird  dann akzeptiert, wenn $A \wedge B$ plausibler ist als $A \wedge \overline{B}$, siehe dazu auch \cite{isberner14}. \\
+Um die Akzeptanz eines unsicheren Konditionals zu bestimmen, werden sie oft im Rahmen von ordinalen Rangfunktionen nach Wolfgang Spohn betrachtet, wie beispielsweise in \cite{spohn88} oder \cite{spohn12} beschrieben. Mehr dazu auch in diesem Text im  \autoref{wissensbasen}. Grundsätzlich wird ein unsicheres Konditional dann  akzeptiert, wenn es plausibler ist als das dazugehörige gegenteilige Konditional. Beispielsweise $(B|A)$ wird  dann akzeptiert, wenn $A \wedge B$ plausibler ist als $A \wedge \overline{B}$, siehe dazu auch \cite{isberner14}. \\
 Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge möglicher Welten $\Omega$ in drei Teile auf: Welten, die das Konditional bestätigen, Welten die es falsifizieren und Welten, auf die das Konditional nicht anwendbar ist, weil die Vorbedingung nicht erfüllt ist. Die letztere Möglichkeit wird mit $u$ bezeichnet, was als \textit{unknown} gedeutet werden kann. Damit lässt sich das Konditional als Indikatorfunktion wie folgt darstellen:
 \[
   (B|A)(\omega)=\begin{cases}
@@ -112,7 +112,7 @@ Mit einer Signatur $\Sigma$ und deren linearer Ordnung $\dotl$ sind die Ordnunge
 Da sich die Unterscheidung von $\overset{\mathrm{\omega}}{\dotll}$ und $\overset{\mathrm{c}}{\dotll}$ aus dem Kontext ergibt, wird der Einfachheit halber im weiterem Verlauf $\dotl$ verwendet. \\
 Mit der Signatur $\Sigma_{abc}$ ergibt sich für mögliche Welten beispielsweise $abc \dotl ab\overline{c} \dotl \overline{a}bc \dotl \overline{a} \overline{b} \overline{c}$. Ein Beispiel für die Ordnungsrelation für Konditionale ist $(abc|abc \vee ab \overline{c}) \dotl (abc | abc \vee \overline{a} \overline{b} \overline{c} )$ oder $(abc \vee \overline{a} \overline{b} \overline{c} | abc \vee ab \overline{c} \vee \overline{a} \overline{b} \overline{c}) \dotl (\overline{a} \overline{b} \overline{c} |  abc \vee ab \overline{c} \vee \overline{a} bc \vee \overline{a} \overline{b} \overline{c})$.
 \subsection{Normalform für Konditionale}
-Im folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist die klare Definition einer vollständigen und minimalen  Menge an nichttrivialen Konditionalen über einer Signatur $\Sigma$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\Sigma)$ bezeichnet.
+Im Folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist die klare Definition einer vollständigen und minimalen  Menge an nichttrivialen Konditionalen über einer Signatur $\Sigma$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\Sigma)$ bezeichnet.
 
 \begin{theorem}[Normalform für Konditionale](entnommen aus \cite{beierle19}) \ \\
 Die folgende Charakterisierung beschreibt die Menge der Konditionale in Normalform über einer gegebenen Signatur $\Sigma$: \\
@@ -120,13 +120,13 @@ $NFC(\Sigma) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}
 Für diese Menge gelten dann die folgenden drei Eigenschaften:\
  \begin{itemize}
 \item{Nichttrivialität: $NFC(\Sigma)$ enthält kein triviales Konditional.}
-\item{Komplettheit: für jedes nichttriviale Konditional in $\Sigma$ existiert ein äquivalentes Konditional in $NFC$ }
+\item{Komplettheit: für jedes nichttriviale Konditional in $\Sigma$ existiert ein äquivalentes Konditional in $NFC(\Sigma)$ }
 \item{Minimalität: alle Konditionale in $NFC(\Sigma)$ sind paarweise nicht äquivalent.}
 \end{itemize}
 \end{theorem}
 
 \subsection{Wissensbasen}
-\label{sec:Wissensbasen}
+\label{wissensbasen}
 Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden oft ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. \\
 Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn88}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfuntion wird einer Welt $\omega$ aus den möglichen Welten $\Omega$ eine natürliche Zahl mittels einer Funktion $\kappa$ zugeordnet, um deren Grad an Plausibilität zu beschreiben. Mindestens eine Welt bekommt den Wert 0 zugewiesen und wird damit am meisten plausibel gekennzeichnet, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl einzelne Aussagen als auch Konditionale betrachtet werden.\\
 Rangfunktion für Aussagen:
@@ -145,7 +145,7 @@ Rangfunktion für Konditionale:
 \]
 Eine Aussage $A$ wird von einer Rangfunktion akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt als dessen Gegenteil $\overline{A}$, z.B. $\kappa(A) < \kappa(\overline{A})$. Analaog dazu wird ein Konditional $(B|A)$ akzeptiert, wenn es einen geringeren Rang als dessen gegenteiliges Konditional $(\overline{B}|A)$ besitzt, z.B. $\kappa(AB)<\kappa(A\overline{B})$, vgl. \cite{beierle17}. Eine Wissensbasis $\mathcal{R}$ wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert.\\
 Als nächstes wird die Äquivalenz von Wissensbasen betrachtet. Diese ist bei der Generierung von Wissensbasen von großer Bedeutung, um neue Wissensbasen und syntaktische Varianten bereits vorhandener Wissensbasen unterscheiden zu können. Als Maßstab für Äquivalenz zweier Wissensbasen wird im folgenden die elementweise Äquivalenz verwendet. Diese verfolgt den Grundgedanken, dass Teile einer Wissensbasis mit Teilen von anderen Wissensbasen einzeln verglichen werden können.
-\begin{theorem}[Elementweise Äquivalenz von Wissensbasen] \ \\(entnommen aus \cite{beierle17b} \ \\
+\begin{theorem}[Elementweise Äquivalenz von Wissensbasen] \ \\(entnommen aus \cite{beierle17b}) \ \\
 $\mathcal{R}$ und $\mathcal{R'}$ sind Wissensbasen. Für diese gilt dann:
 \begin{itemize}
 \item{$\mathcal{R}$ ist eine elementweise äquivalente untergeordnete ($\ll_{ee}$) Wissensbasis von $\mathcal{R'}$ gdw. für jedes Konditional $(B'|A') \in \mathcal{R'}$, welches nicht selbsterfüllend ist, ein Konditional $(B|A) \in \mathcal{R}$ existiert, sodass gilt $(B|A) \equiv (B'|A')$.}

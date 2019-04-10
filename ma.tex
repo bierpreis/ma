@@ -7,6 +7,7 @@
 \usepackage{hyperref}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{listings}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \newtheorem{theorem}{Definition}
 \author{Frank Leuchtmann}
@@ -173,9 +174,9 @@ mit $r \rdotl r'$ gdw. $r\dotl r'$ für alle $i \in \{1, ..., m\}$ und alle $r, 
 \end{itemize}
 \end{theorem}
 \section{Berechnung der Konditionale in Normalform}
-In diesem Abschnitt werden die Mengen der Konditionale $NFC$ und $cNFC$ berechnet und aufgelistet. Diese entstandene Mengen bilden die Basis um die Wissensbasen im nächsten Abschnitt zu berechnen.\\
+In diesem Abschnitt werden die Mengen der Konditionale $NFC$ und $cNFC$ berechnet und aufgelistet. Diese entstandene Mengen bilden die Basis um die Wissensbasen im nächsten Abschnitt zu berechnen.
 \subsection{Beschreibung des Programms NFC Creator}
-Das Programm NFC Creator kann die Mengen NFC und cNFC sowohl für die Signatur ${ab}$ als auch $abc$ berechnen. Das Programm ist in Java geschrieben und besitzt eine einfache grafische Oberfläche mit Swing/Awt. Zwei Screenshots davon ist sind in Abbildung \ref{img:nfc-no-numbers} und  \ref{img:nfc-other-options} zu sehen. Die Grafische oberfläche zeigt auf der jeweils rechten Seite in einem Textfenster die gewünschte Ausgabe, hier die Mengen NFC und cNFC für die Signatur ${ab}$. Die linke Seite der Oberfläche bietet im oberen Teil einige Optionen: Die Auswahl der gewünschten Signatur, die Darstellung der möglichen Welten mittels Zahlen oder Buchstaben, die Nummerierung der Konditionale und einer optischen Hervorhebung der Zeilen mittels Punkten, die die Zuordnung von Konditionalen zu Äquivalenzklassen vereinfacht. Die verschiedenen Darstellungsoptionen sind in den Abbildungen \ref{img:nfc-no-numbers} und \ref{img:nfc-other-options} gegenübergestellt. Links unten befinden sich die drei Buttons, um die Ausgabe anhand der gewählten Optionen zu erzeugen. Der obere Button erstellt die Menge der möglichen Welten. Der Zweite berechnet die Konditionale NFC ohne Beachtung von Äquivalenzklassen. Der Dritte Button berechnet die Menge cNFC, also die Konditionale und deren Zuordnung zu Äquivalenzklassen. \\
+Das Programm NFC Creator kann die Mengen NFC und cNFC sowohl für die Signatur ${ab}$ als auch $abc$ berechnen. Das Programm ist in Java geschrieben und besitzt eine einfache grafische Oberfläche mit Swing/Awt. Zwei Screenshots davon ist sind in \autoref{img:nfc-no-numbers} und  \autoref{img:nfc-other-options} zu sehen. Die Grafische oberfläche zeigt auf der jeweils rechten Seite in einem Textfenster die gewünschte Ausgabe, hier die Mengen NFC und cNFC für die Signatur ${ab}$. Die linke Seite der Oberfläche bietet im oberen Teil einige Optionen: Die Auswahl der gewünschten Signatur, die Darstellung der möglichen Welten mittels Zahlen oder Buchstaben, die Nummerierung der Konditionale und einer optischen Hervorhebung der Zeilen mittels Punkten, die die Zuordnung von Konditionalen zu Äquivalenzklassen vereinfacht. Die verschiedenen Darstellungsoptionen sind in den Abbildungen \ref{img:nfc-no-numbers} und \ref{img:nfc-other-options} gegenübergestellt. Links unten befinden sich die drei Buttons, um die Ausgabe anhand der gewählten Optionen zu erzeugen. Der obere Button erstellt die Menge der möglichen Welten. Der Zweite berechnet die Konditionale NFC ohne Beachtung von Äquivalenzklassen. Der Dritte Button berechnet die Menge cNFC, also die Konditionale und deren Zuordnung zu Äquivalenzklassen. \\
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{bilder/nfc-other-options.png}
@@ -189,6 +190,9 @@ Das Programm NFC Creator kann die Mengen NFC und cNFC sowohl für die Signatur $
 	\caption{Grafische Oberfläche mit Signatur {ab} und Darstellung möglicher Welten mittels Buchstaben, Nummerierung und Punkten zur zeilenweisen Orientierung. Dargestellt werden die Konditionale NFC und cNFC wie sie auch in \cite{beierle19} dargestellt wird.}
 	\label{img:nfc-other-options}
 \end{figure}
+\begin{lstlisting}
+Put your code here.
+\end{lstlisting}
 
 
 \section{Generierung der Wissensbasen}

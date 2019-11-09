@@ -191,8 +191,16 @@ Die Aufgabenstellung wird dafür in zwei Teile gegliedert. Im ersten Teil werden
 Im zweiten Teil dieser Arbeit findet dann die eigentliche Generierung der Wissensbasen statt. Dazu werden die Konditionale ausgehend von Objekten der Klasse \textit{WConditional} in Objekte der Klasse \textit{PConditional} (P für Propositional logic) übersetzt. Diese Klasse ist dann für die Arbeit mit Aussagenlogik optimiert und ermöglicht so die Prüfung von Konsistenz und damit die Anwendung für den Algorithmus GenKB.
 \section{Konditionale in Normalform}
 \subsection{NFC Creator}
-In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen gelöst wird. Dazu wurde ein Programm namens NFC Creator erstellt.
- \\ Screenshot. 
+In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen gelöst wird. Dazu wurde ein Programm namens NFC Creator erstellt. Die Grafische Oberfläche dazu heißt NFC Viewer, ein Screenshot davon ist in \autoref{nfc-viewer} zu sehen.
+\begin{figure}[h]
+\includegraphics[width=0.8\linewidth]{bilder/nfc-viewer.png}
+
+\caption{Screenshot NFC Viewer mit Ansicht analog zu Tabelle 1 aus \cite{beierle19}}
+\label{nfc-viewer}
+\end{figure}
+Dieses Programm und die dahinterliegende Logik wird in diesem Abschnitt in den folgenden teilen vorgestellt. Das Programm an sich ist nach dem Model View Controller Schema aufgebaut. Die Betrachtung fokussiert sich dabei auf das fachliche Modell dahinter und da, wo es sich anbietet auf die Bedienung und Präsentation dessen auf der Grafischen Oberfläche. Die Logik der Gui und des Controllers werde nicht beschrieben, da sie für das fachliche Thema uninteressant sind. \\
+Der Grundsätzliche Aufbau der Gui besteht aus zwei Teilen. Links befinden sich im Oberen Bereich die Optionenauswahl, darunter unter Start befinden sich die Buttons mit den möglichen Aktionen. Auf der rechten Seite Befindet sich ein Textfenster, was das Ergebnis der gewählten Optionen und Aktion zeigt sowie darunter einer kurzen Beschreibung des Inhalts des Textfelds.
+
 \subsection{Mögliche Welten}
 
 Erstellung, Comparable, Auflistung für AB und Nennung ABC?. Äquivalenzklassen und Berechnung der Äquivalenzklassen.
@@ -241,30 +249,6 @@ Erstmal Simple Creator. Funktioniert Parallel? Das wär gut, auch zum gegenüber
 \subsection{Weitere Klassen}
 PairBuffer. Pair an sich. Writer. Parallel Writer?
 \subsection{Beschreibung der Grafischen Oberfläche}
-
-
-
-
-
-ALT:
-%todo: noch erwähnen, dass nfc und cnfc nach den verschiedenen ordnungen nummeriert werden. auch nochmal durchdenken das ganze, stimmt das so wie oben beschrieben?
-%todo: screenshots neu machen!!
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\linewidth]{bilder/nfc-numbers.png}
-	\caption{Grafische Oberfläche mit Signatur {ab} und Darstellung möglicher Welten mittels Zahlen.//todo: falsches bild!! Dargestellt werden die Konditionale NFC und cNFC wie sie auch in \cite{beierle19} dargestellt wird.}
-	\label{img:nfc-no-numbers}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\linewidth]{bilder/nfc-other-options.png}
-	\caption{Grafische Oberfläche mit Signatur {ab} und Darstellung möglicher Welten mittels Buchstaben, Nummerierung und Punkten zur zeilenweisen Orientierung. Dargestellt werden die Konditionale NFC und cNFC wie sie auch in \cite{beierle19} dargestellt wird.}
-	\label{img:nfc-other-options}
-\end{figure}
-\begin{lstlisting}
-Put your code here.
-\end{lstlisting}
 
 
 \section{Generierung der Wissensbasen}

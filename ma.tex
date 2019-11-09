@@ -208,18 +208,24 @@ Erstellung, Comparable, Auflistung für AB und Nennung ABC?. Äquivalenzklassen 
 das hier ist aus wconditional, muss umgeschrieben werden für hier. \\
 Antecedent und Consequence sind als Objekt der Klasse WorldsList implementiert. Diese Klasse ist gleich daneben in \autoref{wconditional} abgebildet. Sie ist im Prinzip eine Liste mit Nummern der enthaltenen möglichen Welten, erweitert um je einer Methode zum Test von Äquivalenz und zur Sortierung. \\
 
+\begin{figure}
+\includegraphics[width=0.45\linewidth]{bilder/worldslist.png}
+\caption{WorldsList}
+\label{worldslist}
+\end{figure}
+
 auch was zu eqivalenz, damit auch worldsDifference und WorldsPair.
  Auch zu compare und comparable (hier zum ersten mal)
 \subsection{Die Klasse WConditional}
 \begin{figure}[h]
 \includegraphics[width=0.45\linewidth]{bilder/wconditional.png}
-\includegraphics[width=0.45\linewidth]{bilder/worldslist.png}
+
 
 \caption{WConditional}
 \label{wconditional}
 \end{figure}
 
-Die Klasse WConditional bildet die Basis für die berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{wconditional} zu sehen. Attribute der Klasse sind Nummer, CounterConditional und die Liste von äquivalenten Konditionalen und die beiden WorldsLists Antecedent und Consequence. \\
+Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{wconditional} zu sehen. Attribute der Klasse sind Nummer, CounterConditional und die Liste von äquivalenten Konditionalen und die beiden WorldsLists Antecedent und Consequence. \\
 todo: methoden. compareTo(implements comparable!) und isEquivalent() \\
 
 

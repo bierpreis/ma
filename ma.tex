@@ -190,8 +190,11 @@ Das Ziel des weiteren Vorgehens ist es, den Algorithmus GenKB aus \cite{beierle1
 Die Aufgabenstellung wird dafür in zwei Teile gegliedert. Im ersten Teil werden, basierend auf der Signatur $\Sigma=\{a,b,c\}$,  die Konditionale in Normalform berechnet und somit die Menge aller Konditionale $NFC$  berechnet. Anschließend werden auf dieser Menge an Konditionalen die Äquivalenzklassen Untersucht und damit die Menge der kanonischen Konditionale $cNFC$ sowie die einzelnen Äquivalenzklassen berechnet. Dabei werden die Konditionale auch nach der Ordnunggsrelation $\rdotl$ sortiert. Dazu werden im ersten Teil die Konditionale auf der Klasse \textit{WConditional} (W für Worlds) bearbeitet. Diese Repräsentation spiegelt die Darstellung von Konditionalen in Normalformen in \cite{beierle19} wieder. Diese Darstellung ist außerdem dafür optimiert, die in \cite{beierle19} dargestellte Ordnung im Sinne von $\rdotl$ zu repräsentieren und ermöglicht so die Sortierung der Konditionale und damit die Betrachtung von Äquivalenz. \\
 Im zweiten Teil dieser Arbeit findet dann die eigentliche Generierung der Wissensbasen statt. Dazu werden die Konditionale ausgehend von Objekten der Klasse \textit{WConditional} in Objekte der Klasse \textit{PConditional} (P für Propositional logic) übersetzt. Diese Klasse ist dann für die Arbeit mit Aussagenlogik optimiert und ermöglicht so die Prüfung von Konsistenz und damit die Anwendung für den Algorithmus GenKB.
 \section{Konditionale in Normalform}
-
+\subsection{NFC Creator}
+In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen gelöst wird. Dazu wurde ein Programm namens NFC Creator erstellt.
+ \\ Screenshot. 
 \subsection{Mögliche Welten}
+
 Erstellung, Comparable, Auflistung für AB und Nennung ABC?. Äquivalenzklassen und Berechnung der Äquivalenzklassen.
 
 auch was zu eqivalenz, damit auch worldsDifference und WorldsPair.
@@ -230,7 +233,7 @@ Disjunction\\
 Simple Übersetzung der WorldsList in Disjunctions. Performance Vergleich mit kurzen Übersetzungen als Begründung warum die nicht verwendet werden.
 \subsection{Wissensbasen}
 Beschreibung der Klasse KnowledgeBase. Klassendiagramm. Für eine entscheiden? Werden überhaupt noch mehrere verwendet?
-\section{Beschreibung des Programms NFC Creator}
+\section{Beschreibung des Programms Knowledge Base Creator}
 \subsection{Aufbau}
 Hier ein schönes Übersichtsdiagramm. Hier auch was zum Threading.
 \subsection{Implementierung von GenKB}

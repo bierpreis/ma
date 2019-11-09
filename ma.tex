@@ -9,6 +9,10 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+%%this removes empty ":" after abbildung 1:
+\usepackage{caption}
+
 \newtheorem{theorem}{Definition}
 \author{Frank Leuchtmann}
 \title{Systematische Generierung konsistenter Mengen qualitativer
@@ -187,12 +191,14 @@ Die Aufgabenstellung wird dafür in zwei Teile gegliedert. Im ersten Teil werden
 Im zweiten Teil dieser Arbeit findet dann die eigentliche Generierung der Wissensbasen statt. Dazu werden die Konditionale ausgehend von Objekten der Klasse \textit{WConditional} in Objekte der Klasse \textit{PConditional} (P für Propositional logic) übersetzt. Diese Klasse ist dann für die Arbeit mit Aussagenlogik optimiert und ermöglicht so die Prüfung von Konsistenz und damit die Anwendung für den Algorithmus GenKB.
 \section{Konditionale in Normalform}
 \subsection{Die Klasse WConditional}
-\begin{figure}
+\begin{figure}[h]
 \includegraphics[width=0.45\linewidth]{bilder/wconditional.png}
 \includegraphics[width=0.45\linewidth]{bilder/worldslist.png}
 \label{wconditional}
+\caption{}
 \end{figure}
-Hier was allgemeines zur Klasse. 
+
+Die Klasse WConditional bildet die Basis für das generieren der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \ref{fig: wconditional} zu sehen.
 \subsection{Mögliche Welten}
 Erstellung, Comparable, Auflistung für AB und Nennung ABC?. Äquivalenzklassen und Berechnung der Äquivalenzklassen.
 

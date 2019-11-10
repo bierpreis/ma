@@ -12,10 +12,11 @@
 
 %configure syntag highlighting
 \usepackage{listings}
-%\lstset{language=Java}   
+\lstset{language=Java}   
 \lstset{ 
 frame=single
-basicstyle = small
+basicstyle = \ttfamily\small
+literate={\ \ \ \ }{{\ }}1
 }
 
 %%this removes empty ":" after abbildung 1:
@@ -217,22 +218,22 @@ Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bi
 Die Bezeichung der möglichen Welten wurde in \autoref{ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit bezeichneten Welten ausdrücken. Aus der Gesamtheit dieser Mengen ergibt sich dann die Menge der Ausdrücke, die in den Konditionalen als Antecedent oder Consequence verwendet werden kann. Für die Signatur $\Sigma = {abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma=ab$ sind es 15.) Diese können mit dem NFC-Viewer mit dem Button "WORLDS" geordnet erzeugt werden. Dargestellt im Programm werden diese Mengen jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \ref{worldslist} gezeigt ist. Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klasse implementiert das bekannte Java Interface  \textit{Comparable} (siehe dazu auch \cite{oracle2019} und kann damit Objekte erzeugen, die standardisiert sortiert werden können. Dazu besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß Defintion \ref{def:ordering}. Dazu vergleicht das Objekt sich selbst mit einem anderen (dieser Klasse) und gibt als Rückgabewert entweder -1 zurück, wenn das aktuelle  Objekt (\textit{this}) kleiner als das übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch bei anderen Objekten verwendet und dann nicht mehr zusätzlich erklärt. Die Implementierung der \textit{compateTo(Object o)} Methode findet sich 
 
 \begin{lstlisting}
-public int compareTo(Object o) {
-	WorldList otherWorld = (WorldList) o;
+  public int compareTo(Object o) {
+      WorldList otherWorld = (WorldList) o;
+      
+      if (worldsList.size() < otherWorld.getWorldsList().size())
+          return -1;
+      if (worldsList.size() > otherWorld.getWorldsList().size())
+          return 1;
 
-	if (worldsList.size() < otherWorld.getWorldsList().size())
-		return -1;
-	if (worldsList.size() > otherWorld.getWorldsList().size())
-		return 1;
-
-	for (int i = 0; i < worldsList.size(); i++) {
-		if (worldsList.get(i) > otherWorld.getWorldsList().get(i))
-			return -1;
-		if (worldsList.get(i) < otherWorld.getWorldsList().get(i))
-			return 1;
-	}
-	return 0;
-}
+      for (int i = 0; i < worldsList.size(); i++) {
+          if (worldsList.get(i) > otherWorld.getWorldsList().get(i))
+              return -1;
+          if (worldsList.get(i) < otherWorld.getWorldsList().get(i))
+              return 1;
+      }
+      return 0;
+  }
 \end{lstlisting}
 
 todo: prüfung äquivalenz, wenn fertig. \\

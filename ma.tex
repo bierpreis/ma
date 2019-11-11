@@ -225,7 +225,7 @@ Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bi
     private List<WorldList> createSubSetList(List<Integer> inputList){
         List<WorldList> subSetList = new ArrayList<>();
         for (Integer world : inputList) {
-            for (ListIterator<WorldList> setsIterator = subSetList.listIterator(); setsIterator.hasNext(); ) {
+            for (ListIterator<WorldList> setsIterator = subSetList.listIterator(); setsIterator.                    hasNext(); ) {
                 WorldList newWorld = new WorldList();
                 newWorld.addList(setsIterator.next().getWorldsList());
                 newWorld.addInt(world);

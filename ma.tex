@@ -203,6 +203,7 @@ Gegeben sei eine Signatur $\Sigma$ mit der linearen Ordnung $\dotl$. Dann sind $
 $r_1\rdotl ... \rdotl r_m \rdotl[r_1]_\simeq \setminus \{r_1\} \rdotl ... \rdotl [r_m]_\simeq \setminus \{r_m\}$ \\ 
 mit $r \rdotl r'$ gdw. $r\dotl r'$ für alle $i \in \{1, ..., m\}$ und alle $r, r' \in [r_i]_\simeq \setminus \{r_i\}$.}
 \end{itemize}
+\label{sortierung}
 \end{theorem}
 \section{Strukturierung des Vorgehens}
 Das Ziel des weiteren Vorgehens ist es, den Algorithmus GenKB aus \cite{beierle19} praktisch umzusetzen und möglichst viele Wissensbasen auf Basis der Signatur $\Sigma=\{a,b,c\}$ zu generieren. Da aufgrund der Menge der möglichen Konditionale das Ziel nicht auch nur Ansatzweise vollständig bearbeitet werden kann, wird immer auch die Signatur $\Sigma=\{a,b\}$ betrachtet. Mit dieser reduzierten Signatur ist es möglich, aufgrund der deutlich geringeren Menge an Konditionalen alle möglichen Wissensbasen zu generieren. Damit lässt sich am kleineren Beispiel prüfen, ob die grundsätzliche Vorgehensweise korrekt ist und letztendlich die Aufgabenstellung vollständig lösen könnte. \\
@@ -274,15 +275,16 @@ Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klas
 \end{lstlisting}
 \caption{Implementation compareTo(Object o) der Klasse WorldsList}
 \label{compare-worldslist}
-\end{figure}
-todo: prüfung äquivalenz, wenn fertig. \\
+\end{figure} \\
+todo: prüfung äquivalenz, wenn fertig. siehe dazu auch abschnitt zu äquivalenz\\
 \subsection{Die Klasse WConditional}
 \begin{figure}[h]
 \includegraphics[width=0.45\linewidth]{bilder/wconditional.png}
 \caption{WConditional}
 \label{wconditional}
 \end{figure}
-Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{wconditional} zu sehen. Attribute der Klasse sind Nummer, CounterConditional und die Liste von äquivalenten Konditionalen und die beiden WorldsLists Antecedent und Consequence. \\
+Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{wconditional} zu sehen. Attribute der Klasse sind zum einen die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{sortierung}. \\
+todo: erklärung der ordnung verlinken \\ CounterConditional und die Liste von äquivalenten Konditionalen und die beiden WorldsLists Antecedent und Consequence. \\
 todo: methoden. compareTo(implements comparable!) und isEquivalent() \\
 
 

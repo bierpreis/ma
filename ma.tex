@@ -126,7 +126,7 @@ Mit einer Signatur $\Sigma$ und deren linearer Ordnung $\dotl$ sind die Ordnunge
 \begin{equation}
 \omega \overset{\mathrm{\omega}}{\dotll} \omega' \quad gdw. \quad [[\omega]]_{\dotl} \geqslant [[\omega']]_{\dotl}
 \end{equation}
-
+\label{conditional-order}
 \begin{equation}
 (B|A) \overset{\mathrm{c}}{\dotll} (B'| A') \quad gdw. \quad \Omega_A \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{A'} \quad oder \quad \Omega_A =  \Omega_{A'} \quad und \quad  \Omega_B \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{B'}
 \end{equation}
@@ -273,7 +273,7 @@ Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klas
         return 0;
     }
 \end{lstlisting}
-\caption{Implementation compareTo(Object o) der Klasse WorldsList}
+\caption{Implementierung compareTo(Object o) der Klasse WorldsList}
 \label{compare-worldslist}
 \end{figure} \\
 todo: prüfung äquivalenz, wenn fertig. siehe dazu auch abschnitt zu äquivalenz\\
@@ -283,11 +283,24 @@ todo: prüfung äquivalenz, wenn fertig. siehe dazu auch abschnitt zu äquivalen
 \caption{WConditional}
 \label{wconditional}
 \end{figure}
-Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{wconditional} zu sehen. Attribute der Klasse sind zum einen die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{sortierung}. \\
-todo: erklärung der ordnung verlinken \\ CounterConditional und die Liste von äquivalenten Konditionalen und die beiden WorldsLists Antecedent und Consequence. \\
-todo: methoden. compareTo(implements comparable!) und isEquivalent() \\
+Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent, Consequence und CounterConditional ebenfalls als Objekte der Klasse Wconditional.  Zusätzlich einer Liste von äquivalenten Konditionalen ebenfalls in Form von Objekten von WConditional.\\
+todo: erklärung, wie die gesetzt werden. hier oder weiter unten? \\
+Außerdem die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{sortierung}. \\
+Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{compare-wconditonal} gezeigt. Die implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{conditional-order} beschrieben.
 
-
+\begin{figure}
+\begin{lstlisting}
+    public int compareTo(Object o) {
+        WConditional otherConditional = (WConditional) o;
+        if (this.antecedent.compareTo(otherConditional.getAntecedent()) != 0)
+            return this.antecedent.compareTo(otherConditional.getAntecedent());
+        else return this.consequence.compareTo(otherConditional.getConsequence());
+    }
+\end{lstlisting}
+\caption{Implementierung compareTo(Object o) der Klasse WConditional}
+\label{compare-wconditonal}
+\end{figure} 
+todo: isEquivalent() \\
 \subsection{NFC}
 Hier wieder die Ordnung angeben. Wie funktioniert eigentlich die Sortierung nach den verschiedenen möglichkeiten der Sortierung? Kommt das auch nicht durcheinander?
 \subsection{cNFC und Äquivalenzklassen}

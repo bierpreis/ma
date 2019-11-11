@@ -23,6 +23,9 @@ breaklines=true,
 columns=fullflexible,
 }
 
+%this removes EINRÜCKUNG at text after a figure
+\setlength{\parindent}{0pt}
+
 %%this removes empty ":" after abbildung 1:
 \usepackage{caption}
 
@@ -272,18 +275,13 @@ Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klas
 \caption{Implementation compareTo(Object o) der Klasse WorldsList}
 \label{compare-worldslist}
 \end{figure}
-
 todo: prüfung äquivalenz, wenn fertig. \\
-
-
 \subsection{Die Klasse WConditional}
 \begin{figure}[h]
 \includegraphics[width=0.45\linewidth]{bilder/wconditional.png}
-
 \caption{WConditional}
 \label{wconditional}
 \end{figure}
-
 Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{wconditional} zu sehen. Attribute der Klasse sind Nummer, CounterConditional und die Liste von äquivalenten Konditionalen und die beiden WorldsLists Antecedent und Consequence. \\
 todo: methoden. compareTo(implements comparable!) und isEquivalent() \\
 

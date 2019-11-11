@@ -218,7 +218,30 @@ Der grundsätzliche Aufbau der GUI besteht aus zwei Teilen. Links befinden sich 
 Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bietet selbsterklärend die Möglichkeiten $ab$ und $abc$. Die Option View stellt ein, ob eine mögliche Welt in Buchstabenform oder als Repräsentation als Zahl erfolgen soll. Beispielsweise wird mit Signatur $ab$ die mögliche Welt $a \overline{b}$ entweder als $a!b$ oder als 2 dargestellt. Mit der Option ShowNumbers lässt sich einstellen, ob die angezeigten Objekte, beispielsweise Konditionale, mit nummeriert dargestellt werden sollen oder nicht. Die letzte Option SpaceChar stellt einen Platzhalter für mehrere auf einer Zeile angezeigte Objekte ein. Im Screenshot ist die Option auf Space. Wird Dot aktiviert, werden zeilenweise kleine Punkte angezeigt, damit der Betrachter die Zeilen am Bildschirm etwas leichter verfolgen kann als auf rein weißem Untergrund. Das untenliegende Feld bietet mit dem Save Button die Möglichkeit, den Inhalt des Textfensters zu speichern.
 
 \subsection{Mögliche Welten}
-Die Bezeichung der möglichen Welten wurde in \autoref{ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit enthaltenden Welten ausdrücken. Aus der Gesamtheit aller möglichen Teilmengen dieser Menge ergibt sich dann die Menge der Ausdrücke, die in den Konditionalen als Antecedent oder Consequence verwendet werden kann. Diese bildet dann die Basis aus der später die Menge der Konditionale NFC in Normalform erstellt werden. \\
+
+\begin{figure}
+\begin{lstlisting}
+    private List<WorldList> createSubSetList(List<Integer> inputList) {
+        List<WorldList> subSetList = new ArrayList<>();
+        for (Integer world : inputList) {
+            for (ListIterator<WorldList> setsIterator = subSetList.listIterator();   			setsIterator.hasNext(); ) {
+                WorldList newWorld = new WorldList();
+                newWorld.addList(setsIterator.next().getWorldsList());
+                newWorld.addInt(world);
+                setsIterator.add(newWorld);
+            }
+            WorldList otherWorld = new WorldList();
+            otherWorld.addInt(world);
+            subSetList.add(otherWorld);
+        }
+        return subSetList;
+    }
+\end{lstlisting}
+\caption{Algorithmus zur Erstellung aller Teilmengen einer Liste möglicher Welten}
+\label{subsets}
+\end{figure}
+
+Die Bezeichung der möglichen Welten wurde in \autoref{ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit enthaltenden Welten ausdrücken. Aus der Gesamtheit aller möglichen Teilmengen dieser Menge ergibt sich dann die Menge der Ausdrücke, die in den Konditionalen als Antecedent oder Consequence verwendet werden kann. Diese bildet dann die Basis aus der später die Menge der Konditionale NFC in Normalform erstellt werden. Der Algorithmus, der die Teilmengen aus den möglichen Welten einer Signatur berechnet, ist in \autoref{subsets} dargestellt. Der Input bietet die Liste möglicher Welten der Signatur, der Output ist die \\
 todo: wie werden die welten berechnet? \\
 Für die Signatur $\Sigma = {abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma=ab$ sind es 15.) Diese können mit dem NFC-Viewer mit dem Button "WORLDS" geordnet erzeugt werden. Dargestellt im Programm werden diese Mengen jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \ref{worldslist} gezeigt ist. 
 \begin{figure}

@@ -20,6 +20,7 @@ frame=single,
 %this shrinks 2 space to 1 so code can be copied from intellij without reformatting
 literate={\ \ }{{\ }}1,
 breaklines=true,
+columns=fullflexible,
 }
 
 %%this removes empty ":" after abbildung 1:
@@ -221,10 +222,10 @@ Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bi
 
 \begin{figure}
 \begin{lstlisting}
-    private List<WorldList> createSubSetList(List<Integer> inputList) {
+    private List<WorldList> createSubSetList(List<Integer> inputList){
         List<WorldList> subSetList = new ArrayList<>();
         for (Integer world : inputList) {
-            for (ListIterator<WorldList> setsIterator = subSetList.listIterator();   			setsIterator.hasNext(); ) {
+            for (ListIterator<WorldList> setsIterator = subSetList.listIterator(); setsIterator.hasNext(); ) {
                 WorldList newWorld = new WorldList();
                 newWorld.addList(setsIterator.next().getWorldsList());
                 newWorld.addInt(world);

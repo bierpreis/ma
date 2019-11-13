@@ -226,7 +226,7 @@ Der grundsätzliche Aufbau der GUI besteht aus zwei Teilen. Links befinden sich 
 Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bietet selbsterklärend die Möglichkeiten $ab$ und $abc$. Die Option View stellt ein, ob eine mögliche Welt in Buchstabenform oder als Repräsentation als Zahl erfolgen soll. Beispielsweise wird mit Signatur $ab$ die mögliche Welt $a \overline{b}$ entweder als $a!b$ oder als 2 dargestellt. Mit der Option ShowNumbers lässt sich einstellen, ob die angezeigten Objekte, beispielsweise Konditionale, mit nummeriert dargestellt werden sollen oder nicht. Die letzte Option SpaceChar stellt einen Platzhalter für mehrere auf einer Zeile angezeigte Objekte ein. Im Screenshot ist die Option auf Space. Wird Dot aktiviert, werden zeilenweise kleine Punkte angezeigt, damit der Betrachter die Zeilen am Bildschirm etwas leichter verfolgen kann als auf rein weißem Untergrund. Das untenliegende Feld bietet mit dem Save Button die Möglichkeit, den Inhalt des Textfensters zu speichern.
 
 \subsection{Mögliche Welten}
-!!!: world list renamed to worldslist!!
+\label{possible-worlds}
 \begin{figure}
 \begin{lstlisting}
     private List<WorldsList> createSubSetList(List<Integer> inputList){
@@ -303,6 +303,8 @@ Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Compa
 \end{figure} 
 Zur Prüfung er Äquivalenz bietet die Klasse eine boolean Methode isEquivalent(WConditional otherConditional). Da das Vorgehen dazu recht umfangreich ist, ist sie gesondert unter \ref{equivalence} beschrieben.
 \subsection{Berechnung aller Konditionale}
+In \autoref{possible-worlds} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma=\{a,b,c\}$ gebildet. In diesem Abschnitt werden daraus möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert. \\
+Als Input dafür 
 Hier noch ungeordnet. Wie funktioniert eigentlich die Sortierung nach den verschiedenen Möglichkeiten der Sortierung? Kommt das auch nicht durcheinander?
 \subsection{Äquivalenzklassen}
 \
@@ -333,6 +335,9 @@ Erstmal Simple Creator. Funktioniert Parallel? Das wär gut, auch zum gegenüber
 \subsection{Weitere Klassen}
 PairBuffer. Pair an sich. Writer. Parallel Writer?
 \subsection{Beschreibung der Grafischen Oberfläche}
+möglicherweise auch am anfang analog zu kb creator? würde die schritte vereinfachen!
+\subsection{Betrachtung von Knowledge Base Creator mit JVisualVM}
+eventuell auch als eigener punkt damit das hier nicht zu viel wird. screenshots und so.
 
 
 

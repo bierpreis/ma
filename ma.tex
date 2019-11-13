@@ -229,16 +229,16 @@ Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bi
 !!!: world list renamed to worldslist!!
 \begin{figure}
 \begin{lstlisting}
-    private List<WorldList> createSubSetList(List<Integer> inputList){
-        List<WorldList> subSetList = new ArrayList<>();
+    private List<WorldsList> createSubSetList(List<Integer> inputList){
+        List<WorldsList> subSetList = new ArrayList<>();
         for (Integer world : inputList) {
-            for (ListIterator<WorldList> setsIterator = subSetList.listIterator(); setsIterator.                    hasNext(); ) {
-                WorldList newWorld = new WorldList();
+            for (ListIterator<WorldsList> setsIterator = subSetList.listIterator(); setsIterator.                    hasNext(); ) {
+                WorldsList newWorld = new WorldsList();
                 newWorld.addList(setsIterator.next().getWorldsList());
                 newWorld.addInt(world);
                 setsIterator.add(newWorld);
             }
-            WorldList otherWorld = new WorldList();
+            WorldsList otherWorld = new WorldsList();
             otherWorld.addInt(world);
             subSetList.add(otherWorld);
         }
@@ -260,7 +260,7 @@ Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klas
 \begin{figure}
 \begin{lstlisting}
     public int compareTo(Object o) {
-        WorldList otherWorld = (WorldList) o;
+        WorldsList otherWorld = (WorldsList) o;
 
         if (worldsList.size() < otherWorld.getWorldsList().size())
             return -1;
@@ -286,7 +286,6 @@ Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klas
 \label{wconditional}
 \end{figure}
 Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin CounterConditional ebenfalls als Objekt der Klasse Wconditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional.\\
-todo: e \\
 Außerdem die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{sortierung}. \\
 Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{conditional-order} beschrieben.
 
@@ -302,12 +301,13 @@ Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Compa
 \caption{Implementierung compareTo(Object o) der Klasse WConditional}
 \label{compare-wconditonal}
 \end{figure} 
-
-todo: isEquivalent() \\
+Zur Prüfung er Äquivalenz bietet die Klasse eine boolean Methode isEquivalent(WConditional otherConditional). Da das Vorgehen dazu recht umfangreich ist, ist sie gesondert unter \ref{equivalence} beschrieben.
 \subsection{Berechnung aller Konditionale}
 Hier noch ungeordnet. Wie funktioniert eigentlich die Sortierung nach den verschiedenen Möglichkeiten der Sortierung? Kommt das auch nicht durcheinander?
 \subsection{Äquivalenzklassen}
+\
 todo: beschreiben wenn das fertig ist
+\label{equivalence}
 \section{Konditionale mit Aussagenlogik}
 \subsection{Die Klasse PConditional}
 Klassendiagramm wär nice.

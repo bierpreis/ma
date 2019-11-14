@@ -319,7 +319,7 @@ Als Input dafür wird die Liste an WorldsLists aus \autoref{possible-worlds} mit
             List<WorldsList> allSubSetsOfCurrentWorld = createSubSetList(new ArrayList<>(currentWorldIntList));
 
             for (WorldsList currentSubSworld : allSubSetsOfCurrentWorld) {
-                //only add real subsets not equal sets
+                //only add real subsets not equal sets //todo: shi t comment
                 if (!currentSubSworld.equals(currentWorld))
                     currentConditionalList.add(new WConditional(currentSubSworld, currentWorld));
             }

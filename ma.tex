@@ -10,8 +10,8 @@
 \usepackage{listings}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
-%this is a style wich supports urls
-\bibliographystyle{plainnat}
+%this is a style wich supports urls. therefore install texlive-bibtex-extra package in apt!
+\bibliographystyle{plainurl}
 
 %configure syntag highlighting
 \usepackage{listings}
@@ -39,7 +39,7 @@ numbers=right
 Konditionale}
 
 % this value solves the problem overfull hbox. it defines somehow max empty space in a line.
-\tolerance=750
+\tolerance=850
 
 \newcommand{\lag}{\mathcal{L}}
 
@@ -306,7 +306,7 @@ Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Compa
 Zur Prüfung er Äquivalenz bietet die Klasse eine boolean Methode isEquivalent(WConditional otherConditional). Da das Vorgehen dazu recht umfangreich ist, ist sie gesondert unter \ref{equivalence} beschrieben.
 \subsection{Berechnung aller Konditionale}
 In \autoref{possible-worlds} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma=\{a,b,c\}$ gebildet. In diesem Abschnitt wird gezigt, wie aus diesen Kombinationen alle möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert werden. \\
-Als Input dafür wird die Liste an WorldsLists aus \autoref{possible-worlds} mit ihren 255 Elementen verwendet. Der Algorithmus dazu ist in \autoref{create-conditionals} zu sehen. \\todo:algo beschreiben.
+Als Input dafür wird die Liste an WorldsLists aus \autoref{possible-worlds} mit ihren 255 Elementen verwendet. Der Algorithmus dazu ist in \autoref{create-conditionals} zu sehen. \\todo:algo beschreiben. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform basierend auf der Liste der WorldsLists.
 \begin{figure}
 \begin{lstlisting}
     private List<WConditional> createBasicConditionalList(List<WorldsList> worldsList) {

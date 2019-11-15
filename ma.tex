@@ -306,30 +306,30 @@ Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Compa
 Zur Prüfung er Äquivalenz bietet die Klasse eine boolean Methode isEquivalent(WConditional otherConditional). Da das Vorgehen dazu recht umfangreich ist, ist sie gesondert unter \ref{equivalence} beschrieben.
 \subsection{Berechnung aller Konditionale}
 In \autoref{possible-worlds} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma=\{a,b,c\}$ gebildet. In diesem Abschnitt wird gezigt, wie aus diesen Kombinationen alle möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert werden. \\
-Als Input dafür wird die Liste an WorldsLists aus \autoref{possible-worlds} mit ihren 255 Elementen verwendet. Der Algorithmus dazu ist in \autoref{create-conditionals} zu sehen. \\todo:algo beschreiben. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform basierend auf der Liste der WorldsLists.
+Als Input dafür wird die Liste an WorldsLists aus \autoref{possible-worlds} mit ihren 255 Elementen verwendet. Der Algorithmus dazu ist in \autoref{create-conditionals} zu sehen.
+ \\todo:algo beschreiben. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform basierend auf der Liste der WorldsLists.
 \begin{figure}
 \begin{lstlisting}
-    private List<WConditional> createBasicConditionalList(List<WorldsList> worldsList) {
-        List<WConditional> basicConditionalList = new ArrayList<>();
+private List<WConditional> createBasicConditionalList(List<WorldsList> worldsList) {
+    List<WConditional> basicConditionalList = new ArrayList<>();
 
-        for (WorldsList currentWorld : worldsList) {
-            List<WConditional> currentConditionalList = new ArrayList<>();
+    for (WorldsList currentWorld : worldsList) {
+        List<WConditional> currentConditionalList = new ArrayList<>();
 
-            List<Integer> currentWorldIntList = currentWorld.getWorldsList();
-            List<WorldsList> allSubSetsOfCurrentWorld = createSubSetList(new ArrayList<>(currentWorldIntList));
+        List<Integer> currentWorldIntList = currentWorld.getWorldsList();
+        List<WorldsList> allSubSetsOfCurrentWorld = createSubSetList(new ArrayList<>(currentWorldIntList));
 
-            for (WorldsList currentSubSworld : allSubSetsOfCurrentWorld) {
-                //only add real subsets not equal sets //todo: shi t comment
-                if (!currentSubSworld.equals(currentWorld))
-                    currentConditionalList.add(new WConditional(currentSubSworld, currentWorld));
-            }
-            basicConditionalList.addAll(currentConditionalList);
-
+        for (WorldsList currentSubSworld : allSubSetsOfCurrentWorld) {
+            //only add real subsets not the set itself
+            if (!currentSubSworld.equals(currentWorld))
+                currentConditionalList.add(new WConditional(currentSubSworld, currentWorld));
         }
-        Collections.sort(basicConditionalList);
+        basicConditionalList.addAll(currentConditionalList);
 
-        return basicConditionalList;
     }
+    Collections.sort(basicConditionalList);
+
+    return basicConditionalList; }
 \end{lstlisting}
 \caption{Algorithmus zur Generierung aller Konditionale aus einer gegebenen Liste Möglicher Kombinationen von Welten}
 \label{create-conditionals}

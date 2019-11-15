@@ -191,6 +191,7 @@ $\mathcal{R}$ und $\mathcal{R'}$ sind Wissensbasen. Für diese gilt dann:
 \end{itemize}
 \end{theorem}
 \subsection{Isomorphie und Äquivalenzklassen}
+\label{equivalence-classes}
 Durch Umbenennung von Variablen ist es möglich, neue Kombinationen von Welten, Konditionalen oder Wissensbasen zu schaffen, die sich außer dieser Umbenennung nicht von den Vorhandenen unterscheiden. Dieses Verhalten wird als Isomorphismus beschrieben. Die jeweils zusammengehörige Gruppe an durch diesen Isomorphismus entstandenen Dingen wird dann als Äquivalenzklasse bezeichnet.\\
 Beispielsweise enthält die Signatur $\Sigma_{abc}$ die mögliche Kombination $\overline{a}bc$. Wenn jetzt $a$ in $b$ und $b$ in $a$ umbenannt wird, entsteht der Isomorphismus $a\overline{b}c$. Analog kann durch Umbenennung von $a$ und $c$ daraus $ab\overline{c}$ entstehen. Alle drei bilden zusammen eine Äquivalenzklasse. Entsprechend ergibt sich die folgende Definition.
 \begin{theorem}[Isomorphismus](entnommen aus \cite{beierle19}) \ \\
@@ -328,9 +329,9 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 \caption{Algorithmus zur Generierung aller Konditionale aus einer gegebenen Liste Möglicher Kombinationen von Welten}
 \label{create-conditionals}
 \end{figure} 
-\subsection{Äquivalenzklassen}
-\
-todo: beschreiben wenn das fertig ist
+\subsection{Äquivalenzklassen und Sortierung der Konditionale nach $\rdotl$}
+Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ abgespeichert. In diesem Abschnitt wird beschrieben wie die Ordnung $\rdotl$ die unter \autoref{sortierung} gezeigt wird für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{equivalence-classes} gezeigt gruppiert und sortiert weden. \\
+Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitze die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}.
 \label{equivalence}
 \section{Konditionale mit Aussagenlogik}
 \subsection{Die Klasse PConditional}

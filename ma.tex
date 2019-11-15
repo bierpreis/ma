@@ -305,7 +305,7 @@ Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Compa
 \caption{Implementierung compareTo(Object o) der Klasse WConditional}
 \label{compare-wconditonal}
 \end{figure} 
-Zur Prüfung er Äquivalenz bietet die Klasse eine boolean Methode isEquivalent(WConditional otherConditional). Da das Vorgehen dazu recht umfangreich ist, ist sie gesondert unter \ref{equivalence} beschrieben.
+Zur Prüfung er Äquivalenz bietet die Klasse eine boolean Methode isEquivalent(WConditional otherConditional). Da das Vorgehen dazu recht umfangreich ist, ist sie gesondert unter \ref{sec:equivalence} beschrieben.
 \subsection{Berechnung aller Konditionale}
 In \autoref{possible-worlds} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma=\{a,b,c\}$ gebildet. In diesem Abschnitt wird gezigt, wie aus diesen Kombinationen alle möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert werden. \\
 Als Input dafür wird die Liste an WorldsLists aus \autoref{possible-worlds} mit ihren 255 Elementen verwendet. Der Algorithmus dazu ist in \autoref{create-conditionals} zu sehen. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform. \\
@@ -330,10 +330,8 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 \caption{Algorithmus zur Generierung aller Konditionale aus einer gegebenen Liste Möglicher Kombinationen von Welten}
 \label{create-conditionals}
 \end{figure} 
-\subsection{Äquivalenzklassen und Sortierung der Konditionale nach $\rdotl$}
-Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ abgespeichert. In diesem Abschnitt wird beschrieben wie die Ordnung $\rdotl$ die unter \autoref{sortierung} gezeigt wird für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{equivalence-classes} gezeigt gruppiert und sortiert weden. \\
-Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{algo-equivalence} dargestellt ist. In diesem Algorhitmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode getBasicEquivalents() gibt eine Liste and WConditional Objekten zurück, mit der Methode createBasicEquivalents() erstellt wird. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalen wird im gesamten Ablauf sehr oft geprüft (todo: wie oft?), sodass die Methode getBasicEquivalents sicherstellt, dass die Liste Äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung ist enorm. (todo: messen). Die Methode zur Erstellung der Liste der Äquivalenten Konditionale ist \autoref{create-equivalents} dargestellt.
-
+\subsection{Äquivalenzklassen und Sortierung der Konditionale}
+\label{sec:equivalence}
 \begin{figure}
 \begin{lstlisting}
 public boolean isEquivalent(WConditional otherConditional) {
@@ -343,8 +341,11 @@ public boolean isEquivalent(WConditional otherConditional) {
     return false;
 }
 \end{lstlisting}
-\caption{Algorithmus zur Prüfung der Äquivalenz der Klasse WCOnditional}
-\label{algo-equivalence}
+Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ abgespeichert. In diesem Abschnitt wird beschrieben wie die Ordnung $\rdotl$ die unter \autoref{sortierung} gezeigt wird für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{equivalence-classes} gezeigt gruppiert und sortiert weden. \\
+Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{test-equivalence} dargestellt ist. In diesem Algorhitmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode getBasicEquivalents() gibt eine Liste and WConditional Objekten zurück, mit der Methode createBasicEquivalents() erstellt wird. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalenz wird im gesamten Ablauf sehr oft geprüft (todo: wie oft?), sodass die Methode getBasicEquivalents sicherstellt, dass die Liste Äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung ist enorm. (todo: messen). Die Methode zur Erstellung der Liste der Äquivalenten Konditionale ist in \autoref{create-equivalents} abgebildet. 
+
+\caption{Algorithmus zur Prüfung der Äquivalenz der Klasse WConditional}
+\label{test-equivalence}
 \end{figure} 
 
 

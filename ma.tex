@@ -332,7 +332,7 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 \end{figure} 
 \subsection{Äquivalenzklassen und Sortierung der Konditionale nach $\rdotl$}
 Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ abgespeichert. In diesem Abschnitt wird beschrieben wie die Ordnung $\rdotl$ die unter \autoref{sortierung} gezeigt wird für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{equivalence-classes} gezeigt gruppiert und sortiert weden. \\
-Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{algo-equivalence} dargestellt ist.
+Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{algo-equivalence} dargestellt ist. In diesem Algorhitmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode getBasicEquivalents() gibt eine Liste and WConditional Objekten zurück, mit der Methode createBasicEquivalents() erstellt wird. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalen wird im gesamten Ablauf sehr oft geprüft (todo: wie oft?), sodass die Methode getBasicEquivalents sicherstellt, dass die Liste Äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung ist enorm. (todo: messen). Die Methode zur Erstellung der Liste der Äquivalenten Konditionale ist \autoref{create-equivalents} dargestellt.
 
 \begin{figure}
 \begin{lstlisting}
@@ -344,7 +344,28 @@ public boolean isEquivalent(WConditional otherConditional) {
 }
 \end{lstlisting}
 \caption{Algorithmus zur Prüfung der Äquivalenz der Klasse WCOnditional}
-\label{create-conditionals}
+\label{algo-equivalence}
+\end{figure} 
+
+
+\begin{figure}
+\begin{lstlisting}
+    private void createBasicEquivalents() {
+        basicEqList = new ArrayList<>();
+        List<WorldsList> antecedentList = antecedent.createRenamings();
+        List<WorldsList> consequenceList = consequence.createRenamings();
+
+        for (int i = 0; i < antecedentList.size(); i++) {
+            WConditional possibleEqConditional = new WConditional(consequenceList.get(i), antecedentList.get(i));
+
+            //dont add the conditional to itselfs eq conditionals
+            if (!this.equals(possibleEqConditional))
+                basicEqList.add(possibleEqConditional);
+        }
+    }
+\end{lstlisting}
+\caption{Algorithmus zur Generierung einer Liste der Äquivalenten Konditionale der Klasse WCOnditional}
+\label{create-equivalents}
 \end{figure} 
 todo: beschreiben der buttons (nfc vs conditionals - unterschied ist sortierung)
 \label{algo-equivalence}

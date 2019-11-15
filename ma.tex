@@ -321,15 +321,15 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 
         for (WorldsList currentSubSworld : allSubSetsOfCurrentWorld) {
             //only add real subsets not the set itself
-            if (!currentSubSworld.equals(currentWorld))
-                currentConditionalList.add(new WConditional(currentSubSworld, currentWorld));
+            if (!currentSubWorld.equals(currentWorld))
+                currentConditionalList.add(new WConditional(currentSubWorld, currentWorld));
         }
         basicConditionalList.addAll(currentConditionalList);
 
     }
     Collections.sort(basicConditionalList);
 
-    return basicConditionalList; }
+  return basicConditionalList; }
 \end{lstlisting}
 \caption{Algorithmus zur Generierung aller Konditionale aus einer gegebenen Liste Möglicher Kombinationen von Welten}
 \label{create-conditionals}

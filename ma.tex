@@ -350,19 +350,17 @@ public boolean isEquivalent(WConditional otherConditional) {
 
 \begin{figure}
 \begin{lstlisting}
-    private void createBasicEquivalents() {
-        basicEqList = new ArrayList<>();
-        List<WorldsList> antecedentList = antecedent.createRenamings();
-        List<WorldsList> consequenceList = consequence.createRenamings();
-
-        for (int i = 0; i < antecedentList.size(); i++) {
-            WConditional possibleEqConditional = new WConditional(consequenceList.get(i), antecedentList.get(i));
-
-            //dont add the conditional to itselfs eq conditionals
-            if (!this.equals(possibleEqConditional))
-                basicEqList.add(possibleEqConditional);
-        }
+private void createBasicEquivalents() {
+    basicEqList = new ArrayList<>();
+    List<WorldsList> antecedentList = antecedent.createRenamings();
+    List<WorldsList> consequenceList = consequence.createRenamings();
+    for (int i = 0; i < antecedentList.size(); i++) {
+        WConditional possibleEqConditional = new WConditional(consequenceList.get(i), antecedentList.get(i));
+        //dont add the conditional to itselfs eq conditionals
+        if (!this.equals(possibleEqConditional))
+            basicEqList.add(possibleEqConditional);
     }
+}
 \end{lstlisting}
 \caption{Algorithmus zur Generierung einer Liste der Äquivalenten Konditionale der Klasse WCOnditional}
 \label{create-equivalents}

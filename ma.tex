@@ -215,7 +215,6 @@ Die Aufgabenstellung wird dafür in zwei Teile gegliedert. Im ersten Teil werden
 Im zweiten Teil dieser Arbeit findet dann die eigentliche Generierung der Wissensbasen statt. Dazu werden die Konditionale ausgehend von Objekten der Klasse \textit{WConditional} in Objekte der Klasse \textit{PConditional} (P für Propositional logic) übersetzt. Diese Klasse ist dann für die Arbeit mit Aussagenlogik optimiert und ermöglicht so die Prüfung von Konsistenz und damit die Anwendung für den Algorithmus GenKB.
 \section{Konditionale in Normalform}
 \subsection{NFC Creator}
-todo: satz, dass hier kein threading stattfindet \\
 In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens NFC Creator erstellt. Dieses Programm wird zum Einen dafür genutzt, um die Konditionale für das den zweiten Teil zu erzeugen, in dem aus den Konditionalen die Wissensbasen generiert werden. Der NFC Creator hat zusätzlich eine eigene grafische Oberfläche namens NFC Viewer, ein Screenshot davon ist in \autoref{nfc-viewer} zu sehen. Damit können die erstellten Konditionale betrachtet und gespeichert werden. Es ist damit auch möglich, Teilergebnisse anzuzeigen, um die Erstellung der Konditionale besser nachvollziehen zu können. \\
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{bilder/nfc-viewer.png}
@@ -307,7 +306,7 @@ Zur Prüfung er Äquivalenz bietet die Klasse eine boolean Methode isEquivalent(
 \subsection{Berechnung aller Konditionale}
 In \autoref{possible-worlds} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma=\{a,b,c\}$ gebildet. In diesem Abschnitt wird gezigt, wie aus diesen Kombinationen alle möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert werden. \\
 Als Input dafür wird die Liste an WorldsLists aus \autoref{possible-worlds} mit ihren 255 Elementen verwendet. Der Algorithmus dazu ist in \autoref{create-conditionals} zu sehen.
- \\todo:algo beschreiben. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform basierend auf der Liste der WorldsLists.
+ \\todo: algo beschreiben. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform basierend auf der Liste der WorldsLists.
 \begin{figure}
 \begin{lstlisting}
 private List<WConditional> createBasicConditionalList(List<WorldsList> worldsList) {

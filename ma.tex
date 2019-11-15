@@ -130,8 +130,9 @@ Mit einer Signatur $\Sigma$ und deren linearer Ordnung $\dotl$ sind die Ordnunge
 \begin{equation}
 \omega \overset{\mathrm{\omega}}{\dotll} \omega' \quad gdw. \quad [[\omega]]_{\dotl} \geqslant [[\omega']]_{\dotl}
 \end{equation}
-\label{conditional-order}
+
 \begin{equation}
+\label{conditional-order}
 (B|A) \overset{\mathrm{c}}{\dotll} (B'| A') \quad gdw. \quad \Omega_A \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{A'} \quad oder \quad \Omega_A =  \Omega_{A'} \quad und \quad  \Omega_B \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{B'}
 \end{equation}
 
@@ -305,8 +306,8 @@ Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Compa
 Zur Prüfung er Äquivalenz bietet die Klasse eine boolean Methode isEquivalent(WConditional otherConditional). Da das Vorgehen dazu recht umfangreich ist, ist sie gesondert unter \ref{equivalence} beschrieben.
 \subsection{Berechnung aller Konditionale}
 In \autoref{possible-worlds} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma=\{a,b,c\}$ gebildet. In diesem Abschnitt wird gezigt, wie aus diesen Kombinationen alle möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert werden. \\
-Als Input dafür wird die Liste an WorldsLists aus \autoref{possible-worlds} mit ihren 255 Elementen verwendet. Der Algorithmus dazu ist in \autoref{create-conditionals} zu sehen. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform.
- \\todo: algo beschreiben.
+Als Input dafür wird die Liste an WorldsLists aus \autoref{possible-worlds} mit ihren 255 Elementen verwendet. Der Algorithmus dazu ist in \autoref{create-conditionals} zu sehen. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform. \\
+Dazu iteriert der Algorithmus in Zeile 4 über alle möglichen Mengen von Welten, diese bilden den Antecedent der Konditionale. Für jede dieser Iterationen werden im Zeile 8 alle echten Teilmengen des Antecedent gebildet, woraus sie die Consequent bildet. Aus Antecedetnt und Consequent wird dann jeweils ein Konditional gebildet. Zum Schluss werden die Konditionale in Zeile 15 nach der Ordnung in \autoref{conditional-order} sortiert.
 \begin{figure}
 \begin{lstlisting}
 private List<WConditional> createBasicConditionalList(List<WorldsList> worldsList) {
@@ -330,8 +331,6 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 \caption{Algorithmus zur Generierung aller Konditionale aus einer gegebenen Liste Möglicher Kombinationen von Welten}
 \label{create-conditionals}
 \end{figure} 
-\\
-todo: was zur sortierung? oder das sortieren raus, aber schadet das vlt?
 \subsection{Äquivalenzklassen}
 \
 todo: beschreiben wenn das fertig ist

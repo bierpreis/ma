@@ -314,8 +314,7 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 
     for (WorldsList currentWorld : worldsList) {
         List<WConditional> currentConditionalList = new ArrayList<>();
-        List<Integer> currentWorldIntList = currentWorld.getWorldsList();
-        List<WorldsList> allSubSetsOfCurrentWorld = createSubSetList(new ArrayList<>(currentWorldIntList));
+        List<WorldsList> allSubSetsOfCurrentWorld = createSubSetList(currentWorld.getWorldsList());
 
         for (WorldsList currentSubSworld : allSubSetsOfCurrentWorld) {
             //only add real subsets not the set itself

@@ -84,7 +84,7 @@ In diesem Abschnitt werden kurz die Grundlagen aufgeführt, auf denen der Hauptt
 Zuerst wird kurz die Notation beschrieben, mit der die Konditionale im weiteren Verlauf der Arbeit dargestellt werden. Einzelne Atome, die betrachtet werden, werden mit Kleinbuchstaben wie $a, b, c,...\ $ bezeichnet. Aussagen über diese werden in Form von Großbuchstaben $A, B, C,...$ formuliert, die Gesamtheit der Sprache wird als $\lag$ bezeichnet. Die Menge der möglichen Welten, die betrachtet werden, wird mit $\Omega$ beschrieben. In einer dieser Welten $\omega \in \Omega$  hat der Ausdruck $\omega \models A$ die Bedeutung, dass $A \in \lag$ in dieser Welt gilt. Des weiteren wird $\neg A$ als $\overline{A}$ und $A \wedge B$ als $AB$ abgekürzt.
 \subsection{Konditionale}
 Ein Konditional ist ein Zusammenhang aus einer Vorbedingung (Antecedent) und einer Folgerung (Consequence) aus dieser Vorbedingung in der Form \glqq Wenn, A dann B\grqq . Ein qualitatives Konditional ist ein solches unter  Unsicherheit und entspricht einem Zusammenhang in der Form \glqq Wenn $A$, dann normalerweise $B$\grqq . Dargestellt wird so ein Konditional $r$ im folgenden mit dem Symbol \glqq$|$\grqq \space in der Form $r = ( \lag | \lag)$. Ein Beispiel ist $r = (B|A)$. Das dazugehörige gegenteilige Konditional lautet dann $\overline{r} = (\overline{B}|A)$.\\
-Um die Akzeptanz eines unsicheren Konditionals zu bestimmen, werden sie oft im Rahmen von ordinalen Rangfunktionen nach Wolfgang Spohn betrachtet. Mehr dazu auch in diesem Text im  \autoref{wissensbasen}. Vereinfacht gesagt wird ein unsicheres Konditional dann  akzeptiert, wenn es plausibler ist als das dazugehörige gegenteilige Konditional. Beispielsweise $(B|A)$ wird  dann akzeptiert, wenn $A B$ plausibler ist als $A \overline{B}$, siehe dazu auch \cite{isberner14}. \\
+Um die Akzeptanz eines unsicheren Konditionals zu bestimmen, werden sie oft im Rahmen von ordinalen Rangfunktionen nach Wolfgang Spohn betrachtet. Mehr dazu auch in diesem Text im  \autoref{sec:wissensbasen}. Vereinfacht gesagt wird ein unsicheres Konditional dann  akzeptiert, wenn es plausibler ist als das dazugehörige gegenteilige Konditional. Beispielsweise $(B|A)$ wird  dann akzeptiert, wenn $A B$ plausibler ist als $A \overline{B}$, siehe dazu auch \cite{isberner14}. \\
 Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge möglicher Welten $\Omega$ in drei Teile auf: Welten, die das Konditional bestätigen ($A B$), Welten die es falsifizieren ($A \overline{B}$) und Welten, auf die das Konditional nicht anwendbar ist, weil die Vorbedingung nicht erfüllt ist ($\overline{A}$). Die letztere Möglichkeit wird auch mit $u$ bezeichnet, was als \textit{unknown} gedeutet werden kann. Damit lässt sich das Konditional als Indikatorfunktion wie folgt darstellen:
 \[
   (B|A)(\omega)=\begin{cases}
@@ -130,8 +130,8 @@ Mit einer Signatur $\Sigma$ und deren linearer Ordnung $\dotl$ sind die Ordnunge
 \omega \overset{\mathrm{\omega}}{\dotll} \omega' \quad gdw. \quad [[\omega]]_{\dotl} \geqslant [[\omega']]_{\dotl}
 \end{equation}
 
-\begin{equation}
-\label{conditional-order}
+\begin{equation} %todo
+\label{conditional-order} 
 (B|A) \overset{\mathrm{c}}{\dotll} (B'| A') \quad gdw. \quad \Omega_A \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{A'} \quad oder \quad \Omega_A =  \Omega_{A'} \quad und \quad  \Omega_B \overset{\mathrm{\omega}}{\dotll}_{set} \Omega_{B'}
 \end{equation}
 
@@ -147,14 +147,13 @@ $NFC(\Sigma) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}
 Für diese Menge gelten dann die folgenden drei Eigenschaften:\
  \begin{itemize}
 \item{Nichttrivialität: $NFC(\Sigma)$ enthält kein triviales Konditional.}
-\item{Komplettheit: für jedes nichttriviale Konditional in $\Sigma$ existiert ein äquivalentes Konditional in $NFC(\Sigma)$ }
+\item{Vollständigkeit: für jedes nichttriviale Konditional in $\Sigma$ existiert ein äquivalentes Konditional in $NFC(\Sigma)$ }
 \item{Minimalität: alle Konditionale in $NFC(\Sigma)$ sind paarweise nicht äquivalent.}
 \end{itemize}
-\label{normal-form}
 \end{theorem}
 
 \subsection{Wissensbasen}
-\label{wissensbasen}
+\label{sec:wissensbasen}
 Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden oft ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. \\
 Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn88} oder \cite{spohn12}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfuntion wird einer Welt $\omega$ aus den möglichen Welten $\Omega$ eine natürliche Zahl mittels einer Funktion $\kappa$ zugeordnet, um deren Grad an Plausibilität zu beschreiben. Mindestens eine Welt bekommt den Wert 0 zugewiesen und wird damit am meisten plausibel gekennzeichnet, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl einzelne Aussagen als auch Konditionale betrachtet werden.\\
 Rangfunktion für Aussagen:
@@ -190,7 +189,7 @@ $\mathcal{R}$ und $\mathcal{R'}$ sind Wissensbasen. Für diese gilt dann:
 \end{itemize}
 \end{theorem}
 \subsection{Isomorphie und Äquivalenzklassen}
-\label{equivalence-classes}
+\label{sec:äquivalenz}
 Durch Umbenennung von Variablen ist es möglich, neue Kombinationen von Welten, Konditionalen oder Wissensbasen zu schaffen, die sich außer dieser Umbenennung nicht von den Vorhandenen unterscheiden. Dieses Verhalten wird als Isomorphismus beschrieben. Die jeweils zusammengehörige Gruppe an durch diesen Isomorphismus entstandenen Dingen wird dann als Äquivalenzklasse bezeichnet.\\
 Beispielsweise enthält die Signatur $\Sigma_{abc}$ die mögliche Kombination $\overline{a}bc$. Wenn jetzt $a$ in $b$ und $b$ in $a$ umbenannt wird, entsteht der Isomorphismus $a\overline{b}c$. Analog kann durch Umbenennung von $a$ und $c$ daraus $ab\overline{c}$ entstehen. Alle drei bilden zusammen eine Äquivalenzklasse. Entsprechend ergibt sich die folgende Definition.
 \begin{theorem}[Isomorphismus](entnommen aus \cite{beierle19}) \ \\
@@ -208,7 +207,7 @@ Gegeben sei eine Signatur $\Sigma$ mit der linearen Ordnung $\dotl$. Dann sind $
 $r_1\rdotl ... \rdotl r_m \rdotl[r_1]_\simeq \setminus \{r_1\} \rdotl ... \rdotl [r_m]_\simeq \setminus \{r_m\}$ \\ 
 mit $r \rdotl r'$ gdw. $r\dotl r'$ für alle $i \in \{1, ..., m\}$ und alle $r, r' \in [r_i]_\simeq \setminus \{r_i\}$.}
 \end{itemize}
-\label{sortierung}
+\label{sortierung} %todo
 \end{theorem}
 \section{Strukturierung des Vorgehens}
 Das Ziel des weiteren Vorgehens ist es, den Algorithmus GenKB aus \cite{beierle19} praktisch umzusetzen und möglichst viele Wissensbasen auf Basis der Signatur $\Sigma=\{a,b,c\}$ zu generieren. Da aufgrund der Menge der möglichen Konditionale das Ziel nicht auch nur Ansatzweise vollständig bearbeitet werden kann, wird immer auch die Signatur $\Sigma=\{a,b\}$ betrachtet. Mit dieser reduzierten Signatur ist es möglich, aufgrund der deutlich geringeren Menge an Konditionalen alle möglichen Wissensbasen zu generieren. Damit lässt sich am kleineren Beispiel prüfen, ob die grundsätzliche Vorgehensweise korrekt ist und letztendlich die Aufgabenstellung vollständig lösen könnte. \\
@@ -243,7 +242,7 @@ Für die Signatur $\Sigma = {abc}$ ergeben sich damit 255 verschiedene Mengen vo
 Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klasse implementiert das bekannte Java Interface  \textit{Comparable} (siehe dazu auch \cite{oracle2019}) und kann damit Objekte erzeugen, die standardisiert sortiert werden können. Dazu besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß Definition \ref{def:sortierung}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert entweder -1 zurück, wenn das aktuelle  Objekt (\textit{this}) kleiner als das übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen. 
 
 
-\label{possible-worlds}
+\label{possible-worlds} %todo
 \begin{figure}
 \begin{lstlisting}
 private List<WorldsList> createSubSetList(List<Integer> inputList){
@@ -297,7 +296,7 @@ public int compareTo(Object o) {
 
 Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin CounterConditional ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional.\\
 Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{sortierung} als int Variable enthalten. \\
-Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{conditional-order} beschrieben.
+Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{code:compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{conditional-order} beschrieben.
 
 
 \begin{figure}
@@ -317,7 +316,7 @@ public int compareTo(Object o) {
 }
 \end{lstlisting}
 \caption{Implementierung compareTo(Object o) der Klasse WConditional}
-\label{compare-wconditonal}
+\label{code:compare-wconditonal}
 \end{figure}
 
 
@@ -352,7 +351,7 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
   return basicConditionalList; }
 \end{lstlisting}
 \caption{Algorithmus zur Generierung aller Konditionale aus einer gegebenen Liste Möglicher Kombinationen von Welten}
-\label{create-conditionals}
+\label{create-conditionals} %todo
 \end{figure} 
 
 
@@ -360,7 +359,7 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 
 \label{sec:equivalence}
 
-Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ abgespeichert. In diesem Abschnitt wird beschrieben wie die Sortierung nach der Ordnung $\rdotl$, welche unter unter \autoref{sortierung} gezeigt wurde, für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{equivalence-classes} gezeigt gruppiert und dann untereinander sortiert weden. \\
+Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ abgespeichert. In diesem Abschnitt wird beschrieben wie die Sortierung nach der Ordnung $\rdotl$, welche unter unter \autoref{sortierung} gezeigt wurde, für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{sec:äquivalenz} gezeigt gruppiert und dann untereinander sortiert weden. \\
 Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{test-equivalence} dargestellt ist. In diesem Algorhitmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode getBasicEquivalents() gibt eine Liste and WConditional Objekten zurück, mit der Methode createBasicEquivalents() erstellt wird. Diese Liste äquivalenter Konditionale beinhaltet dabei jedoch \textit{neu erstellte} Objekte äquivalenter Konditionale, nicht die \textit{tatsächlichen} Objekte der Äquivalenten Konditionale. Die tatsächlichen Objekte können erst nachher gruppiert werden. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalenz wird im gesamten Ablauf sehr oft geprüft (mit $\Sigma=\{abc \}$ 1550 mal, mit $\Sigma=\{abc\}$ dagegen schon 16.784.250 mal), sodass die Methode getBasicEquivalents sicherstellt, dass die Liste Äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung dadurch ist deutlich spürbar.\\ 
 Die Methode zur Erstellung der Liste der äquivalenten Konditionale ist in \autoref{create-equivalents} abgebildet. In Zeile 3 und 4 wird für Antecedent und Consequence jeweils eine Liste der Umbenennungen erstellt, was in \autoref{sec:worldslist} bereits erklärt wurde. Dieser Umbenennungen werden in Zeile 6 iteriert und für alle Paare von Antecedent und Consequence wird ein neues Konditional als mögliche Umbenennung gespeichert, wenn die Umbenennung wirklich verschieden vom Ausgangskonditional ist. Wenn ein Konditional keine äquivalenten Konditionale besitzt, sind die Umbenennungen an dieser Stelle sonst gleich wie das Ursprungskonditional. Beispielsweise würden Umbenennungen des Konditionals $(ab|!a!b,ab)$ sonst immer wieder das gleiche Konditional entstehen lassen. \\
 Der Ablauf der Erstellung der Liste der Konditionale NFC ist dann wie folgt: Der NFC Creator beginnt dann durch die Liste der Konditionale zu iterieren und erstellt für jedes gefundene Konditional eine eigene Liste. Für jedes dieser Konditionale wird dann mit der \textit{isEquivalent(..)} Methode der Rest der urprünglichen Liste auf Äquivalenz überprüft und die \textit{tätsichlichen} Objekte der äquivalenten Konditionale werden in die Liste eingefügt und aus der ursprünglichen Liste entfernt. Die neue Liste wird dann jeweils mit der compare(..) Methode sortiert. Dadurch entsteht eine Liste von Listen von den tatsächlichen Objekten der äquivalenten Konditionale. Diese Darstellung enspricht dann der Darstellung der Konditionale in \cite{beierle19}. Mit dem NFC Viewer kann diese Ansicht mit dem Botton CNFCEQ erstellt werden. Die Menge der kanonischen Konditionale $(cNFC)$ ergibt sich daraus als eine Liste der jeweils ersten Elemente der Listen der äquivalenten Konditionale. Diese kann im NFC Viewer mit dem Button CNFC angezeigt werden.
@@ -377,7 +376,7 @@ public boolean isEquivalent(WConditional otherConditional) {
 }
 \end{lstlisting}
 \caption{Algorithmus zur Prüfung der Äquivalenz der Klasse WConditional}
-\label{test-equivalence}
+\label{test-equivalence} %todo
 \end{figure} 
 
 \begin{figure}
@@ -395,7 +394,7 @@ private void createBasicEquivalents() {
 }
 \end{lstlisting}
 \caption{Algorithmus zur Generierung einer Liste der äquivalenten Konditionale der Klasse WConditional}
-\label{create-equivalents}
+\label{create-equivalents} %todo
 \end{figure} 
 
 

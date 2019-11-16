@@ -230,13 +230,13 @@ Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bi
 \subsection{Die Klasse WorldsList}
 \label{sec:worldslist}
 Die Bezeichung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit enthaltenden Welten ausdrücken. Eine solche Menge möglicher Welten, die einen aussagenlogischen Ausdruck repräsentiert, wird mit einem Objekt der Klasse WorldsList dargetellt. Objekte der Klasse WorldsList repräsentieren in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. Der Algorithmus, der alle Mengen aus den möglichen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Der Input bietet die Liste möglicher Welten der Signatur, der Output ist eine Liste aller Teilmengen des Inputs. \\
-Für die Signatur $\Sigma = {abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma=ab$ sind es 15.) Diese können mit dem NFC-Viewer mit dem Button "WORLDS" \space geordnet erzeugt werden. Dargestellt im Programm werden diese Mengen jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \ref{worldslist} gezeigt ist. 
+Für die Signatur $\Sigma = {abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma=ab$ sind es 15.) Diese können mit dem NFC-Viewer mit dem Button "WORLDS" \space geordnet erzeugt werden. Dargestellt im Programm werden diese Mengen jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \ref{pic:worldslist} gezeigt ist. 
 
 
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/worldslist.png}
 \caption{WorldsList}
-\label{worldslist}
+\label{pic:worldslist}
 \end{figure}
 
 
@@ -295,7 +295,7 @@ public int compareTo(Object o) {
 
 \subsection{Die Klasse WConditional}
 
-Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin CounterConditional ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional.\\
+Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin CounterConditional ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional.\\
 Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{sortierung} als int Variable enthalten. \\
 Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{conditional-order} beschrieben.
 
@@ -303,7 +303,7 @@ Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Compa
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/wconditional.png}
 \caption{WConditional}
-\label{wconditional}
+\label{pic:wconditional}
 \end{figure}
 
 

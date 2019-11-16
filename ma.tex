@@ -228,10 +228,10 @@ Das Programm ist intern nach dem Model-View-Controller Schema aufgebaut. Die Bes
 Der grundsätzliche Aufbau der GUI besteht aus zwei Teilen. Links befinden sich im oberen Bereich die Auswahl der Optionen, darunter unter Start befinden sich die Buttons mit den möglichen Aktionen. Auf der rechten Seite befindet sich ein Textfenster, was das Ergebnis der gewählten Optionen und Aktion zeigt sowie darunter einer kurzen Beschreibung des Inhalts des Textfelds. \\
 Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bietet selbsterklärend die Möglichkeiten $ab$ und $abc$. Die Option View stellt ein, ob eine mögliche Welt in Buchstabenform oder als Repräsentation als Zahl erfolgen soll. Beispielsweise wird mit Signatur $ab$ die mögliche Welt $a \overline{b}$ entweder als $a!b$ oder als 2 dargestellt. Mit der Option ShowNumbers lässt sich einstellen, ob die angezeigten Objekte, beispielsweise Konditionale, mit nummeriert dargestellt werden sollen oder nicht. Die letzte Option SpaceChar stellt einen Platzhalter für mehrere auf einer Zeile angezeigte Objekte ein. Im Screenshot ist die Option auf Space. Wird Dot aktiviert, werden zeilenweise kleine Punkte angezeigt, damit der Betrachter die Zeilen am Bildschirm etwas leichter verfolgen kann als auf rein weißem Untergrund. Das untenliegende Feld bietet mit dem Save Button die Möglichkeit, den Inhalt des Textfensters zu speichern.
 
-\subsection{Mögliche Welten}
+\subsection{Die Klasse WorldsList}
 \label{sec:worldslist}
-
-Die Bezeichung der möglichen Welten wurde in \autoref{ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit enthaltenden Welten ausdrücken. Aus der Gesamtheit aller möglichen Teilmengen dieser Menge ergibt sich dann die Menge der Ausdrücke, die in den Konditionalen als Antecedent oder Consequence verwendet werden kann. Diese bildet dann die Basis aus der später die Menge der Konditionale NFC in Normalform erstellt werden. Der Algorithmus, der alle Teilmengen aus den möglichen Welten einer Signatur berechnet, ist in \autoref{subsets} dargestellt. Der Input bietet die Liste möglicher Welten der Signatur, der Output ist eine Liste aller Teilmengen des Inputs. \\
+todo: anfang umschreiben! \\
+Die Bezeichung der möglichen Welten wurde in \autoref{ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit enthaltenden Welten ausdrücken. Eine solche Menge möglicher Welten, die einen aussagenlogischen Ausdruck repräsentiert, wird mit einem Objekt der Klasse WorldsList dargetellt. Aus der Gesamtheit aller möglichen Teilmengen dieser Menge ergibt sich dann die Menge der Ausdrücke, die in den Konditionalen als Antecedent oder Consequence verwendet werden kann. Diese bildet dann die Basis aus der später die Menge der Konditionale NFC in Normalform erstellt werden. Der Algorithmus, der alle Teilmengen aus den möglichen Welten einer Signatur berechnet, ist in \autoref{subsets} dargestellt. Der Input bietet die Liste möglicher Welten der Signatur, der Output ist eine Liste aller Teilmengen des Inputs. \\
 Für die Signatur $\Sigma = {abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma=ab$ sind es 15.) Diese können mit dem NFC-Viewer mit dem Button "WORLDS" \space geordnet erzeugt werden. Dargestellt im Programm werden diese Mengen jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \ref{worldslist} gezeigt ist. 
 
 
@@ -322,7 +322,7 @@ Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Compa
 \caption{Implementierung compareTo(Object o) der Klasse WConditional}
 \label{compare-wconditonal}
 \end{figure} 
-: create renamings beschreiben! eventuell was dazu in den theorie teil?
+todo: create renamings beschreiben! eventuell was dazu in den theorie teil?
 
 
 

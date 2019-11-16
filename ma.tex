@@ -340,7 +340,9 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 
 
 Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ abgespeichert. In diesem Abschnitt wird beschrieben wie die Sortierung nach der Ordnung $\rdotl$, welche unter unter \autoref{sortierung} gezeigt wurde, für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{equivalence-classes} gezeigt gruppiert und dann untereinander sortiert weden. \\
-Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{test-equivalence} dargestellt ist. In diesem Algorhitmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode getBasicEquivalents() gibt eine Liste and WConditional Objekten zurück, mit der Methode createBasicEquivalents() erstellt wird. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalenz wird im gesamten Ablauf sehr oft geprüft (mit $\Sigma=\{abc \}$ 1550 mal, mit $\Sigma=\{abc\}$ dagegen schon 16.784.250 mal), sodass die Methode getBasicEquivalents sicherstellt, dass die Liste Äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung dadurch ist deutlich spürbar. Die Methode zur Erstellung der Liste der Äquivalenten Konditionale ist in \autoref{create-equivalents} abgebildet. 
+Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{test-equivalence} dargestellt ist. In diesem Algorhitmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode getBasicEquivalents() gibt eine Liste and WConditional Objekten zurück, mit der Methode createBasicEquivalents() erstellt wird. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalenz wird im gesamten Ablauf sehr oft geprüft (mit $\Sigma=\{abc \}$ 1550 mal, mit $\Sigma=\{abc\}$ dagegen schon 16.784.250 mal), sodass die Methode getBasicEquivalents sicherstellt, dass die Liste Äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung dadurch ist deutlich spürbar. Die Methode zur Erstellung der Liste der Äquivalenten Konditionale ist in \autoref{create-equivalents} abgebildet.\\
+Der NFC Creator geht dann die Liste aller Konditionale durch und bildet jeweils eine Liste für alle untereinander äquivalenten Konditionale. Diese Liste wird dann jeweils mit der compare(..) Methode sortiert. Dadurch entsteht eine Liste von Listen von äquivalenten Konditionalen, die Darstellung der Konditionale in \cite{beierle19} entspricht. Mit dem NFC Viewer kann diese Ansicht mit dem Botton CNFCEQ erstellt werden. Die Menge der kanonischen Konditionale $(cNFC)$ ergibt sich daraus als eine Liste der jeweils ersten Elemente der Listen der äquivalenten Konditionale. Diese kann im NFC Viewer mit dem Button CNFC angezeigt werden.
+
 
 
 \label{sec:equivalence}
@@ -378,6 +380,9 @@ private void createBasicEquivalents() {
 
 
 todo: beschreiben der buttons (nfc vs conditionals - unterschied ist sortierung)
+
+\subsection{Counter Conditionals}
+
 
 \section{Konditionale mit Aussagenlogik}
 \subsection{Die Klasse PConditional}

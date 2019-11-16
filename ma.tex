@@ -305,7 +305,7 @@ Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Compa
 \caption{Implementierung compareTo(Object o) der Klasse WConditional}
 \label{compare-wconditonal}
 \end{figure} 
-Zur Prüfung er Äquivalenz bietet die Klasse eine boolean Methode isEquivalent(WConditional otherConditional). Da das Vorgehen dazu recht umfangreich ist, ist sie gesondert unter \ref{sec:equivalence} beschrieben.
+Zur Prüfung er Äquivalenz bietet die Klasse eine boolean Methode isEquivalent(WConditional otherConditional). Da das Vorgehen dazu recht umfangreich ist, ist es gesondert unter \ref{sec:equivalence} beschrieben.
 \subsection{Berechnung aller Konditionale}
 In \autoref{possible-worlds} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma=\{a,b,c\}$ gebildet. In diesem Abschnitt wird gezigt, wie aus diesen Kombinationen alle möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert werden. \\
 Als Input dafür wird die Liste an WorldsLists aus \autoref{possible-worlds} mit ihren 255 Elementen verwendet. Der Algorithmus dazu ist in \autoref{create-conditionals} zu sehen. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform. \\

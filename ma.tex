@@ -217,12 +217,12 @@ Die Aufgabenstellung wird dafür in zwei Teile gegliedert. Im ersten Teil werden
 Im zweiten Teil dieser Arbeit findet dann die eigentliche Generierung der Wissensbasen statt. Dazu werden die Konditionale ausgehend von Objekten der Klasse \textit{WConditional} in Objekte der Klasse \textit{PConditional} (P für Propositional logic) übersetzt. Diese Klasse ist dann für die Arbeit mit Aussagenlogik optimiert und ermöglicht so die Prüfung von Konsistenz und damit die Anwendung für den Algorithmus GenKB.
 \section{Konditionale in Normalform}
 \subsection{NFC Creator}
-In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens NFC Creator erstellt. Dieses Programm wird zum Einen dafür genutzt, um die Konditionale für das den zweiten Teil zu erzeugen, in dem aus den Konditionalen die Wissensbasen generiert werden. Der NFC Creator hat zusätzlich eine eigene grafische Oberfläche namens NFC Viewer, ein Screenshot davon ist in \autoref{nfc-viewer} zu sehen. Damit können die erstellten Konditionale betrachtet und gespeichert werden. Es ist damit auch möglich, Teilergebnisse anzuzeigen, um die Erstellung der Konditionale besser nachvollziehen zu können. \\
+In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens NFC Creator erstellt. Dieses Programm wird zum Einen dafür genutzt, um die Konditionale für das den zweiten Teil zu erzeugen, in dem aus den Konditionalen die Wissensbasen generiert werden. Der NFC Creator hat zusätzlich eine eigene grafische Oberfläche namens NFC Viewer, ein Screenshot davon ist in \autoref{pic:nfc-viewer} zu sehen. Damit können die erstellten Konditionale betrachtet und gespeichert werden. Es ist damit auch möglich, Teilergebnisse anzuzeigen, um die Erstellung der Konditionale besser nachvollziehen zu können. \\
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{bilder/nfc-viewer.png}
 
 \caption{Screenshot NFC Viewer mit Ansicht analog zu Tabelle 1 aus \cite{beierle19}}
-\label{nfc-viewer}
+\label{pic:nfc-viewer}
 \end{figure}
 Das Programm ist intern nach dem Model-View-Controller Schema aufgebaut. Die Beschreibung hier im Text fokussiert sich dabei auf das fachliche Modell dahinter und an einigen Stellen auf die Bedienung und Präsentation der grafischen Oberfläche. Das Fachliche Modell wird zentral in der Klasse NFCCreator zusammengefasst, hier werden die einzelnen Teilschritte Koordiniert. Da die Aufgabe des NFCCreator nicht besonders rechenintesiv ist, besteht das Programm nur aus einem einzigen Thread. Die wichtigen Elemente des fachlichen Modells werden in den nächsten Unterabschnitten beschrieben. Die Logik der GUI und des Controllers werde nicht beschrieben, da sie für das fachliche Thema uninteressant sind. \\
 Der grundsätzliche Aufbau der GUI besteht aus zwei Teilen. Links befinden sich im oberen Bereich die Auswahl der Optionen, darunter unter Start befinden sich die Buttons mit den möglichen Aktionen. Auf der rechten Seite befindet sich ein Textfenster, was das Ergebnis der gewählten Optionen und Aktion zeigt sowie darunter einer kurzen Beschreibung des Inhalts des Textfelds. \\
@@ -241,7 +241,7 @@ Für die Signatur $\Sigma = {abc}$ ergeben sich damit 255 verschiedene Mengen vo
 \end{figure}
 
 
-Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klasse implementiert das bekannte Java Interface  \textit{Comparable} (siehe dazu auch \cite{oracle2019}) und kann damit Objekte erzeugen, die standardisiert sortiert werden können. Dazu besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß Definition \ref{def:ordering}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert entweder -1 zurück, wenn das aktuelle  Objekt (\textit{this}) kleiner als das übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen. 
+Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klasse implementiert das bekannte Java Interface  \textit{Comparable} (siehe dazu auch \cite{oracle2019}) und kann damit Objekte erzeugen, die standardisiert sortiert werden können. Dazu besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß Definition \ref{def:ordering}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert entweder -1 zurück, wenn das aktuelle  Objekt (\textit{this}) kleiner als das übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen. 
 
 
 \label{possible-worlds}
@@ -288,7 +288,7 @@ public int compareTo(Object o) {
 }
 \end{lstlisting}
 \caption{Implementierung compareTo(Object o) der Klasse WorldsList}
-\label{compare-worldslist}
+\label{code:compare-worldslist}
 \end{figure}
 
 

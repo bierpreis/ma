@@ -336,16 +336,6 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 
 \subsection{Äquivalenzklassen und Sortierung der Konditionale}
 
-
-
-
-Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ abgespeichert. In diesem Abschnitt wird beschrieben wie die Sortierung nach der Ordnung $\rdotl$, welche unter unter \autoref{sortierung} gezeigt wurde, für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{equivalence-classes} gezeigt gruppiert und dann untereinander sortiert weden. \\
-Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{test-equivalence} dargestellt ist. In diesem Algorhitmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode getBasicEquivalents() gibt eine Liste and WConditional Objekten zurück, mit der Methode createBasicEquivalents() erstellt wird. Diese Liste äquivalenter Konditionale beinhaltet dabei jedoch \textit{neu erstellte} Objekte äquivalenter Konditionale, nicht die \textit{tatsächlichen} Objekte der Äquivalenten Konditionale. Die tatsächlichen Objekte können erst nachher gruppiert werden. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalenz wird im gesamten Ablauf sehr oft geprüft (mit $\Sigma=\{abc \}$ 1550 mal, mit $\Sigma=\{abc\}$ dagegen schon 16.784.250 mal), sodass die Methode getBasicEquivalents sicherstellt, dass die Liste Äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung dadurch ist deutlich spürbar. Die Methode zur Erstellung der Liste der Äquivalenten Konditionale ist in \autoref{create-equivalents} abgebildet.\\
-Der NFC Creator beginnt dann durch die Liste der Konditionale zu iterieren und erstellt für jedes gefundene Konditional eine eigene Liste. Für jedes dieser Konditionale wird dann mit der \textit{isEquivalent(..)} Methode der Rest der urprünglichen Liste auf Äquivalenz überprüft und die \textit{tätsichlichen} Objekte der äquivalenten Konditionale werden in die Liste eingefügt und aus der ursprünglichen Liste entfernt. Die neue Liste wird dann jeweils mit der compare(..) Methode sortiert. Dadurch entsteht eine Liste von Listen von den tatsächlichen Objekten der äquivalenten Konditionale. Diese Darstellung enspricht dann der Darstellung der Konditionale in \cite{beierle19}. Mit dem NFC Viewer kann diese Ansicht mit dem Botton CNFCEQ erstellt werden. Die Menge der kanonischen Konditionale $(cNFC)$ ergibt sich daraus als eine Liste der jeweils ersten Elemente der Listen der äquivalenten Konditionale. Diese kann im NFC Viewer mit dem Button CNFC angezeigt werden.
-Die mit CNFCEQ erstelle Darstellung kann nun genutzt werden, um die Konditionale sortiert nach $\rdotl$ in eine neue Liste NFC aufzunehmen. Dazu wird eine neue Liste von WConditonal erstellt. Zunächst werden alle Listen mit äquivalenten Konditionalen iteriert, welche in sich nach $\dotl$ sortiert sind. Von diesen Listen wird jeweils das erste Element in die neue Liste NFC eingefügt. Dann werden die Listen erneut iteriert und alle Elemente außer dem ersten in die Liste NFC eingefügt. Als Ergebis entsteht die List<WCOnditional> NFC die genau der Sortierung $\rdotl$ entspricht. Diese muss nun nur noch übersetzt werden und kann dann für die Erstellung der Wissensbasen genutzt werden. Betrachtet werden kann die Liste NFC mit dem Button NFC im NFC Viewer. Man beachte, der NFC Viewer erstellt mit den Buttons CONDITIONALS und NFC die selben Konditionale, nur sind die CONDITIONALS nach $\dotl$ und NFC nach $\rdotl$ sortiert.
-
-
-
 \label{sec:equivalence}
 \begin{figure}
 \begin{lstlisting}
@@ -359,7 +349,6 @@ public boolean isEquivalent(WConditional otherConditional) {
 \caption{Algorithmus zur Prüfung der Äquivalenz der Klasse WConditional}
 \label{test-equivalence}
 \end{figure} 
-
 
 \begin{figure}
 \begin{lstlisting}
@@ -378,6 +367,19 @@ private void createBasicEquivalents() {
 \caption{Algorithmus zur Generierung einer Liste der Äquivalenten Konditionale der Klasse WCOnditional}
 \label{create-equivalents}
 \end{figure} 
+
+
+Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ abgespeichert. In diesem Abschnitt wird beschrieben wie die Sortierung nach der Ordnung $\rdotl$, welche unter unter \autoref{sortierung} gezeigt wurde, für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{equivalence-classes} gezeigt gruppiert und dann untereinander sortiert weden. \\
+Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{test-equivalence} dargestellt ist. In diesem Algorhitmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode getBasicEquivalents() gibt eine Liste and WConditional Objekten zurück, mit der Methode createBasicEquivalents() erstellt wird. Diese Liste äquivalenter Konditionale beinhaltet dabei jedoch \textit{neu erstellte} Objekte äquivalenter Konditionale, nicht die \textit{tatsächlichen} Objekte der Äquivalenten Konditionale. Die tatsächlichen Objekte können erst nachher gruppiert werden. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalenz wird im gesamten Ablauf sehr oft geprüft (mit $\Sigma=\{abc \}$ 1550 mal, mit $\Sigma=\{abc\}$ dagegen schon 16.784.250 mal), sodass die Methode getBasicEquivalents sicherstellt, dass die Liste Äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung dadurch ist deutlich spürbar. Die Methode zur Erstellung der Liste der Äquivalenten Konditionale ist in \autoref{create-equivalents} abgebildet.\\
+Der NFC Creator beginnt dann durch die Liste der Konditionale zu iterieren und erstellt für jedes gefundene Konditional eine eigene Liste. Für jedes dieser Konditionale wird dann mit der \textit{isEquivalent(..)} Methode der Rest der urprünglichen Liste auf Äquivalenz überprüft und die \textit{tätsichlichen} Objekte der äquivalenten Konditionale werden in die Liste eingefügt und aus der ursprünglichen Liste entfernt. Die neue Liste wird dann jeweils mit der compare(..) Methode sortiert. Dadurch entsteht eine Liste von Listen von den tatsächlichen Objekten der äquivalenten Konditionale. Diese Darstellung enspricht dann der Darstellung der Konditionale in \cite{beierle19}. Mit dem NFC Viewer kann diese Ansicht mit dem Botton CNFCEQ erstellt werden. Die Menge der kanonischen Konditionale $(cNFC)$ ergibt sich daraus als eine Liste der jeweils ersten Elemente der Listen der äquivalenten Konditionale. Diese kann im NFC Viewer mit dem Button CNFC angezeigt werden.
+Die mit CNFCEQ erstelle Darstellung kann nun genutzt werden, um die Konditionale sortiert nach $\rdotl$ in eine neue Liste NFC aufzunehmen. Dazu wird eine neue Liste von WConditonal erstellt. Zunächst werden alle Listen mit äquivalenten Konditionalen iteriert, welche in sich nach $\dotl$ sortiert sind. Von diesen Listen wird jeweils das erste Element in die neue Liste NFC eingefügt. Dann werden die Listen erneut iteriert und alle Elemente außer dem ersten in die Liste NFC eingefügt. Als Ergebis entsteht die List<WCOnditional> NFC die genau der Sortierung $\rdotl$ entspricht. Diese muss nun nur noch übersetzt werden und kann dann für die Erstellung der Wissensbasen genutzt werden. Betrachtet werden kann die Liste NFC mit dem Button NFC im NFC Viewer. Man beachte, der NFC Viewer erstellt mit den Buttons CONDITIONALS und NFC die selbe Menge an Konditionalen, nur sind die CONDITIONALS nach $\dotl$ und NFC nach $\rdotl$ sortiert.
+
+
+
+
+
+
+
 
 \subsection{Counter Conditionals}
 hier analog zur äquivalenz, es werden erst neue counters gebildet und dann die tatäschlichen rausgesucht.

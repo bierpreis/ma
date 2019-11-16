@@ -250,7 +250,7 @@ Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klas
 private List<WorldsList> createSubSetList(List<Integer> inputList){
     List<WorldsList> subSetList = new ArrayList<>();
     for (Integer world : inputList) {
-        for (ListIterator<WorldsList> setsIterator = subSetList.listIterator(); setsIterator.                    hasNext(); ) {
+        for (ListIterator<WorldsList> setsIterator = subSetList.listIterator(); setsIterator.hasNext(); ) {
             WorldsList newWorld = new WorldsList();
             newWorld.addList(setsIterator.next().getWorldsList());
             newWorld.addInt(world);

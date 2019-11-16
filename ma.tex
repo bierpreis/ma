@@ -101,15 +101,14 @@ Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge mög
 \end{equation}
 Als triviale Konditionale werden solche beschrieben, die keinen Mehrwert bieten, vgl. \cite{beierle19}. Das beinhaltet sowohl sich selbst Erfüllende wie $(A \models A)$ als auch Konditionale, die einfach das Gegenteil eines anderen Konditionals in der Form $(A \models \overline{B})$ darstellen. Solche Konditionale sind bei der weiteren Betrachtung nicht von Interesse und werden daher nicht weiter beachtet.
 \subsection{Ordnungsrelation für Konditionale}
-\label{sec:ordungsrelation}
-\label{ordnungsrelation}
+\label{sec:ordnungsrelation}
 In diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können.
 \begin{theorem}[Ordnungsrelation für Zeichen und Mengen](entnommen aus \cite{beierle19}) \ \\
 Für eine Ordnungsrelation $\leqslant$ auf meiner Menge $M$ wird dessen Entsprechung für Zeichen als $\leqslant_{lex}$ notiert. Für die geordneten Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = \{e_{1}, ... , e_{n\prime}\}$ gilt:
 \begin{equation}
  S \leqslant_{set} S ^\prime \quad gdw. \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leqslant_{lex}  e_1^\prime ... e_{n^\prime}^\prime
 \end{equation}
-\label{def:ordering}
+\label{def:sortierung}
 \end{theorem}
 Bei der Signatur $\Sigma = \{ a, b, c\}$ mit der Ordnungsrelation $a \dotl b \dotl c$ ergibt sich eine Ordnungsrelation für die möglichen Mengen wie folgt: $\{a\} \dotll_{set} \{b\} \dotll_{set} \{c\} \dotll_{set} \{a,b\} \dotll_{set} \{a,c\} \dotll_{set}\{b,c\} \dotll_{set} \{a, b, c\}$. \\
 Im weiteren Verlauf wird oft für die Darstellung von Konditionalen eine Notation mittels möglicher Welten verwendet. Dazu wird anstatt von Aussagevariablen die Menge der möglichen Welten aufgeführt, in denen die Aussage gilt. Für eine Aussage $F$ also in der Form $\Omega_F = \{\omega | \omega \models F \}$. Ein vollständiges Beispiel für die Aussage $A\vee\overline{B}\vee\overline{C}$ sieht dann wie folgt aus: \\
@@ -200,7 +199,7 @@ $X, X'$ sind Welten, Aussagen, Wissensbasen oder Mengen dieser Dinge. $X$ und $X
 Für die Signatur $\Sigma_{abc}$ ergeben sich dann die folgenden vier Äquivalenzklassen: \\
 $[\Omega_{\Sigma abc}]_{/\simeq}=\{[abc]$, $[ab\overline{c}, a\overline{b}c\, \overline{a}bc], [a\overline{b}\overline{c}, \overline{a\\}b\overline{c}, \overline{a}\overline{b}c], [\overline{a}\overline{b}\overline{c}]\}$ \\
 Die Menge der Äquivalenzklassen in einer Menge $M$ mit dem Element $m \in M$ wird im Folgenden mit $[M]_{/\equiv}$ und die konkrete Äquivalenzklasse welche $m$ enthält mit $[m]_\equiv$ notiert.\\
-Mit Berücksichtigung von Äquivalenzklassen und der Ordnung $\dotl$ aus \autoref{ordnungsrelation} wird in der nächsten Definition eine Ordnungsrelation konstruiert, die diese Äquivalenzen mit einbezieht.
+Mit Berücksichtigung von Äquivalenzklassen und der Ordnung $\dotl$ aus \autoref{sec:ordnungsrelation} wird in der nächsten Definition eine Ordnungsrelation konstruiert, die diese Äquivalenzen mit einbezieht.
 \begin{theorem}[$cNFC(\Sigma)$ $und$ $Ordnungsrelation$ $\rdotl$](entnommen aus \cite{beierle19}) \ \\
 Gegeben sei eine Signatur $\Sigma$ mit der linearen Ordnung $\dotl$. Dann sind $[NFC(\Sigma)]_{/ \simeq}=\{[r_1]_\simeq,...,[r_m]_\simeq\}$ die Äquivalenzklassen von $NFC(\Sigma)$ induziert durch Isomorphismus. Für jedes $i \in \{1, ..., m\}$ ist dann das Konditional $r_i$ das minimale Element in $[r_i]_\simeq$ im Sinne von $\dotl$ ist und $r_1\dotl...\dotl r_m$.
 \begin{itemize}
@@ -230,7 +229,7 @@ Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bi
 
 \subsection{Die Klasse WorldsList}
 \label{sec:worldslist}
-Die Bezeichung der möglichen Welten wurde in \autoref{ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit enthaltenden Welten ausdrücken. Eine solche Menge möglicher Welten, die einen aussagenlogischen Ausdruck repräsentiert, wird mit einem Objekt der Klasse WorldsList dargetellt. Objekte der Klasse WorldsList repräsentieren in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. Der Algorithmus, der alle Mengen aus den möglichen Welten einer Signatur berechnet, ist in \autoref{subsets} dargestellt. Der Input bietet die Liste möglicher Welten der Signatur, der Output ist eine Liste aller Teilmengen des Inputs. \\
+Die Bezeichung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit enthaltenden Welten ausdrücken. Eine solche Menge möglicher Welten, die einen aussagenlogischen Ausdruck repräsentiert, wird mit einem Objekt der Klasse WorldsList dargetellt. Objekte der Klasse WorldsList repräsentieren in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. Der Algorithmus, der alle Mengen aus den möglichen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Der Input bietet die Liste möglicher Welten der Signatur, der Output ist eine Liste aller Teilmengen des Inputs. \\
 Für die Signatur $\Sigma = {abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma=ab$ sind es 15.) Diese können mit dem NFC-Viewer mit dem Button "WORLDS" \space geordnet erzeugt werden. Dargestellt im Programm werden diese Mengen jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \ref{worldslist} gezeigt ist. 
 
 
@@ -241,7 +240,7 @@ Für die Signatur $\Sigma = {abc}$ ergeben sich damit 255 verschiedene Mengen vo
 \end{figure}
 
 
-Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klasse implementiert das bekannte Java Interface  \textit{Comparable} (siehe dazu auch \cite{oracle2019}) und kann damit Objekte erzeugen, die standardisiert sortiert werden können. Dazu besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß Definition \ref{def:ordering}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert entweder -1 zurück, wenn das aktuelle  Objekt (\textit{this}) kleiner als das übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen. 
+Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klasse implementiert das bekannte Java Interface  \textit{Comparable} (siehe dazu auch \cite{oracle2019}) und kann damit Objekte erzeugen, die standardisiert sortiert werden können. Dazu besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß Definition \ref{def:sortierung}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert entweder -1 zurück, wenn das aktuelle  Objekt (\textit{this}) kleiner als das übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen. 
 
 
 \label{possible-worlds}
@@ -264,7 +263,7 @@ private List<WorldsList> createSubSetList(List<Integer> inputList){
 }
 \end{lstlisting}
 \caption{Algorithmus zur Erstellung aller Teilmengen einer Liste möglicher Welten}
-\label{subsets}
+\label{code:subsets}
 \end{figure}
 
 

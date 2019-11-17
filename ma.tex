@@ -301,9 +301,50 @@ public int compareTo(Object o) {
 
 Weiterhin existiert die Methode \textit{createRenamings()}, welche eine wichtige Rolle für das spätere finden von äquivalenten Konditionalen besitzt. Äquivalenz wurde bereits in \autoref{sec:äquivalenz-konditionale} und \autoref{sec:äquivalenz} beschrieben. %todo: hier nur eins, wenn das georndet wird?
 Wie oben erwähnt, entsteht die Äquivalen aus Umbenennung von Variablen. Entsprechend ergibt sich aus der Menge der Umbenennungen die Menge an Variablen. Mit Signatur $\Sigma=\{ab\}$ existiert eine Umbenennung, nämlich wenn $a$ in $b$ und $b$ in $a$ umbenannt wird. Mit der Signatur $\Sigma=\{abc\}$ existieren entsprechend drei mögliche Umbenennungen durch den Tausch der folgenden Paare an Variablen: $a-b$, $a-c$ und $b-c$. Die Methode \textit{createRenamings()} gibt nun in Abhängigkeit von der gewählten Signatur alle möglichen Umbenennungen einer WorldsList als neue List<WorldsList> in der oben genannten Reihenfolge wieder. Bei nur einer existierenden Umbenennung mit $\Sigma=\{ab\}$ stellt sich die Frage nach der Reihenfolge offensichtlich nicht, bei $\Sigma=\{abc\}$ spielt die immer gleiche Reihenfolge eine Rolle. \\
-Im folgenden wird nun die Methode \textit{createRenamings()} erklärt. Das Wesen einer Umbenennung einer WorldsList ist, dass sich die enthaltene Liste der Welten ändert, es wird für eine Umbenennung also ein neues Objekt der Klasse WorldsList mit einer neuen List<Integer> Liste der möglichen Welten. Bei jeder möglichen Umbenennung ändern sich die enthaltenen möglichen Welten auf die selbe Weise, entsprechend wird die urpsrüngliche List<Integer> Liste der Welten nach einem charakteristischem Schema "übersetzt". So ein Schema existiert für jede mögliche Umbenennung, entsprechend gibt es für $\Sigma=\{ab\}$ eines und für $\Sigma=\{abc\}$ drei davon.
+Im folgenden wird nun die Methode \textit{createRenamings()} erklärt. Das Wesen einer Umbenennung einer WorldsList ist, dass sich die enthaltene Liste der Welten ändert, es wird für eine Umbenennung also ein neues Objekt der Klasse WorldsList mit einer neuen List<Integer> Liste der möglichen Welten. Bei jeder möglichen Umbenennung ändern sich die enthaltenen möglichen Welten auf die selbe Weise, entsprechend wird die urpsrüngliche List<Integer> Liste der Welten nach einem charakteristischem Schema "übersetzt". So ein Schema existiert für jede mögliche Umbenennung, entsprechend gibt es für $\Sigma=\{ab\}$ eines und für $\Sigma=\{abc\}$ drei davon. Da der Code für all die Umbenennungen viel platzt braucht wird hier nicht der ganze Code dafür dargestellt. In \ref{code:renaming} ist Beispielhaft die Umbenennung $a-b$ mit der Signatur $\Sigma\{acb\}$ dargestellt.
 \\todo: create renamings beschreiben! eventuell was dazu in den theorie teil? in text hier oben einordnen.
 
+
+\begin{figure}
+\begin{lstlisting}
+List<Integer> intList = new ArrayList<>(worldsList.size());
+for (int world : worldsList) {
+    switch (world) {
+        case 0:
+            intList.add(0);
+              break;
+        case 1:
+            intList.add(1);
+              break;
+        case 2:
+            intList.add(4);
+            break;
+        case 3:
+            intList.add(5);
+            break;
+        case 4:
+            intList.add(2);
+            break;
+         case 5:
+            intList.add(3);
+            break;
+        case 6:
+            intList.add(6);
+            break;
+        case 7:
+            intList.add(7);
+            break;
+        default:
+            throw new RuntimeException("Finding equivalent WorldsList failed!");
+    }
+}
+  WorldsList worldsList = new WorldsList();
+  worldsList.addList(intList);
+  renamingsList.add(worldsList);
+\end{lstlisting}
+\caption{Beispiel der Implementierung einer Umbenennung in der Methode \textit{createRenamings} für die Umbenennung $a-b$ in der Klasse WorldsList}
+\label{code:renaming}
+\end{figure}
 
 \subsection{Die Klasse WConditional}
 

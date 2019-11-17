@@ -94,7 +94,8 @@ Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge mög
             \end{cases}
 \]
 
-\subsection{Äquivalente und triviale Konditionale}
+\subsection{Äquivalente und triviale Konditionale} %todo: hier ist äquivalenz und in kb auch. ist was doppelt? muss das sein?
+\label{sec:äquivalenz-konditionale}
 Äquivalenz für Konditionale soll im weiteren Verlauf dadurch charakterisiert sein, dass zwei äquivalente Konditionale die Menge der möglichen Welten auf die gleiche Art und Weise unterteilen:
 \begin{equation}
 (B|A)\equiv (B^\prime|A^\prime) \quad gdw. \quad A\equiv A^\prime \quad und \quad AB \equiv A^\prime B^\prime
@@ -247,8 +248,9 @@ Für die Signatur $\Sigma = {abc}$ ergeben sich damit 255 verschiedene Mengen vo
 \end{figure}
 
 
-Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klasse Worldslist selbst implementiert das bekannte Java Interface  \textit{Comparable} (siehe dazu auch \cite{oracle2019}) und kann damit Objekte erzeugen, die standardisiert sortiert werden können. Dazu besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß Definition \ref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert entweder -1 zurück, wenn das aktuelle  Objekt (\textit{this}) kleiner als das übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen. 
-\\todo: create renamings beschreiben! eventuell was dazu in den theorie teil? in text hier oben einordnen.
+Das wichtige Attribut dieser Klasse ist die Liste an möglichen Welten. Die Klasse Worldslist selbst implementiert das bekannte Java Interface  \textit{Comparable} (siehe dazu auch \cite{oracle2019}) und kann damit Objekte erzeugen, die standardisiert sortiert werden können. Dazu besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß Definition \ref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert entweder -1 zurück, wenn das aktuelle  Objekt (\textit{this}) kleiner als das übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen.
+
+
 
 \begin{figure}
 \begin{lstlisting}
@@ -297,6 +299,9 @@ public int compareTo(Object o) {
 \end{figure}
 
 
+Weiterhin existiert die Methode \textit{createRenamings()}, welche eine wichtige Rolle für das spätere finden von äquivalenten Konditionalen besitzt. Äquivalenz wurde bereits in \autoref{sec:äquivalenz-konditionale} und \autoref{sec:äquivalenz} beschrieben. %todo: hier nur eins, wenn das georndet wird?
+Wie oben erwähnt, entsteht die Äquivalen aus Umbenennung von Variablen. Entsprechend ergibt sich aus der Menge der Umbenennungen die Menge an Variablen. Mit Signatur $\Sigma=\{ab\}$ existiert eine Umbenennung, nämlich wenn $a$ in $b$ und $b$ in $a$ umbenannt wird. Mit der Signatur $\Sigma=\{abc\}$ existieren entsprechend drei mögliche Umbenennungen durch den Tausch der folgenden Paare an Variablen: $a-b$, $a-c$ und $b-c$. Die Methode \textit{createRenamings()} gibt nur in Abhängigkeit von der gewählten Signatur alle möglichen Umbenennungen wieder. Bei $\Sigma=\{abc\}$ auch immer genau in dieser Reiehenfolge. Bei nur einer existierenden Umbenennung mit $\Sigma=\{ab\}$ stellt sich die Frage nach der Reihenfolge offensichtlich nicht.
+\\todo: create renamings beschreiben! eventuell was dazu in den theorie teil? in text hier oben einordnen.
 
 
 \subsection{Die Klasse WConditional}

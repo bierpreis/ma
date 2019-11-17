@@ -95,7 +95,7 @@ Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge mög
             \end{cases}
 \]
 
-\subsection{Äquivalente und triviale Konditionale} %todo: hier ist äquivalenz und in kb auch. ist was doppelt? muss das sein?
+\subsection{Äquivalente und triviale Konditionale}
 \label{sec:äquivalenz-konditionale} %todo: this äquivalenz != äquivalenz durch umbenennung!! nochmal neu überlegen. alles richtig übersetzt?
 Äquivalenz für Konditionale soll im weiteren Verlauf dadurch charakterisiert sein, dass zwei äquivalente Konditionale die Menge der möglichen Welten auf die gleiche Art und Weise unterteilen:
 \begin{equation}
@@ -195,7 +195,7 @@ $\mathcal{R}$ und $\mathcal{R'}$ sind Wissensbasen. Für diese gilt dann:
 \end{itemize}
 \end{theorem}
 \subsection{Isomorphie und Äquivalenzklassen}
-\label{sec:äquivalenz}
+\label{sec:äquivalenz-wissensbasen}
 Durch Umbenennung von Variablen ist es möglich, neue Kombinationen von Welten, Konditionalen oder Wissensbasen zu schaffen, die sich außer dieser Umbenennung nicht von den Vorhandenen unterscheiden. Dieses Verhalten wird als Isomorphismus beschrieben. Die jeweils zusammengehörige Gruppe an durch diesen Isomorphismus entstandenen Dingen wird dann als Äquivalenzklasse bezeichnet.\\
 Beispielsweise enthält die Signatur $\Sigma_{abc}$ die mögliche Kombination $\overline{a}bc$. Wenn jetzt $a$ in $b$ und $b$ in $a$ umbenannt wird, entsteht der Isomorphismus $a\overline{b}c$. Analog kann durch Umbenennung von $a$ und $c$ daraus $ab\overline{c}$ entstehen. Alle drei bilden zusammen eine Äquivalenzklasse. Entsprechend ergibt sich die folgende Definition.
 \begin{theorem}[Isomorphismus](entnommen aus \cite{beierle19}) \ \\
@@ -299,9 +299,8 @@ public int compareTo(Object o) {
 \label{code:compare-worldslist}
 \end{figure}
 
-
-Weiterhin existiert die Methode \textit{createRenamings()}, welche eine wichtige Rolle für das spätere finden von äquivalenten Konditionalen besitzt. Äquivalenz wurde bereits in \autoref{sec:äquivalenz-konditionale} und \autoref{sec:äquivalenz} beschrieben. %todo: hier nur eins, wenn das georndet wird?
-Wie oben erwähnt, entsteht die Äquivalenz aus Umbenennung von Variablen. Entsprechend ergibt sich aus der Menge der möglichen Umbenennungen die Menge an Variablen. Mit Signatur $\Sigma=\{ab\}$ existiert eine Umbenennung, nämlich wenn $a$ in $b$ und $b$ in $a$ umbenannt wird. Mit der Signatur $\Sigma=\{abc\}$ existieren drei mögliche Umbenennungen durch den Tausch der folgenden Paare an Variablen: $a-b$, $a-c$ und $b-c$. Die Methode \textit{createRenamings()} gibt nun in Abhängigkeit von der gewählten Signatur alle möglichen Umbenennungen einer WorldsList als neue List<WorldsList> in der oben genannten Reihenfolge wieder. Bei nur einer existierenden Umbenennung mit $\Sigma=\{ab\}$ stellt sich die Frage nach der Reihenfolge offensichtlich nicht, bei $\Sigma=\{abc\}$ spielt die immer gleiche Reihenfolge später noch eine Rolle. \\
+%todo: rethink
+Weiterhin existiert die Methode \textit{createRenamings()}, welche eine wichtige Rolle für das spätere finden von äquivalenten Wissensbasen besitzt. Äquivalente Wissensbasen wurden bereits in  \autoref{sec:äquivalenzwissensbasen} beschrieben. Wie oben erwähnt, entsteht diese Äquivalenz aus Umbenennung von Variablen. Entsprechend ergibt sich aus der Menge der möglichen Umbenennungen die Menge an Variablen. Mit Signatur $\Sigma=\{ab\}$ existiert eine Umbenennung, nämlich wenn $a$ in $b$ und $b$ in $a$ umbenannt wird. Mit der Signatur $\Sigma=\{abc\}$ existieren drei mögliche Umbenennungen durch den Tausch der folgenden Paare an Variablen: $a-b$, $a-c$ und $b-c$. Die Methode \textit{createRenamings()} gibt nun in Abhängigkeit von der gewählten Signatur alle möglichen Umbenennungen einer WorldsList als neue List<WorldsList> in der oben genannten Reihenfolge wieder. Bei nur einer existierenden Umbenennung mit $\Sigma=\{ab\}$ stellt sich die Frage nach der Reihenfolge offensichtlich nicht, bei $\Sigma=\{abc\}$ spielt die immer gleiche Reihenfolge später noch eine Rolle. \\
 
 
 \begin{figure}

@@ -352,16 +352,15 @@ Im folgenden wird nun die Methode \textit{createRenamings()} der Klasse WorlsLis
 
 \subsection{Die Klasse WConditional}
 
-Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin CounterConditional ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional.\\
-Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{def:sortierung-nfc} als int Variable enthalten. \\
-Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{code:compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{eq:conditional-order} beschrieben.
-
-
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/wconditional.png}
 \caption{WConditional}
 \label{pic:wconditional}
 \end{figure}
+
+Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin CounterConditional ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional.\\
+Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{def:sortierung-nfc} als int Variable enthalten. \\
+Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{code:compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{eq:conditional-order} beschrieben.
 
 
 \begin{figure}
@@ -377,7 +376,25 @@ public int compareTo(Object o) {
 \label{code:compare-wconditonal}
 \end{figure}
 
+%todo: equals method beschreiben!
 
+
+\begin{figure}
+\begin{lstlisting}
+public boolean equals(Object o) {
+    if (!(o instanceof WConditional))
+        return false;
+    else {
+        WConditional otherConditional = (WConditional) o;
+        boolean leftEquals = otherConditional.getConsequence().equals(consequence);
+        boolean rightEquals = otherConditional.getAntecedent().equals(antecedent);
+        return leftEquals && rightEquals;
+    }
+}
+\end{lstlisting}
+\caption{Implementierung \textit{equals(Object 0)} der Klasse WConditonal}
+\label{code:equals-wconditonal}
+\end{figure}
 
 
 

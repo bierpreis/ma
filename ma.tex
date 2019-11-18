@@ -458,9 +458,11 @@ private void createBasicEquivalents() {
 
 
 
-
+%todo: hier ist conditional und konditional wild durcheinander!
 \subsection{Counter Conditionals}
-hier analog zur äquivalenz, es werden erst neue counters gebildet und dann die tatäschlichen rausgesucht.
+Für den Algorithmus GenKB ist es nötig, dass zu einem Konditional schnell dass Counter Konditional gefunden werden kann. Mit der Klasse WConditional ist das recht einfach möglich. Analog zum Finden der äquivalenten Konditionale besitzt dazu jedes Konditional zum einen eine Methode, um zunächst ein \textit{neues} Counter Conditional zu erstellen. Wenn dann alle Konditionale erstellt sind, wird nach dem tatsächlichen Objekt des Counter Conditional gesucht und dieses im ursprünglichen Konditional gesetzt.
+
+//!!todo: hier analog zur äquivalenz, es werden erst neue counters gebildet und dann die tatäschlichen rausgesucht.
 
 \section{Konditionale mit Aussagenlogik}
 \subsection{Die Klasse PConditional}

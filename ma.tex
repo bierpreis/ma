@@ -360,7 +360,7 @@ Im folgenden wird nun die Methode \textit{createRenamings()} der Klasse WorlsLis
 
 Die Klasse WConditional bildet die Basis für die Berechnung der Konditionale aus einer vorgegebenen Signatur. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin CounterConditional ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional.\\
 Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{def:sortierung-nfc} als int Variable enthalten. \\
-Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{code:compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{eq:conditional-order} beschrieben.
+
 
 
 \begin{figure}
@@ -376,7 +376,9 @@ public int compareTo(Object o) {
 \label{code:compare-wconditonal}
 \end{figure}
 
-%todo: equals method beschreiben!
+
+Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{code:compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{eq:conditional-order} beschrieben.
+
 
 
 \begin{figure}
@@ -395,6 +397,12 @@ public boolean equals(Object o) {
 \caption{Implementierung \textit{equals(Object 0)} der Klasse WConditonal}
 \label{code:equals-wconditonal}
 \end{figure}
+
+
+Eine sehr wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann true zurück, wenn die WorldsList Objekte beider WConditonals dieselben sind.
+
+
+
 
 
 
@@ -480,6 +488,7 @@ private void createBasicEquivalents() {
 
 %todo: hier ist conditional und konditional wild durcheinander!
 %todo: eventuell das hier verlinken bei beschreibung wconditonal?
+%todo: nochmal lesen und korrigieren
 \subsection{Counter Conditionals}
 Für den Algorithmus GenKB ist es nötig, dass zu einem Konditional schnell dass Counter Konditional gefunden werden kann. Mit der Klasse WConditional ist das recht einfach möglich. Analog zum Finden der äquivalenten Konditionale besitzt dazu jedes Konditional zum einen eine Methode, um zunächst ein \textit{neues} Counter Conditional zu erstellen. Wenn dann alle Konditionale erstellt sind, wird nach dem tatsächlichen Objekt des Counter Conditional gesucht und dieses im ursprünglichen Konditional gesetzt. \\
 Die Methode \textit{getBasicCounterConditional()} um das vorläufige Counter Conditonal zu generieren ist unter   \autoref{code:basic-counter} zu sehen. Als Antecedent für das neue Konditonal wird das Antecedent des alten Verwendet, dieses bleibt ja gleich. Als Consequence wird die Liste der Welten des Antecedent minus der Liste der Welten der Consequence  des ursprünglichen Konditionals gebildet. Die Methode \textit{getBasicCounterConditional()} wird dann später verwendet, um mit der Methode \textit{findCounterConditional(...)} aus \autoref{code:real-counter} über NFC zu iterieren und das tatäschliche Counter Conditonal zu setzen.

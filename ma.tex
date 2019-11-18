@@ -298,7 +298,7 @@ public int compareTo(Object o) {
 \label{code:compare-worldslist}
 \end{figure}
 
-%todo: rethink
+
 Weiterhin existiert die Methode \textit{createRenamings()}, welche eine wichtige Rolle für das spätere finden von äquivalenten Wissensbasen besitzt. Äquivalente Wissensbasen wurden bereits in  \autoref{sec:äquivalenz-wissensbasen} beschrieben. Wie oben erwähnt, entsteht diese Äquivalenz aus einer möglichen Umbenennung von Variablen. So eine Umbenennung ist jeweils nur innerhalb einer Gruppe von Konditionalen möglich, diese Gruppe wird dann Äquivalenzklasse genannt. Entsprechend ergibt sich aus der Menge der möglichen Umbenennungen die Menge an Konditionalen innerhalb einer Äquivalenzklasse. Mit Signatur $\Sigma=\{ab\}$ existiert eine einzige mögliche Umbenennung, nämlich wenn $a$ in $b$ und $b$ in $a$ umbenannt wird. Mit der Signatur $\Sigma=\{abc\}$ existieren drei mögliche Umbenennungen durch den Tausch der folgenden Paare an Variablen: $a-b$, $a-c$ und $b-c$. Die Methode \textit{createRenamings()} gibt nun in Abhängigkeit von der gewählten Signatur alle möglichen Umbenennungen einer WorldsList als neue List<WorldsList> in der oben genannten Reihenfolge wieder. Bei nur einer existierenden Umbenennung mit $\Sigma=\{ab\}$ stellt sich die Frage nach der Reihenfolge offensichtlich nicht, bei $\Sigma=\{abc\}$ spielt die immer gleiche Reihenfolge später noch eine Rolle.
 
 
@@ -398,8 +398,7 @@ public boolean equals(Object o) {
 \end{figure}
 
 
-Eine sehr wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann true zurück, wenn die WorldsList Objekte beider WConditonals dieselben sind. Zwei solche Instanzen von WorldsList sind genau dann die selben, wenn sie die selbe Menge an möglichen Welten enthalten. Intern wird hier einfach die beiden List<Integer> worldsList miteinander verglichen.
-
+Eine sehr wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann true zurück, wenn die WorldsList Objekte beider WConditonals dieselben sind. Zwei solche Instanzen von WorldsList sind genau dann die selben, wenn sie die selbe Menge an möglichen Welten enthalten. Intern wird hier einfach die beiden List<Integer> worldsList miteinander verglichen. Die Methode \textit{createEquivalentConditonals(..)} ist unter \autoref{sec:counter-conditonals} genauer beschrieben.
 
 
 \subsection{Berechnung aller Konditionale}
@@ -482,8 +481,8 @@ private void createBasicEquivalents() {
 
 
 %todo: hier ist conditional und konditional wild durcheinander!
-%todo: eventuell das hier verlinken bei beschreibung wconditonal?
 \subsection{Counter Conditionals}
+\label{sec:counter-conditonals}
 Für den Algorithmus GenKB ist es nötig, dass zu einem Konditional schnell dass Counter Konditional gefunden werden kann. Mit der Klasse WConditional wird das vorbereitet. Analog zum Finden der äquivalenten Konditionale besitzt dazu jedes Konditional zum einen eine Methode, um zunächst ein \textit{neues} Counter Conditional zu erstellen. Wenn dann alle Konditionale erstellt sind, wird nach dem \textit{tatsächlichen} Objekt des Counter Conditional gesucht und dieses im ursprünglichen Konditional gesetzt. \\
 Um das vorläufige Counter Conditonal zu generieren wird in der Methode \textit{getBasicCounterConditional()} zunächst ein \textit{neues} Konditional generiert, wie in  \autoref{code:basic-counter} dargestellt. Als Antecedent für das neue Konditonal wird das Antecedent des alten verwendet, dieses bleibt ja gleich. Als Consequence wird die Liste der Welten des Antecedent minus der Liste der Welten der Consequence  des ursprünglichen Konditionals gebildet. Die Methode \textit{getBasicCounterConditional()} wird dann später verwendet, um mit der Methode \textit{findCounterConditional(...)} aus \autoref{code:real-counter} über NFC zu iterieren und damit dann das tatsächliche Counter Conditonal zu setzen.
 

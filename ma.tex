@@ -522,11 +522,15 @@ Nachdem die Menge der Konditionale nun berechnet und sortiert sind, sollen aus i
 
 
 
+
 \subsection{Implemetierung der Aussagenlogik}
 \label{sec:logic}
 Um bei der Generierung von Wissensbasen Aussagenlogik verwenden zu können, ist ein kleines Framework nötig was die wichtigsten Elemente der Aussagenlogik als Java Objekte abbildet und die typischen Operationen auf diesen ermöglicht. Die Idee die Logik so abzubilden wie im Folgenden beschrieben stammt aus dem Framework zu InfOCF, die konkreten Implementierungen sind jedoch verschieden. Im folgenden werden die später verwendeten Elemente der Aussagenlogik als Java Implementierung kurz vorgestellt. \\
 
 
+\subsubsection{AbstractWorld und Signature}
+%todo
+nice
 
 
 \subsubsection{AbstractFormula}
@@ -540,7 +544,7 @@ Um bei der Generierung von Wissensbasen Aussagenlogik verwenden zu können, ist 
 
 
 
-Die Grundlegende Klasse der Aussagenlogik ist die abstrakte Klasse AbstractFormula, sie ist in \autoref{pic:abstractformula} als Klassendiagramm dargestellt. Alle Aussagen basieren auf dieser Klasse und entsprechend alle konkreten Objekte erben von AbstractFormula. Sie stellt die Schnittstelle für die konkreten Implementierungen dar und bietet auch selbst einige Funktionen. Die einzige Variable ist die gewählte Signatur \textit{signature} als statisches Objekt für alle Instanzen von erbenden Objekten. Weiterhin besitzt die Klasse 6 Methoden, von denen 4 konkret implementiert und 2 abstrakt sind. Implementiert ist zum einen die Methode \textit{and(AbstractFormula otherFormula)}, sie gibt einfach ein Objekt \textit{Conjunction} zurück welches eine Konjunktion aus dem aktuellen (this) Objekt und dem übergebenen ist. Überschrieben wird diese Methode nur von der \textit{and(AbstractFormula otherFormula)} Methode der Klasse Conjunction. Analog dazu verhält sich die Methode \textit{or(AbstractFormula otherFormua)}, welche ein Object der Klasse Disjunction zurückgibt. Diese Methode wird ausschließlich von der Klasse Disjunction überschrieben. Die dritte konkret Implementierte Methode ist die Negation, aufrufbar mit \textit{neg()} ohne Parameter. Diese Methode gibt eine Negation in Form von \textit{new Negation(this)} zurück. Überschrieben wird diese Methode nur im der Klasse Negation selbst. Die letzte konkrete Methode der Klasse AbstractFormula ist die Methode \textit{equals(Object o)}, die in \autoref{code:equals-pconditional} abgebildet ist. Sie ist als \textit{final} deklariert und wird demzufolge von keiner Klasse überschrieben. Wie im Code zu sehen, überprüft die Methode zuerst, ob das übergebene Objekt eine Instanz der Klasse AbstractFormula darstellt. Dann wird für alle möglichen Welten der Signatur geprüft, ob die Evaluierung der Welt das gleiche Ergebnis zurückgibt. Ist das einmal nicht der Fall, wird sofort false zurückgegeben. Wenn die Evaluierung für alle möglichen Welten das gleiche Ergebnis zurückgibt, sind die beiden Objekte gleich im Sinne der \textit{equals(..)} Methode. \\
+Die Grundlegende Klasse der Aussagenlogik ist die abstrakte Klasse AbstractFormula, welche in \autoref{pic:abstractformula} als Klassendiagramm dargestellt wird. Alle Aussagen basieren auf dieser Klasse und entsprechend alle konkreten Objekte erben von AbstractFormula. Sie stellt die so Schnittstelle für die konkreten Implementierungen dar und bietet auch selbst einige Funktionen. Die einzige Variable ist die gewählte Signatur \textit{signature} als statisches Objekt für alle Instanzen von erbenden Objekten. Weiterhin besitzt die Klasse 6 Methoden, von denen 4 konkret implementiert und 2 abstrakt sind. Implementiert ist zum einen die Methode \textit{and(AbstractFormula otherFormula)}, sie gibt einfach ein Objekt \textit{Conjunction} zurück welches eine Konjunktion aus dem aktuellen (this) Objekt und dem übergebenen ist. Überschrieben wird diese Methode nur in der Klasse Conjunction. Analog dazu verhält sich die Methode \textit{or(AbstractFormula otherFormua)}, welche ein Object der Klasse Disjunction zurückgibt. Diese Methode wird ausschließlich von der Klasse Disjunction überschrieben. Die dritte konkret Implementierte Methode ist die Negation, aufrufbar mit \textit{neg()} ohne Parameter. Diese Methode gibt eine Negation in Form von \textit{new Negation(this)} zurück. Überschrieben wird diese Methode nur im der Klasse Negation selbst. Die letzte konkrete Methode der Klasse AbstractFormula ist die Methode \textit{equals(Object o)}, die in \autoref{code:equals-pconditional} abgebildet ist. Sie ist als \textit{final} deklariert und wird demzufolge von keiner Klasse überschrieben. Wie im Code zu sehen, überprüft die Methode zuerst, ob das übergebene Objekt eine Instanz der Klasse AbstractFormula darstellt. Dann wird für alle möglichen Welten der Signatur geprüft, ob die Evaluierung der Welt des übergebenen Objekts das gleiche Ergebnis zurückgibt wie die Evaluierung des aktuellen Objekts (this). Ist das einmal nicht der Fall, wird sofort false zurückgegeben. Wenn die Evaluierung für alle möglichen Welten das gleiche Ergebnis zurückgibt, sind die beiden Objekte gleich im Sinne der \textit{equals(..)} Methode. \\
 Weiterhin existieren die abstrakten Methoden \textit{evaluate(World world)} und \textit{toString()}, die jeweils von allen erbenden Klassen überschrieben werden.
 
 
@@ -560,13 +564,6 @@ public final boolean equals(Object o) {
 \label{code:equals-pconditional}
 \end{figure} 
 
-
-
-Klassen: \\
-AbstractWorld/Signature \\
-AbstractFormula ->Klassendiagramm\\
-->abstract evaluate (always overridden)\\
-->concrete equals (never overridden)\\
 
 \subsubsection{Atom}
 \subsubsection{Conjunction}

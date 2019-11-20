@@ -517,12 +517,13 @@ private WConditional findCounterConditional(WConditional conditional, List<WCond
 
 
 \section{Konditionale mit Aussagenlogik}
-Nachdem die Menge der Konditionale nun berechnet und sortiert sind, sollen aus ihnen nun konsistente Wissensbasen generiert werden. Dazu sind die Konditionale in ihrer bisherigen Form als Instanzen von WConditional ungeeignet. Deshalb werden sie in Objekte der neuen Klasse PConditonal umgewandelt. Mit diesen ist dann die Verarbeitung von Aussagenlogik möglich und somit auch die Generierung der Wissensbasen.Im Folgenden werden die Schritte dahin beschrieben.
+Nachdem die Menge der Konditionale nun berechnet und sortiert sind, sollen aus ihnen nun konsistente Wissensbasen generiert werden. Dazu sind die Konditionale in ihrer bisherigen Form als Instanzen von WConditional ungeeignet. Deshalb werden sie in Objekte der neuen Klasse PConditonal umgewandelt. Mit diesen ist dann die Verarbeitung von Aussagenlogik möglich und somit auch die Generierung der Wissensbasen.Im Folgenden werden der Weg dahin beschrieben.
 \subsection{Die Klasse PConditional}
 Klassendiagramm wär nice.
 \subsection{Implemetierung der Aussagenlogik}
 Angelehnt an InfOCF \\
 Klassen: \\
+AbstractWorld/Signature \\
 AbstractFormula ->Klassendiagramm\\
 ->abstract evaluate (always overridden)\\
 ->concrete equals (never overridden)\\

@@ -563,8 +563,9 @@ public final boolean equals(Object o) {
 \end{figure} 
 
 
+%todo: rethink
 \subsubsection{Atom}
-Die Klasse Atom repräsentiert einfach ein einzelnes Atom als Aussage. Ein Objekt der Klasse besitzt eine Instanzvariable des Typs \textit{Var}, die den Wert $a$, $b$ oder $c$ annehmen kann.
+Die Klasse Atom repräsentiert einfach ein einzelnes Atom als Aussage und erbt von AbstractFormula. Ein Objekt der Klasse besitzt eine Instanzvariable mit dem Namen \textit{variable} des Typs \textit{Var}, die den Wert $a$, $b$ oder $c$ annehmen kann. Die \textit{evaluate(AbstractWorld world)} Methode funktioniert folgendermaßen: Sie schaut auf den Variablennamen der in \textit{variable} gespeichert ist und vergleicht diesen mit dem Wert dieser Variable in der übergebenen AbstractWorld und gibt dann zurück ob die Variable in der AbstractWorld true oder false ist. Die zweite Methode dieser Klasse überschreibt die \textit{toString()} Methode und gibt einfach den Namen der \textit{variable} als String zurück.
 \subsubsection{Conjunction}
 \subsubsection{Disjunction}
 \subsubsection{Negation}

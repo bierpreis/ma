@@ -529,7 +529,8 @@ Um bei der Generierung von Wissensbasen Aussagenlogik verwenden zu können, ist 
 
 
 \subsubsection{World und Signature}
-Die Klassen \textit{World} und \textit{Signature} hängen eng zusammen. Die Bais bildet die Klasse \textit{AbstractWorld}, wobei diese Klasse für sich keine Funktion bietet und einfach eine Schnittstellt darstellt. Implementiert wird die Klasse AbstractWorld von den Konkreten Klassen \textit{ABWorld} und ABC textit{World.}
+Die Klassen \textit{World} und \textit{Signature} hängen eng zusammen. Die Bais bildet die Klasse \textit{AbstractWorld}, wobei diese Klasse für sich keine Funktion bietet und einfach eine Schnittstellt darstellt. Implementiert wird die Klasse AbstractWorld von den Konkreten Klassen \textit{ABWorld} und ABC textit{ABCWorld.} Diese beiden konkreten Klassen repräsentieren jeweils eine mögliche Welt mit zwei oder drei vorhandenen Variablen. Für jede dieser Variablen existiert ein boolean Wert der true oder false sein kann. Die Welten bieten \textit{toString()} Methoden und Getter für die boolean Variablen. \\
+Die Signatur wird mit der abstrakten Basisklasse  \textit{AbstractSignature} und den konkrenten Klassen \textit{AB} und  \textit{ABC} abgebildet.
 
 \subsubsection{AbstractFormula}
 

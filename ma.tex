@@ -178,6 +178,7 @@ Rangfunktion für Konditionale:
 Eine Aussage $A$ wird von einer Rangfunktion akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt als dessen Gegenteil $\overline{A}$, z.B. $\kappa(A) < \kappa(\overline{A})$. Analaog dazu wird ein Konditional $(B|A)$ akzeptiert, wenn es einen geringeren Rang als dessen gegenteiliges Konditional $(\overline{B}|A)$ besitzt, z.B. $\kappa(AB)<\kappa(A\overline{B})$, vgl. \cite{beierle17}. Eine Wissensbasis $\mathcal{R}$ wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert.\\
 Um konsistente Wissensbasen zu generieren, wird im Algorithmus GenKB der Test auf Toleranz nach \cite{goldszmidt96}S.64 verwendet. Dazu werden die Wissensbasen Schritt für Schritt um ein Konditional erweitert, wenn die Wissensbasis das Konditional toleriert. Die Toleranz ist dabei folgendermaßen definiert:
 \begin{theorem}[Toleranz]
+\label{def:toleranz}
 Ein Konditional $(B|A)$ wird von einer Wissensbasis $\mathcal{R} = {(B_i|A_i)}$ toleriert, wenn eine Welt $\omega$ existiert die $(B|A)$ bestätigt und kein Konditional in $\mathcal{R}$ falsifiziert.
 \begin{equation}
 \omega \models A \wedge B \bigwedge^n_{i=1}(B_i|A_i)
@@ -528,7 +529,7 @@ Nachdem die Menge der Konditionale nun berechnet und sortiert sind, sollen aus i
 \end{figure}
 
 
-Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional eine Bearbeitung mit Aussagenlogik. Ein Klassendiagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, ist in \autoref{sec:übersetzung} beschrieben. Des weiteren besitzt die Klasse ein Antecedent und Consequence jeweils in Form einer AbstractFormula, welche anschließend unter \autoref{sec:abstractformula} beschrieben wird. Eine Referenz toleranceFormula als AbstractFormula wird direkt bei der Konstruktion des Objekts erstellt.
+Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional eine Bearbeitung mit Aussagenlogik. Ein Klassendiagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, ist in \autoref{sec:übersetzung} beschrieben. Des weiteren besitzt die Klasse ein Antecedent und Consequence jeweils in Form einer AbstractFormula, welche anschließend unter \autoref{sec:abstractformula} beschrieben wird. Die Referenz toleranceFormula als AbstractFormula wird direkt bei der Konstruktion des Objekts erstellt. Sie wird nach \autoref{def:toleranz} für ein Konditional $B|A$ in der Form $\overline{A} \vee B$ in einer AbstractFormula erstellt, konkret $toleranceFormula = antecedent.neg().or(consequence)$. Die toleranceFormula wird in einer Variable zwischengespeichert und nicht bei jedem Test auf Toleranz neu erzeugt, da sie sehr oft aufgerufen wird und so etwas Rechenzeit eingespart wird. Die dazugehörige Methode \textit{boolean tolerates(world: AbstractWorld)} bestehe aus der einen Zeile \textit{return toleranceFormula.evaluate(world)}.
 
 \subsection{Implemetierung der Aussagenlogik}
 \label{sec:abstractformula}

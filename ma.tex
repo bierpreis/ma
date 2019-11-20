@@ -519,17 +519,8 @@ private WConditional findCounterConditional(WConditional conditional, List<WCond
 
 \section{Konditionale mit Aussagenlogik}
 Nachdem die Menge der Konditionale nun berechnet und sortiert sind, sollen aus ihnen nun konsistente Wissensbasen generiert werden. Dazu sind die Konditionale in ihrer bisherigen Form als Instanzen von WConditional ungeeignet. Deshalb werden sie in Objekte der neuen Klasse PConditonal umgewandelt. Mit diesen ist dann die Verarbeitung von Aussagenlogik möglich und somit auch die Generierung der Wissensbasen.Im Folgenden werden der Weg dahin beschrieben.
-\subsection{Die Klasse PConditional}
 
 
-\begin{figure}
-\includegraphics[width=0.45\linewidth]{bilder/PConditional.png}
-\caption{PConditional}
-\label{pic:pconditional}
-\end{figure}
-
-
-Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional eine Bearbeitung mit Aussagenlogik. Ein Klassendiagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, ist in \autoref{sec:übersetzung} beschrieben. Des weiteren besitzt die Klasse ein Antecedent und Consequence jeweils in Form einer AbstractFormula, welche anschließend unter \autoref{sec:abstractformula} beschrieben wird. Die Referenz toleranceFormula als AbstractFormula wird direkt bei der Konstruktion des Objekts erstellt. Sie wird nach \autoref{def:toleranz} für ein Konditional $B|A$ in der Form $\overline{A} \vee B$ in einer AbstractFormula erstellt, konkret $toleranceFormula = antecedent.neg().or(consequence)$. Die toleranceFormula wird in einer Variable zwischengespeichert und nicht bei jedem Test auf Toleranz neu erzeugt, da sie sehr oft aufgerufen wird und so etwas Rechenzeit eingespart wird. Die dazugehörige Methode \textit{boolean tolerates(world: AbstractWorld)} bestehe aus der einen Zeile \textit{return toleranceFormula.evaluate(world)}. Die equals(Object o) Methode ist so implementiert, dass sie true zurückgibt, wenn das übergenene Objekt ein PConditional mit derselben Nummer ist. Einfach die Nummer der Konditionale zu verwenden ist natürlich die einfachste Variante, ein Vergleich von Antecedent und Consequence wäre natürlich auch möglich. Die Entscheidung nur die Nummer zu vergleichen beruht auf der Einfachheit. Zuverlässig ist sie auf jeden Fall, da die Konditionale nur an einem Punkt erstellt werden und die Nummer direkt im Konstruktor gesetzt wird, an keinem anderen Punkt im Programm werden Konditionale neu erstellt.
 
 \subsection{Implemetierung der Aussagenlogik}
 \label{sec:abstractformula}
@@ -543,6 +534,22 @@ Atom\\
 Negation\\
 Conjunction\\
 Disjunction\\
+
+
+
+\subsection{Die Klasse PConditional}
+
+
+\begin{figure}
+\includegraphics[width=0.45\linewidth]{bilder/PConditional.png}
+\caption{PConditional}
+\label{pic:pconditional}
+\end{figure}
+
+
+Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional eine Bearbeitung mit Aussagenlogik. Ein Klassendiagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, ist in \autoref{sec:übersetzung} beschrieben. Des weiteren besitzt die Klasse ein Antecedent und Consequence jeweils in Form einer AbstractFormula, welche anschließend unter \autoref{sec:abstractformula} beschrieben wird. Die Referenz toleranceFormula als AbstractFormula wird direkt bei der Konstruktion des Objekts erstellt. Sie wird nach \autoref{def:toleranz} für ein Konditional $B|A$ in der Form $\overline{A} \vee B$ in einer AbstractFormula erstellt, konkret $toleranceFormula = antecedent.neg().or(consequence)$. Die toleranceFormula wird in einer Variable zwischengespeichert und nicht bei jedem Test auf Toleranz neu erzeugt, da sie sehr oft aufgerufen wird und so etwas Rechenzeit eingespart wird. Die dazugehörige Methode \textit{boolean tolerates(world: AbstractWorld)} bestehe aus der einen Zeile \textit{return toleranceFormula.evaluate(world)}. Die equals(Object o) Methode ist so implementiert, dass sie true zurückgibt, wenn das übergenene Objekt ein PConditional mit derselben Nummer ist. Einfach die Nummer der Konditionale zu verwenden ist natürlich die einfachste Variante, ein Vergleich von Antecedent und Consequence wäre natürlich auch möglich. Die Entscheidung nur die Nummer zu vergleichen beruht auf der Einfachheit. Zuverlässig ist sie auf jeden Fall, da die Konditionale nur an einem Punkt erstellt werden und die Nummer direkt im Konstruktor gesetzt wird, an keinem anderen Punkt im Programm werden Konditionale neu erstellt.
+
+
 \subsection{Übersetzung der Konditionale}
 \label{sec:übersetzung}
 Simple Übersetzung der WorldsList in Disjunctions. Performance Vergleich mit kurzen Übersetzungen als Begründung warum die nicht verwendet werden.

@@ -459,7 +459,7 @@ public boolean isEquivalent(WConditional otherConditional) {
 Der Ablauf der Erstellung der Liste der Konditionale NFC ist dann wie folgt: Der NFC Creator beginnt dann durch die Liste der Konditionale zu iterieren und erstellt für jedes gefundene Konditional eine eigene Liste. Für jedes dieser Konditionale wird dann mit der \textit{isEquivalent(..)} Methode der Rest der urprünglichen Liste auf Äquivalenz überprüft und die \textit{tätsichlichen} Objekte der äquivalenten Konditionale werden in die Liste eingefügt und aus der ursprünglichen Liste entfernt. Die neue Liste wird dann jeweils mit der compare(..) Methode sortiert. Dadurch entsteht eine Liste von Listen von den tatsächlichen Objekten der äquivalenten Konditionale. Diese Darstellung enspricht dann der Darstellung der Konditionale in \cite{beierle19}. Mit dem NFC Viewer kann diese Ansicht mit dem Botton CNFCEQ erstellt werden. Die Menge der kanonischen Konditionale $(cNFC)$ ergibt sich daraus als eine Liste der jeweils ersten Elemente der Listen der äquivalenten Konditionale. Diese kann im NFC Viewer mit dem Button CNFC angezeigt werden.
 Die mit CNFCEQ erstelle Darstellung kann nun genutzt werden, um die Konditionale sortiert nach $\rdotl$ in eine neue Liste NFC aufzunehmen. Dazu wird eine neue Liste von WConditonal erstellt. Zunächst werden alle Listen mit äquivalenten Konditionalen iteriert, welche in sich nach $\dotl$ sortiert sind. Von diesen Listen wird jeweils das erste Element in die neue Liste NFC eingefügt. Dann werden die Listen erneut iteriert und alle Elemente außer dem ersten in die Liste NFC eingefügt. Als Ergebis entsteht die List<WCOnditional> NFC die genau der Sortierung $\rdotl$ entspricht. Diese muss nun nur noch übersetzt werden und kann dann für die Erstellung der Wissensbasen genutzt werden. Betrachtet werden kann die Liste NFC mit dem Button NFC im NFC Viewer. Man beachte, der NFC Viewer erstellt mit den Buttons CONDITIONALS und NFC die selbe Menge an Konditionalen, nur sind die CONDITIONALS nach $\dotl$ und NFC nach $\rdotl$ sortiert. \\
 
-
+%todo: viewer beschreiben
 \begin{figure}
 \begin{lstlisting}
 private void createBasicEquivalents() {
@@ -514,7 +514,7 @@ private WConditional findCounterConditional(WConditional conditional, List<WCond
 \label{code:real-counter}
 \end{figure} 
 
-
+%todo: viewer beschreiben
 
 
 \section{Konditionale mit Aussagenlogik}

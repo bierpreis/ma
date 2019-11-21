@@ -484,7 +484,7 @@ private void createBasicEquivalents() {
 \subsection{Counter Conditionals}
 \label{sec:counter-conditonals}
 Für den Algorithmus GenKB ist es nötig, dass zu einem Konditional schnell dass Counter Konditional gefunden werden kann. Mit der Klasse WConditional wird das vorbereitet. Analog zum Finden der äquivalenten Konditionale besitzt dazu jedes Konditional zum einen eine Methode, um zunächst ein \textit{neues} Counter Conditional zu erstellen. Wenn dann alle Konditionale erstellt sind, wird nach dem \textit{tatsächlichen} Objekt des Counter Conditional gesucht und dieses im ursprünglichen Konditional gesetzt. \\
-Um das vorläufige Counter Conditonal zu generieren wird in der Methode \textit{getBasicCounterConditional()} zunächst ein \textit{neues} Konditional generiert, wie in  \autoref{code:basic-counter} dargestellt. Als Antecedent für das neue Konditonal wird das Antecedent des alten verwendet, dieses bleibt ja gleich. Als Consequence wird die Liste der Welten des Antecedent minus der Liste der Welten der Consequence  des ursprünglichen Konditionals gebildet. Die Methode \textit{getBasicCounterConditional()} wird dann später verwendet, um mit der Methode \textit{findCounterConditional(...)} aus \autoref{code:real-counter} über NFC zu iterieren und damit dann das tatsächliche Counter Conditonal zu setzen.
+Um das vorläufige Counter Conditonal zu generieren wird in der Methode \textit{getBasicCounterConditional()} zunächst ein \textit{neues} Konditional generiert, wie in  \autoref{code:basic-counter} dargestellt. Als Antecedent für das neue Konditonal wird das Antecedent des alten verwendet, dieses bleibt ja gleich. Als Consequence wird die Liste der Welten des Antecedent minus der Liste der Welten der Consequence  des ursprünglichen Konditionals gebildet. Die Methode \textit{getBasicCounterConditional()} wird dann später verwendet, um mit der Methode \textit{findCounterConditional(...)} aus \autoref{code:real-counter} über NFC zu iterieren und damit dann das tatsächliche Counter Conditonal zu setzen. Im Programm NFC Viewer kann mit dem Button NFC_COUNTER die Menge NFC mit den dazugehörigen Counter Conditionals angezeigt werden.
 
 \begin{figure}
 \begin{lstlisting}
@@ -513,7 +513,7 @@ private WConditional findCounterConditional(WConditional conditional, List<WCond
 \label{code:real-counter}
 \end{figure} 
 
-%todo: viewer beschreiben
+
 
 
 \section{Konditionale mit Aussagenlogik}

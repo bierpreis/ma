@@ -529,6 +529,7 @@ Nachdem die Menge der Konditionale nun berechnet und sortiert ist, sollen aus ih
 Um bei der Generierung von Wissensbasen Aussagenlogik verwenden zu können, ist ein kleines Framework nötig welches die wichtigsten Elemente der Aussagenlogik als Java Objekte abbildet und die typischen Operationen auf diesen ermöglicht. Die Idee die Logik so abzubilden wie im Folgenden beschrieben stammt aus dem Framework zu InfOCF, die konkreten Implementierungen sind jedoch verschieden. Im Folgenden werden die später verwendeten Elemente der Aussagenlogik als Java Implementierung kurz vorgestellt. \\
 
 
+%todo: fit to new stuff
 \subsubsection{World und Signature}
 Die Klassen \textit{World} und \textit{Signature} hängen eng zusammen. Die Basis bildet die Klasse \textit{AbstractWorld}, wobei diese Klasse für sich keine Funktion bietet und einfach eine Schnittstelle darstellt. Implementiert wird die Klasse AbstractWorld von den Konkreten Klassen \textit{ABWorld} und ABC textit{ABCWorld.} Diese beiden konkreten Klassen repräsentieren jeweils eine mögliche Welt mit zwei oder drei vorhandenen Variablen. Für jede dieser Variablen existiert ein boolean Wert der true oder false sein kann. Die Welten bieten \textit{toString()} Methoden und Getter für die boolean Variablen. \\
 Die Signatur wird mit der abstrakten Basisklasse  \textit{AbstractSignature} und den konkreten Klassen \textit{AB} und  \textit{ABC} abgebildet. Die Implementierungen von AbstractSignature erfüllen im wesentlichen zwei Funktionen: Zum Einen als Indikator, welche Signatur gewählt wurde. Zum Anderen besitzen sie jeweils eine List<AbstractWorld>,  die alle möglichen Welten der gewählten Signatur beinhaltet. Die List der möglichen Welten kann so für diverse Operationen der Aussagenlogik abgerufen werden.
@@ -564,7 +565,7 @@ public final boolean equals(Object o) {
 \end{figure} 
 
 
-%todo: rethink
+
 \subsubsection{Atom}
 Die Klasse Atom repräsentiert einfach ein einzelnes Atom als Aussage und erbt von AbstractFormula. Ein Objekt der Klasse besitzt eine Instanzvariable mit dem Namen \textit{variable} des Typs \textit{Var}, die den Wert $a$, $b$ oder $c$ annehmen kann. Die \textit{evaluate(AbstractWorld world)} Methode funktioniert folgendermaßen: Sie schaut auf den Variablennamen der in \textit{variable} gespeichert ist und vergleicht diesen mit dem Wert dieser Variable in der übergebenen AbstractWorld und gibt dann zurück ob die Variable in der AbstractWorld true oder false ist. Die zweite Methode dieser Klasse überschreibt die \textit{toString()} Methode und gibt einfach den Namen der \textit{variable} als String zurück.
 \subsubsection{Conjunction}

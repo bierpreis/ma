@@ -569,6 +569,7 @@ public final boolean equals(Object o) {
 \subsubsection{Atom}
 Die Klasse Atom repräsentiert einfach ein einzelnes Atom als Aussage und erbt von AbstractFormula. Ein Objekt dieser Klasse besitzt eine Instanzvariable mit dem Namen \textit{variable} des Typs \textit{Var}, die den Wert $a$, $b$ oder $c$ annehmen kann. Die \textit{evaluate(AbstractWorld world)} Methode funktioniert folgendermaßen: Sie schaut auf den Variablennamen der in \textit{variable} gespeichert ist und vergleicht diesen mit dem Wert dieser Variable in der übergebenen AbstractWorld und gibt dann zurück ob die Variable in der AbstractWorld true oder false ist. Die zweite Methode der Klasse Atom überschreibt die \textit{toString()} Methode und gibt einfach den Namen der \textit{variable} als String zurück. Die \textit{toString()} Methoden von komplexeren Aussagen als Atom setzten sich dann aus deren Teilaussagen zusammen und rufen so letztendlich auch die \textit{toString()} Methode der Atome auf.
 \subsubsection{Conjunction}
+Die Klasse \textit{Conjunction} repräsentiert eine Konjunktion aus einer Menge von \textit{AbstractFormulas}. Diese werden in einer ArrayList<AbstractFormula> gespeichert. Instanzen der Klasse können auf zwei mögliche Arten gebildet werden: Einerseits direkt per Konstruktor in Form von \textit{new Conjunction(List<AbstractFormula list)} oder indem auf einer Instanz von \textit{AbstractFormula} die Methode \textit{and(AbstractFormula formula)} aufgerufen wird. Dabei ist die Klasse \textit{Conjunction} die einzige \textit{AsbstractFormula} Implementierung, welche die \textit{and(..)} Methode überschreibt.
 \subsubsection{Disjunction}
 \subsubsection{Negation}
 
@@ -593,7 +594,7 @@ Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegen
 Simple Übersetzung der WorldsList in Disjunctions. Performance Vergleich mit kurzen Übersetzungen als Begründung warum die nicht verwendet werden.
 \subsection{Wissensbasen}
 Beschreibung der Klasse KnowledgeBase. Klassendiagramm. Für eine entscheiden? Werden überhaupt noch mehrere verwendet?
-\section{Beschreibung des Programms Knowledge Base Creator}
+\section{Berechnung der Wissensbasen}
 logische reihenfolge finden.
 \subsection{Aufbau}
 

@@ -613,14 +613,17 @@ Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegen
 \label{sec:übersetzung}
 In diesem Abschnitt wird beschrieben, wie die Konditionale aus der Form als Instanzen von WConditional als Instanzen von PConditional übertragen werden. Genauer gesagt, der interessante Teil ist es Antecedent und Consequence jeweils aus der Form WorldsList in die Form AbstractFormula zu bringen. \\
 Dabei sind zwei grundsätzliche Vorgehensweisen vorstellbar: Zum ersten der Ansatz, der im Folgenden als \textit{nativer} Ansatz benannt wird: Die Liste der möglichen Welten wird einfach als Disjunktion von Konjunktionen aufgefasst. Als Beispiel, unter Signatur $\Sigma=\{ab\}$ ist sei Liste Möglicher Welten $ab, !ab$. Dann ist der aussagenlogische Term dafür $(a \wedge b) \vee (\overline{a}\wedge b)$. Die zweite Variante für die Übersetzung ist, den kürzesten möglichen Term zu suchen. Im genannten Beispiel ist das $a$. Allerdings ist die zweite Variante
-\\ Simple Übersetzung der WorldsList in Disjunctions. Performance Vergleich mit kurzen Übersetzungen als Begründung warum die nicht verwendet werden.
+\\
+todo: translator beschreiben
+
+todo:Performance Vergleich mit kurzen Übersetzungen als Begründung warum die nicht verwendet werden.
 \subsection{Wissensbasen}
 Beschreibung der Klasse KnowledgeBase. Klassendiagramm.
 beschreiben, warum numbers kb gelöscht wurde (bringt nix. spart nicht viel speicher ist aber deutlich langsamer)
 
 \subsection{Paare aus Wissensbasis und Kandidaten}
 In diesem Abschnitt werden die Paare aus Wissensbasen und Kandidaten, um welche die Wissensbasis erweitert werden kann, beschrieben. Als Paare wird hier die Einheit aus Wissensbasis und Menge an Kandidaten bezeichnet, was im Algorithmus in \cite{beierle19} in Zeile 5 initialisiert und in Zeile 8ff bearbeitet wird. Dargestellt wird diese Einheit als mit charakteristischen dreieckigen Klammern in der Form $<R, C>$, was auch hier so beibehalten wird. \\
-Im Programm werden zwei Implementierungen genutzt, die hier vorgestellt werden. Beide erben von AbstractPair, was die Gemeinsamkeiten beider Klassen vereint und die Schnittstelle bildet. Die erste Implementierung ist RealPair, hier werden die Kandidaten als Liste von Konditionalen verwaltet. Das ist naheliegend, einfach und schnell, benötigt aber sehr viel Arbeitsspeicher. Die zweite Option CompressedPair komprimiert die Liste der Kandidaten und spart dadurch viel Platz, ist dafür jedoch langsamer. Deswegen wird im Programm die Version RealPair benutzt, wenn die Daten sowieso auf der Festplatte zwischengespeichert werden und die Option CompressedPair wird genutzt wenn die Daten im Arbeitsspeicher gehalten werden sollen.
+Im Programm werden zwei Implementierungen genutzt, die hier vorgestellt werden. Beide erben von AbstractPair, was die einige Gemeinsamkeiten beider Klassen vereint und hauptsächlich die Schnittstelle eines solchen Paares bildet. Die erste Implementierung ist RealPair, hier werden die Kandidaten als Liste von Konditionalen verwaltet. Das ist naheliegend, einfach und schnell, benötigt aber sehr viel Arbeitsspeicher. Die zweite Option CompressedPair komprimiert die Liste der Kandidaten und spart dadurch viel Platz, ist dafür jedoch langsamer. Deswegen wird im Programm die Version RealPair benutzt, wenn die Daten sowieso auf der Festplatte zwischengespeichert werden und die Option CompressedPair wird genutzt wenn die Daten im Arbeitsspeicher gehalten werden sollen.
 \subsubsection{abstract pair}
  abstract pair
 \subsubsection{real pair}

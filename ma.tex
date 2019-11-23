@@ -583,6 +583,7 @@ Die Klasse \textit{Disjunction} repräsentiert eine Disjunktion und ist analog z
 \subsubsection{Negation}
 
 
+Negation ist die letzte hier beschriebene Implementierung von AbstractFormula. Das einzige Attribut der Klasse ist die \textit{AbstractFormula} formula, also der Term der negiert wird. Die Klasse ist eine Art Wrapper für die beinhaltete \textit{AbstractFormula}. Ein Objekt kann wieder zum einen direkt per Konstruktor als \textit{new Negation(AbstractFormula formula)} erzeugt werden. Die andere Variante ist das aufrufen der \textit{neg()} Methode auf einer Instanz von \textit{AsbstractFormula}. Die \textit{neg()} Methode der Klasse \textit{AsbstractFormula} wird hier überschrieben und gibt die AbstractFormula zurück. Das Vermeidet das Erstellen einer Negation von einer Negation eines Terms, was zwar korrekt aber unnötig kompliziert wäre. Die \textit{toString()} Methode gibt die eingeschlossene \textit{AbstractFormula} mit vorangestelltem "!" wieder. Falls die \textit{AbstractFormula} dabei keine Instanz von Atom ist wird die \textit{AbstractFromula} dabei von Klammern eingeschlossen, um sie eindeutig interpretierbar zu machen. Die \textit{evaluate} Methode gibt einfach die Umkehrung (Java: "!") der eingeschlossenen \textit{AbstractFormula} wieder.
 
 
 \subsection{Die Klasse PConditional}

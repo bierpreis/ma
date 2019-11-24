@@ -641,6 +641,7 @@ Im Programm werden die zwei Implementierungen genutzt, die hier vorgestellt werd
 Wie beschrieben, vereint die Klasse AbstractPair einige Gemeinsamkeiten der beiden Implementierungen und bildet die Schnittstellte für deren Verwendung, entsprechend ist die Klasse selbst eher übersichtlich. Ein etwas vereinfachtes Diagramm der Klasse AbstractPair ist in \autoref{pic:abstractpair} zu sehen. Als Attribut besitzt die Klasse nur die Wissensbasis in Form eines KnowledgeBase Objekts. Des weiteren besitzt die Klasse 3 abstrakte und eine konkrete Methode. Die Methoden \textit{getKnowledgeBase()} und \textit{ getCandidatesList()} sind selbstklärend. Die \textit{toFileString()} Methode gibt einen String zurück der die Klasse in einen String transformiert um diesen auf der Festplatte zu speichern. Die letzte Methode \textit{clear()} ist dazu da Speicher zu sparen und löscht die Daten in der Klasse wenn sie nicht mehr gebraucht werden.\\
 
 \subsubsection{Real Pair}
+Die Klasse RealPair speichert die Liste der Kandidaten zur Erweiterung der enthaltenen Wissensbasis als List<PConditional>. Das ist naheliegend und schnell, benötigt jedoch schnell sehr viel Speicher. Deshalb wird die Klasse RealPair nur in Verbindung damit genutzt,die Daten auf der Festplatte und nicht im Arbeitsspeicher zu behalten. Dadurch existieren zu jedem Zeitpunkt nur recht wenige Objekte dieser Klasse. Der Speicherbedarf ist dann unproblematisch und die hohe Verarbeitungsgeschwindigkeit kann genutzt weden.
 
 \subsubsection{Compressed Pair}
 

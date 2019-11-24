@@ -39,7 +39,7 @@ numbers=right
 Konditionale}
 
 % this value solves the problem overfull hbox. it defines somehow max empty space in a line.
-\tolerance=850
+\tolerance=950
 
 \newcommand{\lag}{\mathcal{L}}
 
@@ -646,6 +646,7 @@ Die Kandidaten werden einfach als ArrayList<PConditional> candidatesList gespeic
 
 
 
+
 \begin{figure}
 \begin{lstlisting}
 KB
@@ -659,7 +660,8 @@ END
 \end{figure} 
 
 
-In \autoref{code:pair-text} ist die Repräsentation als String des ersten RealPairs mit der Signatur $\Sigma=\{abc\}$ abgebildet, eine Erklärung dessen folgt sofort. In Zeile 1 ist mit KB einfach die Information kodiert, dass als nächstes die KnowledgeBase beschrieben wird. Die Beschreibung der Wissensbasis in Zeile 2 zeigt als erstes die Nummer vor der Klammer, die die Nummer der Wissensbasis bezeichnet, hier die 1. Innerhalb der geschweiften Klammern befinden sich die Nummern der Konditionale der Wissensbasis, hier ebenfalls die 1. Das C in Zeile 3 kündigt an, dass die Liste der Kandidaten folgt. In Zeile 4 dann die komprimierte Liste der Kandidaten. Sie wird so interpretiert, dass alle Konditionale mit den Nummern 3-6050 in die Liste der Kandidaten aufgenommen werden sollen. Das ist hier sehr einfach, da sich in der Menge keine Lücken befinden. Wenn sich Lücken darin befinden, werden die einzelnen Zusammenhängenden Bereiche von Kommas getrennt. Beispielsweise bedeutet "3-5, 7-6050" dass alle Konditionale außer 1,2 und 6 in die Liste der Kandidaten aufgenommen werden sollen. Hier wird offensichtlich, dass die Effizient dieser Speicherung dann besonders hoch ist, wenn kaum Lücken vorhandne sind. Das ist in GenKB bei niedrigen Werten für k der Fall. Mit steigendem k steigt auch die Menge der Lücken und so der Speicherbedarf für das RealPair. Da jedoch aufgrund der Geschwindigkeit sowieso nur geringe Werte von k relevant sind, ist damit eine sehr effiziente Speicherung der RealPairs möglich. In Zeile 5 hat der Eintrag END die Bedeutung, dass das Paar hier endet. Dadurch werden die verschiedenen Paare innerhalb einer Datei voneinander getrennt. Da während des Programmablaufs sehr viele Paare erstellt werden, wäre es ineffizient, für jedes Paar eine eigene Datei zu erstellen. Das erstellen der einzelnen Dateien wäre dann der Flaschenhals für die Geschwindigkeit. Deshalb werden sehr viele Paare so in eine einzelne Datei zusammengefasst. Als guter Wert für die Menge der RealPairs pro Datei ist die Entscheidung auf 2000 gefallen, der genaue Wert ist jedoch für den Programmablauf unwichtig.
+In \autoref{code:pair-text} ist die Repräsentation als String des ersten RealPairs mit der Signatur $\Sigma=\{abc\}$ abgebildet, eine Erklärung dessen folgt sofort. In Zeile 1 ist mit KB einfach die Information kodiert, dass als nächstes die KnowledgeBase beschrieben wird. Die Beschreibung der Wissensbasis in Zeile 2 zeigt als erstes die Nummer vor der Klammer, die die Nummer der Wissensbasis bezeichnet, hier die 1. Innerhalb der geschweiften Klammern befinden sich die Nummern der Konditionale der Wissensbasis, hier ebenfalls die 1. Das C in Zeile 3 kündigt an, dass die Liste der Kandidaten folgt. In Zeile 4 dann die komprimierte Liste der Kandidaten. Sie wird so interpretiert, dass alle Konditionale mit den Nummern 3-6050 in die Liste der Kandidaten aufgenommen werden sollen. Das ist hier sehr einfach, da sich in der Menge keine Lücken befinden. Wenn sich Lücken darin befinden, werden die einzelnen Zusammenhängenden Bereiche von Kommas getrennt. Beispielsweise bedeutet "3-5, 7-6050" dass alle Konditionale außer 1,2 und 6 in die Liste der Kandidaten aufgenommen werden sollen. Hier wird offensichtlich, dass die Effizient dieser Speicherung dann besonders hoch ist, wenn kaum Lücken vorhandne sind. Das ist in GenKB bei niedrigen Werten für k der Fall. Mit steigendem k steigt auch die Menge der Lücken und so der Speicherbedarf für das RealPair. Da jedoch aufgrund der Geschwindigkeit sowieso nur geringe Werte von k relevant sind, ist damit eine sehr effiziente Speicherung der RealPairs möglich. In Zeile 5 hat der Eintrag END die Bedeutung, dass das Paar hier endet. Dadurch werden die verschiedenen Paare innerhalb einer Datei voneinander getrennt. Da während des Programmablaufs sehr viele Paare erstellt werden, wäre es ineffizient, für jedes Paar eine eigene Datei zu erstellen. Das erstellen der einzelnen Dateien wäre dann der Flaschenhals für die Geschwindigkeit. Deshalb werden sehr viele Paare so in eine einzelne Datei zusammengefasst. Als guter Wert für die Menge der RealPairs pro Datei ist die Entscheidung auf 2000 gefallen, der genaue Wert ist jedoch für den Programmablauf unwichtig. \\
+Um ein Objekt in die Form für die Textdatei zu bringen, besitzt es eine Methode \textit{toFileString()} die eben genau diesen String erzeugt. Analog dazu besitzt die Klasse RealPair auch einen Konstruktor \textit{RealPair(String string)}, der ein Objekt der Klasse aus einem solchen String erzeugen kann. Diese Methoden sind recht umfangreich und bieten keine überraschenden Funktionen, deshalb sind sie hier nicht weiter erklärt.
 
 
 

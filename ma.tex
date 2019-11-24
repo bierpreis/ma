@@ -666,6 +666,10 @@ Um ein Objekt in die Form für die Textdatei zu bringen, besitzt es eine Methode
 
 
 \subsubsection{Compressed Pair}
+Die Klasse CompressedPair ist die Implementierung von AbstractPair, die verwendet wird, wenn die Daten nicht auf der Festplatte zwischengespeichert werden sondern im Arbeitsspeicher verbleiben. Wie der Name schon verrät, ist ein Kompressionsmechanismus eingebaut. Dieser betrifft wie bei der Speicherung der RealPairs die Liste der Kandidaten. Analog wie bei der Speicherung von RealPair werden zusammenhängende Nummern von Konditionalen genutzt, um Speicherplatz zu sparen. Dazu besitzt die Klasse CompressedPair ein Array von zweidimensionalen Arrays von Integer Werten. Darin werden die Daten ähnlich im Arbeitsspeicher abgelegt wie in RealPair als Textdatei. \\
+Der Kompressionsalgorithmus sucht wieder zusammenhängende Mengen von Konditionalen im Format (Nummer des ersten Konditionals) (Nummer des letzten Konditionals). Diese werden als int Array mit der Länge zwei abgelegt. Von diesen int Arrays der Länge zwei wird dann ein Array erstellt und darin die gesamte Menge der Konditionale gespeichert. Die Größe des gesamten Arrays beträgt dann [Menge der zusammenhängenden Bereiche][2]. Solange die zusammenhängenden Bereiche groß sind, funktioniert die Komprimierung sehr gut. Mit steigendem Wert von k kommen jedoch immer mehr Lücken hinzu und die Speicherung wird umständlich.
+
+
 
 \section{Berechnung der Wissensbasen}
 logische reihenfolge finden.

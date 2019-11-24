@@ -623,6 +623,7 @@ beschreiben, warum numbers kb gelöscht wurde (bringt nix. spart nicht viel spei
 
 \subsection{Paare aus Wissensbasis und Kandidaten}
 In diesem Abschnitt werden die Paare aus Wissensbasen und Kandidaten, um welche die Wissensbasis erweitert werden kann, beschrieben. Als Paare wird hier die Einheit aus Wissensbasis und Menge an Kandidaten bezeichnet, was im Algorithmus in \cite{beierle19} in Zeile 5 initialisiert und in Zeile 8ff bearbeitet wird. Dargestellt wird diese Einheit als mit charakteristischen dreieckigen Klammern in der Form $<R, C>$, was auch hier so beibehalten wird. \\
+Während einer Iteration k werden die Daten aus der Iteration $ k - 1$ verarbeitet und neue Daten in $k$ selbst abgelegt. Dabei entstehen schnell große Mengen von Daten und es stellt sich heraus, dass es für den Erfolg des ganzen Programms sehr kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. Die Verwaltung der Daten in kleinen Einheiten übernimmt dabei die Klasse AbstractPair mit ihren Implementationen. Das Verwalten der Objekte von AbstractPair übernimmt dann die Klasse PairBuffer, welche unter \autoref{sec:pairbuffer} beschrieben wird. \\
 Im Programm werden zwei Implementierungen genutzt, die hier vorgestellt werden. Beide erben von AbstractPair, was die einige Gemeinsamkeiten beider Klassen vereint und hauptsächlich die Schnittstelle eines solchen Paares bildet. Die erste Implementierung ist RealPair, hier werden die Kandidaten als Liste von Konditionalen verwaltet. Das ist naheliegend, einfach und schnell, benötigt aber sehr viel Arbeitsspeicher. Die zweite Option CompressedPair komprimiert die Liste der Kandidaten und spart dadurch viel Platz, ist dafür jedoch langsamer. Deswegen wird im Programm die Version RealPair benutzt, wenn die Daten sowieso auf der Festplatte zwischengespeichert werden und die Option CompressedPair wird genutzt wenn die Daten im Arbeitsspeicher gehalten werden sollen.
 
 
@@ -637,7 +638,8 @@ Im Programm werden zwei Implementierungen genutzt, die hier vorgestellt werden. 
 
 
 
-Ein vereinfachtes Diagramm der Klasse AbstractPair ist in \autoref{pic:abstractpair} zu sehen. Als Attribut besitzt die Klasse nur die Wissensbasis in Form eines KnowledgeBase Objekts. Des weiteren besitzt die Klasse 3 abstrakte und eine konkrete Methode. Die Methoden \textit{getKnowledgeBase()} und \textit{ getCandidatesList()} sind selbstklärend. Die \textit{toFileString()} Methode gibt einen String zurück der die Klasse in einen String transformiert um diesen auf der Festplatte zu speichern. Die letzte Methode \textit{clear()} ist dazu da Speicher zu sparen und löscht die Daten in der Klasse wenn sie nicht mehr gebraucht werden.
+Ein vereinfachtes Diagramm der Klasse AbstractPair ist in \autoref{pic:abstractpair} zu sehen. Als Attribut besitzt die Klasse nur die Wissensbasis in Form eines KnowledgeBase Objekts. Des weiteren besitzt die Klasse 3 abstrakte und eine konkrete Methode. Die Methoden \textit{getKnowledgeBase()} und \textit{ getCandidatesList()} sind selbstklärend. Die \textit{toFileString()} Methode gibt einen String zurück der die Klasse in einen String transformiert um diesen auf der Festplatte zu speichern. Die letzte Methode \textit{clear()} ist dazu da Speicher zu sparen und löscht die Daten in der Klasse wenn sie nicht mehr gebraucht werden.\\
+
 \subsubsection{Real Pair}
 
 \subsubsection{Compressed Pair}
@@ -649,6 +651,7 @@ logische reihenfolge finden.
 
 Hier ein schönes Übersichtsdiagramm. Hier auch was zum Threading.
 \subsection{Pair Buffer}
+\label{sec:pairbuffer}
 beide beschreiben.  Pair an sich auch.
 \subsection{Implementierung von GenKB}
 Erstmal Simple Creator. Funktioniert Parallel? Das wär gut, auch zum gegenüberstellen.

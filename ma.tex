@@ -621,6 +621,10 @@ todo:Performance Vergleich mit kurzen Übersetzungen als Begründung warum die n
 Beschreibung der Klasse KnowledgeBase. Klassendiagramm.
 beschreiben, warum numbers kb gelöscht wurde (bringt nix. spart nicht viel speicher ist aber deutlich langsamer)
 
+
+\section{Zwischenspeicherung der Daten}
+
+
 \subsection{Paare aus Wissensbasis und Kandidaten}
 In diesem Abschnitt werden die Paare aus Wissensbasen und Kandidaten, um welche die Wissensbasis erweitert werden kann, beschrieben. Als Paare wird hier die Einheit aus Wissensbasis und Menge an Kandidaten bezeichnet, welche im Algorithmus GenKB in \cite{beierle19} in Zeile 5 initialisiert und in Zeile 8ff bearbeitet wird. Dargestellt wird diese Einheit als mit charakteristischen dreieckigen Klammern in der Form $<R, C>$, was auch hier so beibehalten wird. \\
 Während einer Iteration k von GenKB werden die Daten aus der Iteration $ k - 1$ verarbeitet und neue Daten unter $k$ selbst abgelegt. Dabei entstehen schnell große Mengen von Daten und es stellt sich schnell heraus, dass es für den Erfolg des ganzen Programms sehr kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. Die Verwaltung der Daten in kleinen Einheiten übernimmt dabei die Klasse \textit{AbstractPair} mit ihren Implementierungen RealPair und CompressedPair. Das Verwalten dieser Objekte übernimmt dann ein PairBuffer, welche unter \autoref{sec:pairbuffer} beschrieben wird. \\
@@ -671,15 +675,24 @@ Der Kompressionsalgorithmus sucht wieder zusammenhängende Mengen von Konditiona
 Mit der Signatur $\Sigma=\{abc\}$ werden nur geringe Werte für k erreicht, demzufolge ist die Speicherung sehr effizient. Mit der Signatur $\Sigma=\{ab\}$ werden jedoch höhere Werte für k erreicht. Zusätzlich ist hier die Menge der Kandidaten viel geringer, sodass diese Kompression kaum Vorteile bringt. Das ergibt dann den folgenden Effekt: Für geringe Werte für k wird weniger Speicher benötigt, für hohe Werte für k wird sogar mehr Speicher benötigt. Da die Signatur  $\Sigma=\{abc\}$ im Vordergrund steht wird die Ineffizienz für $\Sigma=\{ab\}$  jedoch ignoriert.\\
 Der Konstruktor der Klasse CompressedPair ist in der Form \textit{CompressedPair(KnowledgeBase knowledgeBase, List<PConditional> candidates)},  ein Erstellen aus Textdateien entfällt. Die beschriebene Komprimierung erfolgt direkt im Konstruktor. Wenn die Liste der Kandidaten mit \textit{getCandidatesList()} abgerufen wird, wird die List<WConditonal> aus dem komprimierten int Array erstellt. Da dieser Vorgang recht kompliziert ist, dauert das aufrufen der Methode \textit{getCandidatesList()} deutlich länger als bei Objekten von RealPair. Der Konstruktor ist ebenfalls deutlich zeitintensiver als RealPair, jedoch entfällt bei CompressedPair das eher langsame Lesen und Schreiben auf der Festplatte dafür komplett.
 
+%todo: vlt deutsche namen anstatt klassennamen?
+\subsection{Pair Buffer}
+kurze erkläruung
+\subsubsection{AbstractPairBuffer}
+
+\subsubsection{HDDPairBuffer}
+
+\subsubsection{RamBuffer}
+
 
 
 \section{Berechnung der Wissensbasen}
 logische reihenfolge finden.
 
-\subsection{Aufbau}
+
 
 Hier ein schönes Übersichtsdiagramm. Hier auch was zum Threading.
-\subsection{Pair Buffer}
+
 \label{sec:pairbuffer}
 beide beschreiben.  Pair an sich auch.
 \subsection{Implementierung von GenKB}

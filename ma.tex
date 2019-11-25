@@ -695,8 +695,8 @@ Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die von beiden V
 \item{Abrufen Statusinformationen zum Anzeigen in der grafischen Oberfläche}
 
 \end{itemize}
-\subsubsection{RamBuffer}
-
+\subsubsection{RamPairBuffer}
+Die Klasse  RamPairBuffer ist einfach aufgebaut. Die Daten werde in einer List<List<AbstractPair>>  gespeichert, die folgendermaßen aufgebaut ist: Die äußere Liste beinhaltet Listen von Datensätzen in Form von AbstractPair, konkret werden hier nur CompressedPair Objekte gespeichert. Für jede Iteration wird eine äußere Liste hinzugefügt, der Index entspricht hier der Iterationsnummer $k$ von GenKB.
 
 \subsubsection{HDDPairBuffer}
 

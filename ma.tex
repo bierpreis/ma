@@ -623,9 +623,8 @@ beschreiben, warum numbers kb gelöscht wurde (bringt nix. spart nicht viel spei
 
 
 \section{Zwischenspeicherung der Daten}
-In diesem Abschnitt wird beschrieben, wie die Arbeitsdaten von GenKB verwaltet werden. Während einer Iteration k von GenKB werden dabei die Daten aus der Iteration $ k - 1$ verarbeitet und neue Daten unter $k$ selbst abgelegt. Dabei entstehen große Mengen von Daten und es stellt sich schnell heraus, dass es für den Erfolg des ganzen Programms sehr kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. \\
-Die Verwaltung der Daten in kleinen Einheiten übernimmt dabei die Klasse \textit{AbstractPair} mit ihren Implementierungen RealPair und CompressedPair. 
-Das Verwalten dieser Objekte übernimmt dann ein PairBuffer, welche unter \autoref{sec:pairbuffer} beschrieben wird.
+In diesem Abschnitt wird beschrieben, wie die Arbeitsdaten von GenKB verwaltet werden. Während einer Iteration k von GenKB werden dabei Daten welche in Iteration $ k - 1$ erstellt wurden, verarbeitet und neue Daten unter $k$ selbst abgelegt. Dadurch entstehen große Mengen von Daten, welche bis zur jeweils nächsten Iteration behalten werden müssen. Dabei stellt sich schnell heraus, dass es für den Erfolg des ganzen Programms kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. \\
+Einzelne Datensätze werden dabei als sogenannte Pairs gespeichert. Die Verwaltung dieser Datensätze übernimmt ein Buffer, der die Daten Wahlweise entweder im Arbeitsspeicher oder auf der Festplatte speichert. 
 
 \subsection{Paare aus Wissensbasis und Kandidaten}
 In diesem Abschnitt werden die Paare aus Wissensbasen und Kandidaten, um welche die Wissensbasis erweitert werden kann, beschrieben. Als Paare wird hier die Einheit aus Wissensbasis und Menge an Kandidaten bezeichnet, welche im Algorithmus GenKB in \cite{beierle19} in Zeile 5 initialisiert und in Zeile 8ff bearbeitet wird. Dargestellt wird diese Einheit als mit charakteristischen dreieckigen Klammern in der Form $<R, C>$, was auch hier so beibehalten wird. \\

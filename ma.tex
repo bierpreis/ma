@@ -675,11 +675,18 @@ Der Kompressionsalgorithmus sucht wieder zusammenhängende Mengen von Konditiona
 Mit der Signatur $\Sigma=\{abc\}$ werden nur geringe Werte für k erreicht, demzufolge ist die Speicherung sehr effizient. Mit der Signatur $\Sigma=\{ab\}$ werden jedoch höhere Werte für k erreicht. Zusätzlich ist hier die Menge der Kandidaten viel geringer, sodass diese Kompression kaum Vorteile bringt. Das ergibt dann den folgenden Effekt: Für geringe Werte für k wird weniger Speicher benötigt, für hohe Werte für k wird sogar mehr Speicher benötigt. Da die Signatur  $\Sigma=\{abc\}$ im Vordergrund steht wird die Ineffizienz für $\Sigma=\{ab\}$  jedoch ignoriert.\\
 Der Konstruktor der Klasse CompressedPair ist in der Form \textit{CompressedPair(KnowledgeBase knowledgeBase, List<PConditional> candidates)},  ein Erstellen aus Textdateien entfällt. Die beschriebene Komprimierung erfolgt direkt im Konstruktor. Wenn die Liste der Kandidaten mit \textit{getCandidatesList()} abgerufen wird, wird die List<WConditonal> aus dem komprimierten int Array erstellt. Da dieser Vorgang recht kompliziert ist, dauert das aufrufen der Methode \textit{getCandidatesList()} deutlich länger als bei Objekten von RealPair. Der Konstruktor ist ebenfalls deutlich zeitintensiver als RealPair, jedoch entfällt bei CompressedPair das eher langsame Lesen und Schreiben auf der Festplatte dafür komplett.
 
+
+
 %todo: vlt deutsche namen anstatt klassennamen?
 \subsection{Pair Buffer}
 \label{sec:pairbuffer}
-kurze erkläruung
+
+
+Als \textit{PairBuffer} wird die Datenstruktur bezeichnet, welche die Menge der im Abschnitt zuvor beschriebenen Paare aus Wissensbasis und Kandidaten verwaltet und speichert. Dabei sind zwei verschieden Varianten implementiert: eine Variante legt die Daten im Arbeitsspeicher ab während die andere Variante die Festplatte nutzt.
+
+
 \subsubsection{AbstractPairBuffer}
+
 
 \subsubsection{HDDPairBuffer}
 

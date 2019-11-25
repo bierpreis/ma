@@ -686,11 +686,20 @@ Als \textit{PairBuffer} wird die Datenstruktur bezeichnet, welche die Menge der 
 
 
 \subsubsection{AbstractPairBuffer}
-Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die die Gemeinsamkeiten der beiden Implementierungen zur Speicherung der Datensätze vereint und als Schnittstelle mit dem Algorithmus GenKB dient.
+Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die von beiden Varianten der Speicherverwaltung implementiert wird und hat hauptsächlich den Charakter eine Schnittstelle. Da sich die Implementierungen stark unterscheiden stellt sie keine eigene Funktionalität bereit. Die abstrakten Methoden der Klasse lassen sich in die folgenden Kategorien einteilen:
+
+\begin{itemize}
+
+\item{Starten und Beenden von Iterationen}
+\item{Hinzufügen und Abrufen von Datensätzen}
+\item{Abrufen Statusinformationen zum Anzeigen in der grafischen Oberfläche}
+
+\end{itemize}
+\subsubsection{RamBuffer}
+
 
 \subsubsection{HDDPairBuffer}
 
-\subsubsection{RamBuffer}
 
 
 

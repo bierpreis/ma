@@ -686,7 +686,7 @@ Als \textit{PairBuffer} wird die Datenstruktur bezeichnet, welche die Menge der 
 
 
 \subsubsection{AbstractPairBuffer}
-Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die von beiden Varianten der Speicherverwaltung implementiert wird und hat hauptsächlich den Charakter eine Schnittstelle. Da sich die Implementierungen stark unterscheiden stellt sie keine eigene Funktionalität bereit. Die abstrakten Methoden der Klasse lassen sich in die folgenden Kategorien einteilen:
+Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die von beiden Varianten der Speicherverwaltung implementiert wird und hat hauptsächlich den Charakter eine Schnittstelle. Da sich die Implementierungen stark unterscheiden, stellt diese Klasse selbst keine eigene Funktionalität bereit. Die abstrakten Methoden der Klasse lassen sich in die folgenden Kategorien einteilen:
 
 \begin{itemize}
 
@@ -696,7 +696,8 @@ Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die von beiden V
 
 \end{itemize}
 \subsubsection{RamPairBuffer}
-Die Klasse  RamPairBuffer ist einfach aufgebaut. Die Daten werde in einer List<List<AbstractPair>>  gespeichert, die folgendermaßen aufgebaut ist: Die äußere Liste beinhaltet Listen von Datensätzen in Form von AbstractPair, konkret werden hier nur CompressedPair Objekte gespeichert. Für jede Iteration wird eine äußere Liste hinzugefügt, der Index entspricht hier der Iterationsnummer $k$ von GenKB.
+Die Klasse  RamPairBuffer ist einfach aufgebaut. Sie besitzt keine eigenen Threads sondern nur eine Datenstruktur und Methoden, um diese zu verwalten. Die Daten werde in einer List<List<AbstractPair>> gespeichert, die folgendermaßen aufgebaut ist: Die äußere Liste beinhaltet Listen von Datensätzen in Form von AbstractPair, konkret werden hier nur CompressedPair Objekte gespeichert. Für jede Iteration wird der äußeren Liste ein neues Element hinzugefügt, der Index entspricht hier der Iterationsnummer $k$ von GenKB. \\
+Wenn also eine Iteration $k$ beginnt, wird entsprechend für das Element $k$ eine neue ArrrayList<AsbtractPair> in die äußere Liste eingefügt. In diese Liste werden während der Iteration $k$ die Daten abgelegt, die Daten aus $k-1$ werden zur Verarbeitung nach und nach abgerufen. Während des Abrufens werden bereits die nicht mehr benötigten Elemente größtenteils gelöscht. Gleichzeitig wird mit dem Anlegen der neuen Liste für $k$ die Liste $k-2$, sofern diese vorhanden ist, vollständig gelöscht, denn sie wird dann  nicht mehr gebraucht.
 
 \subsubsection{HDDPairBuffer}
 

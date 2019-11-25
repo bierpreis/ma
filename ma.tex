@@ -623,12 +623,13 @@ beschreiben, warum numbers kb gelöscht wurde (bringt nix. spart nicht viel spei
 
 
 \section{Zwischenspeicherung der Daten}
-
+In diesem Abschnitt wird beschrieben, wie die Arbeitsdaten von GenKB verwaltet werden. Während einer Iteration k von GenKB werden dabei die Daten aus der Iteration $ k - 1$ verarbeitet und neue Daten unter $k$ selbst abgelegt. Dabei entstehen große Mengen von Daten und es stellt sich schnell heraus, dass es für den Erfolg des ganzen Programms sehr kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. \\
+Die Verwaltung der Daten in kleinen Einheiten übernimmt dabei die Klasse \textit{AbstractPair} mit ihren Implementierungen RealPair und CompressedPair. 
+Das Verwalten dieser Objekte übernimmt dann ein PairBuffer, welche unter \autoref{sec:pairbuffer} beschrieben wird.
 
 \subsection{Paare aus Wissensbasis und Kandidaten}
 In diesem Abschnitt werden die Paare aus Wissensbasen und Kandidaten, um welche die Wissensbasis erweitert werden kann, beschrieben. Als Paare wird hier die Einheit aus Wissensbasis und Menge an Kandidaten bezeichnet, welche im Algorithmus GenKB in \cite{beierle19} in Zeile 5 initialisiert und in Zeile 8ff bearbeitet wird. Dargestellt wird diese Einheit als mit charakteristischen dreieckigen Klammern in der Form $<R, C>$, was auch hier so beibehalten wird. \\
-Während einer Iteration k von GenKB werden die Daten aus der Iteration $ k - 1$ verarbeitet und neue Daten unter $k$ selbst abgelegt. Dabei entstehen schnell große Mengen von Daten und es stellt sich schnell heraus, dass es für den Erfolg des ganzen Programms sehr kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. Die Verwaltung der Daten in kleinen Einheiten übernimmt dabei die Klasse \textit{AbstractPair} mit ihren Implementierungen RealPair und CompressedPair. Das Verwalten dieser Objekte übernimmt dann ein PairBuffer, welche unter \autoref{sec:pairbuffer} beschrieben wird. \\
-Im Programm werden die zwei Implementierungen genutzt, die hier vorgestellt werden. Beide erben von AbstractPair, was die einige Gemeinsamkeiten beider Klassen vereint und hauptsächlich die Schnittstelle der Paare bildet. Die beiden Implementierungen unterscheiden sich hauptsächlich in der Speicherung der Kandidaten, da davon sehr viele verwaltet werden müssen. Die erste Implementierung ist RealPair, hier werden die Kandidaten als Liste von Konditionalen verwaltet. Das ist naheliegend, einfach und schnell, benötigt aber sehr viel Arbeitsspeicher. Die zweite Option CompressedPair komprimiert die Liste der Kandidaten und spart dadurch viel Platz, ist dafür jedoch langsamer. Deswegen wird im Programm die Version RealPair benutzt, wenn die Daten sowieso auf der Festplatte zwischengespeichert werden und die Option CompressedPair wird genutzt wenn die Daten im Arbeitsspeicher gehalten werden sollen.
+Im Programm werden die zwei Implementierungen genutzt, die hier vorgestellt werden. Beide erben von \textit{AbstractPair}, was die einige Gemeinsamkeiten beider Klassen vereint und hauptsächlich die Schnittstelle der Paare bildet. Die beiden Implementierungen unterscheiden sich hauptsächlich in der Speicherung der Kandidaten, da davon sehr viele verwaltet werden müssen. Die erste Implementierung ist RealPair, hier werden die Kandidaten als Liste von Konditionalen verwaltet. Das ist naheliegend, einfach und schnell, benötigt aber sehr viel Arbeitsspeicher. Die zweite Option CompressedPair komprimiert die Liste der Kandidaten und spart dadurch viel Platz, ist dafür jedoch langsamer. Deswegen wird im Programm die Version RealPair benutzt, wenn die Daten sowieso auf der Festplatte zwischengespeichert werden und die Option CompressedPair wird genutzt wenn die Daten im Arbeitsspeicher gehalten werden sollen.
 
 
 \subsubsection{Abstract Pair}
@@ -677,6 +678,7 @@ Der Konstruktor der Klasse CompressedPair ist in der Form \textit{CompressedPair
 
 %todo: vlt deutsche namen anstatt klassennamen?
 \subsection{Pair Buffer}
+\label{sec:pairbuffer}
 kurze erkläruung
 \subsubsection{AbstractPairBuffer}
 

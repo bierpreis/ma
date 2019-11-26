@@ -630,7 +630,7 @@ Einzelne Datensätze werden dabei als Objekte gespeichert, welche jeweils eine W
 In diesem Abschnitt werden die Paare aus Wissensbasen und Kandidaten, um welche die Wissensbasis erweitert werden kann, beschrieben. Als Paare wird hier die Einheit aus Wissensbasis und Menge an Kandidaten bezeichnet, welche im Algorithmus GenKB in \cite{beierle19} in Zeile 5 initialisiert und in Zeile 8ff bearbeitet wird. Dargestellt wird diese Einheit als mit charakteristischen dreieckigen Klammern in der Form $<R, C>$, was auch hier so beibehalten wird. \\
 Im Programm werden die zwei Implementierungen genutzt, die hier vorgestellt werden. Beide erben von \textit{AbstractPair}, was die einige Gemeinsamkeiten beider Klassen vereint und hauptsächlich die Schnittstelle der Paare bildet. Die beiden Implementierungen unterscheiden sich hauptsächlich in der Speicherung der Kandidaten, da davon sehr viele verwaltet werden müssen. Die erste Implementierung ist RealPair, hier werden die Kandidaten als Liste von Konditionalen verwaltet. Das ist naheliegend, einfach und schnell, benötigt aber sehr viel Arbeitsspeicher. Die zweite Option CompressedPair komprimiert die Liste der Kandidaten und spart dadurch viel Arbeitsspeicher, ist dafür jedoch langsamer. Deswegen wird im Programm die Version RealPair benutzt, wenn die Daten sowieso auf der Festplatte zwischengespeichert werden und die Option CompressedPair wird genutzt wenn die Daten im Arbeitsspeicher gehalten werden sollen.
 
-%todo: clear methoden erklären
+%todo:  methoden erklären
 \subsubsection{Abstract Pair}
 \label{sec:abstractpair}
 
@@ -642,7 +642,7 @@ Im Programm werden die zwei Implementierungen genutzt, die hier vorgestellt werd
 
 
 
-Wie beschrieben, vereint die Klasse AbstractPair die Gemeinsamkeiten ihrer beiden Implementierungen und bildet die Schnittstelle für deren Verwendung, entsprechend ist die Klasse selbst eher übersichtlich. Ein etwas vereinfachtes Diagramm der Klasse AbstractPair ist in \autoref{pic:abstractpair} zu sehen. Als Attribut besitzt die Klasse nur die Wissensbasis in Form eines KnowledgeBase Objekts und eine Map<int,WConditional> in der alle Konditionale von NFC unter ihrer Nummer abgespeichert sind. Des weiteren besitzt die Klasse 3 abstrakte und eine konkrete Methode. Die Methoden \textit{getKnowledgeBase()} und \textit{ getCandidatesList()} sind selbsterklärend. Die \textit{toFileString()} Methode gibt einen String zurück der die Klasse in einen String transformiert um diesen auf der Festplatte zu speichern. Die letzte Methode \textit{clear()} ist dazu da Speicher zu sparen und löscht die Daten in der Klasse, wenn diese nicht mehr gebraucht werden. Die Implementierungen von AbstractPair unterscheiden sich besonders darin, wie sie die Liste der Kandidaten speichern.
+Wie beschrieben, vereint die Klasse AbstractPair die Gemeinsamkeiten ihrer beiden Implementierungen und bildet die Schnittstelle für deren Verwendung, entsprechend ist die Klasse selbst eher übersichtlich. Ein etwas vereinfachtes Diagramm der Klasse AbstractPair ist in \autoref{pic:abstractpair} zu sehen. Als Attribut besitzt die Klasse nur die Wissensbasis in Form eines KnowledgeBase Objekts und eine Map<int,WConditional> in der alle Konditionale von NFC unter ihrer Nummer abgespeichert sind. Des weiteren besitzt die Klasse 3 abstrakte und eine konkrete Methode. Die Methoden \textit{getKnowledgeBase()} und \textit{ getCandidatesList()} sind selbsterklärend. Die \textit{toFileString()} Methode gibt einen String zurück der die Klasse in einen String transformiert um diesen auf der Festplatte zu speichern. Die letzte Methode \textit{clear()} ist dazu da Speicher zu sparen und löscht die Daten in der Klasse, wenn diese nicht mehr gebraucht werden. Die \textit{clear()} Methoden in den Pair Implementierungen funktionieren nach einem einfachen Prinzip: Der Speicherbedarf eines Pairs wird zum großteil von den enthaltenen Instanzvariablen bestimmt. Diese Variablem werden einfach nach dem Schema \textit{variable = null} "gelöscht". Genau genommen wird dadurch Referenz von Objekt auf null geändert. Dadurch kann der \textit{Java Garbage Collector} erkennen kann dass das Objekt selbst nicht mehr referenziert wird und wird es bei Gelegenheit löschen, falls es auch sonst nirgendwo mehr referenziert wird. Generell lässt sich zu den beiden folgenden AbstractPair Implementierungen sagen, dass sie sich besonders darin unterscheiden, wie sie die Liste der Kandidaten speichern. 
 
 \subsubsection{Real Pair}
 Die Klasse \textit{RealPair} speichert die Liste der Kandidaten zur Erweiterung der enthaltenen Wissensbasis als List<PConditional>. Das ist naheliegend und in der Verarbeitung schnell, benötigt jedoch sehr viel Speicher. Deshalb wird die Klasse RealPair nur in Verbindung mit Speicherung der Daten auf der Festplatte genutzt. Dadurch existieren zu jedem Zeitpunkt nur recht wenige Objekte dieser Klasse. Der hohe Speicherbedarf ist dann unproblematisch und die hohe Verarbeitungsgeschwindigkeit kann genutzt werden. \\
@@ -696,7 +696,7 @@ Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die von beiden V
 \end{itemize}
 
 
-%todo: reread and good language
+
 \subsubsection{RamPairBuffer}
 Die Klasse  RamPairBuffer ist einfach aufgebaut, sie ist im Prinzip eine Container für eine passive Datenstruktur. Die Klasse besitzt keine eigenen Threads sondern nur das Objekt zur Aufnahme der Daten und Methoden, um diese zu verwalten. Die Daten werde in einer List<List<AbstractPair>> gespeichert, die folgendermaßen aufgebaut ist: Die äußere Liste beinhaltet Listen von Datensätzen in Form von AbstractPair, konkret werden hier nur CompressedPair Objekte gespeichert. Für jede Iteration wird der äußeren Liste ein neues Element hinzugefügt, der Index entspricht hier der Iterationsnummer $k$ von GenKB. \\
 Wenn also eine Iteration $k$ beginnt, wird entsprechend für das Element $k$ eine neue ArrrayList<AsbtractPair> in die äußere Liste eingefügt. In diese Liste werden während der Iteration $k$ die Daten abgelegt, die Daten aus $k-1$ werden zur Verarbeitung nach und nach abgerufen. Während des Abrufens werden bereits die nicht mehr benötigten Elemente größtenteils gelöscht, das geschieht durch die unter \autoref{sec:abstractpair} beschriebene \textit{clear()} Funktion der Pairs. Dadurch wird der Speicherbedarf einer Iteration deutlich verringert. Gleichzeitig wird mit dem Anlegen der neuen Liste für $k$ die Liste $k-2$, sofern diese vorhanden ist, vollständig gelöscht, denn sie wird dann  nicht mehr gebraucht.
@@ -707,7 +707,7 @@ auch clear
 
 
 \section{Berechnung der Wissensbasen}
-logische reihenfolge finden. eventuell aufteilen in genkb und rest?
+logische reihenfolge finden. eventuell aufteilen in genkb und rest? was ist damit, die performance des programms an sich zu bescheiben? wär auch nice. \\
 
 
 

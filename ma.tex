@@ -702,12 +702,12 @@ Die Klasse  RamPairBuffer ist einfach aufgebaut, sie ist im Prinzip eine Contain
 Wenn also eine Iteration $k$ beginnt, wird entsprechend für das Element $k$ eine neue ArrrayList<AsbtractPair> in die äußere Liste eingefügt. In diese Liste werden während der Iteration $k$ die Daten abgelegt, die Daten aus $k-1$ werden zur Verarbeitung nach und nach abgerufen. Während des Abrufens werden bereits die nicht mehr benötigten Elemente größtenteils gelöscht, das geschieht durch die unter \autoref{sec:abstractpair} beschriebene \textit{clear()} Funktion der Pairs. Dadurch wird der Speicherbedarf einer Iteration deutlich verringert. Gleichzeitig wird mit dem Anlegen der neuen Liste für $k$ die Liste $k-2$, sofern diese vorhanden ist, vollständig gelöscht, denn sie wird dann  nicht mehr gebraucht.
 
 \subsubsection{HDDPairBuffer}
-
+auch clear
 
 
 
 \section{Berechnung der Wissensbasen}
-logische reihenfolge finden.
+logische reihenfolge finden. eventuell aufteilen in genkb und rest?
 
 
 

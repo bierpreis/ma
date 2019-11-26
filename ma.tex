@@ -630,9 +630,9 @@ Einzelne Datensätze werden dabei als Objekte gespeichert, welche jeweils eine W
 In diesem Abschnitt werden die Paare aus Wissensbasen und Kandidaten, um welche die Wissensbasis erweitert werden kann, beschrieben. Als Paare wird hier die Einheit aus Wissensbasis und Menge an Kandidaten bezeichnet, welche im Algorithmus GenKB in \cite{beierle19} in Zeile 5 initialisiert und in Zeile 8ff bearbeitet wird. Dargestellt wird diese Einheit als mit charakteristischen dreieckigen Klammern in der Form $<R, C>$, was auch hier so beibehalten wird. \\
 Im Programm werden die zwei Implementierungen genutzt, die hier vorgestellt werden. Beide erben von \textit{AbstractPair}, was die einige Gemeinsamkeiten beider Klassen vereint und hauptsächlich die Schnittstelle der Paare bildet. Die beiden Implementierungen unterscheiden sich hauptsächlich in der Speicherung der Kandidaten, da davon sehr viele verwaltet werden müssen. Die erste Implementierung ist RealPair, hier werden die Kandidaten als Liste von Konditionalen verwaltet. Das ist naheliegend, einfach und schnell, benötigt aber sehr viel Arbeitsspeicher. Die zweite Option CompressedPair komprimiert die Liste der Kandidaten und spart dadurch viel Arbeitsspeicher, ist dafür jedoch langsamer. Deswegen wird im Programm die Version RealPair benutzt, wenn die Daten sowieso auf der Festplatte zwischengespeichert werden und die Option CompressedPair wird genutzt wenn die Daten im Arbeitsspeicher gehalten werden sollen.
 
-
+%todo: clear methoden erklären
 \subsubsection{Abstract Pair}
-
+\label{sec:abstractpair}
 
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/AbstractPair.png}
@@ -693,11 +693,13 @@ Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die von beiden V
 \item{Starten und Beenden von Iterationen}
 \item{Hinzufügen und Abrufen von Datensätzen}
 \item{Abrufen Statusinformationen zum Anzeigen in der grafischen Oberfläche}
-
 \end{itemize}
+
+
+%todo: reread and good language
 \subsubsection{RamPairBuffer}
-Die Klasse  RamPairBuffer ist einfach aufgebaut. Sie besitzt keine eigenen Threads sondern nur eine Datenstruktur und Methoden, um diese zu verwalten. Die Daten werde in einer List<List<AbstractPair>> gespeichert, die folgendermaßen aufgebaut ist: Die äußere Liste beinhaltet Listen von Datensätzen in Form von AbstractPair, konkret werden hier nur CompressedPair Objekte gespeichert. Für jede Iteration wird der äußeren Liste ein neues Element hinzugefügt, der Index entspricht hier der Iterationsnummer $k$ von GenKB. \\
-Wenn also eine Iteration $k$ beginnt, wird entsprechend für das Element $k$ eine neue ArrrayList<AsbtractPair> in die äußere Liste eingefügt. In diese Liste werden während der Iteration $k$ die Daten abgelegt, die Daten aus $k-1$ werden zur Verarbeitung nach und nach abgerufen. Während des Abrufens werden bereits die nicht mehr benötigten Elemente größtenteils gelöscht. Gleichzeitig wird mit dem Anlegen der neuen Liste für $k$ die Liste $k-2$, sofern diese vorhanden ist, vollständig gelöscht, denn sie wird dann  nicht mehr gebraucht.
+Die Klasse  RamPairBuffer ist einfach aufgebaut, sie ist im Prinzip eine Container für eine passive Datenstruktur. Die Klasse besitzt keine eigenen Threads sondern nur das Objekt zur Aufnahme der Daten und Methoden, um diese zu verwalten. Die Daten werde in einer List<List<AbstractPair>> gespeichert, die folgendermaßen aufgebaut ist: Die äußere Liste beinhaltet Listen von Datensätzen in Form von AbstractPair, konkret werden hier nur CompressedPair Objekte gespeichert. Für jede Iteration wird der äußeren Liste ein neues Element hinzugefügt, der Index entspricht hier der Iterationsnummer $k$ von GenKB. \\
+Wenn also eine Iteration $k$ beginnt, wird entsprechend für das Element $k$ eine neue ArrrayList<AsbtractPair> in die äußere Liste eingefügt. In diese Liste werden während der Iteration $k$ die Daten abgelegt, die Daten aus $k-1$ werden zur Verarbeitung nach und nach abgerufen. Während des Abrufens werden bereits die nicht mehr benötigten Elemente größtenteils gelöscht, das geschieht durch die unter \autoref{sec:abstractpair} beschriebene \textit{clear()} Funktion der Pairs. Dadurch wird der Speicherbedarf einer Iteration deutlich verringert. Gleichzeitig wird mit dem Anlegen der neuen Liste für $k$ die Liste $k-2$, sofern diese vorhanden ist, vollständig gelöscht, denn sie wird dann  nicht mehr gebraucht.
 
 \subsubsection{HDDPairBuffer}
 

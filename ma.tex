@@ -628,9 +628,32 @@ todo:Performance Vergleich mit kurzen Übersetzungen als Begründung warum die n
 
 
 
-Die Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein Klassendiagram ist in \autoref{pic:knowledgebase} zu sehen.
-\\Beschreibung der Klasse KnowledgeBase. Klassendiagramm.
-\\beschreiben, warum numbers kb gelöscht wurde (bringt nix. spart nicht viel speicher ist aber deutlich langsamer)
+Die Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagram ist in \autoref{pic:knowledgebase} zu sehen. Als Attribute besitzt die Klasse zum einen die Nummer der Wissensbasis als int Wert. Des Weiteren besitzt die Klasse natürlich eine Liste der enthaltenen Konditionale.  \\
+Eine sehr wichtige Methode ist \textit{isCosnsitentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis konsistent mit dem übergebenem Konditional ist. Die Implementierung der Methode ist in \autoref{code:kb-consistent} zu sehen.
+
+
+
+\begin{figure}
+\begin{lstlisting}
+for (AbstractWorld world : signature.getPossibleWorlds()) {
+    if (conditionalToTest.getAntecedent().evaluate(world) && conditionalToTest.getConsequence().evaluate(world)) {
+        boolean toleratesAll = true;
+        for (PConditional conditional : conditionalList) {
+            if (!conditional.tolerates(world))
+                toleratesAll = false;
+        }
+        if (toleratesAll)
+            return true;
+    }
+}
+return false;
+\end{lstlisting}
+\caption{\textit{isConsistentWith(PConditional p)} Methode der Klasse PConditonal}
+\label{code:kb-consistent}
+\end{figure} 
+
+
+beschreiben, warum numbers kb gelöscht wurde (bringt nix. spart nicht viel speicher ist aber deutlich langsamer)
 
 
 \section{Zwischenspeicherung der Daten}

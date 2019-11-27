@@ -707,12 +707,11 @@ Wenn also eine Iteration $k$ beginnt, wird entsprechend für das Element $k$ ein
 
 \subsubsection{HDDPairBuffer}
 Die Klasse \textit{HDDPairBuffer} ist die Datenstruktur, welche die Paare auf der Festplatte zwischenspeichert um die Begrenzung von GenKB durch den knappen Arbeitsspeicher zu umgehen. Dazu muss der HDDPPairBuffer insbesondere das Ablegen und aufrufen von Paaren und das Starten und Beenden von Iterationen unterstützen. Dabei müssen die Paare immer in der richtigen Reihenfolge bleiben, es darf kein Paar verloren gehen oder doppelt verarbeitet werden. Zusätzlich werden der GUI noch ein paar Statusinformationen bereitgestellt.\\
-Der HDDPairBuffer besitzt zwei Threads: Ein Thread, um die von GenKB übergebenen Paare auf der Festplatte zu speichern und ein Thread, um die Paare von der Festplatte zu lesen und GenKB bereit zu stellen. Dadurch, dass der Festplattenzugriff auf diese zwei Threads aufgeteilt wird wird vermieden, dass sich die Aufgaben gegenseitig behindern oder ausbremsen. Die Hauptklasse HDDPairBuffer bietet GenKB Methoden an, um ein Paar abzulegen und ein neues Paar abzurufen. Dabei leitet HDDPairBuffer diese Anfragen direkt an die beiden Threads zum Speichern und Abrufen der Daten weiter und tut selbst nichts damit. Neben diesen beiden Methoden zur Verabeitung der Pairs besitzt auch HDDPairBuffer Methoden zum Starten und Beenden von Iterationen und um der GUI Informationen bereit zu stellen. \\
-hier: writerThread \\
-hier: readerThread \\
+Der HDDPairBuffer besitzt zwei Threads: Der \textit{BufferWriterThread} nimmt die neu erstellen Paare der Iteration $k$ auf und schreibt sie auf die Festplatte. Der \textit{BufferReaderThread} liest die Paare der Iteration $k-1$ von der Festplatte und stellt sie dem GenKB bereit. Dadurch, dass der Festplattenzugriff auf diese zwei Threads aufgeteilt wird wird vermieden, dass sich die Aufgaben gegenseitig behindern oder ausbremsen. Die Hauptklasse HDDPairBuffer bietet GenKB Methoden an, um ein Paar abzulegen und ein neues Paar abzurufen. Dabei leitet HDDPairBuffer diese Anfragen direkt an die beiden Threads weiter und tut selbst nichts damit. Der HDDPairBuffer bietet ansonsten noch Methoden zum Starten und Beenden von Iterationen und kümmert sich damit um die Verwaltung der Iterationen. Dazu legt er die nötigen Ordner an und löscht diese auch wieder wenn gewünscht. Zusätzlich bietet der HDDPairBuffer der grafischen Oberfläche auch Statusinformationen zum Anzeigen an. \\
+Der \textit{BufferWriterThread} besitzt eine ArrayBlockingQueue zur Verwaltung der Pairs als zentrale Datenstruktur. Eine Queue als Datenstruktur deshalb, weil damit die Reihenfolge der Paare gesichert werden kann. GenKB fügt die im Algorithmus in Zeile 12 erstellten Paare  in diese Queue. Der BufferWriterThread beobachtet diese Queue. Wenn ihre Größe die Anzahl der Pairs pro Datei erreicht hat oder die Iteration fertig ist, entnimmt der BufferWriterThread diese Elemente aus der Queue und schreibt sie in eine Textdatei in den Unterordnet "k" der aktuell aktiven Iteration. Die Wahl der Datenstruktur fiel auch deshalb auf ArrayBlockingQueue, da diese threadsicher ist und da sie Blocking unterstützt: Das Bedeutet, die Queue hat eine Maximale Größe. Wenn sie voll ist, kann GenKB keine neuen Elemente mehr einfügen und wartet somit automatisch darauf, dass der BufferWriterThread die Dateien auf die Festplatte schreibt. In der Voreinstellung befinden sich 2000 Pairs in einer Datei, was in der GUI unter Optionen geändert werden kann. Die Queue selbst ist 10.000 Elemente Groß. Dadurch ist sichergestellt, dass GenKB nicht schneller sein kann als der BufferWriterThread und irgendwann einen riesigen Zwischenspeicher vor sich her schiebt.
 \\todo: auch clear
 \\todo: getnextPair
-\\todo: add pair ->auch bedenken wegen parallel. ein punkt bleibt offen!
+\\todo: add pair wen parallel
 
 
 
@@ -735,7 +734,7 @@ beschreiben.
 \subsubsection{DummyWriter}
 
 \subsubsection{Parallel Writer?}
-
+eigentlich sollte es den nicht geben, sondern einen collector imparallel creator!
 \subsection{Beschreibung der grafischen Oberfläche}
 möglicherweise auch am anfang analog zu kb creator? würde die schritte vereinfachen! \\
 auf jeden fall linke und rechte seite trennen.

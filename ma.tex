@@ -707,7 +707,9 @@ Wenn also eine Iteration $k$ beginnt, wird entsprechend für das Element $k$ ein
 
 \subsubsection{HDDPairBuffer}
 Die Klasse \textit{HDDPairBuffer} ist die Datenstruktur, welche die Paare auf der Festplatte zwischenspeichert um die Begrenzung von GenKB durch den knappen Arbeitsspeicher zu umgehen. Dazu muss der HDDPPairBuffer insbesondere das Ablegen und aufrufen von Paaren und das Starten und Beenden von Iterationen unterstützen. Dabei müssen die Paare immer in der richtigen Reihenfolge bleiben, es darf kein Paar verloren gehen oder doppelt verarbeitet werden. Zusätzlich werden der GUI noch ein paar Statusinformationen bereitgestellt.\\
-Der HDDPairBuffer besitzt zwei Threads: Ein Thread, um die von GenKB übergebenen Paare auf der Festplatte zu speichern und ein Thread, um die Paare von der Festplatte zu lesen und GenKB bereit zu stellen. Dadurch, dass der Festplattenzugriff auf diese zwei Threads aufgeteilt wird wird vermieden, dass sich die Aufgaben gegenseitig behindern oder ausbremsen.
+Der HDDPairBuffer besitzt zwei Threads: Ein Thread, um die von GenKB übergebenen Paare auf der Festplatte zu speichern und ein Thread, um die Paare von der Festplatte zu lesen und GenKB bereit zu stellen. Dadurch, dass der Festplattenzugriff auf diese zwei Threads aufgeteilt wird wird vermieden, dass sich die Aufgaben gegenseitig behindern oder ausbremsen. Die Hauptklasse HDDPairBuffer bietet GenKB Methoden an, um ein Paar abzulegen und ein neues Paar abzurufen. Dabei leitet HDDPairBuffer diese Anfragen direkt an die beiden Threads zum Speichern und Abrufen der Daten weiter und tut selbst nichts damit. Neben diesen beiden Methoden zur Verabeitung der Pairs besitzt auch HDDPairBuffer Methoden zum Starten und Beenden von Iterationen und um der GUI Informationen bereit zu stellen. \\
+hier: writerThread \\
+hier: readerThread \\
 \\todo: auch clear
 \\todo: getnextPair
 \\todo: add pair ->auch bedenken wegen parallel. ein punkt bleibt offen!

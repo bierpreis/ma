@@ -629,7 +629,7 @@ todo:Performance Vergleich mit kurzen Übersetzungen als Begründung warum die n
 
 
 Die Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagram ist in \autoref{pic:knowledgebase} zu sehen. Als Attribute besitzt die Klasse zum einen die Nummer der Wissensbasis als int Wert. Des Weiteren besitzt die Klasse natürlich eine Liste der enthaltenen Konditionale.  \\
-Eine sehr wichtige Methode ist \textit{isCosnsitentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis konsistent mit dem übergebenem Konditional ist. Die Implementierung der Methode ist in \autoref{code:kb-consistent} zu sehen.
+Eine sehr wichtige Methode ist \textit{isCosnsitentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis konsistent mit dem übergebenem Konditional ist. Die Implementierung der Methode ist in \autoref{code:kb-consistent} zu sehen. Dieser Algorithmus ist die Implementierung des bereits in \autoref{sec:wissensbasen} erwähnten n und in \cite{goldszmidt96} entwickelten Toleranz Tests für Wissensbasen. %todo: erklären
 
 
 
@@ -652,8 +652,8 @@ return false;
 \label{code:kb-consistent}
 \end{figure} 
 
-
-beschreiben, warum numbers kb gelöscht wurde (bringt nix. spart nicht viel speicher ist aber deutlich langsamer)
+Daneben besitzt die Klasse KnowledgeBase neben der "normalen" noch zwei \textit{toString()} Methoden. Die erste ist die \textit{toFileString()} Methode, die aus der Wissensbasis in einen InfOCF kompatiblem String erzeugt, um in in eine Datei zu schreiben. Die zweite Methode ist die \textit{toShortFileString()} Methode. Damit wird eine besonders kurze Repräsentation der Wissensbasis erzeugt, die beim Schreiben von Pairs auf die Festplatte genutzt wird, wie es unter \autoref{sec:realpair} gezeigt wird. \\
+Ursprünglich gab es auch eine Implementierung einer Wissensbasis, die anstatt einer List<Conditional> eine List<Integer> zur Speicherung der Wissensbasen verwendet hat. Dies sollte Arbeitsspeicher sparen. Die Ersparnis war aber gering, dafür kostete das Verfahren recht viel Rechenzeit, daher wird dieses Verfahren nicht mehr genutzt.
 
 
 \section{Zwischenspeicherung der Daten}
@@ -683,6 +683,7 @@ Im Programm werden die zwei Implementierungen genutzt, die hier vorgestellt werd
 Wie beschrieben, vereint die Klasse AbstractPair die Gemeinsamkeiten ihrer beiden Implementierungen und bildet die Schnittstelle für deren Verwendung, entsprechend ist die Klasse selbst eher übersichtlich. Ein etwas vereinfachtes Diagramm der Klasse AbstractPair ist in \autoref{pic:abstractpair} zu sehen. Als Attribut besitzt die Klasse nur die Wissensbasis in Form eines KnowledgeBase Objekts und eine Map<int,WConditional> in der alle Konditionale von NFC unter ihrer Nummer abgespeichert sind. Des weiteren besitzt die Klasse 3 abstrakte und eine konkrete Methode. Die Methoden \textit{getKnowledgeBase()} und \textit{ getCandidatesList()} sind selbsterklärend. Die \textit{toFileString()} Methode gibt einen String zurück der die Klasse in einen String transformiert um diesen auf der Festplatte zu speichern. Die letzte Methode \textit{clear()} ist dazu da Speicher zu sparen und löscht die Daten in der Klasse, wenn diese nicht mehr gebraucht werden. Die \textit{clear()} Methoden in den Pair Implementierungen funktionieren nach einem einfachen Prinzip: Der Speicherbedarf eines Pairs wird zum großteil von den enthaltenen Instanzvariablen bestimmt. Diese Variablem werden einfach nach dem Schema \textit{variable = null} "gelöscht". Genau genommen wird dadurch Referenz von Objekt auf \textit{null} geändert. Dadurch kann der \textit{Java Garbage Collector} erkennen kann dass das Objekt selbst nicht mehr referenziert wird und wird es bei Gelegenheit löschen, falls es auch sonst nirgendwo mehr referenziert wird. Generell lässt sich zu den beiden folgenden AbstractPair Implementierungen sagen, dass sie sich besonders darin unterscheiden, wie sie die Liste der Kandidaten speichern. 
 
 \subsubsection{Real Pair}
+\label{sec:realpair}
 Die Klasse \textit{RealPair} speichert die Liste der Kandidaten zur Erweiterung der enthaltenen Wissensbasis als List<PConditional>. Das ist naheliegend und in der Verarbeitung schnell, benötigt jedoch sehr viel Speicher. Deshalb wird die Klasse RealPair nur in Verbindung mit Speicherung der Daten auf der Festplatte genutzt. Dadurch existieren zu jedem Zeitpunkt nur recht wenige Objekte dieser Klasse. Der hohe Speicherbedarf ist dann unproblematisch und die hohe Verarbeitungsgeschwindigkeit kann genutzt werden. \\
 Die Kandidaten werden einfach als ArrayList<PConditional> gespeichert. Ein einfacher Konstruktor in Form von \textit{RealPair(KnowledgeBase knowledgeBase, List<PConditional> candidates)} steht bereit, um das Paar in GenKB in Zeile 5 und 12 zu erstellen. Die eigentliche Komplexität in der Klasse RealPair liegt darin, alle Informationen der Klasse in einen möglichst kurzgefassten String umzuwandeln, um die Klasse auf der Festplatte zu speichern und analog dazu die Klasse aus diesem Stück Text wieder zu rekonstruieren.
 

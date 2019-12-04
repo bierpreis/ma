@@ -718,8 +718,7 @@ Als Konstruktor für die Klasse wird nur der Konstruktor in der Form \textit{Com
 \label{sec:pairbuffer}
 
 
-Als \textit{PairBuffer} wird die Datenstruktur bezeichnet, welche die Menge der im Abschnitt zuvor beschriebenen Paare aus Wissensbasis und Kandidaten verwaltet und speichert. Der PairBuffer nimmt als die Variable "l" in GenKB ein. Dabei sind zwei verschieden Varianten implementiert: eine Variante legt die Daten im Arbeitsspeicher ab während die andere Variante die Festplatte nutzt. Der Nutzer kann in der grafischen Oberfläche in den Optionen unter "Buffering" wählen, ob die Daten auf der Festplatte gespeichert werden sollen oder ob der Arbeitsspeicher verwendet werden soll.
-
+Als \textit{PairBuffer} wird die Datenstruktur bezeichnet, welche die Menge der im Abschnitt zuvor beschriebenen Paare aus Wissensbasis und Kandidaten verwaltet und speichert. Der PairBuffer ist damit die Datenstruktur, die in GenKb mit der Variable klein l bezeichnet wird. Dabei sind zwei verschieden Varianten implementiert: eine Option legt die Daten im Arbeitsspeicher ab während die andere Option als Speicher die Festplatte nutzt. Der Nutzer kann in der grafischen Oberfläche in den Optionen unter "Buffering" \space wählen, welche der beiden Varianten verwendet werden soll.
 
 \subsubsection{AbstractPairBuffer}
 Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die von beiden Varianten der Speicherverwaltung implementiert wird und hat hauptsächlich den Charakter eine Schnittstelle. Da sich die Implementierungen stark unterscheiden, stellt diese Klasse selbst keine eigene Funktionalität bereit. Die abstrakten Methoden der Klasse lassen sich in die folgenden Kategorien einteilen:

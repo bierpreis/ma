@@ -702,8 +702,8 @@ Analog zur Speicherung eines Pairs als String besitzt die Klasse RealPair auch e
 \subsubsection{Real Pair}
 \label{sec:realpair}
 todo: neu auch: konstruktor(pair) \\
-Die Klasse \textit{RealPair} speichert die Liste der Kandidaten zur Erweiterung der enthaltenen Wissensbasis als List<PConditional>. Das ist naheliegend und in der Verarbeitung schnell, benötigt jedoch sehr viel Speicher. Dadurch existieren zu jedem Zeitpunkt nur recht wenige Objekte dieser Klasse. Der hohe Speicherbedarf ist dann unproblematisch und die hohe Verarbeitungsgeschwindigkeit kann genutzt werden. \\
-Die Kandidaten werden einfach als ArrayList<PConditional> gespeichert. Ein einfacher Konstruktor in Form von \textit{RealPair(KnowledgeBase knowledgeBase, List<PConditional> candidates)} steht bereit, um das Paar in GenKB in Zeile 5 und 12 zu erstellen. Ein weiterer Konstruktor steht in der Form \textit{RealPair(AbstractPair other)} bereit. Dieser erstellt aus einer AbstractPair Implememtierung ein RealPair. Dieser Konstruktor wird dazu genutzt, um aus einem CompressedPair ein RealPair zu erzeugen, also die Komprimierten Daten wieder zu entpacken.
+Die Klasse \textit{RealPair} speichert die Liste der Kandidaten zur Erweiterung der enthaltenen Wissensbasis als List<PConditional>. Das ist naheliegend und in der Verarbeitung schnell, benötigt jedoch sehr viel Speicher. Während des Programmablaufs existiert zu jedem Zeitpunkt nur eine kleinere Menge an Objekten dieser Klasse. Dadurch ist der hohe Speicherbedarf unproblematisch und die gute Verarbeitungsgeschwindigkeit kann genutzt werden. \\
+Die Kandidaten werden als ArrayList<PConditional> im Objekt gespeichert. Ein einfacher Konstruktor in Form von \textit{RealPair(KnowledgeBase knowledgeBase, List<PConditional> candidates)} steht bereit, um das Paar in GenKB in Zeile 5 und 12 zu erstellen. Ein weiterer Konstruktor steht in der Form \textit{RealPair(AbstractPair other)} bereit. Dieser erstellt aus einer AbstractPair Implememtierung ein RealPair. Dieser Konstruktor wird dazu genutzt, um aus einem CompressedPair ein RealPair zu erzeugen, also die Komprimierten Daten wieder zu entpacken.
 
 
 

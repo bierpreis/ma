@@ -709,7 +709,7 @@ Es existieren drei Konstruktoren der Klasse RealPair. Ein einfacher Konstruktor 
 Die Klasse  \textit{CompressedPair} ist die Implementierung von AbstractPair, die verwendet wird, wenn die Daten nicht auf der Festplatte zwischengespeichert werden, sondern im Arbeitsspeicher verbleiben. Wie der Name schon verrät, ist dafür ein Kompressionsmechanismus eingebaut. Dieser betrifft die Speicherung der Liste der Kandidaten. Ähnlich wie bei der Speicherung in AbstractPairs als Text auf der Festplatte durch die Methode \textit{toShortFileString()} werden hier zusammenhängende Folgen von Konditionalen genutzt, um Speicherplatz zu sparen. Dazu besitzt die Klasse CompressedPair ein zweidimensionales Array in der Form \textit{int[][]}. Damit werden die Daten im Arbeitsspeicher abgelegt. Die Wahl des Datentyps fällt auf Arrays statt Listen, da die Speicherung hier viel effizienter erfolgen kann. In Java existiert der simple Datentyp int und analog dazu die Möglichkeit Integer Werte als Objekte der \textit{Integer} Klasse zu speichern. Der simple int Typ benötigt dabei jedoch deutlich weniger Speicher als der Overhead eines Objekts der Klasse Integer. Listen können in Java jedoch nur von Integer Objekten erstellt werden, nicht von simplen int Werten, daher müssen die Werte hier in Arrays gespeichert werden.\\
 Der Kompressionsalgorithmus sucht wieder zusammenhängende Mengen von Konditionalen im Format (Nummer des ersten Konditionals) (Nummer des letzten Konditionals). Diese werden als int Array mit der Länge zwei abgelegt. Von diesen int Arrays der Länge zwei wird dann ein wiederum Array erstellt und darin die gesamte Menge der Konditionale gespeichert. Die Größe des gesamten Arrays beträgt dann [Menge der zusammenhängenden Bereiche][2]. Solange die zusammenhängenden Bereiche groß sind, funktioniert die Kompression sehr gut. Mit steigendem Wert von k kommen jedoch immer mehr Lücken hinzu und die Speicherung wird zunehmend umständlich. \\
 Mit der Signatur $\Sigma=\{abc\}$ werden nur geringe Werte für k erreicht, demzufolge ist die Speicherung im relevanten Bereich sehr effizient. Mit der Signatur $\Sigma=\{ab\}$ werden jedoch höhere Werte für k erreicht. Zusätzlich ist hier die Menge der Kandidaten viel geringer, sodass diese Kompression kaum Vorteile bringt. Das ergibt dann den folgenden Effekt: Für geringe Werte für k wird weniger Speicher benötigt, für hohe Werte für k wird sogar mehr Speicher benötigt im Vergleich zum Verzicht auf Kompression. Da die Signatur  $\Sigma=\{abc\}$ im Vordergrund steht wird die Ineffizienz für $\Sigma=\{ab\}$ für hohe Werte für $k$  jedoch ignoriert.\\
-Als Konstruktor für die Klasse wird nur der Konstruktor in der Form \textit{CompressedPair(AbstractPair originalPair)} verwendet. Damit werden im \textit{RamPairBuffer} wie in \autoref{sec:rampairbuffer} beschrieben RealPair Objekte in CompressedPair Objekte umgewandelt, um Speicherplatz zu sparen.
+Als Konstruktor für die Klasse wird nur der Konstruktor in der Form \textit{CompressedPair( AbstractPair originalPair)} verwendet. Damit werden im \textit{RamPairBuffer} wie in \autoref{sec:rampairbuffer} beschrieben RealPair Objekte in CompressedPair Objekte umgewandelt, um Speicherplatz zu sparen.
 
 
 
@@ -721,15 +721,7 @@ Als Konstruktor für die Klasse wird nur der Konstruktor in der Form \textit{Com
 Als \textit{PairBuffer} wird die Datenstruktur bezeichnet, welche die Menge der im Abschnitt zuvor beschriebenen Paare aus Wissensbasis und Kandidaten verwaltet und speichert. Der PairBuffer ist damit die Datenstruktur, die in GenKb mit der Variable klein l bezeichnet wird. Dabei sind zwei verschieden Varianten implementiert: eine Option legt die Daten im Arbeitsspeicher ab während die andere Option als Speicher die Festplatte nutzt. Der Nutzer kann in der grafischen Oberfläche in den Optionen unter "Buffering" \space wählen, welche der beiden Varianten verwendet werden soll.
 
 \subsubsection{AbstractPairBuffer}
-Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die von beiden Varianten der Speicherverwaltung implementiert wird und hat hauptsächlich den Charakter eine Schnittstelle. Da sich die Implementierungen stark unterscheiden, stellt diese Klasse selbst keine eigene Funktionalität bereit. Die abstrakten Methoden der Klasse lassen sich in die folgenden Kategorien einteilen:
-
-\begin{itemize}
-
-\item{Starten und Beenden von Iterationen}
-\item{Hinzufügen und Abrufen von Datensätzen}
-\item{Abrufen Statusinformationen zum Anzeigen in der grafischen Oberfläche}
-\end{itemize}
-
+Die Klasse \textit{AbstractPairBuffer} ist die Abstrakte Klasse die von beiden Varianten der Speicherverwaltung implementiert wird und hat hauptsächlich den Charakter eine Schnittstelle. Da sich die Implementierungen stark unterscheiden, diese Klasse kaum eigene Funktionalität bereit, dafür jedoch einige Abstrakte Methoden. Das sind zum einen Methoden um die Iterationen zu verwalten und zum anderen um der grafischen Oberfläche Informationen bereit zu stellen. \\
 
 
 \subsubsection{RamPairBuffer}

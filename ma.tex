@@ -730,7 +730,10 @@ Der RamPairBuffer besitzt eine Datenstruktur in der Form \textit{List<List<Compr
 Ein Thread kümmert sich um die \textit{newIterationQueue}, also um die von GenKB in Zeile neu erstellten Paare als Instanzen von RealPair. Sobald die Queue Pairs enthält, entnimmt der Thread die Pairs und wandelt sie in CompressedPairs um. Dazu Wird der Konstruktor \textit{CompressedPair(RealPair)} genutzt. Die neu erstellen CompressedPairs werden dann in die Datenstruktur unter dem aktuellen Wert für $k+1$ abgelegt. Die Kompression findet in dem  dedizierten Thread statt und nicht in der Impelementierung von GenKb selbst, weil das GenKB eine Menge Arbeit abnimmt und somit deutlich beschleunigt. \\
 Analog dazu kümmert sich der andere Thread um die \textit{lastIterationQueue}. Der Thread befüllt die Queue mit RealPairs, damit sie GenKB in Zeile 9 entnehmen kann und nicht selbst entkomprimieren muss. Auch das beschleunigt GenKB selbst deutlich. Der Thread entnimmt also die CompressedPairs aus der Liste mit Index $k$, wandelt sie duch den Konstruktor \textit{RealPair(CompressedPair)} um und legt sie in die \textit{lastIterationQueue}. \\
 Die beiden Queues werden jeweils als \textit{ArrayBlockingQueue(1000)} mit der Größe 1000 initialisiert. Die genaue größe ist nicht wirklich wichtig. Sie ist mit dem Wert groß genug, dass sie den Prozess nicht verlangsamt aber auch nicht so groß dass sie zu viel Speicher benötigen würde. \\
-Die Liste in der Form \textit{List<List<CompressedPair>>} wird von einigen Methoden zum Iterationswechsel bearbeitet. Das beinhaltet natürlich das anlegen neuer Listen, aber insbesondere auch das löschen der Listen, welche nicht mehr benötigt werden.
+Die Liste in der Form \textit{List<List<CompressedPair>>} wird von einigen Methoden zum Iterationswechsel bearbeitet. Das beinhaltet natürlich das anlegen neuer Listen, aber insbesondere auch das löschen der Listen, welche nicht mehr benötigt werden. 
+\\todo: prepare iteration beschreiben.
+\\todo: wo wird clear ausgeführt?
+\\todo: alte version angucken. was vergessen?
 \subsubsection{HDDPairBuffer}
 \label{sec:hddBuffer} 
 todo: das neue zeug \\

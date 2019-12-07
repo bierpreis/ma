@@ -716,7 +716,16 @@ Als Konstruktor für die Klasse wird nur der Konstruktor in der Form \textit{Com
 Die Datenstruktur, welche die im Abschnitt zuvor beschriebenen Paare aus Wissensbasis und Kandidaten verwaltet, wird im Folgenden als  \textit{PairBuffer} bezeichnet. Der PairBuffer ist damit das Element, welches in GenKb mit der Variable groß $L$ bezeichnet wird. Dabei sind im Programm zwei verschieden Varianten implementiert: Eine Option legt die Daten im Arbeitsspeicher ab, während die andere Option als Speicher die Festplatte nutzt. Der Nutzer kann in der grafischen Oberfläche in den Optionen unter "Buffering" \space wählen, welche der beiden Varianten verwendet werden soll.
 
 \subsubsection{AbstractPairBuffer}
-todo: diagramm? \\
+\label{sec:abstractbuffer}
+todo: anpassen
+
+\begin{figure}
+\includegraphics[width=0.45\linewidth]{bilder/AbstractPairBuffer.png}
+\caption{AbstractPairBuffer}
+\label{pic:abstractpairbuffer}
+\end{figure}
+
+
 \textit{AbstractPairBuffer} ist die Klasse, von welcher beiden Varianten der Speicherverwaltung erben und hat dabei hauptsächlich den Charakter eine Schnittstelle. Da sich die zwei Implementierungen stark unterscheiden, stellt diese abstrakte Klasse kaum eigene Funktionalität bereit und enthält dafür diverse abstrakte Methoden. Das sind zum Einen Methoden um die Iterationen zu verwalten und zum Anderen um der grafischen Oberfläche Informationen bereit zu stellen. Ansonsten ist noch die Methode \textit{hasMoreElements(int k)} zu erwähnen, mit der GenKB prüfen kann, ob eine Iteration $k$ mehr Elemente zum bearbeiten besitzt, was der GenKB Zeile 8 entspricht. Deren genaue Funktion ist Abhängig von der Variante der Implementierung.\\
 Die Klasse AbstractPairBuffer besitzt zwei Instanzvariablen, welche allerdings erst in den beiden Implementierungen konkret initialisiert werden. Es handelt sich um zwei \textit{BlockingQueues} zur Verwaltung der Pairs. Blockingqueues deshalb, weil sie erstens threadsicher sind und zweitens das im Anschluss beschriebene Blocking unterstützen. Die erste Queue heißt \textit{lastIterationQueue} und stellt  die Paare zur Verarbeitung in einer Iteration $k$ bereit. Die zweite heißt \textit{nextIterationQueue} und nimmt während einer Iteration $k$ die für die nächste Iteration $k+1$ erstellen Paare auf und übernimmt deren Weiterverarbeitung.  Um diese Weiterverarbeitung kümmert sich dann jeweils ein eigener Thread innerhalb des PairBuffers. Beide Queues werden als Objekte der Klasse \textit{ArrayBlockingQueue} mit fester Größe initialisiert, diese Implementierung hat sich für die Aufgabe nach einigen Tests als gute Wahl erwiesen. \\
 Durch die feste Größe der Queue ist sichergestellt, dass die Queues nicht endlos groß Wachsen können. In Java sind BlockingQueues gut geeignet für Consumer-Producer Patterns wie hier. Wenn eine Queue voll ist, wartet ein Thread automatisch bis wieder ein Platz frei wird, bevor das nächste Element abgelegt werden kann. Analog wartet ein Thread automatisch, wenn er ein Element aus der Queue entnehmen will, diese jedoch im Moment keine Elemente beinhaltet. Der Thread läuft hier dann automatisch weiter, wenn wieder ein Element bereitgestellt wurde. Dadurch sorgen die Queues dafür, dass Producer und Consumer aufeinander warten und dabei ineffizientes \textit{busy wait} vermeiden.\\

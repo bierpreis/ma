@@ -765,7 +765,7 @@ Hier ein schönes Übersichtsdiagramm. Hier auch was zum Threading.
 \subsection{Implementierung von GenKB}
 Erstmal Simple Creator. Funktioniert Parallel? Das wär gut, auch zum gegenüberstellen.
 \subsection{KnowledgeBase Writer}
-beschreiben. 
+Der KnowledgeBaseWriter kümmert sich um die Aufnahme der Wissensbasen, die von GenKB erstellt werden. Das beinhaltet zum einen die konsistenten, aber auch die Inkonsistenten Wissensbasen. Es sind zwei Vairanten implementiert, zwischen denen der Benutzer wählen kann: Zum Einen können die Wissensbasen getrennt in konsistent und inkonsistent jeweils gruppiert nach Anzahl der enthaltenen Konditionale gespeichert werden, das übernimmt die Implementierung \textit{KBWriter}. Zum Anderen können die Wissensbasen direkt wieder gelöscht werden. Das ist nützlich für Testläufe, denn es beschleunigt den gesamten Prozess und erspart das nachträgliche Löschen der Daten.
 \subsubsection{AbstractWriter}
 
 \subsubsection{KBWriter}

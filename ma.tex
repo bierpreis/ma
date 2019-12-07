@@ -764,9 +764,11 @@ Hier ein schönes Übersichtsdiagramm. Hier auch was zum Threading.
 
 \subsection{Implementierung von GenKB}
 Erstmal Simple Creator. Funktioniert Parallel? Das wär gut, auch zum gegenüberstellen.
-\subsection{KnowledgeBase Writer}
-Der KnowledgeBaseWriter kümmert sich um die Aufnahme der Wissensbasen, die von GenKB erstellt werden. Das beinhaltet zum einen die konsistenten, aber auch die Inkonsistenten Wissensbasen. Es sind zwei Vairanten implementiert, zwischen denen der Benutzer wählen kann: Zum Einen können die Wissensbasen getrennt in konsistent und inkonsistent jeweils gruppiert nach Anzahl der enthaltenen Konditionale gespeichert werden, das übernimmt die Implementierung \textit{KbFileWriter}. Zum Anderen können die Wissensbasen direkt wieder gelöscht werden, das wird von der Impelementierung \textit{DummyWriter} übernommen. Das ist nützlich für Testläufe, denn es beschleunigt den gesamten Prozess und erspart das nachträgliche Löschen der Daten.
-\subsubsection{AbstractKbWriter}
+
+
+\section{Speicherung der Wissensbasen}
+Die Wissensbasen, die von GenKB generiert werden, müssen danachauf irgend eine Weise weiterverarbeitet werden. Das beinhaltet sowohl die konsistenten als auch die inkonsistenten Wissensbasen, die voneinander getrennt behandelt werden. Es sind zwei Vairanten der Weiterverarbeitung für Wissensbasen implementiert, zwischen denen der Benutzer wählen kann: Die Wissensbasen können entweder getrennt in konsistent und inkonsistent jeweils gruppiert nach Anzahl der darin enthaltenen Konditionale gespeichert werden, das übernimmt die Implementierung \textit{KbFileWriter}. Oder aber die Wissensbasen werden direkt nach der Erzeugung wieder gelöscht, das wird dann von der Impelementierung \textit{DummyWriter} übernommen. Diese Variante ist nützlich für Testläufe, denn es beschleunigt den gesamten Prozess und erspart das nachträgliche Löschen der Daten.
+\subsection{AbstractKbWriter}
 
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/AbstractKbWriter.png}
@@ -775,14 +777,14 @@ Der KnowledgeBaseWriter kümmert sich um die Aufnahme der Wissensbasen, die von 
 \end{figure}
 
 
-AbstractKbWriter ist hier die abstrakte Klasse die von beiden Varianten des AbstractKbWriters implementiert wird. Der Aufbau hat einige Ähnlichkeiten zur bereits beschriebenen Klasse AbstractPairWriter. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:abstractkbwriter} zu sehen. Es gibt zwei BlockingQueues als Instanzvariablen. Eine \textit{consistentQueue}, in welche GenKB die konsistenten Wissensbasen einfügt und die \textit{inconsistentQueue} in der GenKB die inkonsistenten Wissensbasen einreiht. Die Beiden Queues werden auch direkt im Konstruktor des AbstractKbWriter als \textit{ArrayBlockingQueue(5000)} initialisiert. Für jede der beiden BlockingQueues existiert ein eigener Thread, der sich um die Bearbeitung der Queues kümmert. Hier also ein Thread für die konsistenten und ein Thread für die inkonsistenten Wissensbasen. Die beiden BlockingQueues ochestrieren hier also wieder die Zusammenarbeit von GenKB und den beiden Writer Threads. Zum Iterationswechsel sind auch hier zwei Methoden vorhanden, \textit{prepareIteration(int k)} zur Vorbereitung einer neuen Iteration und \textit{finishIteration()} zum korrekten Beenden der aktuellen Iteration. Daneben wieder im Diagramm nicht erwähnte Methoden, um Informationen an die GUI weiterzugeben und die Threads außerplanmäßig über den Stop Button zu beenden.
+\textit{AbstractKbWriter} ist die abstrakte Klasse welche von den beiden Varianten der Verarbeitung der Wissensbasen implementiert wird. Der Aufbau der Klasse AbstractWriter hat einige Ähnlichkeiten zur bereits beschriebenen Klasse AbstractPairWriter. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:abstractkbwriter} zu sehen. Es gibt zwei BlockingQueues als Instanzvariablen. Eine \textit{consistentQueue}, in welche GenKB die konsistenten Wissensbasen einfügt und die \textit{inconsistentQueue} in der GenKB die inkonsistenten Wissensbasen einreiht. Die Beiden Queues werden auch direkt im Konstruktor des AbstractKbWriter als \textit{ArrayBlockingQueue(5000)} initialisiert. Für jede der beiden BlockingQueues existiert ein eigener Thread, der sich um die Bearbeitung der Queues kümmert. Hier also ein Thread für die konsistenten und ein Thread für die inkonsistenten Wissensbasen. Die beiden BlockingQueues ochestrieren hier also wieder die Zusammenarbeit von GenKB und den beiden Writer Threads. Zum Iterationswechsel sind auch hier zwei Methoden vorhanden, \textit{prepareIteration(int k)} zur Vorbereitung einer neuen Iteration und \textit{finishIteration()} zum korrekten Beenden der aktuellen Iteration. Daneben auch hier im Diagramm nicht erwähnte Methoden, um Informationen an die GUI weiterzugeben und die Threads außerplanmäßig über den Stop Button zu beenden.
 
-\subsubsection{KBWriter}
-
+\subsection{KBFileWriter}
+todo wenn info da
 \subsubsection{DummyWriter}
 
 %\subsubsection{Parallel Writer?}
-eigentlich sollte es den nicht geben, sondern einen collector imparallel creator!
+todo
 \subsection{Beschreibung der grafischen Oberfläche}
 möglicherweise auch am anfang analog zu kb creator? würde die schritte vereinfachen! \\
 auf jeden fall linke und rechte seite trennen.

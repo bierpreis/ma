@@ -220,12 +220,14 @@ mit $r \rdotl r'$ gdw. $r\dotl r'$ für alle $i \in \{1, ..., m\}$ und alle $r, 
 
 
 \section{Strukturierung des Vorgehens}
+\subsection{Allgemein}
 Das Ziel des weiteren Vorgehens ist es, den Algorithmus GenKB aus \cite{beierle19} praktisch umzusetzen und möglichst viele Wissensbasen auf Basis der Signatur $\Sigma=\{a,b,c\}$ zu generieren. Da aufgrund der Menge der möglichen Konditionale das Ziel nicht auch nur Ansatzweise vollständig bearbeitet werden kann, wird oft auch auch die Signatur $\Sigma=\{a,b\}$ betrachtet. Mit dieser reduzierten Signatur ist es möglich, aufgrund der deutlich geringeren Menge an Konditionalen alle möglichen Wissensbasen zu generieren. Damit lässt sich am kleineren Beispiel prüfen, ob die grundsätzliche Vorgehensweise korrekt ist und letztendlich die Aufgabenstellung vollständig lösen könnte. \\
 Die Aufgabenstellung wird dafür in zwei Teile gegliedert. Im ersten Teil werden die Konditionale in Normalform basierend auf der Signatur $\Sigma=\{a,b,c\}$ berechnet und somit die Menge aller Konditionale $NFC$  berechnet. Anschließend werden auf dieser Menge an Konditionalen die Äquivalenzklassen Untersucht und damit die Menge der kanonischen Konditionale $cNFC$ sowie die einzelnen Äquivalenzklassen berechnet. Dabei werden die Konditionale auch nach der Ordnunggsrelation $\rdotl$ sortiert. Dazu werden im ersten Teil die Konditionale auf der Klasse \textit{WConditional} (W für Worlds) bearbeitet. Diese Repräsentation spiegelt die Darstellung von Konditionalen in Normalformen in \cite{beierle19} wieder. Diese Darstellung ist außerdem dafür optimiert, die in \cite{beierle19} dargestellte Ordnung im Sinne von $\rdotl$ zu repräsentieren und ermöglicht so die Sortierung der Konditionale und damit die Betrachtung von Äquivalenz. \\
 Im zweiten Teil dieser Arbeit findet dann die eigentliche Generierung der Wissensbasen statt. Dazu werden die Konditionale ausgehend von Objekten der Klasse \textit{WConditional} in Objekte der Klasse \textit{PConditional} (P für Propositional logic) übersetzt. Diese Klasse ist dann für die Arbeit mit Aussagenlogik optimiert und ermöglicht so die Prüfung von Konsistenz und damit die Anwendung für den Algorithmus GenKB.
 
 
-
+\subsection{Überblick über das Programm}
+todo: hier diagramme die eine übersicht zu dem ganzen kram zeigen?!
 
 \section{Berechnung und Sortierung der Konditionale}
 
@@ -490,11 +492,10 @@ private void createBasicEquivalents() {
 
 
 
-%todo: hier ist conditional und konditional wild durcheinander!
 \subsection{Counter Conditionals}
 \label{sec:counter-conditonals}
-Für den Algorithmus GenKB ist es nötig, dass zu einem Konditional schnell dass Counter Konditional gefunden werden kann. Mit der Klasse WConditional wird das vorbereitet. Analog zum Finden der äquivalenten Konditionale besitzt dazu jedes Konditional zum Einen eine Methode, um zunächst ein \textit{neues} Counter Conditional zu erstellen. Wenn dann alle Konditionale erstellt sind, wird nach dem \textit{tatsächlichen} Objekt des Counter Conditional gesucht und dieses im ursprünglichen Konditional gesetzt. \\
-Um das vorläufige Counter Conditonal zu generieren wird in der Methode \textit{getBasicCounterConditional()} zunächst ein \textit{neues} Konditional generiert, wie in \autoref{code:basic-counter} dargestellt. Als Antecedent für das neue Konditonal wird das Antecedent des alten verwendet, dieses bleibt ja gleich. Als Consequence wird die Liste der Welten des Antecedent minus der Liste der Welten der Consequence  des ursprünglichen Konditionals gebildet. Die Methode \textit{getBasicCounterConditional()} wird dann später verwendet, um mit der Methode \textit{findCounterConditional(...)} aus \autoref{code:real-counter} über NFC zu iterieren und damit dann das tatsächliche Counter Conditonal zu setzen. Im Programm NFC Viewer kann mit dem Button NFC$\_$COUNTER die Menge NFC mit den dazugehörigen Counter Conditionals angezeigt werden.
+Für den Algorithmus GenKB ist es nötig, dass zu einem Konditional schnell dass Counter Konditional gefunden werden kann. Mit der Klasse WConditional wird das vorbereitet. Analog zum Finden der äquivalenten Konditionale besitzt dazu jedes Konditional zum Einen eine Methode, um zunächst ein \textit{neues} Counter Konditional zu erstellen. Wenn dann alle Konditionale erstellt sind, wird nach dem \textit{tatsächlichen} Objekt des Counter Konditional gesucht und dieses im ursprünglichen Konditional gesetzt. \\
+Um das vorläufige Counter Konditonal zu generieren wird in der Methode \textit{getBasicCounterConditional()} zunächst ein \textit{neues} Konditional generiert, wie in \autoref{code:basic-counter} dargestellt. Als Antecedent für das neue Konditonal wird das Antecedent des alten verwendet, dieses bleibt ja gleich. Als Consequence wird die Liste der Welten des Antecedent minus der Liste der Welten der Consequence  des ursprünglichen Konditionals gebildet. Die Methode \textit{getBasicCounterConditional()} wird dann später verwendet, um mit der Methode \textit{findCounterConditional(...)} aus \autoref{code:real-counter} über NFC zu iterieren und damit dann das tatsächliche Counter Conditonal zu setzen. Im Programm NFC Viewer kann mit dem Button NFC$\_$COUNTER die Menge NFC mit den dazugehörigen Counter Konditionale angezeigt werden.
 
 \begin{figure}
 \begin{lstlisting}

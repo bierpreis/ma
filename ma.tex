@@ -525,6 +525,9 @@ private WConditional findCounterConditional(WConditional conditional, List<WCond
 \end{figure} 
 
 
+\section{GUI zum Erstellen und betrachten der Kodnitionale}
+todo: beschreiben, screenshots. subsections? 
+
 
 
 \section{Konditionale und Aussagenlogik}
@@ -800,7 +803,7 @@ Der KBFileWriter bietet für das Schreiben von Dateien die Option an, eine feste
 Auch der DummyKbWriter besitzt zwei gleich aufgebaute Threads: Einer kümmert sich um die \textit{consistentKbQueue}, der Andere bearbeitet die \textit{inconsistentKbQueue}. Beide Threads beobachten ihre Queue und sobald Elemente darin erscheinen, werden diese gezählt und sofort wieder gelöscht. Das Zählen findet einmal  in Bezug auf die Gesamtmenge des Programmverlaufs über alle Iterationen statt und einmal auf die aktuelle Iteration. Die gezählten Werte ruft die grafische Oberfläche dann ab, um sie für den Benutzer anzuzeigen. Weiterhin besitzt der DummyKbWriter noch eine Methode zum Iterationswechsel, die macht allerdings nichts anderes als den Zähler der Wissensbasen für die aktuelle Iteration wieder auf 0 zu setzen.
 \subsection{Beschreibung der grafischen Oberfläche}
 todo: möglicherweise auch am anfang? würde die schritte vereinfachen! \\
-dazu auch: schritt benutzung? also die info, dass alles per gui bedient werden kann aber terminal zusatz infos rausgibt. \\
+dazu auch: schritt benutzung? also die info, dass alles per gui bedient werden kann aber terminal zusatz infos rausgibt. \\atus
 todo: screenshot wenn fertig \\
 Die Grafische Oberfläche des KBCreators ist in XXX gezeigt und besteht aus zwei Teilen: Die linke Seite beinhaltet die möglichen Optionen, die zum generieren der Wissensbasis eingestellt werden können. Einige Optionen sind dabei von Anderen abhängig und werde ausgegraut dargestellt, wenn sie in der aktuell gewählten Optionen nicht sinnvoll zu bearbeiten sind. Am unteren Ende der Einstellungen befinden sich der Start und der Stop Button für den Creator. \\
 Auf der Rechten Seite befindet sich die Anzeige für den aktuellen Status mit vielen Details. Wenn der Creator nicht läuft, ist die gesamte Rechte Seite ausgegraut. Wenn er läuft, werden die Informationen mit schwarzer Schrift dargestellt und laufend aktualisiert, die Aktualisierung übernimmt ein eigener Thread. Wenn der Creator gestoppt wird, wird die rechte Seite wieder ausgegraut. Die Informationen vom Zeitpunkt des Beenden des Creators werden jedoch weiterhin angezeigt.

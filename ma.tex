@@ -233,15 +233,14 @@ todo: hier diagramme die eine übersicht zu dem ganzen kram zeigen?!
 
 
 \subsection{NFC Creator}
-todo: rename caption?
 
-In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens \textit{NfcCreator} erstellt. Dieses Programm wird dafür genutzt, um die Konditionale zu erzeugen, aus denen dann die Wissensbasen generiert werden können. So dient das Programm als Grundlage für den Hauptteil dieser Arbeit. Zusätzlich gibt es dafür noch eine kleine GUI, um die Konditionale mit verschiedenen Optionen erzeugen und betrachten zu können. Diese GUI wird am Ende dieses Abschnitts kurz vorgestellt.
-\\todo: hier etwas mehr intro was als nächstes passiert.
+
+In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens \textit{NfcCreator} erstellt. Dieses Programm wird dafür genutzt, um die Konditionale zu erzeugen, aus denen dann die Wissensbasen generiert werden können. So dient das Programm als Grundlage für den Hauptteil dieser Arbeit. Zusätzlich gibt es dafür noch eine kleine GUI, um die Konditionale mit verschiedenen Optionen erzeugen und betrachten zu können. Diese GUI wird am Ende dieses Abschnitts kurz vorgestellt. \\
+In den folgenden Unterabschnitten wird der Weg beschrieben, wie die Konditionale in Normalform berechnet werden. Dazu wird gezeigt, wie Mengen möglicher Welten dargestellt werden, wie damit Konditionale dargestellt werden und anschließend, wie die damit als Basis die Menge der Konditionale berechnet wird.
 
 
 
 \subsection{Die Klasse WorldsList}
-todo: rename caption
 \label{sec:worldslist}
 Die Bezeichung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit enthaltenden Welten darstellen. Eine solche Menge möglicher Welten wird mit einem Objekt der Klasse WorldsList dargetellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. Der Algorithmus, der alle Mengen aus den möglichen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs. \\
 Für die Signatur $\Sigma = \{abc\}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma=\{ab\}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button "WORLDS" \space geordnet betrachtet werden. Dargestellt im Programm werden diese Mengen jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \ref{pic:worldslist} gezeigt ist. 
@@ -356,7 +355,6 @@ Im Folgenden wird nun die Methode \textit{createRenamings()} der Klasse WorlsLis
 
 
 \subsection{Die Klasse WConditional} 
-todo: rename caption
 
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/wconditional.png}

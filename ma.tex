@@ -229,33 +229,19 @@ Im zweiten Teil dieser Arbeit findet dann die eigentliche Generierung der Wissen
 \subsection{Überblick über das Programm}
 todo: hier diagramme die eine übersicht zu dem ganzen kram zeigen?!
 
-\section{Berechnung und Sortierung der Konditionale}
-
+\section{Berechnung und der Konditionale}
 
 
 \subsection{NFC Creator}
+todo: rename caption?
 
-In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens \textit{NfcCreator} erstellt. Dieses Programm wird dafür genutzt, um die Konditionale zu erzeugen, aus denen dann die Wissensbasen generiert werden können. So dient das Programm als Grundlage für den Hauptteil dieser Arbeit. Zusätzlich gibt es dafür noch eine kleine GUI, um die Konditionale mit verschiedenen Optionen erzeugen und betrachten zu können. Diese GUI wird im nächsten Abschnitt kurz vorgestellt.
-
-
-
-\subsection{NFC Viewer}
-Der NfcCreator hat eine kleine grafische Oberfläche namens \textit{NfcViewer}, ein Screenshot davon ist in \autoref{pic:nfc-viewer} zu sehen. Damit können die erstellten Konditionale betrachtet und auch als Textdatei gespeichert werden. Es ist so auch möglich, Teilergebnisse aus dem Erstellungsprozess der Konditionale anzuzeigen, um den Vorgang besser nachvollziehen zu können.
+In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens \textit{NfcCreator} erstellt. Dieses Programm wird dafür genutzt, um die Konditionale zu erzeugen, aus denen dann die Wissensbasen generiert werden können. So dient das Programm als Grundlage für den Hauptteil dieser Arbeit. Zusätzlich gibt es dafür noch eine kleine GUI, um die Konditionale mit verschiedenen Optionen erzeugen und betrachten zu können. Diese GUI wird am Ende dieses Abschnitts kurz vorgestellt.
+\\todo: hier etwas mehr intro was als nächstes passiert.
 
 
-\begin{figure}
-\includegraphics[width=0.9\linewidth]{bilder/nfc-viewer.png}
-
-\caption{Screenshot NFC Viewer mit Ansicht analog zu Tabelle 1 aus \cite{beierle19}}
-\label{pic:nfc-viewer}
-\end{figure}
-
-
-
-Der grundsätzliche Aufbau der GUI des NfcViewers besteht aus zwei Teilen. Links befinden sich im oberen Bereich die Optionen, darunter befinden sich die Buttons mit den möglichen Aktionen. Auf der rechten Seite ist ein Textfenster, welches das Ergebnis der gewählten Optionen und Aktion zeigt. Darunter steht eine kurze Beschreibung des Inhalts des Textfeldes. \\
-Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bietet selbsterklärend die Möglichkeiten $ab$ und $abc$. Die Option \textit{View} stellt ein, ob eine mögliche Welt in Buchstabenform oder als Repräsentation als Zahl analog der Darstellung in \cite{beierle19} erfolgen soll. Beispielsweise wird mit Signatur $\Sigma=\{ab\}$ die mögliche Welt $a \overline{b}$ entweder als $a!b$ oder als 2 dargestellt. Mit der Option \textit{ShowNumbers} lässt sich einstellen, ob die angezeigten Objekte, beispielsweise Konditionale, nummeriert dargestellt werden sollen oder nicht. Die letzte Option \textit{SpaceChar} stellt einen Platzhalter für mehrere auf einer Zeile angezeigte Objekte ein. Im Screenshot ist die Option auf Space gesetzt. Wird Dot aktiviert, werden zeilenweise kleine Punkte angezeigt, damit der Betrachter die Zeilen am Bildschirm etwas leichter verfolgen kann als auf rein weißem Untergrund. Das untenliegende Feld bietet mit dem Save Button die Möglichkeit, den Inhalt des Textfensters zu speichern.
 
 \subsection{Die Klasse WorldsList}
+todo: rename caption
 \label{sec:worldslist}
 Die Bezeichung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit enthaltenden Welten darstellen. Eine solche Menge möglicher Welten wird mit einem Objekt der Klasse WorldsList dargetellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. Der Algorithmus, der alle Mengen aus den möglichen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs. \\
 Für die Signatur $\Sigma = \{abc\}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma=\{ab\}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button "WORLDS" \space geordnet betrachtet werden. Dargestellt im Programm werden diese Mengen jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \ref{pic:worldslist} gezeigt ist. 
@@ -369,7 +355,8 @@ Im Folgenden wird nun die Methode \textit{createRenamings()} der Klasse WorlsLis
 
 
 
-\subsection{Die Klasse WConditional}
+\subsection{Die Klasse WConditional} 
+todo: rename caption
 
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/wconditional.png}
@@ -535,8 +522,27 @@ private WConditional findCounterConditional(WConditional conditional, List<WCond
 
 
 
+\subsection{NFC Viewer}
 
-\section{Konditionale und Aussagenlogik}
+
+Der NfcCreator hat eine kleine grafische Oberfläche namens \textit{NfcViewer}, ein Screenshot davon ist in \autoref{pic:nfc-viewer} zu sehen. Damit können die erstellten Konditionale betrachtet und auch als Textdatei gespeichert werden. Es ist so auch möglich, Teilergebnisse aus dem Erstellungsprozess der Konditionale anzuzeigen, um den Vorgang besser nachvollziehen zu können.
+
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{bilder/nfc-viewer.png}
+
+\caption{Screenshot NFC Viewer mit Ansicht analog zu Tabelle 1 aus \cite{beierle19}}
+\label{pic:nfc-viewer}
+\end{figure}
+
+
+
+Der grundsätzliche Aufbau der GUI des NfcViewers besteht aus zwei Teilen. Links befinden sich im oberen Bereich die Optionen, darunter befinden sich die Buttons mit den möglichen Aktionen. Auf der rechten Seite ist ein Textfenster, welches das Ergebnis der gewählten Optionen und Aktion zeigt. Darunter steht eine kurze Beschreibung des Inhalts des Textfeldes. \\
+Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bietet selbsterklärend die Möglichkeiten $ab$ und $abc$. Die Option \textit{View} stellt ein, ob eine mögliche Welt in Buchstabenform oder als Repräsentation als Zahl analog der Darstellung in \cite{beierle19} erfolgen soll. Beispielsweise wird mit Signatur $\Sigma=\{ab\}$ die mögliche Welt $a \overline{b}$ entweder als $a!b$ oder als 2 dargestellt. Mit der Option \textit{ShowNumbers} lässt sich einstellen, ob die angezeigten Objekte, beispielsweise Konditionale, nummeriert dargestellt werden sollen oder nicht. Die letzte Option \textit{SpaceChar} stellt einen Platzhalter für mehrere auf einer Zeile angezeigte Objekte ein. Im Screenshot ist die Option auf Space gesetzt. Wird Dot aktiviert, werden zeilenweise kleine Punkte angezeigt, damit der Betrachter die Zeilen am Bildschirm etwas leichter verfolgen kann als auf rein weißem Untergrund. Das untenliegende Feld bietet mit dem Save Button die Möglichkeit, den Inhalt des Textfensters zu speichern.
+
+
+
+\section{Konditionale mit Aussagenlogik}
 Nachdem die Menge der Konditionale nun berechnet und sortiert ist, sollen aus ihr nun konsistente Wissensbasen generiert werden. Dazu sind die Konditionale in ihrer bisherigen Form als Instanzen von WConditional ungeeignet. Deshalb werden sie in Objekte der neuen Klasse PConditonal umgewandelt. Mit diesen ist dann die Verarbeitung von Aussagenlogik möglich und somit auch die Generierung der Wissensbasen.Im Folgenden werden der Weg dahin beschrieben.
 
 

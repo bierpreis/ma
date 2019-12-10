@@ -233,17 +233,23 @@ todo: hier diagramme die eine übersicht zu dem ganzen kram zeigen?!
 
 
 
-todo: eine section für creator und eine für viewer. nicht unnötig vermischen.
 \subsection{NFC Creator}
 
-In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens NFC Creator erstellt. Dieses Programm wird dafür genutzt, um die Konditionale zu erzeugen, aus denen dann die Wissensbasen generiert werden. Der NFC Creator hat zusätzlich eine eigene grafische Oberfläche namens NFC Viewer, ein Screenshot davon ist in \autoref{pic:nfc-viewer} zu sehen. Damit können die erstellten Konditionale betrachtet und gespeichert werden. Es ist dadurch auch möglich, Teilergebnisse aus dem Erstellungsprozess der Konditionale anzuzeigen, um den Vorgang besser nachvollziehen zu können. \\
+In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens \textit{NfcCreator} erstellt. Dieses Programm wird dafür genutzt, um die Konditionale zu erzeugen, aus denen dann die Wissensbasen generiert werden. So dient das Programm als Grundlage für den Hauptteil dieser Arbeit, die Generierung der Wissensbasen aus den zuvor erzeugten Konditionalen. Zusätzlich gibt es eine kleine GUI, um die Konditionale mit verschiedenen Optionen zu erzeugen und zu Betrachten. Diese GUI wird im nächsten Abschnitt kurz vorgestellt.
+
+
+
+\subsection{NFC Viewer}
+Der NFC Creator hat zusätzlich eine eigene grafische Oberfläche namens NFC Viewer, ein Screenshot davon ist in \autoref{pic:nfc-viewer} zu sehen. Damit können die erstellten Konditionale betrachtet und gespeichert werden. Es ist dadurch auch möglich, Teilergebnisse aus dem Erstellungsprozess der Konditionale anzuzeigen, um den Vorgang besser nachvollziehen zu können. \\
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{bilder/nfc-viewer.png}
 
 \caption{Screenshot NFC Viewer mit Ansicht analog zu Tabelle 1 aus \cite{beierle19}}
 \label{pic:nfc-viewer}
 \end{figure}
-Das Programm ist intern nach dem Model-View-Controller Schema aufgebaut. Die Beschreibung hier im Text fokussiert sich dabei auf das fachliche Modell dahinter und an einigen Stellen auf die Bedienung und Präsentation der grafischen Oberfläche. Das Fachliche Modell wird zentral in der Klasse NFCCreator zusammengefasst, hier werden die einzelnen Teilschritte Koordiniert. Da die Aufgabe des NFCCreator nicht besonders rechenintesiv ist, besteht das Programm nur aus einem einzigen Thread. Die wichtigen Elemente des fachlichen Modells werden in den nächsten Unterabschnitten beschrieben. Die Logik der GUI und des Controllers werde nicht beschrieben, da sie für das fachliche Thema uninteressant sind. \\
+
+
+
 Der grundsätzliche Aufbau der GUI besteht aus zwei Teilen. Links befinden sich im oberen Bereich die Auswahl der Optionen, darunter unter Start befinden sich die Buttons mit den möglichen Aktionen. Auf der rechten Seite befindet sich ein Textfenster, was das Ergebnis der gewählten Optionen und Aktion zeigt sowie darunter einer kurzen Beschreibung des Inhalts des Textfelds. \\
 Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bietet selbsterklärend die Möglichkeiten $ab$ und $abc$. Die Option View stellt ein, ob eine mögliche Welt in Buchstabenform oder als Repräsentation als Zahl erfolgen soll. Beispielsweise wird mit Signatur $ab$ die mögliche Welt $a \overline{b}$ entweder als $a!b$ oder als 2 dargestellt. Mit der Option ShowNumbers lässt sich einstellen, ob die angezeigten Objekte, beispielsweise Konditionale, mit nummeriert dargestellt werden sollen oder nicht. Die letzte Option SpaceChar stellt einen Platzhalter für mehrere auf einer Zeile angezeigte Objekte ein. Im Screenshot ist die Option auf Space. Wird Dot aktiviert, werden zeilenweise kleine Punkte angezeigt, damit der Betrachter die Zeilen am Bildschirm etwas leichter verfolgen kann als auf rein weißem Untergrund. Das untenliegende Feld bietet mit dem Save Button die Möglichkeit, den Inhalt des Textfensters zu speichern.
 

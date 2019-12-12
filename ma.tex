@@ -535,7 +535,7 @@ Der NfcCreator hat eine kleine grafische Oberfläche namens \textit{NfcViewer}, 
 
 
 
-Der grundsätzliche Aufbau der GUI des NfcViewers besteht aus zwei Teilen. Links befinden sich im oberen Bereich die Optionen, darunter befinden sich die Buttons mit den möglichen Aktionen. Auf der rechten Seite ist ein Textfenster, welches das Ergebnis der gewählten Optionen und Aktion zeigt. Darunter steht eine kurze Beschreibung des Inhalts des Textfeldes. \\
+Der grundsätzliche Aufbau der GUI des NfcViewers besteht aus zwei Teilen. Links befinden sich im oberen Bereich die Optionen, darunter befinden sich die Buttons mit den möglichen Aktionen. Auf der rechten Seite ist ein Textfenster, welches das Ergebnis der gewählten Optionen und Aktion zeigt. Man beachte, der NFC Viewer zeigt die Konditionale in der in \cite{beierle19} definierten Normalform, insbesondere sind die Propositionen als Repräsentation ihrer möglichen Welten dargestellt. Unter dem Textfeld steht eine kurze Beschreibung des Inhalts des Textfeldes. \\
 Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bietet selbsterklärend die Möglichkeiten $ab$ und $abc$. Die Option \textit{View} stellt ein, ob eine mögliche Welt in Buchstabenform oder als Repräsentation als Zahl analog der Darstellung in \cite{beierle19} erfolgen soll. Beispielsweise wird mit Signatur $\Sigma=\{ab\}$ die mögliche Welt $a \overline{b}$ entweder als $a!b$ oder als 2 dargestellt. Mit der Option \textit{ShowNumbers} lässt sich einstellen, ob die angezeigten Objekte, beispielsweise Konditionale, nummeriert dargestellt werden sollen oder nicht. Die letzte Option \textit{SpaceChar} stellt einen Platzhalter für mehrere auf einer Zeile angezeigte Objekte ein. Im Screenshot ist die Option auf Space gesetzt. Wird Dot aktiviert, werden zeilenweise kleine Punkte angezeigt, damit der Betrachter die Zeilen am Bildschirm etwas leichter verfolgen kann als auf rein weißem Untergrund. Das untenliegende Feld bietet mit dem Save Button die Möglichkeit, den Inhalt des Textfensters zu speichern.
 
 
@@ -778,6 +778,7 @@ Zum Iterationswechsel überschreibt die Klasse HddPairBuffer die Methode \textit
 
 
 \section{Berechnung der Wissensbasen}
+In diesem Abschnitt wird die konkrete Implementierung von GenKb gezeigt und erläutert.
 Daten, die aus dem NFC Creator kommen: nfc, cnfc und nfc map. Hier irgendwie erwähnen. \\
 hier auch erwähnen: möglichst viele arbeitsschritte sind in andere threads ausgelagert. \\
 
@@ -787,7 +788,7 @@ Hier ein schönes Übersichtsdiagramm. Hier auch was zum Threading.
 
 
 \subsection{Implementierung von GenKB}
-Erstmal Simple Creator. Funktioniert Parallel? Das wär gut, auch zum gegenüberstellen.
+Den Code hier rein. comments raus?
 
 
 \section{Speicherung der Wissensbasen}

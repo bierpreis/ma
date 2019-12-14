@@ -838,8 +838,17 @@ Auf der Rechten Seite werden Informationen zum Programmstatus angezeigt, währen
 Ganz oben befindet sich der OverallCreatorStatus. Hier wird der Status des KbCreator selbst in der ersten Zeile angezeigt. Mögliche Werte sind hierfür: NOT$\_$STARTED, RUNNING, STOPPED und FINISHED. Danach folgen einige Informationen zum aktuellen Programmablauf über alle Iterationen hinweg. Angezeigt werden: die Durchschnittsgeschwindigkeit (In konsistente Wissensbasen pro Sektunde über dem gesamten Programmablauf) und die Gesamtmenge der erstellten konsistenten und inkonsistenten Wissensbasen. Ebenfalls wird die Zeit angezeigt, seitdem der KbCreator schon läuft. \\
 Im nächsten Abschnitt werden Informationen zur aktuellen Iteration $k$ angezeigt. Das ist zu ganz oben der aktuelle Wert für $k$ selbst. Dann folgt die aktuelle Geschwindigkeit (auch hier wieder in der Einheit konsistente Wissensbasen pro Sekunde). Danach die generierte Mengen an konsistenten und inkonsistenten Wissensbasen in der aktuellen Iteration. Darunter die Angabe \glqq Candidate Pairs\grqq \space. Sie beschreibt die Gesamtmenge an Paaren $<R, C$ aus Kandidaten und Wissensbasen, die in dieser aktuellen Iteration bearbeitet werden müssen. Zum Schluss eine Fortschrittsanzeige in Prozent: Sie zeigt den momentanen Fortschritt der aktuellen Iteration. Dieser Wert errechnet sich aus dem Anteil der schon bearbeiteten Paare $<R,C$ von der gesamtMenge der dieser Paare. Dadurch steigt der Prozent Wert in einer Iteration erst rechtn langsam, dann immer schneller. Das liegt daran, dass zuerst zeitintensiv diejenigen Paare mit einer großen Anzahl von Kandidaten bearbeitet werden, was entsprechend länger dauert. daher steigt dieser Wert zum Ende einer Iteration immer schneller an. \\
 todo: buffering auf beiden seiten gleich benennen! \\
-Darunter befinden sich Informationen zum Buffering. Erstens der zuvor ausgewählte BufferType selbst, also SIMPLE$\_$RAM, COMPRESSED$\_$RAM oder HDD. Darunter befinden sich die Queues \textit{NewIterationQueue} und \textit{lastIterationQueue} wie in \autoref{sec:abstractbuffer} beschrieben.
+Darunter befinden sich Informationen zum Buffering. Erstens der zuvor ausgewählte BufferType selbst, also SIMPLE$\_$RAM, COMPRESSED$\_$RAM oder HDD. Darunter befinden sich die Queues \textit{NewIterationQueue} und \textit{lastIterationQueue} wie in \autoref{sec:abstractbuffer} beschrieben. \\
 Als nächstes folgen Informationen zum KnowledgeBaseWriter. Erstens der aktulle Status Status als NOT$\_$STARTED, RUNNING und DUMMY$\_$WRITER. Darunter der aktuelle Füllstand der Queues für konsistente und inkonsistente Wissensbasen. \\
+Ganz unten befindet sich eine Information zur Java JVM selbst: Sie gibt im Prinzip den noch freien Arbeitsspeicher an. Diese Information ist etwas erklärungsbedürftig: Der Wert beschreibt in etwa den noch freien HEAP der JVM. Das ist also der Platz, der für neu erstellte Objekte noch zur Verfügung steht. Möglicherweise kann der GarbageCollector jedoch bei bedarf noch etwas mehr Speicher zur Verfügung stellen. Dieser Wert ist trotzdem ein guter Anhaltspunkt zum Status des aktuellen Programmablaufs. Man kann zumindest einschätzen, ob noch Speicher frei ist, oder ob der Speicher voll ist. Konkret wird der Wert auf mit folgender Codezeile ermittelt:
+
+
+%\begin{figure}
+\begin{lstlisting}
+(Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory()) / 1_000_000
+\end{lstlisting}
+
+
 \subsection{Betrachtung von Knowledge Base Creator mit JVisualVM}
 kurz was zum programm mit link \\
 eventuell auch als eigener punkt damit das hier nicht zu viel wird. screenshots und so. threading beschreiben. rechenzeit pro methode betrachten? speicher betrachten? \\

@@ -840,12 +840,12 @@ Im nächsten Abschnitt werden Informationen zur aktuellen Iteration $k$ angezeig
 todo: buffering auf beiden seiten gleich benennen! \\
 Darunter befinden sich Informationen zum Buffering. Erstens der zuvor ausgewählte BufferType selbst, also SIMPLE$\_$RAM, COMPRESSED$\_$RAM oder HDD. Darunter befinden sich die Queues \textit{NewIterationQueue} und \textit{lastIterationQueue} wie in \autoref{sec:abstractbuffer} beschrieben. \\
 Als nächstes folgen Informationen zum KnowledgeBaseWriter. Erstens der aktulle Status Status als NOT$\_$STARTED, RUNNING und DUMMY$\_$WRITER. Darunter der aktuelle Füllstand der Queues für konsistente und inkonsistente Wissensbasen. \\
-Ganz unten befindet sich eine Information zur Java JVM selbst: Sie gibt im Prinzip den noch freien Arbeitsspeicher an. Diese Information ist etwas erklärungsbedürftig: Der Wert beschreibt in etwa den noch freien HEAP der JVM. Das ist also der Platz, der für neu erstellte Objekte noch zur Verfügung steht. Möglicherweise kann der GarbageCollector jedoch bei bedarf noch etwas mehr Speicher zur Verfügung stellen. Dieser Wert ist trotzdem ein guter Anhaltspunkt zum Status des aktuellen Programmablaufs. Man kann zumindest einschätzen, ob noch Speicher frei ist, oder ob der Speicher voll ist. Konkret wird der Wert auf mit folgender Codezeile ermittelt:
+Ganz unten befindet sich eine Information zur Java JVM selbst: Sie gibt im Prinzip den noch freien Arbeitsspeicher an. Diese Information ist etwas erklärungsbedürftig: Der Wert beschreibt in etwa den noch freien HEAP der JVM in Megabytes. Das ist also der Platz, der für neu erstellte Objekte noch zur Verfügung steht. Möglicherweise kann der GarbageCollector jedoch bei bedarf noch etwas mehr Speicher zur Verfügung stellen. Der Wert ist also überhaupt nicht präzise, trotzdem ein guter Anhaltspunkt zum Status des aktuellen Programmablaufs. Man kann zumindest einschätzen, ob noch Speicher frei ist, oder ob der Speicher voll ist. Konkret wird der Wert auf mit folgender Codezeile ermittelt:
 
 
 %\begin{figure}
 \begin{lstlisting}
-(Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory()) / 1_000_000
+(Runtime.getRuntime().maxMemory()-Runtime.getRuntime().totalMemory()) / 1_000_000
 \end{lstlisting}
 
 

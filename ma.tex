@@ -631,7 +631,8 @@ Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegen
 In diesem Abschnitt wird beschrieben, wie die Konditionale aus der Form als Instanzen von WConditional als Instanzen von PConditional übertragen werden. Genauer gesagt ist der interessante Teil, wie Antecedent und Consequence jeweils aus der Form WorldsList in die Form AbstractFormula gebracht werden. \\
 Dabei sind zwei grundsätzliche Vorgehensweisen vorstellbar: Zum ersten der Ansatz, der im Folgenden als \textit{nativer} Ansatz benannt wird: Die Liste der möglichen Welten wird einfach als Disjunktion von Konjunktionen aufgefasst. Als Beispiel, unter Signatur $\Sigma=\{ab\}$ sei Liste Möglicher Welten $ab, !ab$ gegeben. Dann ist der aussagenlogische Term dafür $(a \wedge b) \vee (\overline{a}\wedge b)$. Dieser Term ist recht umständlich, aber korrekt. Man bedenke auch, dass mit der Signatur $\Sigma=\{abc\}$ durch 8 mögliche Welten noch wesentlich umständlichere Terme entstehen werden. Der zweite Ansatz für die Übersetzung ist, den kürzesten möglichen Term zu suchen. Im genannten Beispiel ist das $a$. Das ist allerdings weit weniger einfach automatisierbar wie die erste Variante. \\
 Es wäre naheliegend, dass die zweite Variante, da sie oft wesentlich kürzere Terme erzeugt, schneller sein sollte als die erste. Um den möglichen Geschwindigkeitsunterschied beider Ansätze zu testen, sind beiden Varianten im Programm implementiert.\\
-todo: translator beschreiben
+todo: translator beschreiben \\
+todo: neuer speed test mit kb writer und hdd buffer? \\
 kurzer test hat ergeben: 280s ohne translator, 250/251 mit translator. verwenden? translator verbessern? beschreiben! \\
 todo:Performance Vergleich mit kurzen Übersetzungen als Begründung warum die nicht verwendet werden.
 \\todo: conjunktive normalform? das ist die einfache translation. siehe dazu auch \cite{beierle19b} s. 40 dazu. das ist ok so?

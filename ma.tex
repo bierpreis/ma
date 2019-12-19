@@ -632,7 +632,7 @@ In diesem Abschnitt wird beschrieben, wie die Konditionale aus der Form als Inst
 Dabei sind zwei grundsätzliche Vorgehensweisen vorstellbar: Zum ersten der Ansatz, der im Folgenden als \textit{nativer} Ansatz benannt wird: Die Liste der möglichen Welten wird einfach als Disjunktion von Konjunktionen aufgefasst. Als Beispiel, unter Signatur $\Sigma=\{ab\}$ sei Liste Möglicher Welten $ab, !ab$ gegeben. Dann ist der aussagenlogische Term dafür $(a \wedge b) \vee (\overline{a}\wedge b)$. Dieser Term ist recht umständlich, aber korrekt. Man bedenke auch, dass mit der Signatur $\Sigma=\{abc\}$ durch 8 mögliche Welten noch wesentlich umständlichere Terme entstehen werden. Der zweite Ansatz für die Übersetzung ist, den kürzesten möglichen Term zu suchen. Im genannten Beispiel ist das $a$. Das ist allerdings weit weniger einfach automatisierbar wie die erste Variante. \\
 Es wäre naheliegend, dass die zweite Variante, da sie oft wesentlich kürzere Terme erzeugt, schneller sein sollte als die erste. Um den möglichen Geschwindigkeitsunterschied beider Ansätze zu testen, sind beiden Varianten im Programm implementiert.\\
 todo: translator beschreiben
-kurzer test hat ergeben: 280s ohne translator, 250 mit translator. verwenden? translator verbessern? beschreiben! \\
+kurzer test hat ergeben: 280s ohne translator, 250/251 mit translator. verwenden? translator verbessern? beschreiben! \\
 todo:Performance Vergleich mit kurzen Übersetzungen als Begründung warum die nicht verwendet werden.
 \\todo: conjunktive normalform? das ist die einfache translation. siehe dazu auch \cite{beierle19b} s. 40 dazu. das ist ok so?
 \subsection{Wissensbasen}
@@ -796,6 +796,7 @@ Den Code hier rein. comments raus?
 
 
 \section{Speicherung der Wissensbasen}
+todo: speicherung als nummern \\
 Die Wissensbasen, die von GenKB generiert werden, sollen danach noch weiterverarbeitet werden. Das beinhaltet sowohl die konsistenten als auch die inkonsistenten Wissensbasen, die voneinander getrennt behandelt werden. Diese Weiterverarbeitung übernimmt ein Objekt auf Basis des \textit{AbstractKbWriters}. Dafür existieren zwei konkrete Implementierungen, zwischen denen der Benutzer wählen kann: Die Wissensbasen können entweder getrennt in konsistent und inkonsistent jeweils gruppiert nach Anzahl der darin enthaltenen Konditionale gespeichert werden, das übernimmt die Implementierung \textit{KbFileWriter}. Oder aber die Wissensbasen werden direkt nach der Erzeugung wieder gelöscht, das wird dann von der Impelementierung \textit{DummyWriter} übernommen. Diese Variante ist nützlich für Testläufe, denn es beschleunigt den gesamten Prozess und erspart das nachträgliche Löschen der Daten.
 \subsection{AbstractKbWriter}
 
@@ -821,7 +822,7 @@ Der KBFileWriter bietet für das Schreiben von Dateien die Option an, eine feste
 \label{sec:dummywriter}
 Auch der DummyKbWriter besitzt zwei gleich aufgebaute Threads: Einer kümmert sich um die \textit{consistentKbQueue}, der Andere bearbeitet die \textit{inconsistentKbQueue}. Beide Threads beobachten ihre Queue und sobald Elemente darin erscheinen, werden diese gezählt und sofort wieder gelöscht. Das Zählen findet einmal  in Bezug auf die Gesamtmenge des Programmverlaufs über alle Iterationen statt und einmal auf die aktuelle Iteration. Die gezählten Werte ruft die grafische Oberfläche dann ab, um sie für den Benutzer anzuzeigen. Weiterhin besitzt der DummyKbWriter noch eine Methode zum Iterationswechsel, die macht allerdings nichts anderes als den Zähler der Wissensbasen für die aktuelle Iteration wieder auf 0 zu setzen.
 \subsection{Beschreibung der grafischen Oberfläche}
-
+todo: neuer screen gesamt. auch an options die nummer kb option erklären
 
 \begin{figure}
 \includegraphics[width=0.97\linewidth]{bilder/KbCreator_gesamt.png}
@@ -859,7 +860,9 @@ eventuell auch als eigener punkt damit das hier nicht zu viel wird. screenshots 
 eventuell allgemein was zum ablauf? wie z.b. speed am anfang der iteration gering und wird zum ende hin schneller. und so.
 
 \section{Bewertung der Ergebnisse}
-todo: test beschreiben in consistent / inconsistent wenn das funktioniert
+todo: test beschreiben in consistent / inconsistent wenn das funktioniert.
+
+aus vers
 
 \newpage
 

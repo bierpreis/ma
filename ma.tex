@@ -639,7 +639,7 @@ public boolean tolerates(AbstractWorld world) {
 
 Die Toleranz eines Konditionals $B|A$ einer möglichen Welt wird wie in \autoref{def:toleranz}  gezeigt geprüft. Dazu wird in der Methode wie in \autoref{code:kb-tolerates} dargestellt die Toleranz in der Form $\overline{A} \vee B$ in Abhängigkeit der übergebenen möglichen Welt geprüft. 
 \\todo:equals besser beschreiben \\
-Die equals(Object o) Methode ist so implementiert, dass sie true zurückgibt, wenn das übergebene Objekt ein PConditional mit derselben Nummer ist. Einfach die Nummer der Konditionale zu verwenden ist hier die simpelste Variante, ein Vergleich von Antecedent und Consequence wäre auch naheliegend. Die Entscheidung, nur die Nummer zu vergleichen, beruht auf ihrer Einfachheit. Zuverlässig ist sie trotzdem, da die Konditionale nur an einem einzigen Punkt im Programm erstellt werden und die Nummer direkt im Konstruktor mit Antecedent und Consequence gesetzt wird.
+Die \textit{equals(Object o)} Methode ist der Einfachheit halber so implementiert, dass sie true zurückgibt, wenn das übergebene Objekt ein PConditional mit derselben Nummer ist. Das ist wesentlich schneller als die eigentlich korrekte Variante gewesen sein würde. Diese wäre, die AbstractFormulas Antecedent und Consequence jeweils per equals zu vergleichen. Das Ergebnis ist aber in diesem Fall das selbe.
 
 
 \subsection{Übersetzung der Konditionale}

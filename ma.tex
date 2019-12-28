@@ -615,7 +615,9 @@ Negation ist die letzte hier beschriebene Implementierung von AbstractFormula. D
 
 \subsection{Die Klasse PConditional}
 \label{sec:pconditional}
-todo: toleranceformula raus!
+todo: toleranceformula raus!\\
+todo: isToleratedBy rein! \\
+todo: tolerates raus \\
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/PConditional.png}
 \caption{PConditional}
@@ -625,14 +627,27 @@ todo: toleranceformula raus!
 
 Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional die Verarbeitung mit Aussagenlogik. Ein vereinfachtes Klassendiagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, ist in \autoref{sec:übersetzung} beschrieben. Als Attribute besitzt die Klasse ein Antecedent und Consequence jeweils in Form einer AbstractFormula, wie unter \autoref{sec:logic} beschrieben. 
 
-!todo: update. this is never used. describe isToleratedBy() method.
+
 \begin{figure}
 \begin{lstlisting}
-public boolean tolerates(AbstractWorld world) {
-    return (shortConsequence.evaluate(world) || !shortAntecedent.evaluate(world));
+public boolean isToleratedBy(List<PConditional> conditionalList) {
+    for (AbstractWorld world : signature.getPossibleWorlds()) {
+        if (this.shortAntecedent.evaluate(world) && this.shortConsequence.evaluate(world)) {
+            boolean toleratesAll = true;
+            for (PConditional conditional : conditionalList) {
+                if (!conditional.tolerates(world)) {
+                    toleratesAll = false;
+                    break;
+                }
+            }
+            if (toleratesAll)
+                return true;
+        }
+    }
+    return false;
 }
 \end{lstlisting}
-\caption{\textit{tolerates(AbstractWorld world)} Methode der Klasse PConditional}
+\caption{\textit{isToleratedBy(List<PConditional> conditionalList)} Methode der Klasse PConditional}
 \label{code:kb-tolerates}
 \end{figure}
 

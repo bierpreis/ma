@@ -681,31 +681,35 @@ todo: add toNumbersFilestring and toStandardFileString
 Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:knowledgebase} zu sehen. Als Instanzvariablen besitzt die Klasse die Nummer der Wissensbasis als int Wert und eine Liste der in der Wissensbasis enthaltenen Konditionale in Form einer \textit{ArrayList<PConditional>}.  \\
 
 
-Eine besonders wichtige Methode der Klasse ist \textit{isCosnsitentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis konsistent mit dem als Parameter übergebenem Konditional ist. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} zu dargestellt. 
-\\neu ab hier
-Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} erwähnten und in \cite{goldszmidt96} entwickelten Toleranztests für Wissensbasen.  \\
+Eine besonders wichtige Methode der Klasse ist \textit{isCosnsitentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis konsistent mit dem als Parameter übergebenem Konditional ist. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} zu dargestellt. Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} erwähnten und in \cite{goldszmidt96}(S.65) dargestellen Toleranztests für Wissensbasen.  
+
 !!todo: remove. describe isConsistentWith() instead.
 \begin{figure}
 \begin{lstlisting}
-for (AbstractWorld world : signature.getPossibleWorlds()) {
-    if (conditionalToTest.getAntecedent().evaluate(world) && conditionalToTest.getConsequence().evaluate(world)) {
-        boolean toleratesAll = true;
-        for (PConditional conditional : conditionalList) {
-            if (!conditional.tolerates(world)){
-                toleratesAll = false;
-                break;
-            }              
+public boolean isConsistentWith(PConditional conditionalToTest) {
+    List<PConditional> listToTest = new ArrayList<>(this.conditionalList);
+    listToTest.add(conditionalToTest);
+
+    while (!listToTest.isEmpty()) {
+        List<PConditional> listToRemove = new ArrayList<>();
+        for (PConditional conditional : listToTest) {
+            if (conditional.isToleratedBy(listToTest)) {
+                listToRemove.add(conditional);
+            }
         }
-        if (toleratesAll)
-            return true;
+        if (listToRemove.isEmpty())
+            return false;
+        listToTest.removeAll(listToRemove);
     }
+    return true;
 }
-return false;
 \end{lstlisting}
 \caption{\textit{isConsistentWith(PConditional p)} Methode der Klasse PConditonal}
 \label{code:kb-consistent}
 \end{figure} 
 
+!!todo: die bescheibung hier oben mit rein? \\
+todo: den neuen algo hier bescheiben \\
 In Zeile 1 iteriert der Algorithmus in \autoref{code:kb-consistent} über alle mögliche Welten der Signatur. In Zeile 2 wird geprüft, ob die aktuelle Welt das übergebene Konditional bestätigt. Ist das der Fall, wird im Anschluss getestet, ob die Wissensbasis diese mögliche Welt toleriert. Dazu wird in Zeile 4 über jedes Konditional der Wissensbasis iteriert und deren Toleranz über die \textit{tolerates(World w)} Methode geprüft, welche unter \autoref{sec:pconditional} gezeigt bereits gezeigt wurde. \\
 Wenn alle Konditionale der Wissensbasis die Welt tolerieren, ist die boolean Variable \textit{toleratesAll} in Zeile 10 \textit{true} und in Zeile 11 wird true zurückgegeben. Sobald ein Konditional die Welt nicht toleriert ist \textit{toleratesAll}\textit{false} und es greift break in Zeile 7. Dann wird in Zeile 1 weiter über alle noch verbleibenden Welten iteriert. Wenn die Konsistenz für keine mögliche Welt gefunden wird, gibt der Algorithmus in Zeile 14 \textit {false} zurück. \\
 Daneben besitzt die Klasse KnowledgeBase neben der "normalen" noch zwei \textit{toString()} Methoden. Die erste ist die \textit{toFileString()} Methode, die aus der Wissensbasis in einen InfOCF kompatiblen String erzeugt, um in in eine Datei zu schreiben. Die zweite Methode ist die \textit{toShortFileString()} Methode. Damit wird eine besonders kurze Repräsentation der Wissensbasis erzeugt, die beim Schreiben von Pairs auf die Festplatte genutzt wird, wie es unter \autoref{sec:realpair} gezeigt wird. \\

@@ -678,12 +678,10 @@ todo: add toNumbersFilestring and toStandardFileString
 
 
 
-Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:knowledgebase} zu sehen. Als Instanzvariablen besitzt die Klasse die Nummer der Wissensbasis als int Wert und eine Liste der in der Wissensbasis enthaltenen Konditionale in Form einer \textit{ArrayList<PConditional>}.  \\
+Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:knowledgebase} zu sehen. Als Instanzvariablen besitzt die Klasse die Nummer der Wissensbasis als int Wert und eine Liste der in der Wissensbasis enthaltenen Konditionale in Form einer \textit{ArrayList<PConditional>}.\\
+Eine besonders wichtige Methode der Klasse ist \textit{isCosnsitentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis konsistent mit dem als Parameter übergebenem Konditional ist. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} zu dargestellt. Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} erwähnten und in \cite{goldszmidt96}(S.65) dargestellten Toleranztests für Wissensbasen.  Die Idee zu dieser Implementierung stammt auch aus der Umsetzung des Tests auf Konsistenz von Wissensbasen aus InfOCF, ist hier jedoch anders umgesetzt. Denn in der hier vorgestellten Implementierung wird keine geordnete Partitionierung der Wissensbasis erstellt, da diese nicht benötigt wird. Der Rückgabewert als boolean zeigt an, ob die betroffene Wissensbasis, auf dessen Objekt die Methode aufgerufen wird, mit dem übergebenen Konditional eine konsistente Wissensbasis ergeben würde oder nicht.
 
 
-Eine besonders wichtige Methode der Klasse ist \textit{isCosnsitentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis konsistent mit dem als Parameter übergebenem Konditional ist. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} zu dargestellt. Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} erwähnten und in \cite{goldszmidt96}(S.65) dargestellen Toleranztests für Wissensbasen.  
-
-!!todo: remove. describe isConsistentWith() instead.
 \begin{figure}
 \begin{lstlisting}
 public boolean isConsistentWith(PConditional conditionalToTest) {

@@ -615,17 +615,14 @@ Negation ist die letzte hier beschriebene Implementierung von AbstractFormula. D
 
 \subsection{Die Klasse PConditional}
 \label{sec:pconditional}
-todo: toleranceformula raus!\\
-todo: isToleratedBy rein! \\ oder raus?
-todo: tolerates raus \\
 \begin{figure}
-\includegraphics[width=0.45\linewidth]{bilder/PConditional.png}
+\includegraphics[width=0.55\linewidth]{bilder/PConditional.png}
 \caption{PConditional}
 \label{pic:pconditional}
 \end{figure}
 
 
-Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional die Verarbeitung mit Aussagenlogik. Ein vereinfachtes Klassendiagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, ist in \autoref{sec:übersetzung} beschrieben. Als Attribute besitzt die Klasse ein Antecedent und Consequence jeweils in Form einer AbstractFormula, wie unter \autoref{sec:logic} beschrieben. 
+Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional die Verarbeitung mit Aussagenlogik. Ein vereinfachtes Klassendiagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, ist in \autoref{sec:übersetzung} beschrieben. Als Attribute besitzt die Klasse neben der Nummer des Konditionals ein Antecedent und Consequence jeweils in Form einer AbstractFormula. Dazu kommt eine Referenz zu einem Konditional \textit{coutnerConditional} und eine Liste der äquivalenten Konditionale.
 
 
 \begin{figure}
@@ -650,7 +647,6 @@ public boolean isToleratedBy(List<PConditional> conditionalList) {
 \caption{\textit{isToleratedBy(List<PConditional> conditionalList)} Methode der Klasse PConditional}
 \label{code:conditional-istoleratedby}
 \end{figure}
-
 
 
 

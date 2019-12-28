@@ -679,8 +679,11 @@ todo: add toNumbersFilestring and toStandardFileString
 
 
 Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:knowledgebase} zu sehen. Als Instanzvariablen besitzt die Klasse die Nummer der Wissensbasis als int Wert und eine Liste der in der Wissensbasis enthaltenen Konditionale in Form einer \textit{ArrayList<PConditional>}.  \\
-Eine besonders wichtige Methode der Klasse ist \textit{isCosnsitentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis konsistent mit dem als Parameter übergebenem Konditional ist. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} zu dargestellt. Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} erwähnten und in \cite{goldszmidt96} entwickelten Toleranztests für Wissensbasen. 
-!!todo: das ist jetzt in pconditonal beschreiben. teil von hier dort hin. \\
+
+
+Eine besonders wichtige Methode der Klasse ist \textit{isCosnsitentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis konsistent mit dem als Parameter übergebenem Konditional ist. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} zu dargestellt. 
+\\neu ab hier
+Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} erwähnten und in \cite{goldszmidt96} entwickelten Toleranztests für Wissensbasen.  \\
 !!todo: remove. describe isConsistentWith() instead.
 \begin{figure}
 \begin{lstlisting}

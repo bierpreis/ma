@@ -652,7 +652,7 @@ public boolean isToleratedBy(List<PConditional> conditionalList) {
 \end{figure}
 
 
-Die wichtige Methode \textit{isToleratedBy(List<PConditonal> list)} der Klasse PConditional ist in \autoref{code:conditional-istoleratedby} gezeigt. Mit dieser Methode wird geprüft, ob ein Konditional von einer Liste von Konditionalen (einer Wissensbasis) toleriert wird. Dieser Test wird benötigt, um die Konsistenz einer Wissensbasis zu überprüfen. Sie funktioniert folgenermaßen: In Zeile 2 wird über alle möglichen Welten iteriert. Wenn in Zeile 3 die Bestätigung des aktuellen Konditionals durch die Welt festgestellt wird, wird in den folgenden Zeilen geprüft, ob alle Konditionale der Liste die mögliche Welt tolerieren. Ist das der Fall, wird in Zeile 12 true zurück gegeben. Wenn nicht, wird der Ablauf für die übrig gebliebenen Welten wiederholt. Wenn das Konditional für keine mögliche Welt von der Liste toleriert wird, wird in Zeile 15 false zurück gegeben. \\
+Die wichtige Methode \textit{isToleratedBy(List<PConditonal> list)} der Klasse PConditional ist in \autoref{code:conditional-istoleratedby} gezeigt. Mit dieser Methode wird geprüft, ob ein Konditional von einer Liste von Konditionalen (einer Wissensbasis) toleriert wird. Das ist somit die Praktische Umsetzung der Toleranz wie sie unter \autoref{def:toleranz} bereits beschrieben wurde. Dieser Test wird benötigt, um die Konsistenz einer Wissensbasis zu überprüfen. Sie funktioniert folgenermaßen: In Zeile 2 wird über alle möglichen Welten iteriert. Wenn in Zeile 3 die Bestätigung des aktuellen Konditionals durch die Welt festgestellt wird, wird in den folgenden Zeilen geprüft, ob alle Konditionale der Liste die mögliche Welt tolerieren. Ist das der Fall, wird in Zeile 12 true zurück gegeben. Wenn nicht, wird der Ablauf für die übrig gebliebenen Welten wiederholt. Wenn das Konditional für keine mögliche Welt von der Liste toleriert wird, wird in Zeile 15 false zurück gegeben. \\
 todo:equals besser beschreiben \\
 Die \textit{equals(Object o)} Methode der Klasse PCodnitional ist der Einfachheit halber so implementiert, dass sie true zurückgibt, wenn das übergebene Objekt ein PConditional mit derselben Nummer ist. Das ist wesentlich schneller als jeweils \textit{equals()} von Antecedent und Consequence zu überprüfen. Das Ergebnis ist aber in diesem Fall das selbe, da nur eine fest definierte und nummerierte Menge von Konditionalen verwendet wird.
 
@@ -681,7 +681,7 @@ todo: add toNumbersFilestring and toStandardFileString
 
 Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:knowledgebase} zu sehen. Als Instanzvariablen besitzt die Klasse die Nummer der Wissensbasis als int Wert und eine Liste der in der Wissensbasis enthaltenen Konditionale in Form einer \textit{ArrayList<PConditional>}.  \\
 Eine besonders wichtige Methode der Klasse ist \textit{isCosnsitentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis konsistent mit dem als Parameter übergebenem Konditional ist. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} zu dargestellt. Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} erwähnten und in \cite{goldszmidt96} entwickelten Toleranztests für Wissensbasen. 
-
+!!todo: das ist jetzt in pconditonal beschreiben. teil von hier dort hin. \\
 !!todo: remove. describe isConsistentWith() instead.
 \begin{figure}
 \begin{lstlisting}

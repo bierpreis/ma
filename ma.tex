@@ -233,7 +233,7 @@ todo: hier java version und KEINE benötigten biblioteken außer standard reinsc
 todo: hier diagramme die eine übersicht zu dem ganzen kram zeigen?!
 
 \section{Berechnung der Konditionale}
-
+todo: bissl was vom nächsten absatz hier rein? sieht mist aus so 
 
 \subsection{NFC Creator}
 
@@ -659,9 +659,8 @@ Die \textit{equals(Object o)} Methode der Klasse PCodnitional ist der Einfachhei
 In diesem Abschnitt wird beschrieben, wie die Konditionale aus der Form als Instanzen von WConditional als Instanzen von PConditional übertragen werden. Genauer gesagt ist der interessante Teil, wie Antecedent und Consequence jeweils aus der Form WorldsList in die Form AbstractFormula gebracht werden. \\
 Dabei sind zwei grundsätzliche Vorgehensweisen vorstellbar: Zum ersten der Ansatz, der im Folgenden als \textit{nativer} Ansatz benannt wird: Die Liste der möglichen Welten wird einfach als Disjunktion von Konjunktionen aufgefasst. Als Beispiel, unter Signatur $\Sigma=\{ab\}$ sei Liste Möglicher Welten $ab, !ab$ gegeben. Dann ist der aussagenlogische Term dafür $(a \wedge b) \vee (\overline{a}\wedge b)$. Dieser Term ist recht umständlich, aber korrekt. Man bedenke auch, dass mit der Signatur $\Sigma=\{abc\}$ durch 8 mögliche Welten noch wesentlich umständlichere Terme entstehen werden. Der zweite Ansatz für die Übersetzung ist, den kürzesten möglichen Term zu suchen. Im genannten Beispiel ist das $a$. Das ist allerdings weit weniger einfach automatisierbar wie die erste Variante. \\
 Es wäre naheliegend, dass die zweite Variante, da sie oft wesentlich kürzere Terme erzeugt, schneller sein sollte als die erste. Um den möglichen Geschwindigkeitsunterschied beider Ansätze zu testen, sind beiden Varianten im Programm implementiert.\\
-todo: translator beschreiben \\
+\\todo: translator beschreiben \\
 todo: conjunktive normalform? das ist die einfache translation. siehe dazu auch \cite{beierle19b} s. 40 dazu. das ist ok so? \\
-
 tests mit translator: translated ca 245s ohne translation etwa 270s.
 mit beiden varianten im objekt auch etwa 270s !! liegt das an der objektgröße?! muss ja \\
 also translation nur sinnvoll, wenn so geschrieben werden kann.
@@ -816,13 +815,14 @@ Zum Iterationswechsel überschreibt die Klasse HddPairBuffer die Methode \textit
 
 
 \section{Berechnung der Wissensbasen}
+todo \\
 In diesem Abschnitt wird die konkrete Implementierung von GenKb gezeigt und erläutert.
 Daten, die aus dem NFC Creator kommen: nfc, cnfc und nfc map. Hier irgendwie erwähnen. \\
 hier auch erwähnen: möglichst viele arbeitsschritte sind in andere threads ausgelagert. \\
 
 
 
-Hier ein schönes Übersichtsdiagramm. Hier auch was zum Threading.
+Hier ein schönes Übersichtsdiagramm. Hier auch was zum Threading. wirklich hier? nicht bei übersicht?
 
 
 \subsection{Implementierung von GenKB}
@@ -889,6 +889,7 @@ Ganz unten befindet sich eine Information zur Java JVM selbst: Sie gibt im Prinz
 
 
 \subsection{Betrachtung von Knowledge Base Creator mit JVisualVM}
+todo \\
 kurz was zum programm mit link \\
 eventuell auch als eigener punkt damit das hier nicht zu viel wird. screenshots und so. threading beschreiben. rechenzeit pro methode betrachten? speicher betrachten? \\
 eventuell allgemein was zum ablauf? wie z.b. speed am anfang der iteration gering und wird zum ende hin schneller. und so. \\

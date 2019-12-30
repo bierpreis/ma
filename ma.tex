@@ -660,7 +660,7 @@ In diesem Abschnitt wird beschrieben, wie die Konditionale aus der Form als Inst
 Dabei sind zwei grundsätzliche Vorgehensweisen vorstellbar: Zum ersten der Ansatz, der im Folgenden als \textit{nativer} Ansatz benannt wird: Die Liste der möglichen Welten wird einfach als Disjunktion von Konjunktionen aufgefasst. Als Beispiel, unter Signatur $\Sigma=\{ab\}$ sei Liste Möglicher Welten $ab, !ab$ gegeben. Dann ist der aussagenlogische Term dafür $(a \wedge b) \vee (\overline{a}\wedge b)$. Dieser Term ist recht umständlich, aber korrekt. Man bedenke auch, dass mit der Signatur $\Sigma=\{abc\}$ durch 8 mögliche Welten noch wesentlich umständlichere Terme entstehen werden. Der zweite Ansatz für die Übersetzung ist, den kürzesten möglichen Term zu suchen. Im genannten Beispiel ist das $a$. Das ist allerdings weit weniger einfach automatisierbar wie die erste Variante. \\
 Es wäre naheliegend, dass die zweite Variante, da sie oft wesentlich kürzere Terme erzeugt, schneller sein sollte als die erste. Um den möglichen Geschwindigkeitsunterschied beider Ansätze zu testen, sind beiden Varianten im Programm implementiert.\\
 \\todo: translator beschreiben \\
-todo: conjunktive normalform? das ist die einfache translation. siehe dazu auch \cite{beierle19b} s. 40 dazu. das ist ok so? \\
+conjunktive normalform? das ist die einfache translation. siehe dazu auch \cite{beierle19b} s. 40 dazu. das ist ok so? \\
 tests mit translator: translated ca 245s ohne translation etwa 270s.
 mit beiden varianten im objekt auch etwa 270s !! liegt das an der objektgröße?! muss ja \\
 also translation nur sinnvoll, wenn so geschrieben werden kann.

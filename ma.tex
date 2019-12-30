@@ -220,7 +220,7 @@ mit $r \rdotl r'$ gdw. $r\dotl r'$ für alle $i \in \{1, ..., m\}$ und alle $r, 
 
 
 \section{Strukturierung der Arbeit}
-todo: rename
+todo: rename? vor grundlagen gleich nach einleitung?
 \subsection{Weiteres Vorgehen}
 Das Ziel des weiteren Vorgehens ist es, den Algorithmus GenKB aus \cite{beierle19} praktisch umzusetzen und möglichst viele Wissensbasen auf Basis der Signatur $\Sigma=\{a,b,c\}$ zu generieren. Da aufgrund der Menge der möglichen Konditionale das Ziel nicht auch nur Ansatzweise vollständig bearbeitet werden kann, wird oft auch auch die Signatur $\Sigma=\{a,b\}$ betrachtet. Mit dieser reduzierten Signatur ist es möglich, aufgrund der deutlich geringeren Menge an Konditionalen alle möglichen Wissensbasen zu generieren. Damit lässt sich am kleineren Beispiel prüfen, ob die grundsätzliche Vorgehensweise korrekt ist und letztendlich die Aufgabenstellung vollständig lösen könnte. \\
 Die Aufgabenstellung wird dafür in zwei Teile gegliedert. Im ersten Teil werden die Konditionale in Normalform basierend auf der Signatur $\Sigma=\{a,b,c\}$ berechnet und somit die Menge aller Konditionale $NFC$  berechnet. Anschließend werden auf dieser Menge an Konditionalen die Äquivalenzklassen Untersucht und damit die Menge der kanonischen Konditionale $cNFC$ sowie die einzelnen Äquivalenzklassen berechnet. Dabei werden die Konditionale auch nach der Ordnunggsrelation $\rdotl$ sortiert. Dazu werden im ersten Teil die Konditionale auf der Klasse \textit{WConditional} (W für Worlds) bearbeitet. Diese Repräsentation spiegelt die Darstellung von Konditionalen in Normalformen in \cite{beierle19} wieder. Diese Darstellung ist außerdem dafür optimiert, die in \cite{beierle19} dargestellte Ordnung im Sinne von $\rdotl$ zu repräsentieren und ermöglicht so die Sortierung der Konditionale und damit die Betrachtung von Äquivalenz. \\
@@ -543,7 +543,7 @@ Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bi
 
 
 \section{Konditionale mit Aussagenlogik}
-todo: shit title. \\
+todo: shit title. sth with model?\\
 Nachdem die Menge der Konditionale nun berechnet und sortiert ist, sollen aus ihr nun konsistente Wissensbasen generiert werden. Dazu sind die Konditionale in ihrer bisherigen Form als Instanzen von WConditional ungeeignet. Deshalb werden sie in Objekte der neuen Klasse PConditonal umgewandelt. Mit diesen ist dann die Verarbeitung von Aussagenlogik möglich und somit auch die Generierung der Wissensbasen.Im Folgenden werden der Weg dahin beschrieben.
 
 

@@ -227,9 +227,8 @@ mit $r \rdotl r'$ gdw. $r\dotl r'$ für alle $i \in \{1, ..., m\}$ und alle $r, 
 Das beschriebene Programm zum Generieren von Wissensbasen ist komplett in Java geschrieben und erfordert zur Benutzung Java in der Version 1.8 oder höher. Neben der von Java standardmäßig mitgebrachten Runtime Environment werden keine weiteren externen Bibliotheken benötigt.
 \subsection{Struktur des Programms}
 In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu sehen. Die drei Elemente die sich im grau hinterlegten Bereich befinden sind für das generieren der Wissensbasen zuständig. Oben rechts ist die GUI abgebildet, in der zu Programmstart Optionen gesetzt werden und während des Programmablaufs Informationen zum aktuellen Programmzustand angezeigt werden. Unten links befindet sich der NfcCreator, hier werden die Konditionale NFC anhand der eingestellten Optionen erstellt. Diese Konditionale werden dann an den KbCreator übergeben, welcher für die eigentliche Generierung der Wissensbasen zuständig ist. Der KbCreator ist mit Abstand der komplexeste Teil des Programms und wird im nächsten Abschnitt noch genauer dargestellt. Die GUI oben links NfcViewer ist optional und kann genutzt werden um die Konditionale nach verschiedenen Optionen zu erzeugen, zu betrachten und zu speichern.
-\\todo: groß/kleinschreibung wie im programm
 \begin{figure}
-\includegraphics[width=0.6\linewidth]{bilder/overview.png}
+\includegraphics[width=0.7\linewidth]{bilder/overview.png}
 
 \caption{Gesamtübersicht über das erstelle Programm}
 \label{pic:overview}
@@ -239,7 +238,7 @@ In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu 
 
 \subsection{Threading}
 todo
-hier threading!
+threading besser zu kb creator? auf jeden fall dafür eine übersicht mit dia
 
 \section{Berechnung der Konditionale}
 
@@ -664,11 +663,9 @@ Die \textit{equals(Object o)} Methode der Klasse PCodnitional ist der Einfachhei
 In diesem Abschnitt wird beschrieben, wie die Konditionale aus der Form als Instanzen von WConditional als Instanzen von PConditional übertragen werden. Genauer gesagt ist der interessante Teil, wie Antecedent und Consequence jeweils aus der Form WorldsList in die Form AbstractFormula gebracht werden. \\
 Dabei sind zwei grundsätzliche Vorgehensweisen vorstellbar: Zum ersten der Ansatz, der im Folgenden als \textit{nativer} Ansatz benannt wird: Die Liste der möglichen Welten wird einfach als Disjunktion von Konjunktionen aufgefasst. Als Beispiel, unter Signatur $\Sigma_{ab}$ sei Liste Möglicher Welten $ab, !ab$ gegeben. Dann ist der aussagenlogische Term dafür $(a \wedge b) \vee (\overline{a}\wedge b)$. Dieser Term ist recht umständlich, aber korrekt. Man bedenke auch, dass mit der Signatur $\Sigma_{abc}$ durch 8 mögliche Welten noch wesentlich umständlichere Terme entstehen werden. Der zweite Ansatz für die Übersetzung ist, den kürzesten möglichen Term zu suchen. Im genannten Beispiel ist das $a$. Das ist allerdings weit weniger einfach automatisierbar wie die erste Variante. \\
 Es wäre naheliegend, dass die zweite Variante, da sie oft wesentlich kürzere Terme erzeugt, schneller sein sollte als die erste. Um den möglichen Geschwindigkeitsunterschied beider Ansätze zu testen, sind beiden Varianten im Programm implementiert.\\
-\\todo: translator beschreiben \\
-conjunktive normalform? das ist die einfache translation. siehe dazu auch \cite{beierle19b} s. 40 dazu. das ist ok so? \\
-tests mit translator: translated ca 245s ohne translation etwa 270s.
-mit beiden varianten im objekt auch etwa 270s !! liegt das an der objektgröße?! muss ja \\
-also translation nur sinnvoll, wenn so geschrieben werden kann.
+\\todo: translator beschreiben. auch den versuch beschreiben. und bei normalform bleiben. \\
+conjunktive normalform? das ist die einfache translation. siehe dazu auch \cite{beierle19b} s. 40 dazu.  \\
+
 \subsection{Wissensbasen}
 
 
@@ -912,5 +909,6 @@ Das ließe sich durch Multi Threading lösen. Ein Ansatz für GenKB mit Multi Th
 
 \section*{Abbildungsverzeichnis}
 Alle Abbildungen in diesem Dokument sind eigene Darstellungen. Die Klassendiagramme wurden mit der Sofware \glqq Dia\grqq \space erstellt. Screenshots wurden mit dem Programm \glqq Xfce4-Screenshooter \grqq \space erstellt.
+\\todo: andere dia dinger erwähnen
 \bibliography{lit} 
 \end{document}

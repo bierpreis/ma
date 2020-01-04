@@ -903,21 +903,20 @@ Durch die Speicherung der Daten zwischen zwei Iterationen auf der Festplatte ist
 Das ließe sich durch Multi Threading lösen. Ein Ansatz für GenKB mit Multi Threading wurde während der Entwicklung des beschriebenen Programms ausprobiert. Das parallele Erzeugen der Wissensbasen mit einem ExecutorService und mehreren Threads hat auch funktioniert. Im getesteten Threading wurden die Zeilen 9-12 von GenKb auf verschiedene Threads verteilt und dort bearbeitet. Gescheitert ist es jedoch am Speichern der Ergebnisse in der Reihenfolge wie sie der ursprüngliche Algorithmus vorgibt. Die Ergebnisse der parallelen Threads müssten dann nämlich wieder genau in der richtigen Reihenfolge eingesammelt werden. Mit einem von vornherein auf Multi Threading ausgerichteten Design dürfte es aber möglich sein, mehrere Prozessorkerne für den Hauptalgorithmus zu nutzen und die Geschwindigkeit dadurch zu steigern. Dazu müsste das Design des Programmes jedoch grundsätzlich neu konzipiert werden.
 
 \subsection{Programmablauf mit Signatur ab}
-todo
+todo\\
+erste iterationen schnell, dann lansamer.\\
+testlauf
 
 \subsection{Programmablauf mit Signatur abc}
 todo
+anfang der iteration langsam, dann schneller.
 
 
-
-\section{Betrachtung von Knowledge Base Creator mit JVisualVM}
-eventuell abschnitt allgemein als betrachtung des ergebnisses? könnte auch ab rein.
+\subsection{Betrachtung von Knowledge Base Creator mit JVisualVM}
 todo \\
 kurz was zum programm mit link \\
 eventuell auch als eigener punkt damit das hier nicht zu viel wird. screenshots und so. threading beschreiben. rechenzeit pro methode betrachten? speicher betrachten? \\
-eventuell allgemein was zum ablauf? wie z.b. speed am anfang der iteration gering und wird zum ende hin schneller. und so. \\
-auch: speed (kb/sec) sinkt bei höheren iterationen. logisch: consistency test braucht länger.
-n
+
 
 
 \newpage

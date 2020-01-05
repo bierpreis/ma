@@ -902,9 +902,7 @@ Durch die Speicherung der Daten zwischen zwei Iterationen auf der Festplatte ist
 Das ließe sich durch Multi Threading lösen. Ein Ansatz für GenKB mit Multi Threading wurde während der Entwicklung des beschriebenen Programms ausprobiert. Das parallele Erzeugen der Wissensbasen mit einem ExecutorService und mehreren Threads hat auch funktioniert. Im getesteten Threading wurden die Zeilen 9-12 von GenKb auf verschiedene Threads verteilt und dort bearbeitet. Gescheitert ist es jedoch am Speichern der Ergebnisse in der Reihenfolge wie sie der ursprüngliche Algorithmus vorgibt. Die Ergebnisse der parallelen Threads müssten dann nämlich wieder genau in der richtigen Reihenfolge eingesammelt werden. Mit einem von vornherein auf Multi Threading ausgerichteten Design dürfte es aber möglich sein, mehrere Prozessorkerne für den Hauptalgorithmus zu nutzen und die Geschwindigkeit dadurch zu steigern. Dazu müsste das Design des Programmes jedoch grundsätzlich neu konzipiert werden.
 
 \subsection{Programmablauf mit Signatur ab}
-Mit der Signatur $\Sigma_{abc}$ kann das Programm tatsächlich alle Wissensbasen generieren. Dabei entstehen 364.144.824 konsistente und 364.304.482 inkonsistente Wissensbasen in 25 Iterationen.
-Die Wissensbasen als Ergebnis benötigen 257.1 GB Festplattenspeicher, der ganze Vorgang hat auf dem Test PC 1 Stunde und 52 Minuten gedauert.
-Dabei wurde die Zwischenspeicherung der Daten im Arbeitsspeicher des PCs verwendet. Der JVM mussten dafür mindestens 23 GB RAM zugewiesen werden. \\
+Mit der Signatur $\Sigma_{abc}$ kann das Programm tatsächlich alle Wissensbasen generieren. Dabei entstehen 364.144.824 konsistente und 364.304.482 inkonsistente Wissensbasen in 25 Iterationen. Die Wissensbasen als Ergebnis benötigen 257.1 GB Festplattenspeicher, der ganze Vorgang hat auf dem Test PC 1 Stunde und 52 Minuten gedauert. Dabei wurde die Zwischenspeicherung der Daten im Arbeitsspeicher des PCs verwendet. Der JVM mussten dafür mindestens 23 GB RAM zugewiesen werden. \\
 Der Verlauf dieses Programmablaufs verlief etwa, wie man es erwarten sollte: Die ersten Iterationen laufen sehr schnell. Mit steigendem k steigt dann die Menge der Paare pro Iteration. Das Maximum ist bei $k=13$ mit 58,3 Paaren erreicht, danach sinkt die Anzahl wieder. Dadurch sinkt die Geschwindigkeit deutlich. Dazu kommt, dass mit steigendem $k$ die Prüfung der Wissensbasen auf Konsistenz länger dauert, wodurch sich die Dauer der Iterationen ebenfalls mit steigendem $k$ erhöht.
 
 
@@ -919,6 +917,7 @@ Als Basis für die Prognose wurde die Iteration $k=2$ bis zum Fortschritt von 0.
 
 \subsection{Betrachtung von Knowledge Base Creator mit JVisualVM}
 todo \\
+In diesem Abschnitt soll kurz die Betrachtung des Erstellten Programms mit dem Profiler JVisualVM gezeigt werden. JVisualVM ist ein Java Profiler, mit dem Java Programme während der Laufzeit näher betrachtet werden, nähre Informationen dazu gibt es auf der Seite von Oracle, \cite{jvis20}.
 kurz was zum programm mit link \\
  screenshots und so. threading beschreiben. rechenzeit pro methode betrachten? speicher betrachten? \\
 

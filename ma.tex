@@ -714,6 +714,42 @@ Daneben besitzt die Klasse KnowledgeBase neben der "normalen" noch drei \textit{
 Für die Klasse KnowledgeBase existieren drei Konstruktoren: Der einfachste \textit{KnowledgeBase(long number, PConditional conditional)} wird für die Initialisierung der Wissensbasen mit jeweils einem Element in Zeile 5 von GenKb verwendet. In allen anderen Iterationen wird der Konstruktor \textit{KnowledgeBase(long number, KnowledgeBase knowledgeBase, PConditional conditionalToAdd)} für die Mehrelementigen Wissensbasen in Zeile 12 GenKB benutzt. Die dritte Variante in der Form \textit{KnowledgeBase(String stringFromFile)} kommt zum Zug, wenn die Wissensbasen aus Textdateien von der Festplatte rekonstruiert werden sollen wie in \autoref{sec:hddBuffer} beschrieben. \\
 Ursprünglich existierte auch eine Implementierung einer Wissensbasis, die anstatt einer List<WConditional> eine List<Integer> zur Repräsentation der Konditionale verwendet hat. Dies sollte Arbeitsspeicher sparen. Die Ersparnis war aber gering, dafür kostete das Verfahren recht viel Rechenzeit, daher wird dieses Verfahren nicht mehr genutzt.
 
+
+
+\section{Berechnung der Wissensbasen}
+todo \\
+
+
+
+
+
+\subsection{KbCreator}
+\label{sec:kbcreator} % ref used by overview
+todo!\\
+beschreben \\
+hier auch erwähnen: möglichst viele arbeitsschritte sind in andere threads ausgelagert. \\
+
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{bilder/kbcreator.png}
+\caption{KbCreator Aufbau}
+\label{pic:kbcreator}
+\end{figure}
+
+
+
+
+\subsection{Implementierung von GenKB}
+todo \\
+
+Daten, die aus dem NFC Creator kommen: nfc, cnfc und nfc map. Hier irgendwie erwähnen. \\
+
+
+Den Code hier rein. comments raus?\\
+
+
+
+
 \section{Zwischenspeicherung der Daten}
 In diesem Abschnitt wird beschrieben, wie die Arbeitsdaten von GenKB verwaltet und gespeichert werden. Während einer Iteration $k$ werden Daten von Iteration $k$ verarbeitet und neue Daten unter $k + 1$ abgelegt. Dadurch entstehen große Mengen von Daten, welche bis zur jeweils nächsten Iteration behalten werden müssen. Dabei stellt sich schnell heraus, dass es für den Erfolg des ganzen Programms kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. \\
 In der Originalversion von GenKB wird diese Datenstruktur als \glqq L\grqq \space bezeichnet, bearbeitet werden in einer Iteration $k$ jeweils $L_k$ und  $L_{k+1}$. Die Datenstruktur ist im Prinzip eine Liste die für jedes Element $L_k$ wieder eine Liste mit dem Datensätzen für die jeweilige Iteration beinhaltet. Diese Struktur wird hier folgendermaßen dargestellt: Einzelne Datensätze werden dabei als Objekte gespeichert, welche jeweils eine Wissensbasis und eine Menge an Kandidaten enthalten. Die Verwaltung dieser Datensätze übernimmt ein Puffer, der die Daten Wahlweise entweder im Arbeitsspeicher oder auf der Festplatte speichert und rechtzeitig zur Verfügung stellt. Um die große Menge der Daten besser handhaben zu können, werden die Datensätze dabei jeweils zur Speicherung komprimiert und vor der Benutzung wieder rekonstruiert.
@@ -818,37 +854,6 @@ Zum Iterationswechsel überschreibt die Klasse HddPairBuffer die Methode \textit
 
 
 
-
-\section{Berechnung der Wissensbasen}
-todo \\
-
-
-
-
-
-\subsection{KbCreator}
-\label{sec:kbcreator} % ref used by overview
-todo!\\
-beschreben \\
-hier auch erwähnen: möglichst viele arbeitsschritte sind in andere threads ausgelagert. \\
-
-
-\begin{figure}
-\includegraphics[width=1\linewidth]{bilder/kbcreator.png}
-\caption{KbCreator Aufbau}
-\label{pic:kbcreator}
-\end{figure}
-
-
-
-
-\subsection{Implementierung von GenKB}
-todo \\
-
-Daten, die aus dem NFC Creator kommen: nfc, cnfc und nfc map. Hier irgendwie erwähnen. \\
-
-
-Den Code hier rein. comments raus?\\
 
 
 

@@ -227,7 +227,7 @@ mit $r \rdotl r'$ gdw. $r\dotl r'$ für alle $i \in \{1, ..., m\}$ und alle $r, 
 \subsection{Voraussetzungen des Programms}
 Das beschriebene Programm zum Generieren von Wissensbasen ist komplett in Java geschrieben und erfordert zur Benutzung Java in der Version 1.8 oder höher. Neben der von Java standardmäßig mitgebrachten Runtime Environment werden keine weiteren externen Bibliotheken benötigt. Die verwendete Java Version hat einen Einfluss auf die Geschwindigkeit des Programms: Auf dem Test PC war Java 13 etwas über 10$\$$ schneller als Java 1.8.
 \subsection{Struktur des Programms}
-In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu sehen. Die drei Elemente die sich im grau hinterlegten Bereich befinden sind für das generieren der Wissensbasen zuständig. Oben rechts ist die GUI abgebildet, in der zu Programmstart Optionen gesetzt werden und während des Programmablaufs Informationen zum aktuellen Programmzustand angezeigt werden. Unten links befindet sich der NfcCreator, hier werden die Konditionale NFC anhand der eingestellten Optionen erstellt. Diese Konditionale werden dann an den KbCreator übergeben, welcher für die eigentliche Generierung der Wissensbasen zuständig ist. Der KbCreator ist mit Abstand der komplexeste Teil des Programms und wird im nächsten Abschnitt noch genauer dargestellt. Die GUI oben links NfcViewer ist optional und kann genutzt werden um die Konditionale nach verschiedenen Optionen zu erzeugen, zu betrachten und zu speichern.
+In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu sehen. Die drei Elemente die sich im grau hinterlegten Bereich befinden sind für das generieren der Wissensbasen zuständig. Oben rechts ist die GUI abgebildet, in der zu Programmstart Optionen gesetzt werden und während des Programmablaufs Informationen zum aktuellen Programmzustand angezeigt werden. Unten links befindet sich der NfcCreator, hier werden die Konditionale NFC anhand der eingestellten Optionen erstellt. Diese Konditionale werden dann an den KbCreator übergeben, welcher für die eigentliche Generierung der Wissensbasen zuständig ist. Der KbCreator ist mit Abstand der komplexeste Teil des Programms und wird in \autoref{sec:kbcreator} noch genauer dargestellt. Die GUI oben links NfcViewer ist optional und kann genutzt werden um die Konditionale nach verschiedenen Optionen zu erzeugen, zu betrachten und zu speichern.
 \begin{figure}
 \includegraphics[width=0.7\linewidth]{bilder/overview.png}
 
@@ -827,7 +827,8 @@ todo \\
 
 
 \subsection{Übersicht}
-todo!
+\label{sec:kbcreator} % ref used by overview
+todo! das hier kb creator nennen? \\
 übersicht über die komponenten beschreiben \\
 hier auch erwähnen: möglichst viele arbeitsschritte sind in andere threads ausgelagert. \\
 

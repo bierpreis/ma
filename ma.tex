@@ -224,9 +224,9 @@ mit $r \rdotl r'$ gdw. $r\dotl r'$ für alle $i \in \{1, ..., m\}$ und alle $r, 
 \section{Überblick auf der erstellte Programm}
 
 
-\subsection{Voraussetzungen des Programms}
+\subsection{Voraussetzungen}
 Das beschriebene Programm zum Generieren von Wissensbasen ist komplett in Java geschrieben und erfordert zur Benutzung Java in der Version 1.8 oder höher. Neben der von Java standardmäßig mitgebrachten Runtime Environment werden keine weiteren externen Bibliotheken benötigt. Die verwendete Java Version hat einen Einfluss auf die Geschwindigkeit des Programms: Auf dem Test PC war Java 13 etwas über 10$\$$ schneller als Java 1.8.
-\subsection{Struktur des Programms}
+\subsection{Aufbau}
 In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu sehen. Die drei Elemente die sich im grau hinterlegten Bereich befinden sind für das generieren der Wissensbasen zuständig. Oben rechts ist die GUI abgebildet, in der zu Programmstart Optionen gesetzt werden und während des Programmablaufs Informationen zum aktuellen Programmzustand angezeigt werden. Unten links befindet sich der NfcCreator, hier werden die Konditionale NFC anhand der eingestellten Optionen erstellt. Diese Konditionale werden dann an den KbCreator übergeben, welcher für die eigentliche Generierung der Wissensbasen zuständig ist. Der KbCreator ist mit Abstand der komplexeste Teil des Programms und wird in \autoref{sec:kbcreator} noch genauer dargestellt. Die GUI oben links NfcViewer ist optional und kann genutzt werden um die Konditionale nach verschiedenen Optionen zu erzeugen, zu betrachten und zu speichern.
 \begin{figure}
 \includegraphics[width=0.7\linewidth]{bilder/overview.png}
@@ -526,7 +526,7 @@ private WConditional findCounterConditional(WConditional conditional, List<WCond
 
 
 
-\subsubsection{NFC Viewer}
+\subsection{Grafische Oberfläche zum Betrachten der Konditionale}
 
 
 Der NfcCreator hat eine kleine grafische Oberfläche namens \textit{NfcViewer}, ein Screenshot davon ist in \autoref{pic:nfc-viewer} zu sehen. Damit können die erstellten Konditionale betrachtet und auch als Textdatei gespeichert werden. Es ist so auch möglich, Teilergebnisse aus dem Erstellungsprozess der Konditionale anzuzeigen, um den Vorgang besser nachvollziehen zu können.
@@ -723,7 +723,7 @@ todo \\
 
 
 
-\subsection{KbCreator}
+\subsection{Überblick}
 \label{sec:kbcreator} % ref used by overview
 todo!\\
 beschreben \\
@@ -750,18 +750,18 @@ Den Code hier rein. comments raus?\\
 
 
 
-\section{Zwischenspeicherung der Daten}
+\subsection{Zwischenspeicherung der Daten}
 In diesem Abschnitt wird beschrieben, wie die Arbeitsdaten von GenKB verwaltet und gespeichert werden. Während einer Iteration $k$ werden Daten von Iteration $k$ verarbeitet und neue Daten unter $k + 1$ abgelegt. Dadurch entstehen große Mengen von Daten, welche bis zur jeweils nächsten Iteration behalten werden müssen. Dabei stellt sich schnell heraus, dass es für den Erfolg des ganzen Programms kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. \\
 In der Originalversion von GenKB wird diese Datenstruktur als \glqq L\grqq \space bezeichnet, bearbeitet werden in einer Iteration $k$ jeweils $L_k$ und  $L_{k+1}$. Die Datenstruktur ist im Prinzip eine Liste die für jedes Element $L_k$ wieder eine Liste mit dem Datensätzen für die jeweilige Iteration beinhaltet. Diese Struktur wird hier folgendermaßen dargestellt: Einzelne Datensätze werden dabei als Objekte gespeichert, welche jeweils eine Wissensbasis und eine Menge an Kandidaten enthalten. Die Verwaltung dieser Datensätze übernimmt ein Puffer, der die Daten Wahlweise entweder im Arbeitsspeicher oder auf der Festplatte speichert und rechtzeitig zur Verfügung stellt. Um die große Menge der Daten besser handhaben zu können, werden die Datensätze dabei jeweils zur Speicherung komprimiert und vor der Benutzung wieder rekonstruiert.
 
-\subsection{Paare aus Wissensbasis und Kandidaten}
+\subsubsection{Paare aus Wissensbasis und Kandidaten}
 Als \textit{Paare} wird im Folgenden die Einheit aus einer ursprünglichen Wissensbasis und der zugehörigen Menge an Konditionalen als Kandidaten bezeichnet, um welche die ursprüngliche Wissensbasis möglicherweise erweitert werden kann. Im Algorithmus GenKB in \cite{beierle19} werden diese Paare in Zeile 5 initialisiert und in Zeile 8ff bearbeitet. Dargestellt wird diese Einheit mit charakteristischen dreieckigen Klammern in der Form $<R, C>$, was im Folgenden bei Gelegenheit auch so beibehalten wird. \\
 Im Programm werden zwei Implementierungen zur Repräsentation dieser Paare genutzt, welche hier vorgestellt werden. Beide erben von  der Klasse \textit{AbstractPair}, was die einige Gemeinsamkeiten beider Varianten vereint und ansonsten die Schnittstelle der Paare bildet. Die beiden Implementierungen unterscheiden sich hauptsächlich in der Art der Speicherung der Kandidaten. Da davon sehr viele verwaltet werden müssen, machen sie den allergrößten Teil des Speicherverbrauchs eines Paares aus. Die erste Implementierung ist \textit{RealPair}, hier werden die Kandidaten als Liste von Konditionalen verwaltet. Das ist naheliegend, einfach und schnell, benötigt aber sehr viel Arbeitsspeicher. Die zweite Implementierung \textit{CompressedPair} komprimiert die Liste der Kandidaten und spart dadurch viel Arbeitsspeicher, ist dafür jedoch langsamer. Im späteren Programmablauf arbeitet GenKB selbst mit RealPairs. Die Klasse CompressedPair bietet dann die Möglichkeit den Speicherbedarf zu reduzieren, wenn die Daten im Arbeitsspeicher zwischengespeichert werden sollen. Wenn die Daten auf der Festplatte gespeichert werden, wird dazu ein ähnlnlicher Kompressionsmechanismus wie in CompressedPair angewandt.
 
 
 
 
-\subsubsection{Abstract Pair}
+\paragraph{Abstract Pair}
 \label{sec:abstractpair}
 
 \begin{figure}
@@ -787,26 +787,26 @@ END
 
 Die größte Komplexität der Klasse AbstractPair liegt darin, alle Informationen eines Pairs in einen möglichst kurzgefasstes Stück Text umzuwandeln und später aus diesem Stück Text auch wieder das Objekt zu rekonstruieren. Diese Funktion wird gebraucht, um die Daten auf der Festplatte abzulegen. Die Repräsentation des Pairs als Text muss zum Einen kurz sein, um die Speicherung und das Lesen zum beschleunigen. Zum Anderen werden so viele dieser Objekte gespeichert, dass auch der Gesamtverbrauch an Speicher relevant ist. In \autoref{code:pair-text} ist die Repräsentation des allerersten Pairs abgebildet, welches GenKB mit der Signatur $\Sigma_{abc}$  erstellt. In Zeile 1 ist mit KB einfach die Information kodiert, dass als nächstes die KnowledgeBase beschrieben wird. Die Beschreibung der Wissensbasis in Zeile 2 zeigt als erstes die Nummer vor der Klammer, welche die Nummer der Wissensbasis repäsentiert und hier 1 lautet. Dahinter, innerhalb der geschweiften Klammern, befindet sich die Menge der Konditionale innerhalb der Wissensbasis, hier ebenfalls die Nummer 1. Mehrere Konditionale würden durch Kommas getrennt aufgeführt. Das C in Zeile 3 kündigt an, dass als nächstes die Liste der Kandidaten folgt. In Zeile 4 dann die komprimierte Liste der Kandidaten, die etwas erklärungsbedürftig ist. Sie wird hier so interpretiert, dass alle Konditionale mit den Nummern 3-6050 in die Liste der Kandidaten aufgenommen werden sollen. Dazu werden bei der Rekonstruktion die Konditionale aus der Map<Integer, PConditional> aus AbstractPair abgerufen und in die Liste der Konditionale eingefügt. Das ist in diesem Beispiel sehr einfach, da sich in der Menge keine Lücken befinden. Wenn sich Lücken darin befinden, werden die einzelnen zusammenhängenden Bereiche von Kommas getrennt. Beispielsweise bedeutet "3-5, 7-6050" \space dass alle Konditionale außer den Nummern 1,2 und 6 in die Liste der Kandidaten aufgenommen werden sollen. Hier wird offensichtlich, dass die Effizienz dieser Speicherung dann besonders hoch ist, wenn kaum Lücken vorhanden sind. Das ist in GenKB bei niedrigen Werten für k der Fall. Mit steigendem k steigt auch die Menge der Lücken und damit der Speicherbedarf für die Repräsentation des Pairs. Da jedoch aufgrund der Geschwindigkeit sowieso nur geringe Werte von k relevant sind, ist damit eine sehr effiziente Speicherung ausreichend sichergestellt. In Zeile 5 des Beispiels hat der Eintrag END die Bedeutung, dass das Paar hier endet. Dadurch werden die verschiedenen Paare innerhalb einer Datei voneinander getrennt. Da während des Programmablaufs sehr viele Paare erstellt werden, wäre es ineffizient, für jedes Paar eine eigene Datei zu erstellen. Das Schreiben der einzelnen Dateien auf die Festplatte wäre dann der Flaschenhals für die Geschwindigkeit. Deshalb werden sehr viele Paare in eine einzelne Datei zusammengefasst. Wie viele genau das sind, kann über die GUI des Programms bestimmt werden. Mehr dazu später auch \autoref{sec:pairbuffer}. Analog zur Speicherung eines Pairs als String besitzt dann die Implementierung RealPair auch einen Konstruktor \textit{RealPair(String string)}, der ein Objekt der Klasse aus einem solchen String wieder erzeugen kann.
 
-\subsubsection{Real Pair}
+\paragraph{Real Pair}
 \label{sec:realpair}
 Die Klasse \textit{RealPair} speichert die Liste der Kandidaten zur Erweiterung der enthaltenen Wissensbasis als ArrayList<PConditional>. Das ist in der Verarbeitung schnell, benötigt jedoch sehr viel Speicher. Während des Programmablaufs existiert deshalb zu jedem Zeitpunkt nur eine kleine Menge an Objekten dieser Klasse. Dadurch ist der hohe Speicherbedarf unproblematisch und die gute Verarbeitungsgeschwindigkeit kann genutzt werden. \\
 Es existieren drei Konstruktoren der Klasse RealPair. Ein einfacher Konstruktor in Form von \textit{RealPair(KnowledgeBase knowledgeBase, List<PConditional> candidates)} wird dazu verwendet, um das Paar in GenKB in Zeile 5 und 12 zu erstellen. In dieser Form wird das RealPair Objekt dann zur Weiterverarbeitung im PairBuffer wie unter \ref{sec:pairbuffer} beschrieben übergeben. Ein weiterer Konstruktor dieser Klasse steht in der Form \textit{RealPair(AbstractPair other)} bereit. Dieser erstellt aus einer AbstractPair Implememtierung ein RealPair. Dieser Konstruktor wird dazu genutzt, um aus einem CompressedPair ein RealPair zu erzeugen, also die komprimierten Daten wieder zu entpacken. Ein dritter Konstruktor besteht in der Form \textit{RealPair(String string)} zur Verfügung. Mit diesem kann wie in \autoref{sec:hddBuffer} beschrieben ein RealPair aus einem Stück Text rekonstruiert werden.
 
 
-\subsubsection{Compressed Pair}
+\paragraph{Compressed Pair}
 Die Klasse  \textit{CompressedPair} ist die Implementierung von AbstractPair, die verwendet wird, wenn die Daten möglichst platzsparend im Arbeitsspeicher gehalten und werden sollen. Wie der Name schon verrät, ist dafür ein Kompressionsmechanismus eingebaut. Dieser betrifft die Speicherung der Liste der Kandidaten. Ähnlich wie bei der Speicherung in AbstractPairs als Text auf der Festplatte durch die Methode \textit{toShortFileString()} werden hier zusammenhängende Folgen von Konditionalen genutzt, um Speicherplatz zu sparen. Dazu besitzt die Klasse CompressedPair ein zweidimensionales Array in der Form $int[][]$. Damit werden die Daten im Arbeitsspeicher abgelegt. Die Wahl des Datentyps fällt auf Arrays statt Listen, da die Speicherung hier viel effizienter erfolgen kann. In Java existiert der simple Datentyp int und analog dazu die Möglichkeit Integer Werte als Objekte der \textit{Integer} Klasse zu speichern. Der simple int Typ benötigt dabei jedoch deutlich weniger Speicher als der Overhead eines Objekts der Klasse Integer. Listen können in Java jedoch nur von Integer Objekten erstellt werden, nicht von simplen int Werten, daher müssen die Werte hier in Arrays gespeichert werden.\\
 Der Kompressionsalgorithmus sucht wieder zusammenhängende Mengen von Konditionalen im Format [Nummer des ersten Konditionals] [Nummer des letzten Konditionals]. Diese werden als int Array mit der Länge zwei abgelegt. Von diesen int Arrays der Länge zwei wird dann wiederum Array erstellt und darin die gesamte Menge der Konditionale gespeichert. Die Größe des gesamten Arrays beträgt dann [Menge der zusammenhängenden Bereiche][2]. Solange die zusammenhängenden Bereiche groß sind, funktioniert die Kompression sehr gut. Mit steigendem Wert von k kommen jedoch immer mehr Lücken hinzu und die Speicherung wird zunehmend umständlich. \\
 Mit der Signatur $\Sigma_{abc}$ werden nur geringe Werte für k erreicht, demzufolge ist die Speicherung im relevanten Bereich sehr effizient. Mit der Signatur $\Sigma_{ab}$ werden jedoch höhere Werte für k erreicht. Zusätzlich ist hier die Menge der Kandidaten viel geringer, sodass diese Kompression kaum Vorteile bringt. Das ergibt dann den folgenden Effekt: Für geringe Werte für k wird weniger Speicher benötigt, für hohe Werte für k wird sogar mehr Speicher benötigt im Vergleich zum Verzicht auf Kompression. Da die Signatur $\Sigma_{abc}$ im Vordergrund steht wird die Ineffizienz für $\Sigma_{ab}$ für hohe Werte für $k$  jedoch ignoriert.\\
 Als Konstruktor für die Klasse wird nur der Konstruktor in der Form \textit{CompressedPair( AbstractPair originalPair)} verwendet. Damit werden im \textit{CompressedRamBuffer} wie in \autoref{sec:compressedrambuffer} beschrieben RealPair Objekte in CompressedPair Objekte umgewandelt, um Speicherplatz zu sparen.
 
 
-\subsection{Speicherung der Paare}
+\subsubsection{Speicherung der Paare}
 \label{sec:pairbuffer}
 
 Die Datenstruktur, welche die im Abschnitt zuvor beschriebenen Paare aus Wissensbasis und Kandidaten verwaltet, ist Thema dieses Abschnittes und wird im Folgenden auch als  \textit{PairBuffer} bezeichnet. Der PairBuffer ist damit das Element, welches in GenKb mit der Variable groß $L$ bezeichnet wird. dafür sind im Programm drei verschiede Varianten implementiert: Zwei Optionen legen die Daten im Arbeitsspeicher ab, davon eine Variante mit Kompression der Daten und eine ohne solche Kompression. Die dritte Variante verwendet als Speicher die Festplatte. Alle drei Varianten besitzen zwei eigene Threads, die der eigentlichen GenKB Implementierung so viel wie möglich Arbeit abnehmen. Der Nutzer kann in der grafischen Oberfläche in den Optionen unter \glqq Buffering\grqq \space wählen, welche der Varianten verwendet werden soll. \\
 Von den drei angesprochenen Varianten  sind \textit{CompressedRamBuffer} und \textit{HddBuffer} die Beiden, die sich als gut funktionierend dargestellt haben. Der SimpleRamBuffer ist wegen seines enormen Speicherverbrauchs nur wenig praktikabel und hauptsächlich noch zu Demonstrationszwecken implementiert.
 
-\subsubsection{AbstractPairBuffer}
+\paragraph{AbstractPairBuffer}
 \label{sec:abstractbuffer}
 
 \begin{figure}
@@ -824,7 +824,7 @@ Die Methoden der Klasse AbstractPairBuffer sind allesamt abstrakt. Das sind zum 
 
 
 
-\subsubsection{CompressedRamBuffer}
+\paragraph{CompressedRamBuffer}
 \label{sec:compressedrambuffer}
 Der RamPairBuffer besitzt eine Datenstruktur in der Form \textit{List<List<CompressedPair>>} und zwei dazugehörige Threads dafür. Die Threads stellen die Verbindung zwischen der Datenstruktur und den beiden BlockingQueues dar, die von GenKB verwendet werden. \\
 Ein Thread kümmert sich um die \textit{nextIterationQueue}, also um die von GenKB in Zeile 5 und 12  neu erstellten Paare in Form von Instanzen der Klasse RealPair. Sobald die \textit{nextWiterationQueue} Pairs enthält, entnimmt der Thread die Pairs und wandelt diese in CompressedPairs um. Dazu Wird der Konstruktor \textit{CompressedPair(RealPair)} genutzt. Die neu erstellen CompressedPairs werden dann in die Datenstruktur in der Liste unter dem aktuellen Wert für $k+1$ abgelegt. Diese Kompression findet in dem  dedizierten Thread statt und nicht in der Impelementierung von GenKb selbst, weil das GenKB eine Menge Arbeit abnimmt und somit merklich beschleunigt. \\
@@ -834,14 +834,14 @@ Die Liste in der Form \textit{List<List<CompressedPair>>} wird von einigen Metho
 Die \textit{deleteOldData(int k)} Methode löscht dann in der List<List<CompressedPair>> das Element $k-1$ um den Speicherplatz wieder freizugeben.
 
 
-\subsubsection{SimpleRamBuffer}
+\paragraph{SimpleRamBuffer}
 \label{sec:simplerambuffer}
 Bei dieser Option werden die Daten einfach in einer Datenstruktur in der Form \textit{List<List <RealPair>>} im Arbeitsspeicher gehalten. Das ist die naheliegendste Variante und gleichzeitig diejenige, die am wenigsten praktikabel ist. Der Speicherverbrauch ist enorm und schon nach kurzer Zeit bricht das Programm mit einem \textit{Out of Memory Error} ab. \\
 Der SimpleRamBuffer ist daher eigentlich kaum geeignet für den produktiven Einsatz. Er bietet keine Vorteile gegenüber dem CompressedRamBuffer, dafür den großen Nachteil des erheblichen Speicherverbrauchs. Intern erbt deshalb die Klasse SimpleRamBuffer von CompressedRamBuffer und überschreibt nur wenige Dinge, um statt CompressedPairs RealPairs zu verwenden. Der Rest ist identisch mit dem CompressedRamBuffer aufgebaut, deshalb entfällt an dieser Stelle die Erklärung der internen Funktionsweise, es wäre nur eine Wiederholung vom vorhergehenden Absatz. \\
 
 
 
-\subsubsection{HDDPairBuffer}
+\paragraph{HDDPairBuffer}
 \label{sec:hddBuffer}
 
 
@@ -858,9 +858,9 @@ Zum Iterationswechsel überschreibt die Klasse HddPairBuffer die Methode \textit
 
 
 
-\section{Speicherung der Wissensbasen}
+\subsection{Speicherung der Wissensbasen}
 Die Wissensbasen, die von GenKB generiert werden, sollen danach noch weiterverarbeitet werden. Das beinhaltet sowohl die konsistenten als auch die inkonsistenten Wissensbasen, die voneinander getrennt behandelt werden. Diese Weiterverarbeitung übernimmt ein Objekt auf Basis des \textit{AbstractKbWriters}. Dafür existieren zwei konkrete Implementierungen, zwischen denen der Benutzer wählen kann: Die Wissensbasen können entweder getrennt in konsistent und inkonsistent jeweils gruppiert nach Anzahl der darin enthaltenen Konditionale gespeichert werden, das übernimmt die Implementierung \textit{KbFileWriter}. Oder aber die Wissensbasen werden direkt nach der Erzeugung wieder gelöscht, das wird dann von der Impelementierung \textit{DummyWriter} übernommen. Diese Variante ist nützlich für Testläufe, denn es beschleunigt den gesamten Prozess und erspart das nachträgliche Löschen der Daten.
-\subsection{AbstractKbWriter}
+\subsubsection{AbstractKbWriter}
 
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/AbstractKbWriter.png}
@@ -872,7 +872,7 @@ Die Wissensbasen, die von GenKB generiert werden, sollen danach noch weiterverar
 \textit{AbstractKbWriter} ist die abstrakte Klasse die von den beiden Varianten der Verarbeitung von Wissensbasen implementiert wird. Der Aufbau der Klasse AbstractWriter hat einige Ähnlichkeiten zur bereits beschriebenen Klasse AbstractPairWriter. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:abstractkbwriter} zu sehen. Es gibt zwei BlockingQueues als Instanzvariablen. Eine \textit{consistentQueue}, in welche GenKB die konsistenten Wissensbasen einfügt und die \textit{inconsistentQueue} in der GenKB die inkonsistenten Wissensbasen einreiht. Die Beiden Queues werden auch direkt im Konstruktor des AbstractKbWriter als \textit{ArrayBlockingQueue(5000)} initialisiert. Für jede der beiden BlockingQueues existiert ein eigener Thread, der sich um die Bearbeitung der Queues kümmert. Hier also ein Thread für die konsistenten und ein Thread für die inkonsistenten Wissensbasen. Die beiden BlockingQueues ochestrieren hier also wieder die Zusammenarbeit von GenKB und den beiden Writer Threads. Zum Iterationswechsel sind auch hier zwei Methoden vorhanden, \textit{prepareIteration(int k)} zur Vorbereitung einer neuen Iteration und \textit{finishIteration()} zum korrekten Beenden der aktuellen Iteration. Der AbstractKbWriter ist weiterhin die Stelle im Programm, an welcher die generierten Wissensbasen gezählt werden. Um diese Information an die GUI weitezugeben, existieren die drei folgenden Getter: \textit{getTotalConsistentKbAmount()}, \textit{getTotalInconsistentKbAmount} und \textit{getIterationConsistentAmount()}.
 Daneben gibt es noch im  oberen gezeigten Diagramm nicht erwähnte Methoden, um weitere Informationen an die GUI weiterzugeben: Das sind hier Getter für die aktuell belegte Größe der Queues und eine Methode um die Threads außerplanmäßig über den Stop Button zu beenden.
 
-\subsection{KbFileWriter}
+\subsubsection{KbFileWriter}
 \label{sec:kbfilewriter}
 Der \textit{KbFileWriter} ist diejenige Impelementierung von AbstractKbWriter, welche die Wissensbasen tatsächlich in Dateien schreibt und abspeichert. Die erstellen Dateien können mehrere Wissensbasen enthalten und werden mit der Dateiendung \glqq .cl\grqq \space gespeichert. Dazu besitzt der KbFileWriter zwei gleichermaßen aufgebaute Threads: Ein Thread für die \textit{consistentKbQueue} und ein Thread für die \textit{inconisstentKbQueue}. Die beiden Threads beobachten ihre zugeordnete Queue und sobald sich darin Elemente befinden, werden diese in eine Liste eingefügt. Wenn die Länge der Liste die maximale Anzahl an Wissensbasen erreicht hat, welche in der GUI bestimmt wird, wird die Liste auf den Speicher geschrieben. Dazu wird eine neue  Datei im Unterordner \glqq consistent\grqq \space oder \glqq inconsistent\grqq \space  und jeweils darin im Unterordnet der aktuellen Iteration $k$ erstellt. Zum Speichern der Wissensbasen stehen zwei Optionen bereit: Entweder wird ein Konditional nur durch dessen Nummer in die Datei geschrieben oder als kompletter String im InfOCF Format. Wenn eine Iteration beendet ist, wird die letzte Datei geschrieben welche entsprechend weniger Wissensbasen als die Anderen beinhalten kann. Da der KbFileWriter recht viele Optionen bietet, bekommt er von der GUI ein KbWriterOptions Objekt mit allen vom Benutzer gewählten Einstellungen um diese umzusetzen.\\
 Beide Threads besitzen und aktualisieren zudem jeweils einen Zähler für die Gesamtmenge der Wissensbasen über alle Iterationen und für die aktuelle Iteration. Der Creator selbst hat keinen Zähler, die GUI holt sich die Information zum anzeigen aus dem AbstractWriter. Der Zweck den Zähler hier unterzubringen ist es, den Creator so weit wie möglich von nicht wirklich notwendigen Operationen zu entlasten um eine bestmögliche Geschwindigkeit zu ermöglichen.\\
@@ -880,12 +880,11 @@ Neben den Threads besitzt der KbFileWriter die Methode \textit{finishIteration()
 Der KBFileWriter bietet für das Schreiben von Dateien die Option an, eine feste minimale Länge der Dateinamen einzustellen, falls das gewünscht sein sollte. Dann werden die Namen bei Bedarf mit \textit{leading zeroes} aufgefüllt. Standardmäßig ist die Option deaktiviert in dem Sinne, dass die minimale Länge der Dateinamen auf 1 gesetzt ist. Wenn die Anzahl der Dateien (in einem Unterordner, also innerhalb einer Iteration) die Grenze dessen Überschreitet, was mit einer Zahl der definierten Länge dargestellt werden kann, werden die Zahlen einfach länger. Das ist das einfache Prinzip nach dem Motto: Nach 9 folgt 10. Der Benutzer muss sich die Länge entsprechend vorher überlegen oder einfach entsprechend große Werte wählen. 
 
 
-\subsection{DummyKbWriter}
+\subsubsection{DummyKbWriter}
 \label{sec:dummywriter}
 Auch der DummyKbWriter besitzt zwei gleich aufgebaute Threads: Einer kümmert sich um die \textit{consistentKbQueue}, der Andere bearbeitet die \textit{inconsistentKbQueue}. Beide Threads beobachten ihre Queue und sobald Elemente darin erscheinen, werden diese gezählt und sofort wieder gelöscht. Das Zählen findet einmal  in Bezug auf die Gesamtmenge des Programmverlaufs über alle Iterationen statt und einmal auf die aktuelle Iteration. Die gezählten Werte ruft die grafische Oberfläche dann ab, um sie für den Benutzer anzuzeigen. Weiterhin besitzt der DummyKbWriter noch eine Methode zum Iterationswechsel, die macht allerdings nichts anderes als den Zähler der Wissensbasen für die aktuelle Iteration wieder auf 0 zu setzen.
 
-
-\subsection{Beschreibung der grafischen Oberfläche}
+\subsection{Grafische Oberfläche zum Generieren der Konditionale}
 
 
 \begin{figure}

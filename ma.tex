@@ -767,6 +767,8 @@ In den folgenden Abschnitten werden die 3 hier vorgestellten Teile als GenKkb, Z
 In diesem Abschnitt wird gezeigt, wie der konkrete Algorithmus GenKb aus \cite{beierle19} zur Generierung der Wissensbasen implementiert wurde. Wie schon erwähnt, befindet sich der Algorithmus in eigenem Objekt der Klasse GenKb, ein stark vereinfachtes Klassendiagramm dieses Objekts befindet sich in \autoref{pic:genkb}. Dieses Objekt implementiert das Java Interface \textit{Runnable} und kann somit als eigener Thread agieren. Als Referenzen im Objekt befinden sich die Listen von PConditonals cnfc und nfc, die vom NfcCreator erstellt wurden und bereits erklärt wurden. Dann befindet sich eine Referenz auf das Objekt \glqq l \grqq \space, was dem \glqq l \grqq \space aus der Originaldarstellung von GenKb entspricht. Hauptsächlich ist es ein Objekt, was eine \textit{List<List<AbstractPair>>} beinhaltet, also die Paare aus \textit{<Konditional, Kandidaten>} während der Iterationen die Daten aufnimmt. Das Objekt \textit{kbWriter} kümmert sich um das schreiben der erstellten Wissensbasen. Die Klassen AbstractPairBuffer und AbstractPairWriter werden in den nächsten Abschnitten beschrieben. \\
 In \autoref{code:genkb-gesamt} und \autoref{code:genkb:init} ist nun die Impelementierung von GenKb dargestellt. Der Algorithmus ist auf zwei Methoden verteilt damit keine einzelne übermäßig lange Methode erstellt. Die Aufteilung ist wie folgt: Der Eigentliche Algorithmus ist in \autoref{code:genkb-gesamt}, dieser ruft dann für Zeile 3-5 von GenKb die andere Methode zum initialisieren der Wissensbasen mit  jeweils einem Element auf. \\
 
+todo
+
 \begin{figure}
 \begin{lstlisting}
 k = 1;
@@ -1008,6 +1010,7 @@ Ganz unten befindet sich eine Information zur Java JVM selbst: Sie gibt im Prinz
 
 
 \section{Bewertung der Ergebnisse}
+todo: richtig fazit?
 \subsection{Allgemein}
 Als Ergebnis erzeugt das erstellte Programm Wissensbasen im gewünschten Format, sodass sie mit der InfOCF Bibliothek korrekt gelesen werden können. Die Wissensbasen werden nach Iterationen k gruppiert in Unterordnet abgespeichert. Das lässt sich leicht überprüfen da in einer Iteration k jede Wissensbasis genau $k+1$ Konditionale beinhaltet. Innerhalb der Iterationen werden die Wissensbasen nach konsistent und inkonsistent gruppiert. Die Korrektheit dieser Gruppierung lässt sich durch einlesen mit der InfOCF Bibliothek und Prüfen mit dessen Methode auf Konsistenz bestätigen. Des weiteren werden die Wissensbasen genau in der Reihenfolge, wie sie durch GenKB erzeugt werden, abgespeichert. Dafür sorgt die Verwendung von threadsicheren BlockingQueues. \\
 Durch die Speicherung der Daten zwischen zwei Iterationen auf der Festplatte ist dafür kein großer Arbeitsspeicher nötig. Der Algorithmus kann so sehr lange laufen und viele Wissensbasen erzeugen. Begrenzend könnte irgendwann der Platz auf der Festplatte werden. Aufgrund der enormen Menge der möglichen Wissensbasen werden mit der Signatur $\Sigma_{abc}$ nur sehr geringe Werte für k erreicht. Bei entsprechend langer Laufzeit sollte $k=3$ möglich sein, höhere Werte würden wohl zu lange dauern. Der Begrenzende Faktor ist die Geschwindigkeit des Prozessors. Teilweise kann durch Threading die Arbeit auf mehrere Kerne verteilt werden. Der Flaschenhals ist jedoch der Thread der GenKB selbst umsetzt.\\

@@ -818,24 +818,23 @@ finishAndStopLoop();
 
 \begin{figure}
 \begin{lstlisting}
-    private List<AbstractPair> initOneElementKBs(Collection<PConditional> nfc, Collection<PConditional> cnfc) {
-        List<AbstractPair> listToReturn = new ArrayList<>(cnfc.size());
-        long numberCounter = 1;
-        for (PConditional r : cnfc) {
-            KnowledgeBase rKB = new KnowledgeBase(numberCounter, r);
-            numberCounter++;
-            List<PConditional> candidatesList = new ArrayList<>();
-            for (PConditional conditional : nfc) {
-                if (!(conditional.getEqConditionalsList().get(0).getNumber() < r.getNumber()))
-                    if (!(conditional.equals(r)))
-                        if (!(conditional.equals(r.getCounterConditional())))
-                            candidatesList.add(conditional);
-            }
-            listToReturn.add(new RealPair(rKB, candidatesList));
+private List<AbstractPair> initOneElementKBs(Collection<PConditional> nfc, Collection<PConditional> cnfc) {
+    List<AbstractPair> listToReturn = new ArrayList<>(cnfc.size());
+    long numberCounter = 1;
+    for (PConditional r : cnfc) {
+        KnowledgeBase rKB = new KnowledgeBase(numberCounter, r);
+        numberCounter++;
+        List<PConditional> candidatesList = new ArrayList<>();
+        for (PConditional conditional : nfc) {
+            if (!(conditional.getEqConditionalsList().get(0).getNumber() < r.getNumber()))
+                if (!(conditional.equals(r)))
+                    if (!(conditional.equals(r.getCounterConditional())))
+                        candidatesList.add(conditional);
         }
-        System.out.println("finished 1 element kbs");
-        return listToReturn;
+        listToReturn.add(new RealPair(rKB, candidatesList));
     }
+    return listToReturn;
+}
 \end{lstlisting}
 \label{code:genkb:init}
 \caption{Initialisierung der 1-elementigen Wissensbasen in GenKb, entspricht Zeile 1-5}

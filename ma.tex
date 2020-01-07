@@ -839,8 +839,9 @@ Die Methoden der Klasse AbstractPairBuffer sind allesamt abstrakt. Das sind zum 
 
 
 
-\paragraph{CompressedRamBuffer}
+\paragraph{CompressedRamBuffer}\mbox{}
 \label{sec:compressedrambuffer}
+
 Der RamPairBuffer besitzt eine Datenstruktur in der Form \textit{List<List<CompressedPair>>} und zwei dazugehörige Threads dafür. Die Threads stellen die Verbindung zwischen der Datenstruktur und den beiden BlockingQueues dar, die von GenKB verwendet werden. \\
 Ein Thread kümmert sich um die \textit{nextIterationQueue}, also um die von GenKB in Zeile 5 und 12  neu erstellten Paare in Form von Instanzen der Klasse RealPair. Sobald die \textit{nextWiterationQueue} Pairs enthält, entnimmt der Thread die Pairs und wandelt diese in CompressedPairs um. Dazu Wird der Konstruktor \textit{CompressedPair(RealPair)} genutzt. Die neu erstellen CompressedPairs werden dann in die Datenstruktur in der Liste unter dem aktuellen Wert für $k+1$ abgelegt. Diese Kompression findet in dem  dedizierten Thread statt und nicht in der Impelementierung von GenKb selbst, weil das GenKB eine Menge Arbeit abnimmt und somit merklich beschleunigt. \\
 Analog dazu kümmert sich der andere Thread um die \textit{lastIterationQueue}. Der Thread befüllt die Queue mit RealPairs, damit sie GenKB in Zeile 9 entnehmen kann und nicht selbst entkomprimieren muss. Auch das beschleunigt GenKB selbst deutlich. Der Thread entnimmt also die CompressedPairs aus der Liste mit Index $k$, wandelt sie duch den Konstruktor \textit{RealPair(CompressedPair)} um und legt sie in die \textit{lastIterationQueue}. \\
@@ -849,14 +850,15 @@ Die Liste in der Form \textit{List<List<CompressedPair>>} wird von einigen Metho
 Die \textit{deleteOldData(int k)} Methode löscht dann in der List<List<CompressedPair>> das Element $k-1$ um den Speicherplatz wieder freizugeben.
 
 
-\paragraph{SimpleRamBuffer}
+\paragraph{SimpleRamBuffer}\mbox{}
 \label{sec:simplerambuffer}
+
 Bei dieser Option werden die Daten einfach in einer Datenstruktur in der Form \textit{List<List <RealPair>>} im Arbeitsspeicher gehalten. Das ist die naheliegendste Variante und gleichzeitig diejenige, die am wenigsten praktikabel ist. Der Speicherverbrauch ist enorm und schon nach kurzer Zeit bricht das Programm mit einem \textit{Out of Memory Error} ab. \\
 Der SimpleRamBuffer ist daher eigentlich kaum geeignet für den produktiven Einsatz. Er bietet keine Vorteile gegenüber dem CompressedRamBuffer, dafür den großen Nachteil des erheblichen Speicherverbrauchs. Intern erbt deshalb die Klasse SimpleRamBuffer von CompressedRamBuffer und überschreibt nur wenige Dinge, um statt CompressedPairs RealPairs zu verwenden. Der Rest ist identisch mit dem CompressedRamBuffer aufgebaut, deshalb entfällt an dieser Stelle die Erklärung der internen Funktionsweise, es wäre nur eine Wiederholung vom vorhergehenden Absatz. \\
 
 
 
-\paragraph{HDDPairBuffer}
+\paragraph{HDDPairBuffer} \mbox{}
 \label{sec:hddBuffer}
 
 

@@ -816,6 +816,51 @@ finishAndStopLoop();
 
 
 
+\begin{figure}
+\begin{lstlisting}
+
+
+
+    private List<AbstractPair> initOneElementKBs(Collection<PConditional> nfc, Collection<PConditional> cnfc) {
+        System.out.println("creating 1 element kbs");
+
+        List<AbstractPair> listToReturn = new ArrayList<>(cnfc.size());
+        long numberCounter = 1;
+
+        //line 3
+        for (PConditional r : cnfc) {
+
+            //line 4 and 5
+            KnowledgeBase rKB = new KnowledgeBase(numberCounter, r);
+            numberCounter++;
+
+            //create candidates
+            List<PConditional> candidatesList = new ArrayList<>();
+
+            for (PConditional conditional : nfc) {
+                if (!(conditional.getEqConditionalsList().get(0).getNumber() < r.getNumber()))
+                    if (!(conditional.equals(r)))
+                        if (!(conditional.equals(r.getCounterConditional())))
+                            candidatesList.add(conditional);
+
+            }
+
+
+            //no buffering for first iteration because it almost makes no difference
+            listToReturn.add(new RealPair(rKB, candidatesList));
+        }
+
+        System.out.println("finished 1 element kbs");
+        return listToReturn;
+    }
+    
+    
+\end{lstlisting}
+\label{code:genkb:init}
+\caption{Initialisierung der 1-elementigen Wissensbasen in GenKb, entspricht Zeile 1-5}
+\end{figure}
+
+
 \subsection{Zwischenspeicherung der Daten}
 In diesem Abschnitt wird beschrieben, wie die Arbeitsdaten von GenKB verwaltet und gespeichert werden. Während einer Iteration $k$ werden Daten von Iteration $k$ verarbeitet und neue Daten unter $k + 1$ abgelegt. Dadurch entstehen große Mengen von Daten, welche bis zur jeweils nächsten Iteration behalten werden müssen. Dabei stellt sich schnell heraus, dass es für den Erfolg des ganzen Programms kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. \\
 In der Originalversion von GenKB wird diese Datenstruktur als \glqq L\grqq \space bezeichnet, bearbeitet werden in einer Iteration $k$ jeweils $L_k$ und  $L_{k+1}$. Die Datenstruktur ist im Prinzip eine Liste die für jedes Element $L_k$ wieder eine Liste mit dem Datensätzen für die jeweilige Iteration beinhaltet. Diese Struktur wird hier folgendermaßen dargestellt: Einzelne Datensätze werden dabei als Objekte gespeichert, welche jeweils eine Wissensbasis und eine Menge an Kandidaten enthalten. Die Verwaltung dieser Datensätze übernimmt ein Puffer, der die Daten Wahlweise entweder im Arbeitsspeicher oder auf der Festplatte speichert und rechtzeitig zur Verfügung stellt. Um die große Menge der Daten besser handhaben zu können, werden die Datensätze dabei jeweils zur Speicherung komprimiert und vor der Benutzung wieder rekonstruiert.

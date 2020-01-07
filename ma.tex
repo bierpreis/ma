@@ -20,8 +20,8 @@
 \lstset{ 
 language=Java,
 frame=single,
-%this shrinks 2 space to 1 so code can be copied from intellij without reformatting
-literate={\ \ }{{\ }}1,
+%bext line shrinks 2 space to 1 so code can be copied from intellij without reformatting
+%literate={\ \ }{{\ \ }}1,
 breaklines=true,
 columns=fullflexible,
 numbers=right,
@@ -757,11 +757,55 @@ In den folgenden Abschnitten werden die 3 hier vorgestellten Teile als GenKkb, Z
 \subsection{Implementierung von GenKB}
 todo \\
 
+In diesem Abschnitt wird gezeigt, wie der konkrete Algorithmus GenKb aus \cite{beierle19} zur Generierung der Wissensbasen implementiert wurde.
+
 Daten, die aus dem NFC Creator kommen: nfc, cnfc und nfc map. Hier irgendwie erwähnen. \\
 
+\begin{figure}
 
-Den Code hier rein. comments raus?\\
 
+\begin{lstlisting}
+            k = 1;
+            kbWriter.prepareIteration(0); 
+            l.prepareIteration(0);
+            for (AbstractPair pair : initOneElementKBs(nfc, cnfc))
+                newIterationQueue.put(pair);
+            l.finishIteration(0);
+            kbWriter.finishIteration();
+            while (l.hasElementsForIteration(k)) {
+                l.prepareIteration(k);
+                currentPairAmount = kbWriter.getIterationConsistentCounter();
+                kbWriter.prepareIteration(k);
+                iterationPairCounter = 0;
+                long consistentKbCounter = 1;
+                long inconsistentKbCounter = 1;
+                while (l.hasMoreElementsForK(k)) {
+                    AbstractPair currentPair = lastIterationQueue.take();
+                    iterationPairCounter++;
+                    for (PConditional r : currentPair.getCandidatesList()) {
+                        if (currentPair.getKnowledgeBase().isConsistentWith(r)) {
+                            KnowledgeBase knowledgeBaseToAdd = new KnowledgeBase(consistentKbCounter, currentPair.getKnowledgeBase(), r);
+                            consistentKbCounter++;
+                            List<PConditional> candidatesToAdd = new ArrayList<>();
+                            for (PConditional conditionalFromCandidates : currentPair.getCandidatesList())
+                                if (conditionalFromCandidates.getNumber() > r.getNumber() && !conditionalFromCandidates.equals(r.getCounterConditional()))
+                                    candidatesToAdd.add(conditionalFromCandidates);
+                            newIterationQueue.put(new RealPair(knowledgeBaseToAdd, candidatesToAdd));
+                        } else {
+                            inconsistentWriterQueue.put(new KnowledgeBase(inconsistentKbCounter, currentPair.getKnowledgeBase(), r));
+                            inconsistentKbCounter++;
+                        }
+                    }
+                    currentPair.clear();
+                }
+                l.finishIteration(k);
+                kbWriter.finishIteration();
+                k = k + 1;
+            }
+            finishAndStopLoop();
+\end{lstlisting}
+\caption{Implementierung GenKB, Zeilen 6-14}
+\end{figure}
 
 
 

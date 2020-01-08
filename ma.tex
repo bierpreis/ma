@@ -840,10 +840,12 @@ private void generateKbs() throws InterruptedException {
     finishAndStopLoop();
 }
 \end{lstlisting}
-todo
 
-Die Methode \textit{void generateKbs()} ist im Gegensatz zum orginalen GenKb keinen Rückgabewert. Das liegt daran, dass die Methode mehrere Outputs produziert aber nur einen Rückgabewert haben könnte. Stattdessen werden die Outputs in die in die Objektvariablen \textit{l} und \textit{kbWriter} eingefügt. Daneben kann die Methode eine InterruptedException werfen, nämlich genau dann wenn der Thread interrupted wird. Das passiert ausschließlich durch den Benutzer wenn er den Stop Button der GUI betätigt, dann wird die InterruptedException gefangen und der Thread beendet. \\
-next start iteration /stop iteration
+
+Die Methode \textit{void generateKbs()} ist im Gegensatz zum orginalen GenKb keinen Rückgabewert. Das liegt daran, dass die Methode mehrere Outputs produziert aber nur einen Rückgabewert haben könnte. Stattdessen werden die Outputs in die in die Objektvariablen \textit{l} und \textit{kbWriter} eingefügt. Daneben kann die Methode eine InterruptedException werfen, nämlich genau dann wenn der Thread interrupted wird. Das passiert ausschließlich durch den Benutzer wenn er den Stop Button der GUI betätigt, dann wird die InterruptedException gefangen und der Thread beendet. Ansonsten wurde versucht, die Methode so nah wie möglich am Orginal zu gestalten. Damit und der Kommentierung mit den Zeilennummern des Orginals sollte die Methode möglichst erklärend sein. \\
+Um Iterationen vorzubereiten und kontrolliert fertigzustellen, werden die Methoden \textit{startIteration(int k)} und textit{finishIteration(int k)} aufgerufen. Das erfolgt für Iteration 0 (also die Intitialisierung der Wissensbasen mit einem Element) in Zeile 3 und 24 und für alle anderen Iterationen in Zeile 40 und 65. Diese Methodenaufrufe steuern die Iterationswechsel für die zwei Datenstrukturen \textit{l} und \textit{kbCreator}. Sie starten neue Threads und sorgen beim beenden von Iterationen dafür, dass auch alle Elemente einer Iteration fertig bearbeitet werden, bis die nächste Iteration startet. Dadurch wird sichergestellt, dass durch den Iterationswechsel Daten verloren gehen könnten. \\
+
+todo
 
 \subsection{Zwischenspeicherung der Daten}
 In diesem Abschnitt wird beschrieben, wie die Arbeitsdaten von GenKB verwaltet und gespeichert werden. Während einer Iteration $k$ werden Daten von Iteration $k$ verarbeitet und neue Daten unter $k + 1$ abgelegt. Dadurch entstehen große Mengen von Daten, welche bis zur jeweils nächsten Iteration behalten werden müssen. Dabei stellt sich schnell heraus, dass es für den Erfolg des ganzen Programms kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. \\

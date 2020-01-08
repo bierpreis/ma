@@ -842,7 +842,7 @@ private void generateKbs() throws InterruptedException {
 \end{lstlisting}
 
 
-todo description
+Die Methode \textit{void generateKbs()} ist im Gegensatz zum Orginal GenKb keinen Rückgabewert. Das liegt daran, dass die Methode mehrere Outputs produziert aber nur einen Rückgabewert haben könnte. Stattdessen werden die Outputs in die in die Objektvariablen \textit{l} und \textit{kbWriter} eingefügt. Daneben kann die Methode eine InterruptedException werfen, nämlich genau dann wenn der Thread interrupted wird. Das passiert ausschließlich durch den Benutzer wenn er den Stop Button der GUI betätigt, dann wird die InterruptedException gefangen und der Thread beendet.
 
 \subsection{Zwischenspeicherung der Daten}
 In diesem Abschnitt wird beschrieben, wie die Arbeitsdaten von GenKB verwaltet und gespeichert werden. Während einer Iteration $k$ werden Daten von Iteration $k$ verarbeitet und neue Daten unter $k + 1$ abgelegt. Dadurch entstehen große Mengen von Daten, welche bis zur jeweils nächsten Iteration behalten werden müssen. Dabei stellt sich schnell heraus, dass es für den Erfolg des ganzen Programms kritisch ist, diese Daten so effizient und sparsam wie möglich zu verwalten. \\

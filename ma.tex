@@ -765,7 +765,7 @@ In den folgenden Abschnitten werden die 3 hier vorgestellten Teile als GenKkb, Z
 
 
 In diesem Abschnitt wird gezeigt, wie der konkrete Algorithmus GenKb aus \cite{beierle19} zur Generierung der Wissensbasen implementiert wurde. Wie schon erwähnt, befindet sich der Algorithmus in eigenem Objekt der Klasse GenKb, ein stark vereinfachtes Klassendiagramm dieses Objekts befindet sich in \autoref{pic:genkb}. Dieses Objekt implementiert das Java Interface \textit{Runnable} und kann somit als eigener Thread verwendet werden. Als Referenzen im Objekt befinden sich die Listen von PConditonals \textit{cnfc} und \textit{nfc}, die vom NfcCreator erstellt wurden und bereits erklärt wurden. Dann befindet sich eine Referenz auf das Objekt \glqq l\grqq \space, was dem \glqq l\grqq \space aus der Originaldarstellung von GenKb entspricht. Hauptsächlich ist es ein Objekt, was eine \textit{List<List<AbstractPair>>} beinhaltet, also die Paare aus \textit{<Konditional, Kandidaten>} während der Iterationen die Daten aufnimmt. Das Objekt \textit{kbWriter} kümmert sich um das persistente Schreiben der erstellten Wissensbasen auf einen Datenträger. Die Klassen AbstractPairBuffer und AbstractPairWriter werden in den nächsten Abschnitten beschrieben. \\
-In \autoref{code:genkb-gesamt} und \autoref{code:genkb:init} ist nun die Impelementierung von GenKb dargestellt. Der Algorithmus ist auf zwei Methoden verteilt damit keine einzelne übermäßig lange Methode erstellt. Die Aufteilung ist wie folgt: Der Eigentliche Algorithmus ist in \autoref{code:genkb-gesamt}, dieser ruft dann für Zeile 3-5 von GenKb die andere Methode zum initialisieren der Wissensbasen mit  jeweils einem Element auf. \\
+In \autoref{code:genkb-gesamt} und \autoref{code:genkb-init} ist nun die Impelementierung von GenKb dargestellt. Der Algorithmus ist auf zwei Methoden verteilt damit keine einzelne übermäßig lange Methode erstellt. Die Aufteilung ist wie folgt: Der Eigentliche Algorithmus ist in \autoref{code:genkb-gesamt}, dieser ruft dann für Zeile 3-5 von GenKb die andere Methode zum initialisieren der Wissensbasen mit  jeweils einem Element auf. \\
 
 todo
 
@@ -810,8 +810,8 @@ while (l.hasElementsForIteration(k)) {
 }
 finishAndStopLoop();
 \end{lstlisting}
-\label{code:genkb-gesamt}
 \caption{Implementierung GenKB, Zeilen 6-14}
+\label{code:genkb-gesamt}
 \end{figure}
 
 
@@ -836,8 +836,8 @@ private List<AbstractPair> initOneElementKBs(Collection<PConditional> nfc, Colle
     return listToReturn;
 }
 \end{lstlisting}
-\label{code:genkb:init}
 \caption{Initialisierung der 1-elementigen Wissensbasen in GenKb, entspricht Zeile 3-5}
+\label{code:genkb-init}
 \end{figure}
 
 

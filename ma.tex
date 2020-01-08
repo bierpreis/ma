@@ -846,6 +846,7 @@ private void generateKbs() throws InterruptedException {
 
 
 Die Methode \textit{void generateKbs()} ist im Gegensatz zum orginalen GenKb keinen Rückgabewert. Stattdessen werden die Outputs über drei BlockingQueues realisiert. Daneben kann die Methode eine InterruptedException werfen, nämlich genau dann wenn der Thread interrupted wird. Das passiert ausschließlich durch den Benutzer wenn er den Stop Button der GUI betätigt, dann wird die InterruptedException gefangen und der Thread beendet. Ansonsten wurde versucht, die Methode so nah wie möglich am Orginal zu gestalten. Damit und der Kommentierung mit den Zeilennummern des Orginals sollte die Methode möglichst erklärend sein. \\
+todo: startIteration ist auch line 7!  \\
 Um Iterationen vorzubereiten und kontrolliert fertigzustellen, werden die Methoden \textit{startIteration(int k)} und textit{finishIteration(int k)} aufgerufen. Das erfolgt für Iteration 0 (also die Intitialisierung der Wissensbasen mit einem Element) in Zeile 3 und 24 und für alle anderen Iterationen in Zeile 40 und 65. Diese Methodenaufrufe steuern die Iterationswechsel für die zwei Datenstrukturen \textit{l} und \textit{kbCreator}. Sie starten neue Threads und sorgen beim beenden von Iterationen dafür, dass auch alle Elemente einer Iteration fertig bearbeitet werden, bis die nächste Iteration startet. Dadurch wird sichergestellt, dass durch den Iterationswechsel Daten verloren gehen könnten. \\
 
 todo

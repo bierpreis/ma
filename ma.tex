@@ -770,44 +770,79 @@ In \autoref{code:genkb-gesamt} und \autoref{code:genkb-init} ist die Impelementi
 
 \begin{figure}
 \begin{lstlisting}
-k = 1;
-kbWriter.prepareIteration(0); 
-l.prepareIteration(0);
-for (AbstractPair pair : initOneElementKBs(nfc, cnfc))
-    newIterationQueue.put(pair);
-l.finishIteration(0);
-kbWriter.finishIteration();
-while (l.hasElementsForIteration(k)) {
-    l.prepareIteration(k);
-    currentPairAmount = kbWriter.getIterationConsistentCounter();
-    kbWriter.prepareIteration(k);
-    iterationPairCounter = 0;
-    long consistentKbCounter = 1;
-    long inconsistentKbCounter = 1;
-    while (l.hasMoreElementsForK(k)) {
-        AbstractPair currentPair = lastIterationQueue.take();
-        iterationPairCounter++;
-        for (PConditional r : currentPair.getCandidatesList()) {
-            if (currentPair.getKnowledgeBase().isConsistentWith(r)) {
-                KnowledgeBase knowledgeBaseToAdd = new KnowledgeBase(consistentKbCounter, currentPair.getKnowledgeBase(), r);
-                consistentKbCounter++;
-                List<PConditional> candidatesToAdd = new ArrayList<>();
-                for (PConditional candidate : currentPair.getCandidatesList())
-                    if (candidate.getNumber() > r.getNumber() && !candidate.equals(r.getCounterConditional()))
-                        candidatesToAdd.add(candidate);
-                newIterationQueue.put(new RealPair(knowledgeBaseToAdd, candidatesToAdd));
-            } else {
-                inconsistentWriterQueue.put(new KnowledgeBase(inconsistentKbCounter, currentPair.getKnowledgeBase(), r));
-                inconsistentKbCounter++;
+    private void generateKbs() throws InterruptedException {
+        //line 1
+        startIteration(0);
+
+        //line 2
+        k = 1;
+        long numberCounter = 1;
+
+        //line 3
+        for (PConditional r : cnfc) {
+
+            //line 4 and 5
+            KnowledgeBase rKB = new KnowledgeBase(numberCounter, r);
+            numberCounter++;
+            List<PConditional> candidatesList = new ArrayList<>();
+            for (PConditional conditional : nfc) {
+                if (!(conditional.getEqConditionalsList().get(0).getNumber() < r.getNumber()))
+                    if (!(conditional.equals(r)))
+                        if (!(conditional.equals(r.getCounterConditional())))
+                            candidatesList.add(conditional);
             }
+            newIterationQueue.put(new RealPair(rKB, candidatesList));
         }
-        currentPair.clear();
+        finishIteration(0);
+
+        //line 6
+        while (l.hasElementsForIteration(k)) {
+            long startTime = System.currentTimeMillis();
+
+            //line  7
+            startIteration(k);
+            //counters for numbering the knowledge bases
+            long consistentKbCounter = 1;
+            long inconsistentKbCounter = 1;
+
+            //line 8
+            while (l.hasMoreElementsForK(k)) {
+                AbstractPair currentPair = lastIterationQueue.take();
+                iterationPairCounter++;
+
+                //line 9
+                for (PConditional r : currentPair.getCandidatesList()) {
+
+                    //line 10
+                    if (currentPair.getKnowledgeBase().isConsistentWith(r)) {
+
+                        //line 11 and 12
+                        KnowledgeBase knowledgeBaseToAdd = new KnowledgeBase(consistentKbCounter, currentPair.getKnowledgeBase(), r);
+                        consistentKbCounter++;
+                        List<PConditional> candidatesToAdd = new ArrayList<>();
+                        for (PConditional candidate : currentPair.getCandidatesList())
+                            if (candidate.getNumber() > r.getNumber() && !candidate.equals(r.getCounterConditional()))
+                                candidatesToAdd.add(candidate);
+
+                        //line 12
+                        newIterationQueue.put(new RealPair(knowledgeBaseToAdd, candidatesToAdd));
+
+                    } else {
+                        inconsistentWriterQueue.put(new KnowledgeBase(inconsistentKbCounter, currentPair.getKnowledgeBase(), r));
+                        inconsistentKbCounter++; //counter is only for kb constructor
+                    }
+                }
+                currentPair.clear(); //saves a lot of memory and takes almost no time
+            }
+            System.out.println("time for iteration " + k + ": " + (System.currentTimeMillis() - startTime) / 1000 + "s");
+
+            //line 13
+            finishIteration(k);
+            k = k + 1;
+        }
+        finishAndStopLoop();
     }
-    l.finishIteration(k);
-    kbWriter.finishIteration();
-    k = k + 1;
-}
-finishAndStopLoop();
+
 \end{lstlisting}
 \caption{Implementierung GenKB, Zeilen 6-14}
 \label{code:genkb-gesamt}
@@ -815,29 +850,6 @@ finishAndStopLoop();
 
 
 
-\begin{figure}
-\begin{lstlisting}
-private List<AbstractPair> initOneElementKBs(Collection<PConditional> nfc, Collection<PConditional> cnfc) {
-    List<AbstractPair> listToReturn = new ArrayList<>(cnfc.size());
-    long numberCounter = 1;
-    for (PConditional r : cnfc) {
-        KnowledgeBase rKB = new KnowledgeBase(numberCounter, r);
-        numberCounter++;
-        List<PConditional> candidatesList = new ArrayList<>();
-        for (PConditional conditional : nfc) {
-            if (!(conditional.getEqConditionalsList().get(0).getNumber() < r.getNumber()))
-                if (!(conditional.equals(r)))
-                    if (!(conditional.equals(r.getCounterConditional())))
-                        candidatesList.add(conditional);
-        }
-        listToReturn.add(new RealPair(rKB, candidatesList));
-    }
-    return listToReturn;
-}
-\end{lstlisting}
-\caption{Initialisierung der 1-elementigen Wissensbasen in GenKb, entspricht Zeile 3-5}
-\label{code:genkb-init}
-\end{figure}
 
 
 todo

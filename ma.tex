@@ -842,7 +842,7 @@ private void generateKbs() throws InterruptedException {
 \end{lstlisting}
 todo
 
-Die Methode \textit{void generateKbs()} ist im Gegensatz zum Orginal GenKb keinen Rückgabewert. Das liegt daran, dass die Methode mehrere Outputs produziert aber nur einen Rückgabewert haben könnte. Stattdessen werden die Outputs in die in die Objektvariablen \textit{l} und \textit{kbWriter} eingefügt. Daneben kann die Methode eine InterruptedException werfen, nämlich genau dann wenn der Thread interrupted wird. Das passiert ausschließlich durch den Benutzer wenn er den Stop Button der GUI betätigt, dann wird die InterruptedException gefangen und der Thread beendet. \\
+Die Methode \textit{void generateKbs()} ist im Gegensatz zum orginalen GenKb keinen Rückgabewert. Das liegt daran, dass die Methode mehrere Outputs produziert aber nur einen Rückgabewert haben könnte. Stattdessen werden die Outputs in die in die Objektvariablen \textit{l} und \textit{kbWriter} eingefügt. Daneben kann die Methode eine InterruptedException werfen, nämlich genau dann wenn der Thread interrupted wird. Das passiert ausschließlich durch den Benutzer wenn er den Stop Button der GUI betätigt, dann wird die InterruptedException gefangen und der Thread beendet. \\
 next start iteration /stop iteration
 
 \subsection{Zwischenspeicherung der Daten}

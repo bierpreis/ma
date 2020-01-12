@@ -177,7 +177,7 @@ Rangfunktion für Konditionale:
             \end{cases}
 \]
 Eine Aussage $A$ wird von einer Rangfunktion akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt als dessen Gegenteil $\overline{A}$, z.B. $\kappa(A) < \kappa(\overline{A})$. Analaog dazu wird ein Konditional $(B|A)$ akzeptiert, wenn es einen geringeren Rang als dessen gegenteiliges Konditional $(\overline{B}|A)$ besitzt, z.B. $\kappa(AB)<\kappa(A\overline{B})$, vgl. \cite{beierle17}. Eine Wissensbasis $\mathcal{R}$ wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert.\\
-todo: durchdenken. besonders toleranz ist erklärt. konsistenz nicht?! \\
+todo: durchdenken. besonders toleranz ist erklärt. konsistenz nicht?!  dazu auch: orginalquelle abschnitt 2 letzter satz. verweis auf quelle 9\\
 Um konsistente Wissensbasen zu generieren, wird im Algorithmus GenKB der Test auf Toleranz nach \cite{goldszmidt96}S.64 verwendet. Dazu werden die Wissensbasen Schritt für Schritt um ein Konditional erweitert, wenn die Wissensbasis das Konditional toleriert. Die Toleranz ist dabei folgendermaßen definiert:
 \begin{theorem}[Toleranz]
 \label{def:toleranz}

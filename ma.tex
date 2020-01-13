@@ -195,7 +195,7 @@ Eine Wissensbasis $\mathcal{R}$ ist konsistent gdw. für jede nicht leere Teilme
 Aus dieser Defintion entsteht dann der folgende Algorithmus zum Testen einer Wissensbasis auf Konsistentz, ebenfalls entnommen aus \cite{goldszmidt96}. \\
 
 Input: A knowledge base $\mathcal{R}$ \\
-Output: An ordered partition $\mathcal{R}$ is consistent \\
+Output: An ordered partition $\mathcal{R} = (\mathcal{R}_o, \mathcal{R}_1, ...,  \mathcal{R}_k)$ if $\mathcal{R}$ is consistent \\
 %mathescape = true makes $$ work in here
 \begin{lstlisting}[mathescape=true]
 1: i = 0
@@ -203,6 +203,7 @@ Output: An ordered partition $\mathcal{R}$ is consistent \\
 	a)Find the set of rules $\mathcal{R}_i$ from $\mathcal{R}$ such that each conditional from it is tolerated by $\mathcal{R}$
 	b: if none can be found: abort, $\mathcal{R}$ is iconsistent
 	c: else remove $\mathcal{R}_i$  from $\mathcal{R}$ and set i = i + 1
+3: return the ordered partition $\mathcal{R} = (\mathcal{R}_o, \mathcal{R}_1, ..., \mathcal{R}_k)$
 \end{lstlisting}
 
 

@@ -241,27 +241,27 @@ mit $r \rdotl r'$ gdw. $r\dotl r'$ für alle $i \in \{1, ..., m\}$ und alle $r, 
 \end{theorem}
 
 
-\section{Überblick auf der erstellte Programm}
+\section{Überblick auf das erstellte Programm}
 
 
 \subsection{Voraussetzungen}
-Das beschriebene Programm zum Generieren von Wissensbasen ist komplett in Java geschrieben und erfordert zur Benutzung Java in der Version 1.8 oder höher. Neben der von Java standardmäßig mitgebrachten Bibliotheken werden keine weiteren externen Abhängigkeiten benötigt. Die verwendete Java Version hat einen Einfluss auf die Geschwindigkeit des Programms: Beispielsweise war auf dem Test PC war es mit Java 13 etwas über 10$\%$ schneller als mit Java 1.8.
+Das beschriebene Programm zum Generieren von Wissensbasen ist komplett in Java geschrieben und erfordert zur Benutzung Java in der Version 1.8 oder höher. Neben der von Java standardmäßig mitgebrachten Bibliotheken werden keine weiteren  Abhängigkeiten benötigt. Die verwendete Java Version hat einen Einfluss auf die Geschwindigkeit des Programms: Beispielsweise war es auf dem Test PC mit Java 13 etwa 10$\%$ schneller als mit Java 1.8.
 
 
 \subsection{Benutzung des Programms}
-Das Programm ist leicht zu benutzen, es bringt für alle Funktionen eine GUI mit. Zum Starten führt man einfach die Datei \textit {Conditionals.jar} aus. Wenn man dazu die grafische Oberfläche des benutzten PCs verwendet, bekommt das Programm dann einen vom Arbeitsspeicher des PCs abhängigen maximal verwendbaren Arbeitsspeicher zugewiesen. Wenn mit dem Programm keine sehr speicherintensiven Aktionen ausgeführt werden sollen, reicht das vermutlich aus. Es ist ansonsten auch möglich, Java Programmen eine benutzerdefinierte maximale Menge an Arbeitsspeicher zuzuweisen. Dazu startet man die Conditionals.jar .jar mit folgendem Konsolenbefehl: 
+Das Programm ist leicht zu benutzen, es bringt für alle Funktionen eine GUI mit. Zum Starten führt man einfach die Datei \textit {Conditionals.jar} aus. Beim Starten des Programms ohne explizite Optionen für die JVM bekommt es automatisch einen vom Arbeitsspeicher des PCs abhängigen maximal verwendbaren Arbeitsspeicher zugewiesen. Wenn mit dem Programm keine sehr speicherintensiven Aktionen ausgeführt werden sollen, reicht das vermutlich aus. Es ist ansonsten auch möglich, dem Programm eine benutzerdefinierte maximale Menge an Arbeitsspeicher zuzuweisen. Dazu startet man die Conditionals.jar .jar mit folgendem Konsolenbefehl: 
 
 \begin{lstlisting}
 java -Xmx12G -jar Conditionals.jar 
 \end{lstlisting}
 
-Hierbei legt der erste Parameter die Menge an maximal zugewiesenem Arbeitsspeicher fest, hier im Beispiel sind das 12 GB. \\
+So legt der erste Parameter die Menge an maximal durch die JVM nutzbaren Arbeitsspeicher fest, hier im Beispiel sind das 12 GB. \\
 Wenn das Programm gestartet wurde, öffnet sich ein kleines Fenster. Darin kann der Benutzer dann  auswählen, ob er Konditionale betrachten oder Wissensbasen generieren will.
 
 
 
 \subsection{Aufbau des Programms}
-In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu sehen. Die drei Elemente die sich im grau hinterlegten Bereich befinden sind für das generieren der Wissensbasen zuständig. Oben rechts ist die GUI abgebildet, in der zu Programmstart Optionen gesetzt werden und während des Programmablaufs Informationen zum aktuellen Programmzustand angezeigt werden. Unten links befindet sich der NfcCreator, hier werden die Konditionale NFC anhand der eingestellten Optionen erstellt. Diese Konditionale werden dann an den KbCreator übergeben, welcher für die eigentliche Generierung der Wissensbasen zuständig ist. Der KbCreator ist mit Abstand der komplexeste Teil des Programms und wird in \autoref{sec:kbcreator} noch genauer dargestellt. Die GUI oben links NfcViewer ist optional und kann genutzt werden um die Konditionale nach verschiedenen Optionen zu erzeugen, zu betrachten und zu speichern.
+In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu sehen. Die drei Elemente die sich im grau hinterlegten Bereich befinden sind für das generieren der Wissensbasen zuständig. Oben rechts ist die GUI abgebildet. Sie dient zum setzen von Optionen, Starten des Programms und während der Laufzeit zum Anzeigen von verschiedenen Informationen zum Programmablauf. Unten links befindet sich der NfcCreator, hier werden die Konditionale NFC anhand der eingestellten Optionen erstellt. Diese Konditionale werden dann an den KbCreator übergeben, welcher für die eigentliche Generierung der Wissensbasen zuständig ist.  Die GUI oben links NfcViewer ist optional und kann genutzt werden um die Konditionale nach verschiedenen Optionen zu erzeugen, zu betrachten und zu speichern. %todo: substantivierung? claudi fragen
 \begin{figure}
 \includegraphics[width=0.7\linewidth]{bilder/overview.png}
 

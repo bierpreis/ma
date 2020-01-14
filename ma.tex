@@ -280,10 +280,11 @@ In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung 
 In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normalform dargestellt. Dazu wird zuerst die Menge der möglichen Welten berechnet und daraus dann die Menge der Konditionale gebildet. Anschließend werden diese geordnet und in Äquivalenzklassen gruppiert.
 
 
-\subsubsection{Die Klasse WorldsList}
+\subsubsection{Darstellung möglicher Welten}
 \label{sec:worldslist}
-todo \\
-Die Bezeichung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie beschrieben, lassen sich aussagenlogische Ausdrücke als Menge der damit enthaltenden Welten darstellen. Eine solche Menge möglicher Welten wird mit einem Objekt der Klasse WorldsList dargetellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. Der Algorithmus, der alle Mengen aus den möglichen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs. \\
+todo\\
+Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten darstellen. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse WorldsList dargestellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. 
+Der Algorithmus, der alle Teilmengen aus den möglichen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. \\
 Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma_{ab}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space geordnet betrachtet werden. Dargestellt im Programm werden diese Mengen jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \ref{pic:worldslist} gezeigt ist. 
 
 
@@ -395,7 +396,7 @@ Im Folgenden wird nun die Methode \textit{createRenamings()} der Klasse WorlsLis
 
 
 
-\subsubsection{Die Klasse WConditional} 
+\subsubsection{Konditionale aus möglichen Welten} 
 
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/wconditional.png}

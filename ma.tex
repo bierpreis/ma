@@ -345,11 +345,11 @@ public int compareTo(Object o) {
 \end{figure}
 
 todo: äquivalenz wissensbasen und konditionale auseinanderhalten. formeln erwähnen? \\
-Weiterhin bestizt die Klasse WorldsList die Methode \textit{createRenamings()}, welche eine wichtige Rolle für das spätere Finden von äquivalenten Konditionalen besitzt. Äquivalente Wissensbasen wurden bereits in  \autoref{sec:äquivalenz-wissensbasen} beschrieben. Wie oben erwähnt, entsteht diese Äquivalenz aus einer möglichen Umbenennung von Variablen. 
+Weiterhin bestizt die Klasse WorldsList die Methode \textit{createRenamings()}, welche eine wichtige Rolle für das spätere Finden von äquivalenten Konditionalen besitzt. Äquivalente Wissensbasen wurden bereits in  \autoref{sec:äquivalenz-wissensbasen} (link ist mist!) beschrieben. Wie oben erwähnt, entsteht diese Äquivalenz aus einer möglichen Umbenennung von Variablen. 
 
 So eine Umbenennung ist jeweils nur innerhalb einer Gruppe von Konditionalen möglich, diese Gruppe wird dann Äquivalenzklasse genannt. 
 
-Entsprechend ergibt sich aus der Menge der möglichen Umbenennungen die Menge an Konditionalen innerhalb einer Äquivalenzklasse. Mit Signatur $\Sigma_{ab}$ existiert eine einzige mögliche Umbenennung, nämlich wenn $a$ in $b$ und $b$ in $a$ umbenannt wird. Mit der Signatur $\Sigma_{abc}$ existieren drei mögliche Umbenennungen durch den Tausch der folgenden Paare an Variablen: $a-b$, $a-c$ und $b-c$. Die Methode \textit{createRenamings()} gibt nun in Abhängigkeit von der gewählten Signatur alle möglichen Umbenennungen einer WorldsList als neue List<WorldsList> in der oben genannten Reihenfolge wieder. Bei nur einer existierenden Umbenennung mit $\Sigma_{ab}$ stellt sich die Frage nach der Reihenfolge offensichtlich nicht, bei $\Sigma_{abc}$ spielt die immer gleiche Reihenfolge später dann eine Rolle.
+Entsprechend ergibt sich aus der Menge der möglichen Umbenennungen die Menge an Konditionalen innerhalb einer Äquivalenzklasse. Mit Signatur $\Sigma_{ab}$ existiert eine einzige mögliche Umbenennung, nämlich wenn $a$ in $b$ und $b$ in $a$ umbenannt wird. Mit der Signatur $\Sigma_{abc}$ existieren drei mögliche Umbenennungen durch den Tausch der folgenden Paare an Variablen: $a-b$, $a-c$ und $b-c$. Die Methode \textit{createRenamings()} gibt nun in Abhängigkeit von der gewählten Signatur alle möglichen Umbenennungen einer WorldsList als neue List<WorldsList> in der oben genannten Reihenfolge wieder. Bei nur einer existierenden Umbenennung mit $\Sigma_{ab}$ stellt sich die Frage nach der Reihenfolge offensichtlich nicht, bei $\Sigma_{abc}$ ist diese Reihenfolge später noch wichtig..
 
 
 \begin{figure}

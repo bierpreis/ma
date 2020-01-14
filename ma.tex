@@ -282,7 +282,7 @@ In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normal
 
 \subsubsection{Mengen möglicher Welten}
 \label{sec:worldslist}
-todo\\
+
 Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten bezeichnen. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse WorldsList dargestellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. \\
 Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma_{ab}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert im Programm werden diese Mengen jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \ref{pic:worldslist} gezeigt ist. 
 
@@ -343,15 +343,8 @@ public int compareTo(Object o) {
 \caption{Implementierung compareTo(Object o) der Klasse WorldsList}
 \label{code:compare-worldslist}
 \end{figure}
-
-todo: äquivalenz wissensbasen und konditionale auseinanderhalten. formeln erwähnen? \\
-Weiterhin bestizt die Klasse WorldsList die Methode \textit{createRenamings()}, welche eine wichtige Rolle für das spätere Finden von äquivalenten Konditionalen besitzt. Äquivalente Wissensbasen wurden bereits in  \autoref{sec:äquivalenz-wissensbasen} (link ist mist!) beschrieben. Wie oben erwähnt, entsteht diese Äquivalenz aus einer möglichen Umbenennung von Variablen. 
-
-So eine Umbenennung ist jeweils nur innerhalb einer Gruppe von Konditionalen möglich, diese Gruppe wird dann Äquivalenzklasse genannt. 
-
-Entsprechend ergibt sich aus der Menge der möglichen Umbenennungen die Menge an Konditionalen innerhalb einer Äquivalenzklasse. Mit Signatur $\Sigma_{ab}$ existiert eine einzige mögliche Umbenennung, nämlich wenn $a$ in $b$ und $b$ in $a$ umbenannt wird. Mit der Signatur $\Sigma_{abc}$ existieren drei mögliche Umbenennungen durch den Tausch der folgenden Paare an Variablen: $a-b$, $a-c$ und $b-c$. Die Methode \textit{createRenamings()} gibt nun in Abhängigkeit von der gewählten Signatur alle möglichen Umbenennungen einer WorldsList als neue List<WorldsList> in der oben genannten Reihenfolge wieder. Bei nur einer existierenden Umbenennung mit $\Sigma_{ab}$ stellt sich die Frage nach der Reihenfolge offensichtlich nicht, bei $\Sigma_{abc}$ ist diese Reihenfolge später noch wichtig..
-
-
+todo \\
+Weiterhin besitzt die Klasse WorldsList die Methode \textit{createRenamings()}, welche eine wichtige Rolle für das spätere Finden von äquivalenten Konditionalen besitzt. Wie bereits in \autoref{sec:äquivalenz-konditionale} beschrieben entsteht Äquivalenz von Konditionalen durch Umbenennung von Variablen und besteht somit aus äquivalenten Formeln für Antecedent und Consequence. Entsprechend ergibt sich aus der Menge der möglichen Umbenennungen die Menge sowohl an Formeln als auch von Konditionalen innerhalb einer Äquivalenzklasse. Mit Signatur $\Sigma_{ab}$ existiert eine einzige mögliche Umbenennung, nämlich wenn $a$ in $b$ und $b$ in $a$ umbenannt wird. Mit der Signatur $\Sigma_{abc}$ existieren drei mögliche Umbenennungen durch den Tausch der folgenden Paare an Variablen: $a-b$, $a-c$ und $b-c$. Die Methode \textit{createRenamings()} gibt nun in Abhängigkeit von der gewählten Signatur alle möglichen Umbenennungen einer WorldsList als neue List<WorldsList> in der oben genannten Reihenfolge wieder. Bei nur einer existierenden Umbenennung mit $\Sigma_{ab}$ stellt sich die Frage nach der Reihenfolge offensichtlich nicht, bei $\Sigma_{abc}$ ist diese Reihenfolge später noch wichtig.
 \begin{figure}
 \begin{lstlisting}
 List<Integer> intList = new ArrayList<>(worldsList.size());

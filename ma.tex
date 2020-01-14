@@ -441,10 +441,7 @@ public boolean equals(Object o) {
 \end{figure}
 
 
-Eine wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. 
-todo\\
-Sie liefert dann true zurück, wenn die WorldsList Objekte beider WConditonals dieselben sind. 
-Zwei solche Instanzen von WorldsList sind genau dann die selben, wenn sie die selbe Menge an möglichen Welten enthalten. Intern wird hier einfach die beiden List<Integer> worldsList miteinander verglichen. Die Methode \textit{createEquivalentConditonals(..)} ist unter \autoref{sec:counter-conditonals} genauer beschrieben.
+Eine wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann true zurück, wenn die zwei WorldsList Objekte beider WConditonals dieselben sind. Zwei Instanzen von WorldsList sind genau dann die selben, wenn sie die selben Welten enthalten. Intern wird hier einfach die beiden List<Integer> worldsList miteinander verglichen. Die Methode \textit{createEquivalentConditonals(..)} ist in \autoref{sec:counter-conditonals} genauer beschrieben.
 
 
 \subsubsection{Berechnung aller Konditionale}

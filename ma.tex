@@ -392,7 +392,6 @@ Im Folgenden wird nun die Methode \textit{createRenamings()} der Klasse WorlsLis
 
 
 \subsubsection{Konditionale aus möglichen Welten} 
-todo \\
 
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/wconditional.png}
@@ -400,8 +399,7 @@ todo \\
 \label{pic:wconditional}
 \end{figure}
 
-Die Klasse WConditional dient dazu, mit zwei der im Abschnitt zuvor Beschriebenen WorldsList Objekten Konditionale zu repräsentieren. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung der Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin CounterConditional ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional.\\
-Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{def:sortierung-nfc} als int Variable enthalten.
+Die Klasse WConditional dient dazu, mit zwei der im Abschnitt zuvor beschriebenen WorldsList Objekten Konditionale zu repräsentieren. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung von Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin die Referenz \textit{counterConditional} ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional. Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ gemäß Definition \ref{def:sortierung-nfc} als int Variable enthalten.
 
 
 
@@ -441,9 +439,8 @@ public boolean equals(Object o) {
 \end{figure}
 
 
-Eine wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann true zurück, wenn die zwei WorldsList Objekte beider WConditonals dieselben sind. Zwei Instanzen von WorldsList sind genau dann die selben, wenn sie die selben Welten enthalten. Intern wird hier einfach die beiden List<Integer> worldsList miteinander verglichen. Die Methode \textit{createEquivalentConditonals(..)} ist in \autoref{sec:counter-conditonals} genauer beschrieben.
-
-
+Eine wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann true zurück, wenn die zwei WorldsList Objekte beider WConditonals dieselben sind. Zwei Instanzen von WorldsList sind genau dann die selben, wenn sie die selben Welten enthalten. Intern wird hier einfach die Elemente der beiden \textit{List<Integer> worldsList} miteinander verglichen. Die Methode \textit{createEquivalentConditonals(..)} ist in \autoref{sec:counter-conditonals} genauer beschrieben. \\
+Nicht zu verwechseln mit der \textit{equals(..)} Methode ist die Methode \textit{isEquivalent(WConditional other)}. Sie gibt genau dann true zurück, wenn das übergebene WConditional äquivalent zu einem WConditonal ist. Sie funktioniert so, dass überprüft wird, ob ein im Sinne von \textit{equals(..)} gleiches WConditional in der Liste der äquivalenten Konditionale vorhanden ist.
 \subsubsection{Berechnung aller Konditionale}
 
 

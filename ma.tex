@@ -471,10 +471,8 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 
 
 \subsubsection{Äquivalenzklassen und Sortierung der Konditionale}
-
 \label{sec:equivalence}
 
-todo \\
 
 Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ erstellt. In diesem Abschnitt wird beschrieben wie die Sortierung nach der Ordnung $\rdotl$, welche unter unter \autoref{def:sortierung-nfc} dargestellt wurde, für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{sec:äquivalenz-konditionale} gezeigt gruppiert und dann untereinander sortiert weden. \\
 Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{code:test-equivalence} dargestellt ist. In diesem Algorhitmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode \textit{getBasicEquivalents()} gibt eine Liste and WConditional Objekten zurück, mit der Methode \textit{createBasicEquivalents()} erstellt wird. Diese Liste äquivalenter Konditionale beinhaltet dabei jedoch \textit{neu erstellte} Objekte äquivalenter Konditionale, nicht die \textit{tatsächlichen} Objekte der Äquivalenten Konditionale. Die tatsächlichen Objekte können erst nachher gruppiert werden. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalenz wird während der Berechnung der Konditionale sehr oft geprüft (mit $\Sigma_{ab}$ 1550 mal, mit $\Sigma_{abc}$  16.784.250 mal), sodass die Methode \textit{getBasicEquivalents()} sicherstellt, dass die Liste Äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung dadurch ist deutlich spürbar.\\ 
@@ -576,13 +574,14 @@ Im Folgenden werden die Optionen im Menü erklärt. Die Auswahl der Signature bi
 
 
 \subsection{Modellierung der Konditionale mit Aussagenlogik}
-Nachdem die Menge der Konditionale nun berechnet und sortiert ist, sollen daraus nun konsistente Wissensbasen generiert werden. Dazu sind die Konditionale in ihrer bisherigen Form als Instanzen von WConditional ungeeignet. Deshalb werden sie in Objekte der neuen Klasse PConditonal umgewandelt. Mit diesen ist dann die Verarbeitung von Aussagenlogik möglich und somit auch die Generierung der Wissensbasen.Im Folgenden werden der Weg dahin beschrieben.
+Nachdem die Menge der Konditionale nun berechnet und sortiert ist, sollen daraus konsistente Wissensbasen generiert werden. Dazu sind die Konditionale in ihrer bisherigen Form als Instanzen von WConditional allerdings ungeeignet. Deshalb werden sie in Objekte der neuen Klasse PConditonal (P wie propositional logic) umgewandelt. Mit diesen ist dann die Verarbeitung von Aussagenlogik möglich und somit auch die Generierung der Wissensbasen. Im Folgenden wird der Weg dahin beschrieben.
 
 
 
 
 \subsubsection{Implementierung der Aussagenlogik}
 \label{sec:logic}
+todo \\
 Um bei der Generierung von Wissensbasen Aussagenlogik verwenden zu können, ist ein kleines Framework nötig welches die wichtigsten Elemente der Aussagenlogik als Java Objekte abbildet und die typischen Operationen auf diesen ermöglicht. Die Idee die Logik so abzubilden wie im Folgenden beschrieben stammt aus dem Framework zu InfOCF, die konkreten Implementierungen sind jedoch verschieden. Im Folgenden werden die später verwendeten Elemente der Aussagenlogik als Java Implementierung kurz vorgestellt.
 
 

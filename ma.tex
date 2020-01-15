@@ -699,7 +699,7 @@ Ein anderer Versuch, um die Vorteile beider Varianten zu kombinieren, wurde nach
 
 
 \subsubsection{Wissensbasen}
-todo \\
+
 
 
 \begin{figure}
@@ -711,7 +711,8 @@ todo \\
 
 
 Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:knowledgebase} zu sehen. Als Instanzvariablen besitzt die Klasse die Nummer der Wissensbasis als long Wert und eine Liste der in der Wissensbasis enthaltenen Konditionale in Form einer \textit{ArrayList<PConditional>}. Die Nummer der Wissensbasis wird immer gleich im Konstruktor von der GenKB Implementierung gesetzt und ist als eine \textit{final} Refererenz implementiert, damit sie nachträglich nicht mehr geändert werden kann.\\
-Eine besonders wichtige Methode der Klasse ist \textit{isConsistentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis mit dem als Parameter übergebenem Konditional eine neue konsistente Wissensbasis ergeben würde. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} zu dargestellt. Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} erwähnten und in \cite{goldszmidt96}(S.65) dargestellten Tests auf Konsistenz für Wissensbasen.  Die Idee zu dieser Implementierung stammt auch aus der Umsetzung des Tests auf Konsistenz von Wissensbasen aus InfOCF, ist hier jedoch etwas anders umgesetzt. Denn in der hier vorgestellten Implementierung wird keine geordnete Partitionierung der Wissensbasis erstellt, da diese nicht benötigt wird. Das sollte die Methode etwas beschleunigen. Der Rückgabewert als boolean zeigt an, ob die betroffene Wissensbasis, auf dessen Objekt die Methode aufgerufen wird, mit dem übergebenen Konditional eine konsistente Wissensbasis ergeben würde oder nicht.
+todo \\
+Eine besonders wichtige Methode der Klasse ist \textit{isConsistentWith(PConditional c)}. Hiermit wird geprüft, ob die vorhandene Wissensbasis mit dem als Parameter übergebenem Konditional eine neue konsistente Wissensbasis ergeben würde. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} zu dargestellt. Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} dargestellten Tests auf Konsistenz für Wissensbasen.  Die Idee zu dieser Implementierung stammt auch aus der Umsetzung des Tests auf Konsistenz von Wissensbasen aus InfOCF, ist hier jedoch etwas anders umgesetzt. Denn in der hier vorgestellten Implementierung wird keine geordnete Partitionierung der Wissensbasis erstellt, da diese nicht benötigt wird. Das sollte die Methode etwas beschleunigen. Der Rückgabewert als boolean zeigt an, ob die betroffene Wissensbasis, auf dessen Objekt die Methode aufgerufen wird, mit dem übergebenen Konditional eine konsistente Wissensbasis ergeben würde oder nicht.
 
 
 \begin{figure}

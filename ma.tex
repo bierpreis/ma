@@ -765,7 +765,7 @@ In den folgenden Abschnitten werden die drei gerade vorgestellten Teile als GenK
 
 
 \subsection{Implementierung von GenKb}
- todo \\
+
 
 \begin{figure}
 \includegraphics[width=0.5\linewidth]{bilder/genkb.png}
@@ -775,7 +775,7 @@ In den folgenden Abschnitten werden die drei gerade vorgestellten Teile als GenK
 
 
 
-In diesem Abschnitt wird gezeigt, wie der konkrete Algorithmus GenKb aus \cite{beierle19} zur Generierung der Wissensbasen implementiert wurde. Wie schon erwähnt, befindet sich der Algorithmus in eigenem Objekt der Klasse GenKb, ein stark vereinfachtes Klassendiagramm dieses Objekts befindet sich in \autoref{pic:genkb}. Das Objekt implementiert das Java Interface \textit{Runnable} und kann somit als eigener Thread gestartet werden. Als Referenzen im Objekt befinden sich die Listen von PConditonals \textit{cnfc} und \textit{nfc}, die vom NfcCreator erstellt wurden und bereits erklärt wurden. Dann befindet sich eine Referenz auf das Objekt \glqq l\grqq \space, was dem \glqq l\grqq \space aus der Originaldarstellung von GenKb entspricht. Hauptsächlich ist es ein Objekt, was eine \textit{List<List<AbstractPair>>} beinhaltet, also die Paare aus \textit{<Konditional, Kandidaten>} während der Iterationen die Daten aufnimmt. Das Objekt \textit{kbWriter} kümmert sich um das persistente Schreiben der erstellten Wissensbasen auf einen Datenträger. Die Klassen AbstractPairBuffer und AbstractPairWriter werden in den nächsten Abschnitten beschrieben. Dann befinden sich im Objekt noch drei Referenzen auf BlockingQueues: Die \textit{BlockingQueue<AbstractPair> newIterationQueue} nimmt die neu erstellten Paare aus <Wissensbasis, Kandidaten> auf und übergibt sie somit dem AbstractPairBuffer \textit{l}.
+In diesem Abschnitt wird gezeigt, wie der konkrete Algorithmus GenKb aus \cite{beierle19} zur Generierung der Wissensbasen implementiert wurde. Wie schon erwähnt, befindet sich der Algorithmus in eigenem Objekt der Klasse GenKb, ein stark vereinfachtes Klassendiagramm dieses Objekts befindet sich in \autoref{pic:genkb}. Das Objekt implementiert das Java Interface \textit{Runnable} und kann somit als eigener Thread gestartet werden. Als Referenzen im Objekt befinden sich die Listen von PConditonals \textit{cnfc} und \textit{nfc}, die vom NfcCreator erstellt wurden und bereits erklärt wurden. Dann befindet sich eine Referenz auf das Objekt \glqq l\grqq \space, was dem \glqq l\grqq \space aus der Originaldarstellung von GenKb entspricht. Hauptsächlich ist es ein Objekt, was eine \textit{List<List<AbstractPair>>} beinhaltet, also die Paare aus \textit{<Konditional, Kandidaten>} während der Iterationen die Daten aufnimmt. Das Objekt \textit{kbWriter} kümmert sich um das persistente Schreiben der erstellten Wissensbasen auf einen Datenträger. Die Klassen \textit{AbstractPairBuffer} und \textit{AbstractPairWriter} werden in den nächsten Abschnitten beschrieben. Dann befinden sich im Objekt noch drei Referenzen auf BlockingQueues: Die \textit{BlockingQueue<AbstractPair> newIterationQueue} nimmt die neu erstellten Paare aus <Wissensbasis, Kandidaten> auf und übergibt sie somit dem AbstractPairBuffer \textit{l}.
 Von der \textit{BlockingQueue<AbstractPair> lastIterationQueue} werden die Paare entnommen, um sie in der aktuellen Iteration zu bearbeiten. Und die \textit{BlockingQueue<AbstractPair> inconsistentQueue} nimmt alle inkonsistenten Wissensbasen auf um die dem \textit{kbWriter} zu übergeben. \\
 Im Folgenden ist der Algorithmus GenKb in seiner konkreten Implementierung abgebildet. Dabei werden mit Kommentaren in der Form \glqq //line 1\grqq \space die Entsprechung der folgenden Zeilen im Original gekennzeichnet. Nach dem dargestelltem Code folgt dessen Erläuterung. \\
 
@@ -852,7 +852,7 @@ private void generateKbs() throws InterruptedException {
     finishAndStopLoop();
 }
 \end{lstlisting}
-
+ todo \\
 
 Die Methode \textit{void generateKbs()} ist im Gegensatz zum originalen GenKb keinen Rückgabewert. Stattdessen werden die Outputs, welche die Methode erzeugt, über drei BlockingQueues weitergegeben. Weiterhin kann die Methode eine InterruptedException werfen, nämlich genau dann wenn der Thread einen Iterrupt feststellt. Das passiert ausschließlich durch den Benutzer, wenn er den Stop Button der GUI betätigt, dann wird die InterruptedException gefangen und der Thread beendet.
  Ansonsten wurde versucht, die Methode nah am Orginal zu gestalten. Damit und der Kommentierung mit den Zeilennummern des Originals sollte die Methode möglichst selbst erklärend sein.\\

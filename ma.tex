@@ -192,10 +192,8 @@ Mit dieser Definition von Toleranz kann nun die Konsistenz einer Wissensbasis de
 \label{def:konsistenz}
 Eine Wissensbasis $\mathcal{R}$ ist konsistent gdw. für jede nicht leere Teilmenge $\mathcal{R}' \subseteq \mathcal{R}$ ein Konditional existiert welches von $\mathcal{R}'$ toleriert wird.
 \end{theorem}
-Aus dieser Defintion entsteht dann der folgende Algorithmus zum Testen einer Wissensbasis auf Konsistentz, ebenfalls entnommen aus \cite{goldszmidt96}. \\
+Aus dieser Defintion entsteht dann der folgende Algorithmus zum Testen einer Wissensbasis auf Konsistentz, ebenfalls entnommen aus \cite{goldszmidt96}. Der Input für den Algorithmus ist eine Wissensbasis $\mathcal{R}$.  Der Output ist die geordnete Partition wenn sie konsistent ist oder nichts wenn sie inkonsistent ist.\\
 
-Input: A knowledge base $\mathcal{R}$ \\
-Output: An ordered partition $\mathcal{R} = (\mathcal{R}_o, \mathcal{R}_1, ...,  \mathcal{R}_k)$ if $\mathcal{R}$ is consistent \\
 %mathescape = true makes $$ work in here
 \begin{lstlisting}[mathescape=true]
 1: i = 0

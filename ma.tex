@@ -589,7 +589,7 @@ Um bei der Generierung von Wissensbasen Aussagenlogik verwenden zu können, ist 
 
 
 \paragraph{AbstractWorld} \mbox{}
-todo\\
+todo: mit abstract world anfagen. was macht die klasse?\\
 Variablen zur Bezeichnung einzelner Atome werden mit der Enum \textit{Var} dargetellt, welche die Werte $a$, $b$ oder $c$ annehmen kann. Die Basis für die möglichen Welten bildet dann Klasse \textit{AbstractWorld}. Diese bietet die abstrakte Methode \textit{boolean get(Var var)}. Implementiert wird die Klasse \textit{AbstractWorld} von den konkreten Klassen \textit{ABWorld} und  \textit{ABCWorld}. Diese beiden konkreten Klassen repräsentieren jeweils eine mögliche Welt mit zwei oder drei vorhandenen Variablen. Für jede der enthaltenen Variablen existiert in der \textit{AbstractWorld} Implementierung ein boolean Wert der true oder false sein kann. Die Welten bieten \textit{toString()} Methoden und Getter für die boolean Variablen. \\
 
 \paragraph{AbstractSignature} \mbox{}

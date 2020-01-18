@@ -589,9 +589,9 @@ Um bei der Generierung von Wissensbasen Aussagenlogik verwenden zu können, ist 
 
 
 \paragraph{World und Signature} \mbox{}
-
+todo: split? \\
 Variablen zur Bezeichnung einzelner Atome werden mit der Enum \textit{Var} dargetellt, welche die Werte $a$, $b$ oder $c$ annehmen kann. Die Basis für die möglichen Welten bildet dann Klasse \textit{AbstractWorld}. Diese bietet die abstrakte Methode \textit{boolean get(Var var)}. Implementiert wird die Klasse \textit{AbstractWorld} von den konkreten Klassen \textit{ABWorld} und  \textit{ABCWorld}. Diese beiden konkreten Klassen repräsentieren jeweils eine mögliche Welt mit zwei oder drei vorhandenen Variablen. Für jede der enthaltenen Variablen existiert in der \textit{AbstractWorld} Implementierung ein boolean Wert der true oder false sein kann. Die Welten bieten \textit{toString()} Methoden und Getter für die boolean Variablen. \\
-Die Signatur wird mit der abstrakten Basisklasse  \textit{AbstractSignature} und den konkreten Klassen \textit{AB} und  \textit{ABC} abgebildet. Die Implementierungen von AbstractSignature erfüllen im wesentlichen zwei Funktionen: Zum Einen dienen sie als Indikator, welche Signatur gewählt wurde. Zum Anderen besitzen sie jeweils eine List<AbstractWorld>,  die alle möglichen Welten als Instanz von AbstractWorld der gewählten Signatur beinhaltet. Die Liste der möglichen Welten kann so für diverse Operationen der Aussagenlogik abgerufen werden. Benötigt werden diese Listen der möglichen Welten insbesondere zur Evaluation und zum Vergleich von aussagenlogischen Termen.
+Die Signatur wird mit der abstrakten Basisklasse  \textit{AbstractSignature} und den konkreten Klassen \textit{AB} und  \textit{ABC} abgebildet. Die Implementierungen von AbstractSignature erfüllen im wesentlichen zwei Funktionen: Erstens dienen sie als Indikator, welche Signatur gewählt wurde. Zweitens besitzen sie jeweils eine List<AbstractWorld>,  die alle möglichen Welten als Instanz von AbstractWorld der gewählten Signatur beinhaltet. Die Liste der möglichen Welten kann so für diverse Operationen der Aussagenlogik abgerufen werden. Benötigt werden diese Listen der möglichen Welten insbesondere zur Evaluation und zum Vergleich von aussagenlogischen Termen.
 
 \paragraph{AbstractFormula} \mbox{}
 

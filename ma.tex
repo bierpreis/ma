@@ -594,8 +594,7 @@ Instanzen von \textit{AbstractWorld} dienen im Programm dazu, eine mögliche Wel
 
 
 \paragraph{AbstractSignature} \mbox{}
-todo: menge der welten erwähnen oder auflisten? \\
-Die Signatur wird mit der abstrakten Basisklasse  \textit{AbstractSignature} und den konkreten Klassen \textit{AB} und \textit{ABC} abgebildet. Die Implementierungen von AbstractSignature erfüllen im wesentlichen zwei Funktionen: Erstens dienen sie als Indikator, welche Signatur gewählt wurde. Zweitens besitzen sie jeweils eine \textit{List<AbstractWorld>}, die alle möglichen Welten als Instanz von AbstractWorld der gewählten Signatur beinhaltet. Die Liste der möglichen Welten kann so für diverse Operationen der Aussagenlogik abgerufen werden. Benötigt werden diese Listen der möglichen Welten insbesondere zur Evaluation und zum Vergleich von aussagenlogischen Termen. \\
+Die Signatur wird mit der abstrakten Basisklasse \textit{AbstractSignature} und den konkreten Klassen \textit{AB} und \textit{ABC} abgebildet. Die Implementierungen von AbstractSignature erfüllen im wesentlichen zwei Funktionen: Erstens dienen sie als Indikator, welche Signatur gewählt wurde. Zweitens besitzen sie jeweils eine \textit{List<AbstractWorld>}, die alle möglichen Welten als Instanz von AbstractWorld der gewählten Signatur beinhaltet. Das is für \textit{AB} die Liste $\{ab, a!b, !ab, !a!b\}$ und für \textit{ABC} die Liste $\{abc, ab!c, a!bc, a!b!c, !abc, !ab!c, !a!bc, !a!b!c\}$. Die Liste der möglichen Welten kann so für diverse Operationen der Aussagenlogik von der Signatur abgerufen werden. Benötigt werden diese Listen der möglichen Welten insbesondere zur Evaluation und zum Vergleich von aussagenlogischen Termen. \\
 Während des Programmablaufs existiert ein einziges Objekt der Klasse \textit{AbstractSignature}, auf das allerdings von verschiedenen Orten Referenzen zeigen. Dadurch ist sichergestellt, dass nie zwei verschiedene Signaturen vermischt werde.
 
 \paragraph{AbstractFormula} \mbox{}

@@ -588,12 +588,14 @@ Um bei der Generierung von Wissensbasen Aussagenlogik verwenden zu können, ist 
 
 
 
-\paragraph{AbstractWorld und mögliche Welten} \mbox{}
+\paragraph{AbstractWorld} \mbox{}
+
 Die Klasse \textit{AbstractWorld} bildet die Basis und das Interface für eine mögliche Welt. Implementiert wird sie von den Klassen \textit{ABWorld} und \textit{ABCWorld}, welche offensichtlich jeweils eine Welt mit zwei oder mit drei Variablen einer Signatur repräsentieren. Entsprechend besitzt eine \textit{ABWorld} zwei und eine \textit{ABCWorld} drei \textit{boolean} Variablen, welche jeweils ein Atom repräsentieren. Der Wahrheitsgehalt eines Atoms kann mit der Methode \textit{boolean get(Var var)} der Klasse AbstractWorld abgefragt werden. \textit{Var} ist hier eine \textit{Enum}, welche die Werte $a$, $b$, oder $c$ annehmen kann. Ansonsten besitzen beide \textit{AbstractWorld} Implementierungen noch eine \textit{toString()} Methode um die Welt darzustellen. \\
 Instanzen von \textit{AbstractWorld} dienen im Programm dazu, eine mögliche Welt darzustellen. Sie werden dazu  ausschließlich innerhalb der Signatur instanziiert und werden nur über die Signatur abgerufen.
 
 
 \paragraph{AbstractSignature} \mbox{}
+
 Die Signatur wird mit der abstrakten Basisklasse \textit{AbstractSignature} und den konkreten Klassen \textit{AB} und \textit{ABC} abgebildet. Die Implementierungen von AbstractSignature erfüllen im wesentlichen zwei Funktionen: Erstens dienen sie als Indikator, welche Signatur gewählt wurde. Zweitens besitzen sie jeweils eine \textit{List<AbstractWorld>}, die alle möglichen Welten als Instanz von AbstractWorld der gewählten Signatur beinhaltet. Das is für \textit{AB} die Liste $\{ab, a!b, !ab, !a!b\}$ und für \textit{ABC} die Liste $\{abc, ab!c, a!bc, a!b!c, !abc, !ab!c, !a!bc, !a!b!c\}$. Die Liste der möglichen Welten kann so für diverse Operationen der Aussagenlogik von der Signatur abgerufen werden. Benötigt werden diese Listen der möglichen Welten insbesondere zur Evaluation und zum Vergleich von aussagenlogischen Termen. \\
 Während des Programmablaufs existiert ein einziges Objekt der Klasse \textit{AbstractSignature}, auf das allerdings von verschiedenen Orten Referenzen zeigen. Dadurch ist sichergestellt, dass nie zwei verschiedene Signaturen vermischt werde.
 

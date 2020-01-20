@@ -195,8 +195,10 @@ Mit dieser Definition von Toleranz kann nun die Konsistenz einer Wissensbasis de
 \label{def:konsistenz}
 Eine Wissensbasis $\mathcal{R}$ ist konsistent gdw. für jede nicht leere Teilmenge $\mathcal{R}' \subseteq \mathcal{R}$ ein Konditional existiert welches von $\mathcal{R}'$ toleriert wird.
 \end{theorem}
-Aus dieser Definition entsteht dann der folgende Algorithmus zum Testen einer Wissensbasis auf Konsistenz, ebenfalls entnommen aus \cite{goldszmidt96}. Der Input für den Algorithmus ist eine Wissensbasis $\mathcal{R}$.  Der Output ist die geordnete Partition, wenn sie konsistent ist, oder andernfalls nichts.\\
+Aus dieser Definition entsteht dann der in \autoref{code:consistency} gezeigte Algorithmus zum Testen einer Wissensbasis auf Konsistenz, ebenfalls entnommen aus \cite{goldszmidt96}. Der Input für den Algorithmus ist eine Wissensbasis $\mathcal{R}$. Der Output ist die geordnete Partition, wenn sie konsistent ist, oder andernfalls nichts.
 
+
+\begin{figure}[h]
 %mathescape = true makes $$ work in here
 \begin{lstlisting}[mathescape=true]
 1: i = 0
@@ -206,6 +208,11 @@ Aus dieser Definition entsteht dann der folgende Algorithmus zum Testen einer Wi
 	c) else remove $\mathcal{R}_i$  from $\mathcal{R}$ and set i = i + 1
 3: return the ordered partition $\mathcal{R} = (\mathcal{R}_o, \mathcal{R}_1, ..., \mathcal{R}_k)$
 \end{lstlisting}
+
+\caption{Test auf Konsistenz einer Wissensbasis $\mathcal{R}$, aus \cite{goldszmidt96}}
+\label{code:consistency}
+
+\end{figure}
 
 
 Als nächstes wird noch kurz die Äquivalenz von Wissensbasen betrachtet. Diese ist bei der Generierung von Wissensbasen von Bedeutung, um neue Wissensbasen und syntaktische Varianten bereits vorhandener Wissensbasen unterscheiden zu können. Als Maßstab für Äquivalenz zweier Wissensbasen wird im folgenden die elementweise Äquivalenz verwendet. Diese verfolgt den Grundgedanken, dass Teile einer Wissensbasis mit Teilen von anderen Wissensbasen einzeln verglichen werden können.
@@ -314,7 +321,9 @@ private List<WorldsList> createSubSetList(List<Integer> inputList){
 
 
 Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. \\
-\\todo: algo besser erklären? \\
+\\todo: algo besser erklären! \\
+todo: re read \\
+todo: gucken, ob bei figures h reinsollte \\
 
 
 \begin{figure}
@@ -324,7 +333,7 @@ Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur b
 \end{figure}
 
 
-todo: code hier her?  -> allgemein dokument prüfen wo figures sind und wo erwähnungen.\\
+
 Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma_{ab}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert werden diese Mengen von Welten im Programm jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \autoref{pic:worldslist} gezeigt ist. 
 
 

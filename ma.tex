@@ -287,22 +287,7 @@ In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normal
 
 \subsubsection{Mengen möglicher Welten}
 \label{sec:worldslist}
-Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse WorldsList dargestellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. \\
-\\todo: algo besser erklären? \\
-todo: code hier her?  -> allgemein dokument prüfen wo figures sind und wo erwähnungen.\\
-Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma_{ab}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert werden diese Mengen von Welten im Programm jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \autoref{pic:worldslist} gezeigt ist. 
-
-
-\begin{figure}
-\includegraphics[width=0.45\linewidth]{bilder/worldslist.png}
-\caption{Klassendiagramm \textit{WorldsList}}
-\label{pic:worldslist}
-\end{figure}
-
-
-Das wichtigste Attribut der Klasse WorldsList ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen.
-
-
+Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse WorldsList dargestellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können.
 
 \begin{figure}
 \begin{lstlisting}
@@ -325,6 +310,27 @@ private List<WorldsList> createSubSetList(List<Integer> inputList){
 \caption{Algorithmus zum Erstellen aller Teilmengen aus einer Liste möglicher Welten}
 \label{code:subsets}
 \end{figure}
+
+
+
+Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. \\
+\\todo: algo besser erklären? \\
+todo: code hier her?  -> allgemein dokument prüfen wo figures sind und wo erwähnungen.\\
+Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma_{ab}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert werden diese Mengen von Welten im Programm jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \autoref{pic:worldslist} gezeigt ist. 
+
+
+\begin{figure}
+\includegraphics[width=0.45\linewidth]{bilder/worldslist.png}
+\caption{Klassendiagramm \textit{WorldsList}}
+\label{pic:worldslist}
+\end{figure}
+
+
+Das wichtigste Attribut der Klasse WorldsList ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen.
+
+
+
+
 
 
 

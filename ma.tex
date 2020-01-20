@@ -84,7 +84,7 @@ In diesem Abschnitt werden kurz die Grundlagen aufgeführt, auf denen der Hauptt
 \subsection{Notation}
 Einzelne Atome, die betrachtet werden, werden mit Kleinbuchstaben wie $a, b, c,...\ $ bezeichnet. Aussagen über diese werden in Form von Großbuchstaben $A, B, C,...$ dargestellt, die Gesamtheit der Sprache wird als $\lag$ bezeichnet. Die Menge der möglichen Welten, die betrachtet werden, wird mit $\Omega$ beschrieben. In einer dieser Welten $\omega \in \Omega$  hat der Ausdruck $\omega \models A$ die Bedeutung, dass $A \in \lag$ in dieser Welt gilt. Des weiteren wird $\neg A$ als $\overline{A}$ und $A \wedge B$ als $AB$ abgekürzt.
 \subsection{Konditionale}
-Ein Konditional ist ein Zusammenhang aus einer Vorbedingung (Antecedent) und einer Folgerung (Consequence) aus dieser Vorbedingung in der Form \glqq Wenn, A dann B\grqq . Ein qualitatives Konditional ist ein Konditional unter Unsicherheit und entspricht einem Zusammenhang in der Form \glqq Wenn $A$, dann normalerweise $B$\grqq . Dargestellt wird so ein Konditional $r$ unter Unsicherheit im folgenden mit dem Symbol \glqq$|$\grqq \space in der Form $r = ( \lag | \lag)$. Ein Beispiel ist $r = (B|A)$. Das dazugehörige gegenteilige Konditional lautet dann $\overline{r} = (\overline{B}|A)$.\\
+Ein Konditional ist ein Zusammenhang aus einer Vorbedingung (Antecedent) und einer Folgerung (Consequence) aus dieser Vorbedingung in der Form \glqq Wenn, A dann B\grqq . Ein qualitatives Konditional ist ein Konditional unter Unsicherheit und entspricht einem Zusammenhang in der Form \glqq Wenn $A$, dann normalerweise $B$\grqq . Dargestellt wird so ein Konditional $r$ unter Unsicherheit im Folgenden mit dem Symbol \glqq$|$\grqq \space in der Form $r = ( \lag | \lag)$. Ein Beispiel ist $r = (B|A)$. Das dazugehörige gegenteilige Konditional lautet dann $\overline{r} = (\overline{B}|A)$.\\
 Um die Akzeptanz eines unsicheren Konditionals zu bestimmen, werden sie oft im Rahmen von ordinalen Rangfunktionen nach Wolfgang Spohn betrachtet. Mehr dazu auch in diesem Text im  \autoref{sec:wissensbasen}. Vereinfacht gesagt wird ein unsicheres Konditional dann  akzeptiert, wenn es plausibler ist als das dazugehörige gegenteilige Konditional. Beispielsweise $(B|A)$ wird  dann akzeptiert, wenn $A B$ plausibler ist als $A \overline{B}$, siehe dazu auch \cite{isberner14}. \\
 Das Konditional unter Unsicherheit in der Form $(B|A)$ teilt dann die Menge möglicher Welten $\Omega$ in drei Teile auf: Welten, die das Konditional bestätigen ($A B$), Welten die es falsifizieren ($A \overline{B}$) und Welten, auf die das Konditional nicht anwendbar ist, weil die Vorbedingung nicht erfüllt ist ($\overline{A}$). Die letztere Möglichkeit wird auch mit $u$ bezeichnet, was als \textit{unknown} gedeutet werden kann. Damit lässt sich das Konditional als Indikatorfunktion einer möglichen Welt $\omega$ wie folgt darstellen:
 \[
@@ -198,9 +198,9 @@ Aus dieser Definition entsteht dann der folgende Algorithmus zum Testen einer Wi
 \begin{lstlisting}[mathescape=true]
 1: i = 0
 2: while $\mathcal{R}$ is non-empty
-	a)Find the set of rules $\mathcal{R}_i$ from $\mathcal{R}$ such that each conditional from it is tolerated by $\mathcal{R}$
-	b: if none can be found: abort, $\mathcal{R}$ is iconsistent
-	c: else remove $\mathcal{R}_i$  from $\mathcal{R}$ and set i = i + 1
+	a) Find the set of rules $\mathcal{R}_i$ from $\mathcal{R}$ such that each conditional from $\mathcal{R}_i$ is tolerated by $\mathcal{R}$
+	b) if none can be found: abort, $\mathcal{R}$ is iconsistent
+	c) else remove $\mathcal{R}_i$  from $\mathcal{R}$ and set i = i + 1
 3: return the ordered partition $\mathcal{R} = (\mathcal{R}_o, \mathcal{R}_1, ..., \mathcal{R}_k)$
 \end{lstlisting}
 

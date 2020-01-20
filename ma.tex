@@ -77,6 +77,10 @@ Konditionale}
 \newpage
 \tableofcontents
 \newpage
+
+%todo: lehrstuhlseite gucken. andere lehrstühle gucken. abstract? 
+
+%todo: deckblatt. lehrstuhl und so gucken. sonst link
 \section{Einleitung}
 Diese Arbeit hat zum Ziel Wissensbasen aus qualitativen Konditionalen auf eine systematische Art und Weise zu generieren. Dafür wird der in \cite{beierle19} entwickelte Algorithmus zur Berechnung aller Wissensbasen implementiert. Dabei soll ergründet werden, welchen Aufwand diese Generierung mit einer steigender Anzahl der darin  enthaltenden Konditionalen verursacht. Die als Ergebnis entstandenen Wissensbasen sollen dann dazu dienen, das System InfOCF (siehe \cite{beierle17}) experimentell zu evaluieren. \\
 %descriptionn of parts
@@ -822,7 +826,8 @@ In diesem Abschnitt wird gezeigt, wie der konkrete Algorithmus GenKB aus \cite{b
 Von der \textit{BlockingQueue<AbstractPair> lastIterationQueue} werden die Paare entnommen, um sie in der aktuellen Iteration zu bearbeiten. Und die \textit{BlockingQueue<AbstractPair> inconsistentQueue} nimmt alle inkonsistenten Wissensbasen auf um die dem \textit{kbWriter} zu übergeben. \\
 Im Folgenden ist die Implementierung von GenKB abgebildet. Dabei werden mit Kommentaren in der Form \glqq //line 1\grqq \space die Entsprechung der folgenden Zeilen im Original gekennzeichnet. Nach dem dargestelltem Code folgt dessen Erläuterung. \\
 
-
+todo: fix das mit der seite\\
+todo: echter genkb sollte irgendwo sein? wegen zeilen \\
 \begin{lstlisting}
 private void generateKbs() throws InterruptedException {
     //line 1

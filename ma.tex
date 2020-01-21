@@ -302,7 +302,7 @@ In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normal
 
 \subsubsection{Mengen möglicher Welten} %todo absatz sortieren
 %first part worldslist
-Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse \textit{WorldsList} dargestellt, ein Klassendiagramm befindet sich in \autoref{pic:worldslist}. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. \\
+Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse \textit{WorldsList} dargestellt, ein Klassendiagramm befindet sich in \autoref{pic:worldslist}. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence.
 
 
 \begin{figure}
@@ -312,44 +312,7 @@ Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} sc
 \end{figure}
 
 
-%algo create worldslists
-Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge in Form einer \textit{List<WorldsList>}. Im Algorithmus wird zunächst in Zeile 3 über alle Integers der möglichen Welten iteriert. In Zeilen 10-12 werden die \textit{WorldsLists} mit jeweils einem Element erstellt. In Zeile 4 wird dann über die bereits bestehenden \textit{WorldsLists} iteriert und jeweils alle Kombinationen mit der aktuellen ein-elementigen Welt als neue \textit{WorldsLists} erstellt. Am Ende enthält dann die \textit{List<WorldsList> subsetList} WorldsLists mit allen möglichen Teilmengen der ursprünglich übergebenen Liste von Integers. \\
-Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. Für die Signatur $\Sigma_{ab}$ sind es 15. Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert werden diese Mengen von Welten im Programm jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \autoref{pic:worldslist} gezeigt ist. 
 
-
-
-
-\begin{figure}
-\begin{lstlisting}
-private List<WorldsList> createSubSetList(List<Integer> inputList){
-    List<WorldsList> subSetList = new ArrayList<>();
-    for (Integer world : inputList) {
-        for (ListIterator<WorldsList> setsIterator = subSetList.listIterator(); setsIterator.hasNext(); ) {
-            WorldsList newWorld = new WorldsList();
-            newWorld.addList(setsIterator.next().getWorldsList());
-            newWorld.addInt(world);
-            setsIterator.add(newWorld);
-        }
-        WorldsList otherWorld = new WorldsList();
-        otherWorld.addInt(world);
-        subSetList.add(otherWorld);
-    }
-    return subSetList;
-}
-\end{lstlisting}
-\caption{Algorithmus zum Erstellen aller Teilmengen aus einer Liste möglicher Welten}
-\label{code:subsets}
-\end{figure}
-
-
-
-
-
-
-
-
-
-%more worldslist
 Das wichtigste Attribut der Klasse \textit{WorldsList} ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen.
 
 
@@ -422,6 +385,37 @@ renamingsList.add(worldsList);
 \label{code:renaming}
 \end{figure}
 
+
+%algo create worldslists
+%todo: besser überleiten von woldslist hier her?
+
+Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge in Form einer \textit{List<WorldsList>}. Im Algorithmus wird zunächst in Zeile 3 über alle Integers der möglichen Welten iteriert. In Zeilen 10-12 werden die \textit{WorldsLists} mit jeweils einem Element erstellt. In Zeile 4 wird dann über die bereits bestehenden \textit{WorldsLists} iteriert und jeweils alle Kombinationen mit der aktuellen ein-elementigen Welt als neue \textit{WorldsLists} erstellt. Am Ende enthält dann die \textit{List<WorldsList> subsetList} WorldsLists mit allen möglichen Teilmengen der ursprünglich übergebenen Liste von Integers. \\
+Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. Für die Signatur $\Sigma_{ab}$ sind es 15. Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert werden diese Mengen von Welten im Programm jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \autoref{pic:worldslist} gezeigt ist. 
+
+
+
+
+\begin{figure}
+\begin{lstlisting}
+private List<WorldsList> createSubSetList(List<Integer> inputList){
+    List<WorldsList> subSetList = new ArrayList<>();
+    for (Integer world : inputList) {
+        for (ListIterator<WorldsList> setsIterator = subSetList.listIterator(); setsIterator.hasNext(); ) {
+            WorldsList newWorld = new WorldsList();
+            newWorld.addList(setsIterator.next().getWorldsList());
+            newWorld.addInt(world);
+            setsIterator.add(newWorld);
+        }
+        WorldsList otherWorld = new WorldsList();
+        otherWorld.addInt(world);
+        subSetList.add(otherWorld);
+    }
+    return subSetList;
+}
+\end{lstlisting}
+\caption{Algorithmus zum Erstellen aller Teilmengen aus einer Liste möglicher Welten}
+\label{code:subsets}
+\end{figure}
 
 
 \subsubsection{Konditionale aus möglichen Welten} 

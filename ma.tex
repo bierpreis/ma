@@ -86,6 +86,8 @@ Konditionale}
 %todo: deckblatt. lehrstuhl und so gucken. sonst link
 
 %todo: allg wenn autoref auf subsubsection: unterunterabschnitt !!
+
+%todo: text überfliegen. sind noch komische abstätze zu kurz oder zu lang drin? 
 \section{Einleitung}
 todo: eventuell falschenhälse ram und cpu erwähnen? \\
 Diese Arbeit hat zum Ziel Wissensbasen aus qualitativen Konditionalen auf eine systematische Art und Weise zu generieren. Dafür wird der in \cite{beierle19} entwickelte Algorithmus zur Berechnung aller Wissensbasen implementiert. Dabei soll ergründet werden, welchen Aufwand diese Generierung mit einer steigender Anzahl der darin  enthaltenden Konditionalen verursacht. Die als Ergebnis entstandenen Wissensbasen sollen dann dazu dienen, das System InfOCF (siehe \cite{beierle17}) experimentell zu evaluieren. \\
@@ -1090,8 +1092,7 @@ Der RamPairBuffer besitzt eine Datenstruktur in der Form \textit{List<List<Compr
 Ein Thread kümmert sich um die \textit{nextIterationQueue}, also um die von GenKB in Zeile 5 und 12  neu erstellten Paare in Form von Instanzen der Klasse RealPair. Sobald die \textit{nextIterationQueue} Pairs enthält, entnimmt der Thread die Pairs und wandelt diese in CompressedPairs um. Dazu Wird der Konstruktor \textit{CompressedPair(RealPair)} genutzt. Die neu erstellen CompressedPairs werden dann in die Datenstruktur in der Liste unter dem aktuellen Wert für $k+1$ abgelegt. \\
 Analog dazu kümmert sich der andere Thread um die \textit{lastIterationQueue}. Der Thread entnimmt also die CompressedPairs aus der Liste mit Index $k$, wandelt sie durch den Konstruktor \textit{RealPair(CompressedPair)} um und legt sie in die \textit{lastIterationQueue}. \\
 Die beiden Queues werden jeweils als \textit{ArrayBlockingQueue(1000)} mit der Größe 1000 initialisiert. Die genaue Größe ist nicht wirklich wichtig. Sie ist mit dem Wert 1000 groß genug, dass sie den Prozess nicht verlangsamt, aber auch nicht so groß dass sie zu viel Speicher benötigen würde. \\
-Die Liste in der Form \textit{List<List<CompressedPair>>} wird von einigen Methoden zum Iterationswechsel bearbeitet. Dazu wird beispielsweise durch die \textit{prepareIteraiton(int k)} Methode eine neue Liste für k angelegt. Die \textit{finishIteration(int k)} Methode sorgt dafür, dass alle Pairs aus den Queues auch fertig bearbeitet werden, bevor die neue Iteration beginnt. Dadurch wird ausgeschlossen, dass durch den Iterationswechsel Datensätze verloren gehen können. \\
-Die \textit{deleteOldData(int k)} Methode löscht dann in der \textit{List<List<CompressedPair>>} das Element $k-1$ um den Speicherplatz wieder freizugeben.
+Die Liste in der Form \textit{List<List<CompressedPair>>} wird von einigen Methoden zum Iterationswechsel bearbeitet. Dazu wird beispielsweise durch die \textit{prepareIteraiton(int k)} Methode eine neue Liste für k angelegt. Die \textit{finishIteration(int k)} Methode sorgt dafür, dass alle Pairs aus den Queues auch fertig bearbeitet werden, bevor die neue Iteration beginnt. Dadurch wird ausgeschlossen, dass durch den Iterationswechsel Datensätze verloren gehen können. Die \textit{deleteOldData(int k)} Methode löscht dann in der \textit{List<List<CompressedPair>>} das Element $k-1$ um den Speicherplatz wieder freizugeben.
 
 
 \paragraph{SimpleRamBuffer}\mbox{}

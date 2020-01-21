@@ -303,7 +303,7 @@ In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normal
 \subsubsection{Mengen möglicher Welten}
 \label{sec:worldslist}
 Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse WorldsList dargestellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. \\
-Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. 
+Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma_{ab}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert werden diese Mengen von Welten im Programm jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \autoref{pic:worldslist} gezeigt ist. 
 %\\todo: algo besser erklären! \\
 
 
@@ -334,16 +334,11 @@ private List<WorldsList> createSubSetList(List<Integer> inputList){
 
 
 
-
-Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma_{ab}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert werden diese Mengen von Welten im Programm jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \autoref{pic:worldslist} gezeigt ist. 
-
-
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/worldslist.png}
 \caption{Klassendiagramm \textit{WorldsList}}
 \label{pic:worldslist}
 \end{figure}
-
 
 
 
@@ -431,7 +426,7 @@ renamingsList.add(worldsList);
 
 
 
-Die Klasse \textit{WConditional} (W wie worlds) dient dazu, mit zwei der im Abschnitt zuvor beschriebenen WorldsList Objekten Konditionale zu repräsentieren. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung von Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin die Referenz \textit{counterConditional} ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional. Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ nach Defintion \ref{def:sortierung-nfc} als int Variable enthalten.
+Die Klasse \textit{WConditional} (W wie worlds) dient dazu, mit zwei der im Abschnitt zuvor beschriebenen WorldsList Objekten Konditionale zu repräsentieren. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung von Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin die Referenz \textit{counterConditional} ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional. Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ nach Defintion \ref{def:sortierung-nfc} als int Variable enthalten. Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{code:compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{eq:conditional-order} beschrieben.
 
 
 
@@ -441,12 +436,6 @@ Die Klasse \textit{WConditional} (W wie worlds) dient dazu, mit zwei der im Absc
 \label{pic:wconditional}
 \end{figure}
 
-
-
-
-
-
-Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{code:compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{eq:conditional-order} beschrieben.
 
 
 \begin{figure}
@@ -468,7 +457,7 @@ public int compareTo(Object o) {
 
 
 
-Eine wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann \textit{true} zurück, wenn die zwei WorldsList Objekte beider WConditonals dieselben sind. Zwei Instanzen von WorldsList sind genau dann die selben, wenn sie die selben Welten enthalten. Intern wird hier einfach die Elemente der beiden \textit{List<Integer> worldsList} miteinander verglichen. Die Methode \textit{createEquivalentConditonals(..)} ist in \autoref{sec:counter-conditonals} genauer beschrieben. 
+Eine wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann \textit{true} zurück, wenn die zwei WorldsList Objekte beider WConditonals dieselben sind. Zwei Instanzen von WorldsList sind genau dann die selben, wenn sie die selben Welten enthalten. Intern wird hier einfach die Elemente der beiden \textit{List<Integer> worldsList} miteinander verglichen. Die Methode \textit{createEquivalentConditonals(..)} ist in \autoref{sec:counter-conditonals} genauer beschrieben. Nicht zu verwechseln mit der \textit{equals(..)} Methode ist die Methode \textit{isEquivalent(WConditional other)}, diese wird in \autoref{sec:equivalence} gezeigt.
 
 
 \begin{figure}
@@ -489,17 +478,13 @@ public boolean equals(Object o) {
 \end{figure}
 
 
-Nicht zu verwechseln mit der \textit{equals(..)} Methode ist die Methode \textit{isEquivalent(WConditional other)}, diese wird in \autoref{sec:equivalence} gezeigt.
-
 
 
 \subsubsection{Berechnung aller Konditionale}
 
 
 
-
-In \autoref{sec:worldslist} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma_{abc}$ gebildet. In diesem Abschnitt wird gezeigt, wie aus diesen Kombinationen alle möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert werden. \\
-Als Input dafür wird die Liste an WorldsLists aus \autoref{sec:worldslist} der ausgewählten Signatur verwendet. Der Algorithmus zur Generierung aller möglichen Kombinationen daraus ist in \autoref{code:create-conditionals} zu sehen. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform. 
+In \autoref{sec:worldslist} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma_{abc}$ gebildet. In diesem Abschnitt wird gezeigt, wie aus diesen Kombinationen alle möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert werden. Als Input dafür wird die Liste an WorldsLists aus \autoref{sec:worldslist} der ausgewählten Signatur verwendet. Der Algorithmus zur Generierung aller möglichen Kombinationen daraus ist in \autoref{code:create-conditionals} zu sehen. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform. 
 
 
 

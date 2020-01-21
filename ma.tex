@@ -456,7 +456,7 @@ public int compareTo(Object o) {
 
 
 Eine wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann \textit{true} zurück, wenn die zwei WorldsList Objekte beider WConditonals dieselben sind. Zwei Instanzen von WorldsList sind genau dann die selben, wenn sie die selben Welten enthalten. Intern wird hier einfach die Elemente der beiden \textit{List<Integer> worldsList} miteinander verglichen. 
-Die Methode \textit{createEquivalentConditonals(..)} ist in \autoref{sec:counter-conditonals} genauer beschrieben. Nicht zu verwechseln mit der \textit{equals(..)} Methode ist die Methode \textit{isEquivalent(WConditional other)}, diese wird in \autoref{sec:equivalence} gezeigt.
+Die Methoden \textit{createEquivalentConditonals(..)} und \textit{isEquivalent(WConditional other)} werden in \autoref{sec:nfc} gezeigt.
 
 
 \begin{figure}

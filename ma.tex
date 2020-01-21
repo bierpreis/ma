@@ -39,6 +39,7 @@ numbers=right,
 %todo: lesezeichen. ref sollte defintiion werden!
 \newtheorem{theorem}{Definition}
 
+
 \author{Frank Leuchtmann}
 \title{Systematische Generierung konsistenter Mengen qualitativer
 Konditionale}
@@ -539,13 +540,7 @@ Dazu iteriert der Algorithmus in Zeile 4 über alle möglichen Mengen von Welten
 \label{sec:equivalence}
 
 
-Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ erstellt. In diesem Abschnitt wird beschrieben wie die Sortierung nach der Ordnung $\rdotl$, welche in \autoref{def:sortierung-nfc} dargestellt wurde, für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{sec:äquivalenz-konditionale} gezeigt gruppiert und dann untereinander sortiert werden.
-
-
-
-
-
-
+Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ erstellt. In diesem Abschnitt wird beschrieben wie die Sortierung nach der Ordnung $\rdotl$, welche in Definition \ref{def:sortierung-nfc} dargestellt wurde, für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{sec:äquivalenz-konditionale} gezeigt gruppiert und dann untereinander sortiert werden. \\
 Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{code:test-equivalence} dargestellt ist. In diesem Algorithmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode \textit{getBasicEquivalents()} gibt eine Liste and WConditional Objekten zurück, mit der Methode \textit{createBasicEquivalents()} erstellt wird. Diese Liste äquivalenter Konditionale beinhaltet dabei jedoch \textit{neu erstellte} Objekte äquivalenter Konditionale, nicht die \textit{tatsächlichen} Objekte der Äquivalenten Konditionale. Die tatsächlichen Objekte können erst nachher gruppiert werden. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalenz wird während der Berechnung der Konditionale sehr oft geprüft (mit $\Sigma_{ab}$ 1550 mal, mit $\Sigma_{abc}$  16.784.250 mal), sodass die Methode \textit{getBasicEquivalents()} sicherstellt, dass die Liste äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung dadurch ist deutlich spürbar.
 
 
@@ -765,7 +760,7 @@ Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegen
 
 
 
-Die wichtige Methode \textit{isToleratedBy(List<PConditonal> list)} der Klasse PConditional ist in \autoref{code:conditional-istoleratedby} gezeigt. Mit dieser Methode wird geprüft, ob ein Konditional von einer Liste von Konditionalen (einer Wissensbasis) toleriert wird. Das ist somit die praktische Umsetzung der Toleranz wie sie unter \autoref{def:toleranz} bereits beschrieben wurde. Dieser Test wird benötigt, um die Konsistenz einer Wissensbasis zu überprüfen. Sie funktioniert folgendermaßen: In Zeile 2 wird über alle möglichen Welten iteriert. Wenn in Zeile 3 die Bestätigung des aktuellen Konditionals durch die Welt festgestellt wird, wird in den folgenden Zeilen geprüft, ob alle Konditionale der Liste die mögliche Welt tolerieren. Ist das der Fall, wird in Zeile 12 \textit{true} zurück gegeben. Wenn nicht, wird der Ablauf für die verbleibenden Welten wiederholt. Wenn das Konditional für keine mögliche Welt von der Liste toleriert wird, wird in Zeile 15 \textit{false} zurück gegeben.
+Die wichtige Methode \textit{isToleratedBy(List<PConditonal> list)} der Klasse PConditional ist in \autoref{code:conditional-istoleratedby} gezeigt. Mit dieser Methode wird geprüft, ob ein Konditional von einer Liste von Konditionalen (einer Wissensbasis) toleriert wird. Das ist somit die praktische Umsetzung der Toleranz wie sie unter Definition \ref{def:toleranz} bereits beschrieben wurde. Dieser Test wird benötigt, um die Konsistenz einer Wissensbasis zu überprüfen. Sie funktioniert folgendermaßen: In Zeile 2 wird über alle möglichen Welten iteriert. Wenn in Zeile 3 die Bestätigung des aktuellen Konditionals durch die Welt festgestellt wird, wird in den folgenden Zeilen geprüft, ob alle Konditionale der Liste die mögliche Welt tolerieren. Ist das der Fall, wird in Zeile 12 \textit{true} zurück gegeben. Wenn nicht, wird der Ablauf für die verbleibenden Welten wiederholt. Wenn das Konditional für keine mögliche Welt von der Liste toleriert wird, wird in Zeile 15 \textit{false} zurück gegeben.
 
 
 \begin{figure}

@@ -81,6 +81,8 @@ Konditionale}
 \tableofcontents
 \newpage
 
+%todo: duden rechtschreibprüfung
+
 %todo: lehrstuhlseite gucken. andere lehrstühle gucken. abstract? 
 
 %todo: deckblatt. lehrstuhl und so gucken. sonst link
@@ -89,7 +91,7 @@ Konditionale}
 
 %todo: text überfliegen. sind noch komische abstätze zu kurz oder zu lang drin? 
 \section{Einleitung}
-todo: eventuell falschenhälse ram und cpu erwähnen? \\
+%todo: eventuell falschenhälse ram und cpu erwähnen?
 Diese Arbeit hat zum Ziel Wissensbasen aus qualitativen Konditionalen auf eine systematische Art und Weise zu generieren. Dafür wird der in \cite{beierle19} entwickelte Algorithmus zur Berechnung aller Wissensbasen implementiert. Dabei soll ergründet werden, welchen Aufwand diese Generierung mit einer steigender Anzahl der darin  enthaltenden Konditionalen verursacht. Die als Ergebnis entstandenen Wissensbasen sollen dann dazu dienen, das System InfOCF (siehe \cite{beierle17}) experimentell zu evaluieren. \\
 %descriptionn of parts
 Der Ablauf dieser Arbeit ist wie folgt: Ganz am Anfang werden die Grundlagen zu Konditionalen und Wissensbasen kurz dargestellt, um eine Basis für das weitere Vorgehen zu schaffen. Die Aufgabenstellung wird dann in zwei Teilen bearbeitet: Im ersten Teil werden die Konditionale in Normalform berechnet und damit die Menge aller Konditionale $NFC$ gebildet. Anschließend werden auf dieser Menge die Äquivalenzklassen Untersucht und damit die Menge der kanonischen Konditionale $cNFC$ sowie die einzelnen Äquivalenzklassen berechnet. Dabei werden die Konditionale auch nach der Ordnungsrelation $\rdotl$ sortiert. Im zweiten Teil dieser Arbeit findet dann die eigentliche Generierung der Wissensbasen statt. Dazu wird der Algorithmus zur Generierung der Wissensbasen mit Hilfe einer geeigneter Datenverarbeitung implementiert.\\
@@ -306,15 +308,9 @@ In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normal
 
 \subsubsection{Mengen möglicher Welten}
 \label{sec:worldslist}
-Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse WorldsList dargestellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können.
-
-
-
-
-
-Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. \\
-\\todo: algo besser erklären! \\
-todo: re read \\
+Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse WorldsList dargestellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. \\
+Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. 
+%\\todo: algo besser erklären! \\
 
 
 
@@ -901,10 +897,10 @@ Von der \textit{BlockingQueue<AbstractPair> lastIterationQueue} werden die Paare
 
 
 
-Im Folgenden ist die Implementierung von GenKB abgebildet. Dabei werden mit Kommentaren in der Form \glqq //line 1\grqq \space die Entsprechung der folgenden Zeilen im Original gekennzeichnet. Nach dem dargestelltem Code folgt dessen Erläuterung. \\
+Im Folgenden ist die Implementierung von GenKB abgebildet. Dabei werden mit Kommentaren in der Form \glqq //line 1\grqq \space die Entsprechung der folgenden Zeilen im Original gekennzeichnet. Nach dem dargestelltem Code folgt dessen Erläuterung. 
 
 
-todo: echter genkb sollte irgendwo sein? wegen zeilen \\
+%todo: echter genkb sollte irgendwo sein? wegen zeilen \\
 \begin{lstlisting}
 private void generateKbs() throws InterruptedException {
     //line 1

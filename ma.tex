@@ -272,6 +272,9 @@ Wenn das Programm gestartet wurde, öffnet sich ein kleines Fenster. Darin kann 
 
 
 
+In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu sehen. Die drei Elemente innerhalb des grau hinterlegten Bereichs sind für das eigentliche Generieren der Wissensbasen zuständig. Oben rechts ist die GUI abgebildet. Sie dient zum Setzen von Optionen, Starten des Programms und während der Laufzeit zum Anzeigen von verschiedenen Informationen zum Programmablauf. Unten links befindet sich der NfcCreator, hier werden die Konditionale NFC anhand der eingestellten Optionen erstellt. Diese Konditionale werden dann an den KBCreator übergeben, welcher für die eigentliche Generierung der Wissensbasen zuständig ist. Die GUI NfcViewer außerhalb des grauen Bereichs oben links ist optional und kann genutzt werden um die Konditionale nach verschiedenen Optionen zu erzeugen, zu betrachten und zu speichern.
+
+
 \subsection{Aufbau des Programms}
 
 \begin{figure}
@@ -280,11 +283,6 @@ Wenn das Programm gestartet wurde, öffnet sich ein kleines Fenster. Darin kann 
 \caption{Gesamtübersicht auf das erstellte Programm}
 \label{pic:overview}
 \end{figure}
-
-
-In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu sehen. Die drei Elemente innerhalb des grau hinterlegten Bereichs sind für das eigentliche Generieren der Wissensbasen zuständig. Oben rechts ist die GUI abgebildet. Sie dient zum Setzen von Optionen, Starten des Programms und während der Laufzeit zum Anzeigen von verschiedenen Informationen zum Programmablauf. Unten links befindet sich der NfcCreator, hier werden die Konditionale NFC anhand der eingestellten Optionen erstellt. Diese Konditionale werden dann an den KBCreator übergeben, welcher für die eigentliche Generierung der Wissensbasen zuständig ist. Die GUI NfcViewer außerhalb des grauen Bereichs oben links ist optional und kann genutzt werden um die Konditionale nach verschiedenen Optionen zu erzeugen, zu betrachten und zu speichern.
-
-
 
 Der weitere Ablauf der Arbeit ist wie folgt: Im nächsten Abschnitt wird die Berechnung der Konditionale beschrieben, also der Teil aus der Gesamtübersicht, welcher sich unter \glqq NfcCreator\grqq \space verbirgt. Im anschließenden Teil wird dann die Berechnung der Wissensbasen aus den Konditionalen dargestellt, das ist der Teil, der sich in der Abbildung unter \glqq KBCreator\grqq \space befindet. Am Ende werden die Ergebnisse noch kurz eingeordnet.
 
@@ -299,6 +297,16 @@ In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normal
 \subsubsection{Mengen möglicher Welten}
 \label{sec:worldslist}
 Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse WorldsList dargestellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können.
+
+
+
+
+
+Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. \\
+\\todo: algo besser erklären! \\
+todo: re read \\
+todo: gucken, ob bei figures h reinsollte \\
+
 
 \begin{figure}
 \begin{lstlisting}
@@ -324,10 +332,10 @@ private List<WorldsList> createSubSetList(List<Integer> inputList){
 
 
 
-Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge. \\
-\\todo: algo besser erklären! \\
-todo: re read \\
-todo: gucken, ob bei figures h reinsollte \\
+
+
+
+Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma_{ab}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert werden diese Mengen von Welten im Programm jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \autoref{pic:worldslist} gezeigt ist. 
 
 
 \begin{figure}
@@ -338,7 +346,9 @@ todo: gucken, ob bei figures h reinsollte \\
 
 
 
-Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. (Vergleich: für $\Sigma_{ab}$ sind es 15) Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert werden diese Mengen von Welten im Programm jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \autoref{pic:worldslist} gezeigt ist. 
+
+
+Das wichtigste Attribut der Klasse WorldsList ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen. \\
 
 
 \begin{figure}
@@ -364,8 +374,14 @@ public int compareTo(Object o) {
 \end{figure}
 
 
-Das wichtigste Attribut der Klasse WorldsList ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen. \\
+
 Weiterhin besitzt die Klasse WorldsList die Methode \textit{createRenamings()}, welche eine wichtige Rolle für das spätere Finden von äquivalenten Konditionalen besitzt. Wie bereits in \autoref{sec:äquivalenz-konditionale} beschrieben entsteht Äquivalenz von Konditionalen durch Umbenennung von Variablen und besteht somit aus äquivalenten Formeln für Antecedent und Consequence. Entsprechend ergibt sich aus der Menge der möglichen Umbenennungen die Menge sowohl an Formeln als auch an Konditionalen innerhalb einer Äquivalenzklasse. Mit Signatur $\Sigma_{ab}$ existiert eine einzige mögliche Umbenennung, nämlich wenn $a$ in $b$ und $b$ in $a$ umbenannt wird. Mit der Signatur $\Sigma_{abc}$ existieren drei mögliche Umbenennungen durch den Tausch der folgenden Paare an Variablen: $a-b$, $a-c$ und $b-c$. Die Methode \textit{createRenamings()} gibt nun in Abhängigkeit von der gewählten Signatur alle möglichen Umbenennungen einer \textit {WorldsList} als neue \textit{List<WorldsList>} in der oben genannten Reihenfolge wieder. Bei nur einer existierenden Umbenennung mit $\Sigma_{ab}$ stellt sich die Frage nach der Reihenfolge offensichtlich nicht, bei $\Sigma_{abc}$ ist diese Reihenfolge später noch wichtig.
+
+
+
+
+
+Im Folgenden wird nun die Methode \textit{createRenamings()} der Klasse WorlsList genauer erklärt. Das Wesen einer Umbenennung einer WorldsList ist es, dass sich die enthaltene Liste der Welten ändert. Es wird für eine Umbenennung also ein neues Objekt der Klasse WorldsList mit einer neuen List<Integer> Liste der möglichen Welten erstellt. Bei jeder möglichen Umbenennung ändern sich die enthaltenen möglichen Welten auf die selbe Weise, entsprechend wird die ursprüngliche \textit{List<Integer>} Liste der Welten nach einem charakteristischem Schema \glqq übersetzt\grqq. So ein Schema existiert für jede mögliche Umbenennung, entsprechend gibt es für $\Sigma_{ab}$ eines und für $\Sigma_{abc}$ drei davon. Da der Code für alle Umbenennungen viel Platz benötigt wird hier nicht die ganze Methode \textit{createRenamings} dargestellt. In \autoref{code:renaming} ist beispielhaft die Umbenennung $a-b$ mit der Signatur $\Sigma_{abc}$ gezeigt. In Zeile 1 wird die neue \textit{List<Integer>} erstellt, in die die übersetzten Werte mit einer Switch Anweisung eingetragen werden. Man sieht, dass sich  Welt 0 $(!a!b!c)$ und Welt 7 $(abc)$ nicht ändern, eine Umbenennung hat hier grundsätzlich keinen Einfluss. Welt 1 $(!a!bc)$ und Welt 6 $(ab!c)$ ändern sich bei der Umbenennung $a-b$ auch nicht. Die andern Welten werden durch die Umbenennung durch ein Äquivalent ersetzt. In Zeile 32 und 33 wird die neue WorldsList dann erstellt und in Zeile 34 wird sie in die \textit{List<WorldsList>} der Umbenennungen eingefügt.  Für die Umbenennungen $a-c$ und $b-c$ existiert jeweils ebenfalls ein entsprechendes Stück Code und so werden alle drei Umbenennungen realisiert. Mit $\Sigma_{ab}$ existiert nur eine Umbenennung und es wird einfach Welt 1 und 2 vertauscht.
 
 
 \begin{figure}
@@ -410,12 +426,14 @@ renamingsList.add(worldsList);
 \end{figure}
 
 
-Im Folgenden wird nun die Methode \textit{createRenamings()} der Klasse WorlsList genauer erklärt. Das Wesen einer Umbenennung einer WorldsList ist es, dass sich die enthaltene Liste der Welten ändert. Es wird für eine Umbenennung also ein neues Objekt der Klasse WorldsList mit einer neuen List<Integer> Liste der möglichen Welten erstellt. Bei jeder möglichen Umbenennung ändern sich die enthaltenen möglichen Welten auf die selbe Weise, entsprechend wird die ursprüngliche \textit{List<Integer>} Liste der Welten nach einem charakteristischem Schema \glqq übersetzt\grqq. So ein Schema existiert für jede mögliche Umbenennung, entsprechend gibt es für $\Sigma_{ab}$ eines und für $\Sigma_{abc}$ drei davon. Da der Code für alle Umbenennungen viel Platz benötigt wird hier nicht die ganze Methode \textit{createRenamings} dargestellt. In \autoref{code:renaming} ist beispielhaft die Umbenennung $a-b$ mit der Signatur $\Sigma_{abc}$ gezeigt. In Zeile 1 wird die neue \textit{List<Integer>} erstellt, in die die übersetzten Werte mit einer Switch Anweisung eingetragen werden. Man sieht, dass sich  Welt 0 $(!a!b!c)$ und Welt 7 $(abc)$ nicht ändern, eine Umbenennung hat hier grundsätzlich keinen Einfluss. Welt 1 $(!a!bc)$ und Welt 6 $(ab!c)$ ändern sich bei der Umbenennung $a-b$ auch nicht. Die andern Welten werden durch die Umbenennung durch ein Äquivalent ersetzt. In Zeile 32 und 33 wird die neue WorldsList dann erstellt und in Zeile 34 wird sie in die \textit{List<WorldsList>} der Umbenennungen eingefügt.  Für die Umbenennungen $a-c$ und $b-c$ existiert jeweils ebenfalls ein entsprechendes Stück Code und so werden alle drei Umbenennungen realisiert. Mit $\Sigma_{ab}$ existiert nur eine Umbenennung und es wird einfach Welt 1 und 2 vertauscht.
-
-
-
 
 \subsubsection{Konditionale aus möglichen Welten} 
+
+
+
+Die Klasse \textit{WConditional} (W wie worlds) dient dazu, mit zwei der im Abschnitt zuvor beschriebenen WorldsList Objekten Konditionale zu repräsentieren. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung von Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin die Referenz \textit{counterConditional} ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional. Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ nach Definition \ref{def:sortierung-nfc} als int Variable enthalten.
+
+
 
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/wconditional.png}
@@ -423,8 +441,12 @@ Im Folgenden wird nun die Methode \textit{createRenamings()} der Klasse WorlsLis
 \label{pic:wconditional}
 \end{figure}
 
-Die Klasse \textit{WConditional} (W wie worlds) dient dazu, mit zwei der im Abschnitt zuvor beschriebenen WorldsList Objekten Konditionale zu repräsentieren. Der Fokus der Klasse liegt dabei auf der Generierung, Ordnung und Betrachtung von Äquivalenz der Konditionale. Ein vereinfachtes Diagramm der Klasse ist in \autoref{pic:wconditional} zu sehen. Attribute der Klasse sind zum einen Antecedent und Consequence in Form eines WordsList Objekts. Weiterhin die Referenz \textit{counterConditional} ebenfalls als Objekt der Klasse WConditional und einer Liste von äquivalenten Konditionalen als Objekte von WConditional. Außerdem ist die Nummer des Konditionals gemäß der Ordnung $\rdotl$ nach Definition \ref{def:sortierung-nfc} als int Variable enthalten.
 
+
+
+
+
+Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{code:compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{eq:conditional-order} beschrieben.
 
 
 \begin{figure}
@@ -441,8 +463,12 @@ public int compareTo(Object o) {
 \end{figure}
 
 
-Die Klasse WConditional ist ebenfalls sortierbar mit dem Interface \textit{Comparable}, die Implementierung der \textit{compareTo(Object 0)} Methode ist in \autoref{code:compare-wconditonal} gezeigt. Die Implementierung entspricht damit genau der Sortierung nach $\overset{\mathrm{c}}{\dotll}$ wie in \autoref{eq:conditional-order} beschrieben.
 
+
+
+
+
+Eine wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann \textit{true} zurück, wenn die zwei WorldsList Objekte beider WConditonals dieselben sind. Zwei Instanzen von WorldsList sind genau dann die selben, wenn sie die selben Welten enthalten. Intern wird hier einfach die Elemente der beiden \textit{List<Integer> worldsList} miteinander verglichen. Die Methode \textit{createEquivalentConditonals(..)} ist in \autoref{sec:counter-conditonals} genauer beschrieben. 
 
 
 \begin{figure}
@@ -463,9 +489,19 @@ public boolean equals(Object o) {
 \end{figure}
 
 
-Eine wichtige Methode der Klasse WConditonal ist die Überschreibung der \textit{equals(Object o)} Methode. Diese ist in \autoref{code:equals-wconditonal} zu sehen. Sie liefert dann \textit{true} zurück, wenn die zwei WorldsList Objekte beider WConditonals dieselben sind. Zwei Instanzen von WorldsList sind genau dann die selben, wenn sie die selben Welten enthalten. Intern wird hier einfach die Elemente der beiden \textit{List<Integer> worldsList} miteinander verglichen. Die Methode \textit{createEquivalentConditonals(..)} ist in \autoref{sec:counter-conditonals} genauer beschrieben. \\
 Nicht zu verwechseln mit der \textit{equals(..)} Methode ist die Methode \textit{isEquivalent(WConditional other)}, diese wird in \autoref{sec:equivalence} gezeigt.
+
+
+
 \subsubsection{Berechnung aller Konditionale}
+
+
+
+
+In \autoref{sec:worldslist} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma_{abc}$ gebildet. In diesem Abschnitt wird gezeigt, wie aus diesen Kombinationen alle möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert werden. \\
+Als Input dafür wird die Liste an WorldsLists aus \autoref{sec:worldslist} der ausgewählten Signatur verwendet. Der Algorithmus zur Generierung aller möglichen Kombinationen daraus ist in \autoref{code:create-conditionals} zu sehen. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform. 
+
+
 
 \begin{figure}
 \begin{lstlisting}
@@ -489,8 +525,6 @@ private List<WConditional> createBasicConditionalList(List<WorldsList> worldsLis
 \end{figure} 
 
 
-In \autoref{sec:worldslist} wurden bereits die 255 verschiedenen Kombinationen der möglichen Welten unter Signatur $\Sigma_{abc}$ gebildet. In diesem Abschnitt wird gezeigt, wie aus diesen Kombinationen alle möglichen Konditionale in Normalform als Objekte der gerade beschriebenen Klasse WConditional generiert werden. \\
-Als Input dafür wird die Liste an WorldsLists aus \autoref{sec:worldslist} der ausgewählten Signatur verwendet. Der Algorithmus zur Generierung aller möglichen Kombinationen daraus ist in \autoref{code:create-conditionals} zu sehen. Der Output der Methode ist eine Liste aller möglichen Konditionale in Normalform. \\
 Dazu iteriert der Algorithmus in Zeile 4 über alle möglichen Mengen von Welten, diese bilden dann jeweils den Antecedent der Konditionale. Für jede dieser Iterationen werden im Zeile 8 alle echten Teilmengen des Antecedent gebildet, woraus sie die Consequence entsteht. Aus Antecedetnt und Consequence wird dann jeweils ein Konditional gebildet. Zum Schluss werden die Konditionale in Zeile 15 nach der Ordnung $\dotl$ in \autoref{eq:conditional-order} sortiert. Bei Ausführung mit der Signatur $\Sigma_{ab}$ ergeben sich die 50 Konditionale wie in \cite{beierle19} dargestellt. Bei Ausführung mit $\Sigma_{abc}$ entstehen 6050 Kontitionale. Die Anzahl von 6050 Konditionalen für eine Signatur aus drei Elementen entspricht auch der Angabe eben dieser Menge in  der Quelle \cite{beierle19b}. Die Konditionale können in der GUI des Programms NFC Creator mit dem Button CONDITIONALS betrachtet werden.
 
 
@@ -501,6 +535,13 @@ Dazu iteriert der Algorithmus in Zeile 4 über alle möglichen Mengen von Welten
 
 
 Im Abschnitt zuvor wurden die Konditionale nach der Ordnung $\dotl$ erstellt. In diesem Abschnitt wird beschrieben wie die Sortierung nach der Ordnung $\rdotl$, welche in \autoref{def:sortierung-nfc} dargestellt wurde, für die Klasse WConditional implementiert ist. Dazu müssen die Konditionale zunächst in Äquivalenzklassen wie in \autoref{sec:äquivalenz-konditionale} gezeigt gruppiert und dann untereinander sortiert werden.
+
+
+
+
+
+
+Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{code:test-equivalence} dargestellt ist. In diesem Algorithmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode \textit{getBasicEquivalents()} gibt eine Liste and WConditional Objekten zurück, mit der Methode \textit{createBasicEquivalents()} erstellt wird. Diese Liste äquivalenter Konditionale beinhaltet dabei jedoch \textit{neu erstellte} Objekte äquivalenter Konditionale, nicht die \textit{tatsächlichen} Objekte der Äquivalenten Konditionale. Die tatsächlichen Objekte können erst nachher gruppiert werden. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalenz wird während der Berechnung der Konditionale sehr oft geprüft (mit $\Sigma_{ab}$ 1550 mal, mit $\Sigma_{abc}$  16.784.250 mal), sodass die Methode \textit{getBasicEquivalents()} sicherstellt, dass die Liste äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung dadurch ist deutlich spürbar.
 
 
 \begin{figure}
@@ -518,7 +559,9 @@ public boolean isEquivalent(WConditional otherConditional) {
 
 
 
-Um zu prüfen, ob ein Objekt der Klasse WContitional äquivalent zu einem Anderen ist, besitzt die Klasse die Methode \textit{isEquivalent(WConditonal otherConditional)}, die in \autoref{code:test-equivalence} dargestellt ist. In diesem Algorithmus wird geprüft, ob sich in der Liste der äquivalenten Konditionale (getBasicEquivalents()) ein äquivalentes Konditional zum übergebenen Konditional (otherConditional) existiert und entsprechend true oder false zurückgegeben. Die Methode \textit{getBasicEquivalents()} gibt eine Liste and WConditional Objekten zurück, mit der Methode \textit{createBasicEquivalents()} erstellt wird. Diese Liste äquivalenter Konditionale beinhaltet dabei jedoch \textit{neu erstellte} Objekte äquivalenter Konditionale, nicht die \textit{tatsächlichen} Objekte der Äquivalenten Konditionale. Die tatsächlichen Objekte können erst nachher gruppiert werden. Ursprünglich sollte die Methode zum testen der Äquivalenz diese Liste der Äquivalenten Konditionale bei jedem Test erstellen, allerdings ist die Generierung sehr Zeitaufwendig und die Äquivalenz wird während der Berechnung der Konditionale sehr oft geprüft (mit $\Sigma_{ab}$ 1550 mal, mit $\Sigma_{abc}$  16.784.250 mal), sodass die Methode \textit{getBasicEquivalents()} sicherstellt, dass die Liste äquivalenter Konditionale nur einmal erzeugt wird. Die Zeiteinsparung dadurch ist deutlich spürbar.
+
+
+Die Methode zur Erstellung der Liste der äquivalenten Konditionale ist in \autoref{code:create-equivalents} abgebildet. In Zeile 3 und 4 wird für Antecedent und Consequence jeweils eine Liste der Umbenennungen erstellt wie in \autoref{sec:worldslist} gezeigt wurde. Über diese Umbenennungen wird in Zeile 6 iteriert und für alle Paare von Antecedent und Consequence wird ein neues Konditional als mögliche Umbenennung gespeichert, wenn die Umbenennung wirklich verschieden vom Ausgangskonditional ist. Wenn ein Konditional keine äquivalenten Konditionale besitzt, sind die Umbenennungen an dieser Stelle sonst gleich wie das Ursprungskonditional. Beispielsweise würden Umbenennungen des Konditionals $(ab|!a!b,ab)$ sonst immer wieder das gleiche Konditional entstehen lassen. 
 
 
 \begin{figure}
@@ -540,7 +583,6 @@ private void createBasicEquivalents() {
 \end{figure} 
 
 
-Die Methode zur Erstellung der Liste der äquivalenten Konditionale ist in \autoref{code:create-equivalents} abgebildet. In Zeile 3 und 4 wird für Antecedent und Consequence jeweils eine Liste der Umbenennungen erstellt wie in \autoref{sec:worldslist} gezeigt wurde. Über diese Umbenennungen wird in Zeile 6 iteriert und für alle Paare von Antecedent und Consequence wird ein neues Konditional als mögliche Umbenennung gespeichert, wenn die Umbenennung wirklich verschieden vom Ausgangskonditional ist. Wenn ein Konditional keine äquivalenten Konditionale besitzt, sind die Umbenennungen an dieser Stelle sonst gleich wie das Ursprungskonditional. Beispielsweise würden Umbenennungen des Konditionals $(ab|!a!b,ab)$ sonst immer wieder das gleiche Konditional entstehen lassen. \\
 Der Ablauf der Erstellung der Liste der Konditionale NFC ist dann wie folgt: Der NFC Creator beginnt durch die Liste der Konditionale zu iterieren und erstellt für jedes gefundene Konditional eine eigene Liste. Für jedes dieser Konditionale wird dann mit der \textit{isEquivalent(..)} Methode der Rest der ursprünglichen Liste auf Äquivalenz überprüft und die \textit{tatsächlichen} Objekte der äquivalenten Konditionale werden in die Liste eingefügt und aus der ursprünglichen Liste entfernt. Die neue Liste wird dann jeweils mit der \textit{compare(..)} Methode sortiert. Dadurch entsteht eine Liste von Listen von den tatsächlichen Objekten der äquivalenten Konditionale. Diese Darstellung entspricht dann der Darstellung der Konditionale in \cite{beierle19}. Mit dem NFC Viewer kann diese Ansicht mit dem Button CNFCEQ erstellt werden. Die Menge der kanonischen Konditionale $(cNFC)$ ergibt sich daraus als eine Liste der jeweils ersten Elemente der Listen der äquivalenten Konditionale. Diese kann im NFC Viewer mit dem Button CNFC angezeigt werden.
 Die mit CNFCEQ erstelle Darstellung kann nun genutzt werden, um die Konditionale sortiert nach $\rdotl$ in eine neue Liste NFC aufzunehmen. Dazu wird eine neue Liste von WConditonal erstellt. Zunächst werden alle Listen mit äquivalenten Konditionalen iteriert, welche in sich nach $\dotl$ sortiert sind. Von diesen Listen wird jeweils das erste Element in die neue Liste NFC eingefügt. Dann werden die Listen erneut iteriert und alle Elemente außer dem ersten in die Liste NFC eingefügt. Als Ergebis entsteht die List<WConditional> NFC die genau der Sortierung $\rdotl$ entspricht. Betrachtet werden kann die Liste NFC mit dem Button NFC im NFC Viewer. Man beachte, der NFC Viewer erstellt mit den Buttons CONDITIONALS und NFC die selbe Menge an Konditionalen, nur sind die CONDITIONALS nach $\dotl$ und NFC nach $\rdotl$ sortiert. \\
 Für die Signatur $\Sigma_{abc}$ ergeben sich wie schon beschrieben insgesamt 6050 Konditionale. Diese Menge beinhaltet 2774 Äquivalenzklassen und demzufolge hat auch die Menge der kanonischen Konditionale $cNFC$ 2774 Konditionale.
@@ -554,6 +596,12 @@ Für die Signatur $\Sigma_{abc}$ ergeben sich wie schon beschrieben insgesamt 60
 \subsubsection{Counter Conditionals}
 \label{sec:counter-conditonals}
 Für den Algorithmus GenKB ist es nötig, dass zu einem Konditional schnell dass CounterConditional zur Verfügung steht. Mit der Klasse WConditional wird das vorbereitet. Analog zum Finden der äquivalenten Konditionale besitzt dazu jedes Konditional eine Methode, um zunächst ein \textit{neues} CounterConditional zu erstellen. Wenn dann alle Konditionale erstellt sind, wird nach dem \textit{tatsächlichen} Objekt des CounterConditional gesucht und eine Referenz dazu im ursprünglichen Konditional gesetzt. \\
+
+
+
+
+Um das vorläufige CounterConditional zu generieren wird in der Methode \textit{getBasicCounterConditional()} zunächst ein \textit{neues} Konditional generiert, wie in \autoref{code:basic-counter} dargestellt. Als Antecedent für das neue Konditional wird das Antecedent des alten verwendet, dieses bleibt ja gleich. Als Consequence wird die Liste der Welten des Antecedent minus der Liste der Welten der Consequence des ursprünglichen Konditionals gebildet. Die Methode \textit{getBasicCounterConditional()} wird dann später verwendet, um mit der Methode \textit{findCounterConditional(...)} aus \autoref{code:real-counter} über NFC zu iterieren und damit dann das tatsächliche CounterConditonal zu setzen. Im Programm NFC Viewer kann mit dem Button NFC$\_$COUNTER die Menge NFC mit den dazugehörigen CounterConditionals angezeigt werden.
+
 
 
 \begin{figure}
@@ -584,16 +632,15 @@ private WConditional findCounterConditional(WConditional conditional, List<WCond
 \end{figure} 
 
 
-Um das vorläufige CounterConditional zu generieren wird in der Methode \textit{getBasicCounterConditional()} zunächst ein \textit{neues} Konditional generiert, wie in \autoref{code:basic-counter} dargestellt. Als Antecedent für das neue Konditional wird das Antecedent des alten verwendet, dieses bleibt ja gleich. Als Consequence wird die Liste der Welten des Antecedent minus der Liste der Welten der Consequence des ursprünglichen Konditionals gebildet. Die Methode \textit{getBasicCounterConditional()} wird dann später verwendet, um mit der Methode \textit{findCounterConditional(...)} aus \autoref{code:real-counter} über NFC zu iterieren und damit dann das tatsächliche CounterConditonal zu setzen. Im Programm NFC Viewer kann mit dem Button NFC$\_$COUNTER die Menge NFC mit den dazugehörigen CounterConditionals angezeigt werden.
-
-
-
-
-
-
 
 
 \subsection{Grafische Oberfläche zum Betrachten der Konditionale}
+
+
+
+
+
+Der NfcCreator hat eine kleine grafische Oberfläche namens \textit{NfcViewer}, ein Screenshot davon ist in \autoref{pic:nfc-viewer} zu sehen. Damit können die erstellten Konditionale betrachtet und auch als Textdatei gespeichert werden. Es ist so auch möglich, Teilergebnisse aus dem Erstellungsprozess der Konditionale anzuzeigen, um den Vorgang besser nachvollziehen zu können.
 
 
 \begin{figure}
@@ -601,12 +648,6 @@ Um das vorläufige CounterConditional zu generieren wird in der Methode \textit{
 \caption{Screenshot NFC Viewer mit Ansicht analog zu Tabelle 1 aus \cite{beierle19}}
 \label{pic:nfc-viewer}
 \end{figure}
-
-
-Der NfcCreator hat eine kleine grafische Oberfläche namens \textit{NfcViewer}, ein Screenshot davon ist in \autoref{pic:nfc-viewer} zu sehen. Damit können die erstellten Konditionale betrachtet und auch als Textdatei gespeichert werden. Es ist so auch möglich, Teilergebnisse aus dem Erstellungsprozess der Konditionale anzuzeigen, um den Vorgang besser nachvollziehen zu können.
-
-
-
 
 
 
@@ -642,12 +683,22 @@ Während des Programmablaufs existiert ein einziges Objekt der Klasse \textit{Ab
 \paragraph{AbstractFormula} \mbox{}
 
 
+
+
+
+
+
+
+
+
+Die grundlegende Klasse der Aussagenlogik ist die abstrakte Klasse AbstractFormula, welche in \autoref{pic:abstractformula} als Klassendiagramm dargestellt wird. Alle Aussagen basieren auf dieser Klasse und entsprechend erben alle Aussagen repräsentierenden Objekte von dieser. Sie stellt die so Schnittstelle für alle Aussagen dar und bietet auch selbst einige Funktionen. Die einzige Variable ist die gewählte Signatur \textit{signature} in Form einer Instanz von AbstractSignature als statisches Objekt für alle Instanzen von erbenden Objekten. Weiterhin besitzt die Klasse 6 Methoden, von denen 4 konkret implementiert und 2 abstrakt sind. Implementiert ist zum einen die Methode \textit{and(AbstractFormula otherFormula)}, sie gibt einfach ein Objekt \textit{Conjunction} zurück welches eine Konjunktion aus dem aktuellen (this) Objekt und dem übergebenen ist. Überschrieben wird diese Methode nur in der Klasse Conjunction. Analog dazu verhält sich die Methode \textit{or(AbstractFormula otherFormua)}, welche ein Objekt der Klasse \textit{Disjunction} zurückgibt. Diese Methode wird ausschließlich von der Klasse \textit{Disjunction} überschrieben. Die dritte konkret implementierte Methode ist die Negation, aufrufbar mit \textit{neg()} ohne Parameter. Diese Methode gibt eine Negation in Form von \textit{new Negation(this)} zurück. Überschrieben wird diese Methode nur im der Klasse \textit{Negation} selbst. Die letzte konkrete Methode der Klasse \textit{AbstractFormula} ist die Methode \textit{equals(Object o)}, die in \autoref{code:equals-formula} gezeigt ist. Sie ist als \textit{final} deklariert und wird demzufolge von keiner erbenden Klasse überschrieben. Wie im Code zu sehen, überprüft die Methode zuerst, ob das übergebene Objekt eine Instanz der Klasse \textit{AbstractFormula} darstellt. Dann wird für alle möglichen Welten der Signatur geprüft, ob die Evaluierung der Welt des übergebenen Objekts das gleiche Ergebnis zurückgibt wie die Evaluierung des aktuellen Objekts (this). Ist das einmal nicht der Fall, wird sofort false zurückgegeben. Wenn die Evaluierung für alle möglichen Welten das gleiche Ergebnis zurückgibt, sind die beiden Objekte gleich im Sinne der \textit{equals(..)} Methode. Weiterhin existieren die abstrakten Methoden \textit{evaluate(World world)} und \textit{toString()}, die jeweils von allen erbenden Klassen überschrieben werden.
+
+
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/AbstractFormula.png}
 \caption{Klassendiagramm \textit{AbstractFormula}}
 \label{pic:abstractformula}
 \end{figure}
-
 
 
 
@@ -666,9 +717,6 @@ public final boolean equals(Object o) {
 \caption{Methode \textit{equals(Object o)} der Klasse AbsractFormula}
 \label{code:equals-formula}
 \end{figure} 
-
-
-Die grundlegende Klasse der Aussagenlogik ist die abstrakte Klasse AbstractFormula, welche in \autoref{pic:abstractformula} als Klassendiagramm dargestellt wird. Alle Aussagen basieren auf dieser Klasse und entsprechend erben alle Aussagen repräsentierenden Objekte von dieser. Sie stellt die so Schnittstelle für alle Aussagen dar und bietet auch selbst einige Funktionen. Die einzige Variable ist die gewählte Signatur \textit{signature} in Form einer Instanz von AbstractSignature als statisches Objekt für alle Instanzen von erbenden Objekten. Weiterhin besitzt die Klasse 6 Methoden, von denen 4 konkret implementiert und 2 abstrakt sind. Implementiert ist zum einen die Methode \textit{and(AbstractFormula otherFormula)}, sie gibt einfach ein Objekt \textit{Conjunction} zurück welches eine Konjunktion aus dem aktuellen (this) Objekt und dem übergebenen ist. Überschrieben wird diese Methode nur in der Klasse Conjunction. Analog dazu verhält sich die Methode \textit{or(AbstractFormula otherFormua)}, welche ein Objekt der Klasse \textit{Disjunction} zurückgibt. Diese Methode wird ausschließlich von der Klasse \textit{Disjunction} überschrieben. Die dritte konkret implementierte Methode ist die Negation, aufrufbar mit \textit{neg()} ohne Parameter. Diese Methode gibt eine Negation in Form von \textit{new Negation(this)} zurück. Überschrieben wird diese Methode nur im der Klasse \textit{Negation} selbst. Die letzte konkrete Methode der Klasse \textit{AbstractFormula} ist die Methode \textit{equals(Object o)}, die in \autoref{code:equals-formula} gezeigt ist. Sie ist als \textit{final} deklariert und wird demzufolge von keiner erbenden Klasse überschrieben. Wie im Code zu sehen, überprüft die Methode zuerst, ob das übergebene Objekt eine Instanz der Klasse \textit{AbstractFormula} darstellt. Dann wird für alle möglichen Welten der Signatur geprüft, ob die Evaluierung der Welt des übergebenen Objekts das gleiche Ergebnis zurückgibt wie die Evaluierung des aktuellen Objekts (this). Ist das einmal nicht der Fall, wird sofort false zurückgegeben. Wenn die Evaluierung für alle möglichen Welten das gleiche Ergebnis zurückgibt, sind die beiden Objekte gleich im Sinne der \textit{equals(..)} Methode. Weiterhin existieren die abstrakten Methoden \textit{evaluate(World world)} und \textit{toString()}, die jeweils von allen erbenden Klassen überschrieben werden.
 
 
 
@@ -697,6 +745,14 @@ Negation ist die letzte hier beschriebene Implementierung von AbstractFormula. D
 
 \subsubsection{Die Klasse PConditional}
 \label{sec:pconditional}
+
+
+
+
+
+Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional die Verarbeitung mit Aussagenlogik. Ein vereinfachtes Klassendiagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, ist in \autoref{sec:übersetzung} beschrieben. Als Attribute besitzt die Klasse neben der Nummer des Konditionals ein Antecedent und Consequence jeweils in Form einer AbstractFormula. Dazu kommt eine Referenz zu einem Konditional \textit{coutnerConditional} und eine Liste der äquivalenten Konditionale.
+
+
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/PConditional.png}
 \caption{Klassendiagramm \textit{PConditional}}
@@ -704,7 +760,11 @@ Negation ist die letzte hier beschriebene Implementierung von AbstractFormula. D
 \end{figure}
 
 
-Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional die Verarbeitung mit Aussagenlogik. Ein vereinfachtes Klassendiagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, ist in \autoref{sec:übersetzung} beschrieben. Als Attribute besitzt die Klasse neben der Nummer des Konditionals ein Antecedent und Consequence jeweils in Form einer AbstractFormula. Dazu kommt eine Referenz zu einem Konditional \textit{coutnerConditional} und eine Liste der äquivalenten Konditionale.
+
+
+
+
+Die wichtige Methode \textit{isToleratedBy(List<PConditonal> list)} der Klasse PConditional ist in \autoref{code:conditional-istoleratedby} gezeigt. Mit dieser Methode wird geprüft, ob ein Konditional von einer Liste von Konditionalen (einer Wissensbasis) toleriert wird. Das ist somit die praktische Umsetzung der Toleranz wie sie unter \autoref{def:toleranz} bereits beschrieben wurde. Dieser Test wird benötigt, um die Konsistenz einer Wissensbasis zu überprüfen. Sie funktioniert folgendermaßen: In Zeile 2 wird über alle möglichen Welten iteriert. Wenn in Zeile 3 die Bestätigung des aktuellen Konditionals durch die Welt festgestellt wird, wird in den folgenden Zeilen geprüft, ob alle Konditionale der Liste die mögliche Welt tolerieren. Ist das der Fall, wird in Zeile 12 \textit{true} zurück gegeben. Wenn nicht, wird der Ablauf für die verbleibenden Welten wiederholt. Wenn das Konditional für keine mögliche Welt von der Liste toleriert wird, wird in Zeile 15 \textit{false} zurück gegeben. \\
 
 
 \begin{figure}
@@ -732,7 +792,7 @@ public boolean isToleratedBy(List<PConditional> conditionalList) {
 
 
 
-Die wichtige Methode \textit{isToleratedBy(List<PConditonal> list)} der Klasse PConditional ist in \autoref{code:conditional-istoleratedby} gezeigt. Mit dieser Methode wird geprüft, ob ein Konditional von einer Liste von Konditionalen (einer Wissensbasis) toleriert wird. Das ist somit die praktische Umsetzung der Toleranz wie sie unter \autoref{def:toleranz} bereits beschrieben wurde. Dieser Test wird benötigt, um die Konsistenz einer Wissensbasis zu überprüfen. Sie funktioniert folgendermaßen: In Zeile 2 wird über alle möglichen Welten iteriert. Wenn in Zeile 3 die Bestätigung des aktuellen Konditionals durch die Welt festgestellt wird, wird in den folgenden Zeilen geprüft, ob alle Konditionale der Liste die mögliche Welt tolerieren. Ist das der Fall, wird in Zeile 12 \textit{true} zurück gegeben. Wenn nicht, wird der Ablauf für die verbleibenden Welten wiederholt. Wenn das Konditional für keine mögliche Welt von der Liste toleriert wird, wird in Zeile 15 \textit{false} zurück gegeben. \\
+
 Die \textit{equals(Object o)} Methode der Klasse PCodnitional ist der Einfachheit halber so implementiert, dass sie \textit{true} zurückgibt, wenn das übergebene Objekt ein PConditional mit derselben Nummer ist. Das ist wesentlich schneller als jeweils \textit{equals()} von Antecedent und Consequence zu überprüfen. Das Ergebnis ist aber in diesem Fall das selbe, da nur eine fest definierte und nummerierte Menge von Konditionalen verwendet wird.
 
 
@@ -751,6 +811,10 @@ Ein anderer Versuch, um die Vorteile beider Varianten zu kombinieren, wurde nach
 
 
 
+
+Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:knowledgebase} zu sehen. Als Instanzvariablen besitzt die Klasse die Nummer der Wissensbasis als long Wert und eine Liste der in der Wissensbasis enthaltenen Konditionale in Form einer \textit{ArrayList<PConditional>}. Die Nummer der Wissensbasis wird immer gleich im Konstruktor von der GenKB Implementierung gesetzt und ist als eine \textit{final} Referenz implementiert, damit sie nachträglich nicht mehr geändert werden kann.
+
+
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/KnowledgeBase.png}
 \caption{Klassendiagramm \textit{KnowledgeBase}}
@@ -759,7 +823,10 @@ Ein anderer Versuch, um die Vorteile beider Varianten zu kombinieren, wurde nach
 
 
 
-Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:knowledgebase} zu sehen. Als Instanzvariablen besitzt die Klasse die Nummer der Wissensbasis als long Wert und eine Liste der in der Wissensbasis enthaltenen Konditionale in Form einer \textit{ArrayList<PConditional>}. Die Nummer der Wissensbasis wird immer gleich im Konstruktor von der GenKB Implementierung gesetzt und ist als eine \textit{final} Referenz implementiert, damit sie nachträglich nicht mehr geändert werden kann.
+
+Eine wichtige Methode der Klasse ist \textit{isConsistentWith(PConditional c)}. Mit dieser wird geprüft, ob die vorhandene Wissensbasis mit dem als Parameter übergebenem Konditional eine neue konsistente Wissensbasis ergeben würde. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} abgebildet. Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} dargestellten Tests auf Konsistenz für Wissensbasen.  Die Idee zu dieser Implementierung stammt auch aus der Umsetzung des Tests auf Konsistenz von Wissensbasen aus InfOCF, ist hier jedoch etwas verkürzt. In der hier vorgestellten Implementierung wird keine geordnete Partitionierung der Wissensbasis erstellt, da diese für das reine Testen auf Konsistenz nicht benötigt wird. Das sollte die Methode etwas beschleunigen. Der Rückgabewert als boolean zeigt an, ob die betroffene Wissensbasis, auf dessen Objekt die Methode aufgerufen wird, mit dem übergebenen Konditional eine konsistente Wissensbasis ergeben würde oder nicht. \\
+
+
 
 \begin{figure}
 \begin{lstlisting}
@@ -785,7 +852,7 @@ public boolean isConsistentWith(PConditional conditionalToTest) {
 \end{figure} 
 
 
-Eine wichtige Methode der Klasse ist \textit{isConsistentWith(PConditional c)}. Mit dieser wird geprüft, ob die vorhandene Wissensbasis mit dem als Parameter übergebenem Konditional eine neue konsistente Wissensbasis ergeben würde. Der Aufruf dieser Methode entspricht damit der Zeile 10 von GenKB. Die konkrete Implementierung dieser Methode ist in \autoref{code:kb-consistent} abgebildet. Dieser Algorithmus ist die Umsetzung des bereits in \autoref{sec:wissensbasen} dargestellten Tests auf Konsistenz für Wissensbasen.  Die Idee zu dieser Implementierung stammt auch aus der Umsetzung des Tests auf Konsistenz von Wissensbasen aus InfOCF, ist hier jedoch etwas verkürzt. In der hier vorgestellten Implementierung wird keine geordnete Partitionierung der Wissensbasis erstellt, da diese für das reine Testen auf Konsistenz nicht benötigt wird. Das sollte die Methode etwas beschleunigen. Der Rückgabewert als boolean zeigt an, ob die betroffene Wissensbasis, auf dessen Objekt die Methode aufgerufen wird, mit dem übergebenen Konditional eine konsistente Wissensbasis ergeben würde oder nicht. \\
+
 Die Methode zum Testen auf Konsistenz aus \autoref{code:kb-consistent} funktioniert folgendermaßen: Aufgerufen wird sie auf einer KnowledgeBase, als Parameter wird ein PConditional übergeben. Ziel ist es herauszufinden, ob die Wissensbasis mit dem übergebenen Konditional eine neue konsistente Wissensbasis ergeben würde. Dazu wird zunächst in den Zeilen 2 und 3 eine Liste \textit{listToTest} mit den Konditionalen der Wissensbasis und dem zusätzlich übergebenem Konditional erstellt. Danach wird in Zeile 4 eine while Schleife ausgeführt solange die gerade erzeugte List nicht leer ist. Darin werden in jedem Durchlauf alle Konditionale von der Liste in eine neue Liste \textit{listToRemove} verschoben, welche von \textit{listToTest} toleriert werden. Wenn \textit{listToRemove} leer ist, ist \textit{listToTest} inkonsistent und es wird false zurückgegeben. Ansonsten wird \textit{listToRemove} von \textit{listToTest} entfernt und ein neuer Durchlauf der while Schleife beginnt. Wenn dann irgendwann \textit{listToTest} leer ist, wird in Zeile 15 \textit{true} zurück gegeben. \\
 Daneben besitzt die Klasse KnowledgeBase neben der üblichen noch drei weitere \textit{toString()} Methoden. Die erste ist die \textit{toStandardFileString()} Methode, die aus der Wissensbasis in einen InfOCF kompatiblen String erzeugt, um in in eine Datei zu schreiben. Weiterhin existiert eine \textit{toNumbersFileString()} Methode, welche die Wissensbasis in einen Text umwandelt bei dem die Konditionale als Nummer dargestellt werden. Als dritte Variante steht eine \textit{toShortFileString()} Methode zur Verfügung. Damit wird eine besonders kurze Repräsentation der Wissensbasis erzeugt, die beim Schreiben von Pairs auf die Festplatte genutzt wird, wie es in \autoref{sec:realpair} gezeigt wird. \\
 Für die Klasse KnowledgeBase existieren drei Konstruktoren: Der einfachste \textit{KnowledgeBase(long number, PConditional conditional)} wird für die Initialisierung der Wissensbasen mit jeweils einem Element in Zeile 5 von GenKB verwendet. In allen anderen Iterationen wird der Konstruktor \textit{KnowledgeBase(long number, KnowledgeBase knowledgeBase, PConditional conditionalToAdd)} für die mehrere Elemente umfassenden Wissensbasen in Zeile 12 GenKB benutzt. Die dritte Variante in der Form \textit{KnowledgeBase(String stringFromFile)} kommt zum Zug, wenn die Wissensbasen aus Textdateien von der Festplatte rekonstruiert werden wie in \autoref{sec:hddBuffer} beschrieben. \\
@@ -798,6 +865,12 @@ Ursprünglich existierte auch eine Implementierung einer Wissensbasis, die ansta
 
 
 
+
+
+
+Die Generierung der Wissensbasen und damit der zentrale Teil dieser Arbeit ist schematisch in \autoref{pic:kbcreator} abgebildet. Alle beteiligten Elemente befinden sich im Package \textit{kb$\_$creator}. Es handelt sich dabei um drei Hauptbestandteile, die zusammen agieren. Diese tauschen dazu miteinander Daten aus, was hier mit Pfeilen dargestellt ist. Die Pfeilrichtung zeigt die Richtung, in der die Daten bewegt werden. Im Programm sind die Pfeile jeweils als Queues implementiert. Auf der linken  Seite befindet sich das GenKB Objekt. Dieses Objekt beinhaltet den Thread welcher den eigentlichen GenKB Algorithmus darstellt, von hier wird der ganze Ablauf kontrolliert. In der Mitte befindet sich der AbstractBuffer. Dieser bildet die Datenstruktur \glqq L\grqq \space aus der Originaldarstellung von GenKB ab: Eine Liste von Listen von Paaren aus Wissensbasen und Kandidaten, in Java Schreibweise \textit{List<List<Pair>>}. In diesem AbstractBuffer befinden sich zwei Threads. Der \textit{LastIterationThread} kümmert sich um die Bereitstellung der Paare aus Wissensbasen und Kandidaten der Iteration $k$ für GenKB. Der \textit {NextIterationThread} nimmt die Paare der Iteration $k+1$ auf und kümmert sich um deren Speicherung. Auf der rechten Seite in der Abbildung befindet sich der \textit{KbWriter}. Hier werden die erstellten fertigen Wissensbasen gespeichert. Das übernimmt jeweils ein Thread für die konsistenten und ein Thread für die inkonsistenten Wissensbasen. 
+
+
 \begin{figure}
 \includegraphics[width=1\linewidth]{bilder/kbcreator.png}
 \caption{KBCreator Aufbau}
@@ -805,13 +878,19 @@ Ursprünglich existierte auch eine Implementierung einer Wissensbasis, die ansta
 \end{figure}
 
 
-Die Generierung der Wissensbasen und damit der zentrale Teil dieser Arbeit ist schematisch in \autoref{pic:kbcreator} abgebildet. Alle beteiligten Elemente befinden sich im Package \textit{kb$\_$creator}. Es handelt sich dabei um drei Hauptbestandteile, die zusammen agieren. Diese tauschen dazu miteinander Daten aus, was hier mit Pfeilen dargestellt ist. Die Pfeilrichtung zeigt die Richtung, in der die Daten bewegt werden. Im Programm sind die Pfeile jeweils als Queues implementiert. Auf der linken  Seite befindet sich das GenKB Objekt. Dieses Objekt beinhaltet den Thread welcher den eigentlichen GenKB Algorithmus darstellt, von hier wird der ganze Ablauf kontrolliert. In der Mitte befindet sich der AbstractBuffer. Dieser bildet die Datenstruktur \glqq L\grqq \space aus der Originaldarstellung von GenKB ab: Eine Liste von Listen von Paaren aus Wissensbasen und Kandidaten, in Java Schreibweise \textit{List<List<Pair>>}. In diesem AbstractBuffer befinden sich zwei Threads. Der \textit{LastIterationThread} kümmert sich um die Bereitstellung der Paare aus Wissensbasen und Kandidaten der Iteration $k$ für GenKB. Der \textit {NextIterationThread} nimmt die Paare der Iteration $k+1$ auf und kümmert sich um deren Speicherung. Auf der rechten Seite in der Abbildung befindet sich der \textit{KbWriter}. Hier werden die erstellten fertigen Wissensbasen gespeichert. Das übernimmt jeweils ein Thread für die konsistenten und ein Thread für die inkonsistenten Wissensbasen. \\
 Der Gedanke hinter dieser Architektur ist folgender: Der Thread GenKB ist der kritische Punkt bei der Generierung der Wissensbasen was die Geschwindigkeit angeht. Also soll so viel Arbeit wie möglich von GenKB in andere Threads ausgelagert werden um insgesamt eine möglichst hohe Geschwindigkeit zu erreichen.\\
 In den folgenden Abschnitten werden die drei gerade vorgestellten Teile als GenKB, Zwischenspeicherung der Daten und Speicherung der Wissensbasen genauer dargestellt.
 
 
 
 \subsection{Implementierung von GenKB}
+
+
+
+
+
+In diesem Abschnitt wird gezeigt, wie der konkrete Algorithmus GenKB aus \cite{beierle19} zur Generierung der Wissensbasen implementiert wurde. Der Algorithmus selbst befindet sich in einem Objekt der Klasse GenKB, ein vereinfachtes Diagramm befindet sich in \autoref{pic:genkb}. Die Klasse implementiert das Java Interface \textit{Runnable} und kann somit als eigener Thread gestartet werden. Als Referenzen im Objekt befinden sich die Listen von PConditonals \textit{cnfc} und \textit{nfc}, die vom NfcCreator erstellt wurden und bereits erklärt wurden. Dann befindet sich eine Referenz auf das Objekt \glqq l\grqq , was dem \glqq L\grqq \space aus der Originaldarstellung von GenKB entspricht und den Java Konventionen entsprechend mit einem kleinen Buchstaben dargestellt wird. Hauptsächlich ist es ein Objekt, was eine \textit{List<List<AbstractPair>>} beinhaltet, also die Paare aus \textit{<Konditional, Kandidaten>} während der Iterationen die Daten aufnimmt. Das Objekt \textit{kbWriter} kümmert sich um das persistente Schreiben der erstellten Wissensbasen auf einen Datenträger. Die Klassen \textit{AbstractPairBuffer} und \textit{AbstractPairWriter} werden in den nächsten Abschnitten beschrieben. Dann befinden sich im Objekt noch drei Referenzen auf BlockingQueues: Die \textit{BlockingQueue<AbstractPair> newIterationQueue} nimmt die neu erstellten Paare aus <Wissensbasis, Kandidaten> auf und übergibt sie somit dem AbstractPairBuffer \textit{l}.
+Von der \textit{BlockingQueue<AbstractPair> lastIterationQueue} werden die Paare entnommen, um sie in der aktuellen Iteration zu bearbeiten. Und die \textit{BlockingQueue<AbstractPair> inconsistentQueue} nimmt alle inkonsistenten Wissensbasen auf um die dem \textit{kbWriter} zu übergeben. \\
 
 
 \begin{figure}
@@ -822,8 +901,6 @@ In den folgenden Abschnitten werden die drei gerade vorgestellten Teile als GenK
 
 
 
-In diesem Abschnitt wird gezeigt, wie der konkrete Algorithmus GenKB aus \cite{beierle19} zur Generierung der Wissensbasen implementiert wurde. Der Algorithmus selbst befindet sich in einem Objekt der Klasse GenKB, ein vereinfachtes Diagramm befindet sich in \autoref{pic:genkb}. Die Klasse implementiert das Java Interface \textit{Runnable} und kann somit als eigener Thread gestartet werden. Als Referenzen im Objekt befinden sich die Listen von PConditonals \textit{cnfc} und \textit{nfc}, die vom NfcCreator erstellt wurden und bereits erklärt wurden. Dann befindet sich eine Referenz auf das Objekt \glqq l\grqq , was dem \glqq L\grqq \space aus der Originaldarstellung von GenKB entspricht und den Java Konventionen entsprechend mit einem kleinen Buchstaben dargestellt wird. Hauptsächlich ist es ein Objekt, was eine \textit{List<List<AbstractPair>>} beinhaltet, also die Paare aus \textit{<Konditional, Kandidaten>} während der Iterationen die Daten aufnimmt. Das Objekt \textit{kbWriter} kümmert sich um das persistente Schreiben der erstellten Wissensbasen auf einen Datenträger. Die Klassen \textit{AbstractPairBuffer} und \textit{AbstractPairWriter} werden in den nächsten Abschnitten beschrieben. Dann befinden sich im Objekt noch drei Referenzen auf BlockingQueues: Die \textit{BlockingQueue<AbstractPair> newIterationQueue} nimmt die neu erstellten Paare aus <Wissensbasis, Kandidaten> auf und übergibt sie somit dem AbstractPairBuffer \textit{l}.
-Von der \textit{BlockingQueue<AbstractPair> lastIterationQueue} werden die Paare entnommen, um sie in der aktuellen Iteration zu bearbeiten. Und die \textit{BlockingQueue<AbstractPair> inconsistentQueue} nimmt alle inkonsistenten Wissensbasen auf um die dem \textit{kbWriter} zu übergeben. \\
 Im Folgenden ist die Implementierung von GenKB abgebildet. Dabei werden mit Kommentaren in der Form \glqq //line 1\grqq \space die Entsprechung der folgenden Zeilen im Original gekennzeichnet. Nach dem dargestelltem Code folgt dessen Erläuterung. \\
 
 todo: fix das mit der seite\\
@@ -924,6 +1001,13 @@ Im Programm werden zwei Implementierungen zur Repräsentation dieser Paare genut
 
 
 
+
+
+
+
+Ein etwas vereinfachtes Diagramm der Klasse AbstractPair ist in \autoref{pic:abstractpair} zu sehen. Als Objektreferenz besitzt die Klasse nur eine Wissensbasis in Form eines \textit{KnowledgeBase} Objekts und als Klassenattribut eine \textit{Map<Integer,PConditional>} mit der alle Konditionale von NFC unter ihrer Nummer abrufbar sind. Des Weiteren besitzt die Klasse zwei abstrakte und zwei konkrete Methoden. Die Methoden \textit{getKnowledgeBase()} und \textit{getCandidatesList()} sind selbsterklärend. Die \textit{toFileString()} Methode gibt einen String zurück welcher das Objekt in einen String transformiert um diesen auf der Festplatte zu speichern, was im nächsten Absatz genauer erklärt wird. Diese Methode wird im Abschnitt zu RealPair erklärt, da sie nur auf Objekten dieser Klasse verwendet wird. Damit die Klasse AbstractPair jedoch ihren Interface Charakter behält befindet sie sich hier. Die letzte Methode \textit{clear()} ist dazu da Speicher zu sparen und löscht die Daten in der Klasse, wenn diese nicht mehr gebraucht werden. Die \textit{clear()} Methoden in den Pair Implementierungen funktionieren nach folgendem Prinzip: Der Speicherbedarf eines Pairs wird zum Großteil von den enthaltenen Instanzvariablen bestimmt. Diese Variablen werden einfach nach dem Schema \textit{variable = null} \glqq gelöscht\grqq . Genau genommen wird dadurch Referenz von Objekt auf \textit{null} geändert. Dadurch kann der \textit{Java Garbage Collector} erkennen, dass das Objekt selbst nicht mehr referenziert wird und wird es bei Gelegenheit löschen.
+
+
 \paragraph{Abstract Pair}\mbox{}
 \label{sec:abstractpair}
 
@@ -934,18 +1018,18 @@ Im Programm werden zwei Implementierungen zur Repräsentation dieser Paare genut
 \end{figure}
 
 
-
-Ein etwas vereinfachtes Diagramm der Klasse AbstractPair ist in \autoref{pic:abstractpair} zu sehen. Als Objektreferenz besitzt die Klasse nur eine Wissensbasis in Form eines \textit{KnowledgeBase} Objekts und als Klassenattribut eine \textit{Map<Integer,PConditional>} mit der alle Konditionale von NFC unter ihrer Nummer abrufbar sind. Des Weiteren besitzt die Klasse zwei abstrakte und zwei konkrete Methoden. Die Methoden \textit{getKnowledgeBase()} und \textit{getCandidatesList()} sind selbsterklärend. Die \textit{toFileString()} Methode gibt einen String zurück welcher das Objekt in einen String transformiert um diesen auf der Festplatte zu speichern, was im nächsten Absatz genauer erklärt wird. Diese Methode wird im Abschnitt zu RealPair erklärt, da sie nur auf Objekten dieser Klasse verwendet wird. Damit die Klasse AbstractPair jedoch ihren Interface Charakter behält befindet sie sich hier. Die letzte Methode \textit{clear()} ist dazu da Speicher zu sparen und löscht die Daten in der Klasse, wenn diese nicht mehr gebraucht werden. Die \textit{clear()} Methoden in den Pair Implementierungen funktionieren nach folgendem Prinzip: Der Speicherbedarf eines Pairs wird zum Großteil von den enthaltenen Instanzvariablen bestimmt. Diese Variablen werden einfach nach dem Schema \textit{variable = null} \glqq gelöscht\grqq . Genau genommen wird dadurch Referenz von Objekt auf \textit{null} geändert. Dadurch kann der \textit{Java Garbage Collector} erkennen, dass das Objekt selbst nicht mehr referenziert wird und wird es bei Gelegenheit löschen.
-
-
-
-
-
 \paragraph{Real Pair}\mbox{}
 \label{sec:realpair}
 
 Die Klasse \textit{RealPair} speichert die Liste der Kandidaten zur Erweiterung der enthaltenen Wissensbasis als \textit{ArrayList<PConditional>}. Das ist in der Verarbeitung schnell, benötigt jedoch viel Speicher. Während des Programmablaufs existiert deshalb zu jedem Zeitpunkt nur eine kleine Menge an Objekten dieser Klasse. Dadurch ist der hohe Speicherbedarf unproblematisch und die hohe Verarbeitungsgeschwindigkeit kann genutzt werden. \\
 Es existieren drei Konstruktoren der Klasse RealPair. Ein einfacher Konstruktor in Form von \textit{RealPair(KnowledgeBase knowledgeBase, List<PConditional> candidates)} wird dazu verwendet, um das Paar in GenKB in Zeile 5 und 12 zu erstellen. In dieser Form wird das RealPair Objekt dann zur Weiterverarbeitung an den PairBuffer übergeben. Ein weiterer Konstruktor dieser Klasse steht in der Form \textit{RealPair(AbstractPair other)} bereit. Dieser erstellt aus einer AbstractPair Implementierung ein RealPair. Dieser Konstruktor wird dazu genutzt, um aus einem CompressedPair ein RealPair zu erzeugen, also die komprimierten Daten wieder zu entpacken. Ein dritter Konstruktor steht als \textit{RealPair(String string)} zur Verfügung. Mit diesem kann ein RealPair aus einem Stück Text rekonstruiert werden. 
+
+
+
+
+Die größte Komplexität des Paares liegt darin, alle wichtigen Informationen des Objekts in ein möglichst kurzgefasstes Stück Text zusammenzufassen und später aus diesem Stück Text auch wieder das Paar zu rekonstruieren.  Diese Funktion wird benötigt, wenn die Paare auf der Festplatte zwischengespeichert werden sollen. Die Repräsentation des Pairs als Text muss kurz sein, um die Speicherung und das Lesen zum beschleunigen. Weiterhin werden so viele dieser Objekte gespeichert, dass auch der Gesamtverbrauch an Speicher relevant ist. In \autoref{code:pair-text} ist als Beispiel die Repräsentation als Text des allerersten Pairs abgebildet, welches GenKB mit der Signatur $\Sigma_{abc}$  erstellt. In Zeile 1 ist mit KB einfach die Information kodiert, dass als nächstes die KnowledgeBase beschrieben wird. Die Beschreibung der Wissensbasis in Zeile 2 zeigt als erstes die Nummer vor der Klammer, welche die Nummer der Wissensbasis repräsentiert und hier 1 lautet. In den geschweiften Klammern dahinter befindet sich die Menge der Konditionale innerhalb der Wissensbasis, hier ebenfalls die Nummer 1. Mehrere Konditionale würden durch Kommas getrennt aufgeführt. Das C in Zeile 3 kündigt an, dass als nächstes die Liste der Kandidaten folgt. In Zeile 4 steht dann die komprimierte Liste der Kandidaten, die etwas erklärungsbedürftig ist. Sie wird hier so interpretiert, dass alle Konditionale mit den Nummern 3-6050 in die Liste der Kandidaten aufgenommen werden sollen. Dazu werden bei der Rekonstruktion die Konditionale aus der \textit{Map<Integer, PConditional>} aus AbstractPair abgerufen und in die Liste der Konditionale eingefügt. Das ist in diesem Beispiel sehr einfach, da sich in der Menge keine Lücken befinden. Wenn sich Lücken darin befinden, werden die einzelnen zusammenhängenden Bereiche von Kommas getrennt. Beispielsweise bedeutet "3-5, 7-6050" \space dass alle Konditionale außer den Nummern 1,2 und 6 in die Liste der Kandidaten aufgenommen werden sollen. Hier wird offensichtlich, dass die Effizienz dieser Speicherung dann besonders hoch ist, wenn kaum Lücken vorhanden sind. Das ist in GenKB bei niedrigen Werten für k der Fall. Mit steigendem k steigt auch die Menge der Lücken und damit der Speicherbedarf für die Repräsentation des Pairs. Da jedoch sowieso nur geringe Werte für k relevant sind, ist damit eine effiziente Speicherung ausreichend sichergestellt. In Zeile 5 des Beispiels hat der Eintrag END die Bedeutung, dass das Paar hier endet. Dadurch werden die verschiedenen Paare innerhalb einer Datei voneinander getrennt. Da während des Programmablaufs sehr viele Paare erstellt werden, wäre es ineffizient, für jedes Paar eine eigene Datei zu erstellen. Das Schreiben der einzelnen Dateien auf die Festplatte wäre dann der Flaschenhals für die Geschwindigkeit. Deshalb werden sehr viele Paare in eine einzelne Datei zusammengefasst. Wie viele genau das sind, kann über die GUI des Programms bestimmt werden. Mehr dazu später auch \autoref{sec:pairbuffer}. Analog zur Speicherung eines Pairs als String besitzt dann die Implementierung RealPair auch einen Konstruktor \textit{RealPair(String string)}, mit dem ein Objekt der Klasse aus einem solchen String wieder erzeugt werden kann.
+
+
 
 \begin{figure}
 \begin{lstlisting}
@@ -960,7 +1044,6 @@ END
 \end{figure} 
 
 
-Die größte Komplexität des Paares liegt darin, alle wichtigen Informationen des Objekts in ein möglichst kurzgefasstes Stück Text zusammenzufassen und später aus diesem Stück Text auch wieder das Paar zu rekonstruieren.  Diese Funktion wird benötigt, wenn die Paare auf der Festplatte zwischengespeichert werden sollen. Die Repräsentation des Pairs als Text muss kurz sein, um die Speicherung und das Lesen zum beschleunigen. Weiterhin werden so viele dieser Objekte gespeichert, dass auch der Gesamtverbrauch an Speicher relevant ist. In \autoref{code:pair-text} ist als Beispiel die Repräsentation als Text des allerersten Pairs abgebildet, welches GenKB mit der Signatur $\Sigma_{abc}$  erstellt. In Zeile 1 ist mit KB einfach die Information kodiert, dass als nächstes die KnowledgeBase beschrieben wird. Die Beschreibung der Wissensbasis in Zeile 2 zeigt als erstes die Nummer vor der Klammer, welche die Nummer der Wissensbasis repräsentiert und hier 1 lautet. In den geschweiften Klammern dahinter befindet sich die Menge der Konditionale innerhalb der Wissensbasis, hier ebenfalls die Nummer 1. Mehrere Konditionale würden durch Kommas getrennt aufgeführt. Das C in Zeile 3 kündigt an, dass als nächstes die Liste der Kandidaten folgt. In Zeile 4 steht dann die komprimierte Liste der Kandidaten, die etwas erklärungsbedürftig ist. Sie wird hier so interpretiert, dass alle Konditionale mit den Nummern 3-6050 in die Liste der Kandidaten aufgenommen werden sollen. Dazu werden bei der Rekonstruktion die Konditionale aus der \textit{Map<Integer, PConditional>} aus AbstractPair abgerufen und in die Liste der Konditionale eingefügt. Das ist in diesem Beispiel sehr einfach, da sich in der Menge keine Lücken befinden. Wenn sich Lücken darin befinden, werden die einzelnen zusammenhängenden Bereiche von Kommas getrennt. Beispielsweise bedeutet "3-5, 7-6050" \space dass alle Konditionale außer den Nummern 1,2 und 6 in die Liste der Kandidaten aufgenommen werden sollen. Hier wird offensichtlich, dass die Effizienz dieser Speicherung dann besonders hoch ist, wenn kaum Lücken vorhanden sind. Das ist in GenKB bei niedrigen Werten für k der Fall. Mit steigendem k steigt auch die Menge der Lücken und damit der Speicherbedarf für die Repräsentation des Pairs. Da jedoch sowieso nur geringe Werte für k relevant sind, ist damit eine effiziente Speicherung ausreichend sichergestellt. In Zeile 5 des Beispiels hat der Eintrag END die Bedeutung, dass das Paar hier endet. Dadurch werden die verschiedenen Paare innerhalb einer Datei voneinander getrennt. Da während des Programmablaufs sehr viele Paare erstellt werden, wäre es ineffizient, für jedes Paar eine eigene Datei zu erstellen. Das Schreiben der einzelnen Dateien auf die Festplatte wäre dann der Flaschenhals für die Geschwindigkeit. Deshalb werden sehr viele Paare in eine einzelne Datei zusammengefasst. Wie viele genau das sind, kann über die GUI des Programms bestimmt werden. Mehr dazu später auch \autoref{sec:pairbuffer}. Analog zur Speicherung eines Pairs als String besitzt dann die Implementierung RealPair auch einen Konstruktor \textit{RealPair(String string)}, mit dem ein Objekt der Klasse aus einem solchen String wieder erzeugt werden kann.
 
 
 \paragraph{Compressed Pair}\mbox{}
@@ -981,13 +1064,19 @@ Von den drei angesprochenen Varianten  sind \textit{CompressedRamBuffer} und \te
 \paragraph{AbstractPairBuffer}\mbox{}
 \label{sec:abstractbuffer}
 
+
+
+\textit{AbstractPairBuffer} ist die Klasse, von welche alle Varianten der Speicherverwaltung erben und hat dabei hauptsächlich den Charakter eine Schnittstelle. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:abstractpairbuffer} zu sehen. Die Klasse besitzt zwei \textit{BlockingQueues} als Instanzvariablen zur Verwaltung der Pairs, welche allerdings erst in den Implementierungen initialisiert werden.  BlockingQueues deshalb, weil sie erstens threadsicher sind und zweitens das im Anschluss beschriebene Blocking unterstützen. Die erste Queue heißt \textit{lastIterationQueue} und stellt die Paare zur Verarbeitung in einer Iteration $k$ bereit. Die zweite heißt \textit{nextIterationQueue} und nimmt während einer Iteration $k$ die für die nächste Iteration $k+1$ erstellten Paare auf. Um die Weiterverarbeitung der Paare in den Queues kümmert sich dann jeweils ein eigener Thread innerhalb des AbstractPairBuffers, namentlich \textit{lastIterationThread} und \textit{nextIterationThread}. 
+
+
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/AbstractPairBuffer.png}
 \caption{Klassendiagramm \textit{AbstractPairBuffer}}
 \label{pic:abstractpairbuffer}
 \end{figure}
 
-\textit{AbstractPairBuffer} ist die Klasse, von welche alle Varianten der Speicherverwaltung erben und hat dabei hauptsächlich den Charakter eine Schnittstelle. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:abstractpairbuffer} zu sehen. Die Klasse besitzt zwei \textit{BlockingQueues} als Instanzvariablen zur Verwaltung der Pairs, welche allerdings erst in den Implementierungen initialisiert werden.  BlockingQueues deshalb, weil sie erstens threadsicher sind und zweitens das im Anschluss beschriebene Blocking unterstützen. Die erste Queue heißt \textit{lastIterationQueue} und stellt die Paare zur Verarbeitung in einer Iteration $k$ bereit. Die zweite heißt \textit{nextIterationQueue} und nimmt während einer Iteration $k$ die für die nächste Iteration $k+1$ erstellten Paare auf. Um die Weiterverarbeitung der Paare in den Queues kümmert sich dann jeweils ein eigener Thread innerhalb des AbstractPairBuffers, namentlich \textit{lastIterationThread} und \textit{nextIterationThread}. \\
+
+
 Beide Queues werden als Objekte der Klasse \textit{ArrayBlockingQueue} mit fester Größe initialisiert, diese Implementierung hat sich für die Aufgabe nach einigen Tests als gute Wahl erwiesen. Die andere Möglichkeit wäre gewesen, stattdessen eine \textit{LinkedBlockingQueue} einzusetzen. Beide bieten die selben hier benötigten Features. Intern setzt die erste Variante auf ein Array, die andere auf eine LinkedList. Zum Vergleich wurden beide Varianten implementiert und als Benchmark die Zeit für die erste Iteration mit Signatur $\Sigma_{abc}$ gemessen. Das Ergebnis zeigte, dass die benötigte Zeit für beide Varianten überraschenderweise fast gleich war.  Allerdings verhielt sich die ArrayBlockingQueue wesentlich sparsamer was den Arbeitsspeicher angeht, daher wurde diese Variante vorgezogen. \\
 Dadurch, dass die \textit{lastIterationQueue} und die \textit{nextIterationQueue} mit fester Größe initialisiert werden ist sichergestellt, dass die Queues nicht endlos groß Wachsen können. In Java sind BlockingQueues mit fester Größe gut geeignet, um Consumer-Producer Szenarios  mittels Threads umzusetzen. Wenn eine solche Queue voll ist, wartet ein Producer Thread automatisch, bis wieder ein Platz frei wird, um dann das nächste Element abzulegen. Analog wartet ein Thread automatisch, wenn er ein Element aus der Queue entnehmen will, diese jedoch im Moment keine Elemente beinhaltet. Dieser Thread läuft erst dann weiter, wenn wieder ein Element bereitgestellt wurde. Dadurch sorgen die Queues dafür, dass Producer und Consumer aufeinander warten und dabei ineffizientes \textit{busy wait} vermeiden.\\
 Im Falle der \textit{lastIterationQueue} ist der Thread von GenKB in der Rolle des Consumers, welcher die Pairs konsumiert und weiterverarbeitet. Der Thread im PairBuffer legt die Pairs in der Queue bereit und ist damit der Producer. Bei der \textit{nextIterationQueue} verhält es sich genau anders herum: GenKB erstellt die Pairs als Producer und legt sie in der Queue ab, während der Thread im PairBuffer der Consumer ist und die Pairs der Queue entnimmt. Die beiden Queues werden von der Implementierung von GenKB wie folgt verwendet: Die \textit{lastIterationQueue} stellt die Pairs aus Iteration $k$ bereit, damit GenKB sie nacheinander entnehmen und bearbeiten kann. Das entspricht der Zeile 8 im Algorithmus. Die \textit{nextIterationqueue} nimmt die neu erstellten Paare in GenKB auf, das entspricht den Schritten in Zeile 5 und 12. Die Implementierung von GenKB greift dann also nicht auf den PairBuffer selbst zu, sondern beide Teilen sich die Queue und tauschen die Daten darüber aus. \\
@@ -1032,15 +1121,18 @@ Zum Iterationswechsel überschreibt die Klasse HddPairBuffer die Methode \textit
 Die Wissensbasen, die von GenKB generiert werden, sollen danach noch weiterverarbeitet werden. Das beinhaltet sowohl die konsistenten als auch die inkonsistenten Wissensbasen, die voneinander getrennt behandelt werden. Diese Weiterverarbeitung übernimmt ein Objekt auf Basis der Klasse \textit{AbstractKbWriter}. Dafür existieren zwei konkrete Implementierungen, zwischen denen der Benutzer wählen kann: Die Wissensbasen können entweder getrennt in konsistent und inkonsistent jeweils gruppiert nach Anzahl der darin enthaltenen Konditionale gespeichert werden, das übernimmt die Implementierung \textit{KbFileWriter}. Oder aber die Wissensbasen werden direkt nach der Erzeugung wieder gelöscht, das wird dann von der Implementierung \textit{DummyWriter} übernommen. Diese Variante ist nützlich für Testläufe, denn es beschleunigt den gesamten Prozess und erspart das nachträgliche Löschen der Daten.
 \subsubsection{Allgemein}
 
+
+
+
+\textit{AbstractKbWriter} ist die abstrakte Klasse die von den beiden Varianten der Verarbeitung von Wissensbasen implementiert wird. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:abstractkbwriter} zu sehen. Es gibt zwei BlockingQueues als Instanzvariablen. Eine \textit{consistentQueue}, in welche GenKB die konsistenten Wissensbasen einfügt und die \textit{inconsistentQueue} in der GenKB die inkonsistenten Wissensbasen einreiht. Die Beiden Queues werden auch direkt im Konstruktor des AbstractKbWriter als  \textit{ArrayBlockingQueue(50.000)} initialisiert, die genaue Größe ist hier unwichtig. Für jede der beiden BlockingQueues existiert jeweils ein eigener Thread, der sich um die Bearbeitung der Queues kümmert. Die beiden BlockingQueues koordinieren hier die Zusammenarbeit von GenKB und den beiden Writer Threads. Zum Iterationswechsel sind auch hier zwei Methoden vorhanden, \textit{prepareIteration(int k)} zur Vorbereitung einer neuen Iteration und \textit{finishIteration()} zum korrekten Beenden der aktuellen Iteration. Der AbstractKbWriter ist weiterhin die Stelle im Programm, an welcher die generierten Wissensbasen gezählt werden. Um diese Information an die GUI weitezugeben, existieren die drei folgenden Getter: \textit{getTotalConsistentKbAmount()}, \textit{getTotalInconsistentKbAmount} und \textit{getIterationConsistentAmount()}.
+Daneben gibt es noch im  oberen gezeigten Diagramm nicht erwähnte Methoden, um weitere Informationen an die GUI weiterzugeben: Das sind hier Getter für die aktuell belegte Größe der Queues und eine Methode um die Threads außerplanmäßig über den Stop Button zu beenden.
+
+
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/AbstractKbWriter.png}
 \caption{Klassendiagramm \textit{AbstractKbWriter}}
 \label{pic:abstractkbwriter}
 \end{figure}
-
-
-\textit{AbstractKbWriter} ist die abstrakte Klasse die von den beiden Varianten der Verarbeitung von Wissensbasen implementiert wird. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:abstractkbwriter} zu sehen. Es gibt zwei BlockingQueues als Instanzvariablen. Eine \textit{consistentQueue}, in welche GenKB die konsistenten Wissensbasen einfügt und die \textit{inconsistentQueue} in der GenKB die inkonsistenten Wissensbasen einreiht. Die Beiden Queues werden auch direkt im Konstruktor des AbstractKbWriter als  \textit{ArrayBlockingQueue(50.000)} initialisiert, die genaue Größe ist hier unwichtig. Für jede der beiden BlockingQueues existiert jeweils ein eigener Thread, der sich um die Bearbeitung der Queues kümmert. Die beiden BlockingQueues koordinieren hier die Zusammenarbeit von GenKB und den beiden Writer Threads. Zum Iterationswechsel sind auch hier zwei Methoden vorhanden, \textit{prepareIteration(int k)} zur Vorbereitung einer neuen Iteration und \textit{finishIteration()} zum korrekten Beenden der aktuellen Iteration. Der AbstractKbWriter ist weiterhin die Stelle im Programm, an welcher die generierten Wissensbasen gezählt werden. Um diese Information an die GUI weitezugeben, existieren die drei folgenden Getter: \textit{getTotalConsistentKbAmount()}, \textit{getTotalInconsistentKbAmount} und \textit{getIterationConsistentAmount()}.
-Daneben gibt es noch im  oberen gezeigten Diagramm nicht erwähnte Methoden, um weitere Informationen an die GUI weiterzugeben: Das sind hier Getter für die aktuell belegte Größe der Queues und eine Methode um die Threads außerplanmäßig über den Stop Button zu beenden.
 
 \subsubsection{Speicherung auf einem Datenträger}
 \label{sec:kbfilewriter}
@@ -1058,6 +1150,11 @@ Auch der DummyKbWriter besitzt zwei gleich aufgebaute Threads: Einer kümmert si
 \subsection{Grafische Oberfläche zum Generieren der Konditionale}
 
 
+
+
+
+Die grafische Oberfläche des KBCreators ist in \autoref{pic:kbcreator_screen} gezeigt und besteht aus zwei Teilen: Die linke Seite beinhaltet die möglichen Optionen, die zum generieren der Wissensbasen eingestellt werden können. Einige Optionen sind dabei von Anderen abhängig und werden ausgegraut dargestellt, wenn sie in der aktuell eingestellten Situation nicht sinnvoll zu bearbeiten sind. Am unteren Ende der Einstellungen befinden sich der Start und der Stop Button für den KBCreator.
+
 \begin{figure}
 \includegraphics[width=0.97\linewidth]{bilder/KbCreator_screen.png}
 \caption{Screenshot KbCreator GUI}
@@ -1065,7 +1162,6 @@ Auch der DummyKbWriter besitzt zwei gleich aufgebaute Threads: Einer kümmert si
 \end{figure}
 
 
-Die grafische Oberfläche des KBCreators ist in \autoref{pic:kbcreator_screen} gezeigt und besteht aus zwei Teilen: Die linke Seite beinhaltet die möglichen Optionen, die zum generieren der Wissensbasen eingestellt werden können. Einige Optionen sind dabei von Anderen abhängig und werden ausgegraut dargestellt, wenn sie in der aktuell eingestellten Situation nicht sinnvoll zu bearbeiten sind. Am unteren Ende der Einstellungen befinden sich der Start und der Stop Button für den KBCreator.\\
 Auf der rechten Seite befindet sich die Anzeige für den aktuellen Status mit vielen Details. Wenn der Creator nicht läuft, ist die gesamte rechte Seite ausgegraut. Wenn er läuft, werden die Informationen mit schwarzer Schrift dargestellt und laufend aktualisiert, die Aktualisierung übernimmt ein eigener Thread. Wenn der Creator gestoppt wird, wird die rechte Seite wieder ausgegraut. Die Informationen vom Zeitpunkt des Beenden des Creators werden jedoch weiterhin angezeigt. \\
 Die Bedienung des KBCreators erfolgt ausschließlich über die GUI und nicht über das Terminal. Die meisten Informationen werden auch auf der GUI angezeigt. Im Terminal werden noch einige zusätzliche Informationen angezeigt, insbesondere zum Wechsel der Iterationen oder wenn unerwartete Fehler auftreten sollten.
 

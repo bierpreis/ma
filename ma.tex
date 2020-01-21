@@ -348,7 +348,7 @@ Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von 
 
 
 
-Das wichtigste Attribut der Klasse WorldsList ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen. \\
+Das wichtigste Attribut der Klasse WorldsList ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen.
 
 
 \begin{figure}
@@ -596,10 +596,6 @@ Für die Signatur $\Sigma_{abc}$ ergeben sich wie schon beschrieben insgesamt 60
 \subsubsection{Counter Conditionals}
 \label{sec:counter-conditonals}
 Für den Algorithmus GenKB ist es nötig, dass zu einem Konditional schnell dass CounterConditional zur Verfügung steht. Mit der Klasse WConditional wird das vorbereitet. Analog zum Finden der äquivalenten Konditionale besitzt dazu jedes Konditional eine Methode, um zunächst ein \textit{neues} CounterConditional zu erstellen. Wenn dann alle Konditionale erstellt sind, wird nach dem \textit{tatsächlichen} Objekt des CounterConditional gesucht und eine Referenz dazu im ursprünglichen Konditional gesetzt. \\
-
-
-
-
 Um das vorläufige CounterConditional zu generieren wird in der Methode \textit{getBasicCounterConditional()} zunächst ein \textit{neues} Konditional generiert, wie in \autoref{code:basic-counter} dargestellt. Als Antecedent für das neue Konditional wird das Antecedent des alten verwendet, dieses bleibt ja gleich. Als Consequence wird die Liste der Welten des Antecedent minus der Liste der Welten der Consequence des ursprünglichen Konditionals gebildet. Die Methode \textit{getBasicCounterConditional()} wird dann später verwendet, um mit der Methode \textit{findCounterConditional(...)} aus \autoref{code:real-counter} über NFC zu iterieren und damit dann das tatsächliche CounterConditonal zu setzen. Im Programm NFC Viewer kann mit dem Button NFC$\_$COUNTER die Menge NFC mit den dazugehörigen CounterConditionals angezeigt werden.
 
 
@@ -764,7 +760,7 @@ Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegen
 
 
 
-Die wichtige Methode \textit{isToleratedBy(List<PConditonal> list)} der Klasse PConditional ist in \autoref{code:conditional-istoleratedby} gezeigt. Mit dieser Methode wird geprüft, ob ein Konditional von einer Liste von Konditionalen (einer Wissensbasis) toleriert wird. Das ist somit die praktische Umsetzung der Toleranz wie sie unter \autoref{def:toleranz} bereits beschrieben wurde. Dieser Test wird benötigt, um die Konsistenz einer Wissensbasis zu überprüfen. Sie funktioniert folgendermaßen: In Zeile 2 wird über alle möglichen Welten iteriert. Wenn in Zeile 3 die Bestätigung des aktuellen Konditionals durch die Welt festgestellt wird, wird in den folgenden Zeilen geprüft, ob alle Konditionale der Liste die mögliche Welt tolerieren. Ist das der Fall, wird in Zeile 12 \textit{true} zurück gegeben. Wenn nicht, wird der Ablauf für die verbleibenden Welten wiederholt. Wenn das Konditional für keine mögliche Welt von der Liste toleriert wird, wird in Zeile 15 \textit{false} zurück gegeben. \\
+Die wichtige Methode \textit{isToleratedBy(List<PConditonal> list)} der Klasse PConditional ist in \autoref{code:conditional-istoleratedby} gezeigt. Mit dieser Methode wird geprüft, ob ein Konditional von einer Liste von Konditionalen (einer Wissensbasis) toleriert wird. Das ist somit die praktische Umsetzung der Toleranz wie sie unter \autoref{def:toleranz} bereits beschrieben wurde. Dieser Test wird benötigt, um die Konsistenz einer Wissensbasis zu überprüfen. Sie funktioniert folgendermaßen: In Zeile 2 wird über alle möglichen Welten iteriert. Wenn in Zeile 3 die Bestätigung des aktuellen Konditionals durch die Welt festgestellt wird, wird in den folgenden Zeilen geprüft, ob alle Konditionale der Liste die mögliche Welt tolerieren. Ist das der Fall, wird in Zeile 12 \textit{true} zurück gegeben. Wenn nicht, wird der Ablauf für die verbleibenden Welten wiederholt. Wenn das Konditional für keine mögliche Welt von der Liste toleriert wird, wird in Zeile 15 \textit{false} zurück gegeben.
 
 
 \begin{figure}

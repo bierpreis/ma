@@ -177,8 +177,7 @@ Für diese Menge gelten dann die folgenden drei Eigenschaften:\
 
 \subsection{Wissensbasen}
 \label{sec:wissensbasen}
-Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden oft ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. \\
-Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn88} oder \cite{spohn12}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfunktion wird einer Welt $\omega$ aus den möglichen Welten $\Omega$ eine natürliche Zahl mittels einer Funktion $\kappa$ zugeordnet, um deren Grad an Plausibilität zu beschreiben. Mindestens eine Welt bekommt den Wert 0 zugewiesen und wird damit am meisten plausibel gekennzeichnet, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl einzelne Aussagen als auch Konditionale betrachtet werden.\\
+Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden oft ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn88} oder \cite{spohn12}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfunktion wird einer Welt $\omega$ aus den möglichen Welten $\Omega$ eine natürliche Zahl mittels einer Funktion $\kappa$ zugeordnet, um deren Grad an Plausibilität zu beschreiben. Mindestens eine Welt bekommt den Wert 0 zugewiesen und wird damit am meisten plausibel gekennzeichnet, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl einzelne Aussagen als auch Konditionale betrachtet werden.\\
 Rangfunktion für Aussagen:
 \[
  \kappa(A)=\begin{cases}
@@ -193,8 +192,7 @@ Rangfunktion für Konditionale:
 			\infty \quad andernfalls
             \end{cases}
 \]
-Eine Aussage $A$ wird von einer Rangfunktion akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt als dessen Gegenteil $\overline{A}$, z.B. $\kappa(A) < \kappa(\overline{A})$. Analog dazu wird ein Konditional $(B|A)$ akzeptiert, wenn es einen geringeren Rang als dessen gegenteiliges Konditional $(\overline{B}|A)$ besitzt, z.B. $\kappa(AB)<\kappa(A\overline{B})$, vgl. \cite{beierle17}. Eine Wissensbasis $\mathcal{R}$ wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert.\\
-Um konsistente Wissensbasen zu generieren, wird im Algorithmus GenKB der Test auf Toleranz nach \cite{goldszmidt96}S.64 benötigt. Toleranz ist dabei folgendermaßen definiert:
+Eine Aussage $A$ wird von einer Rangfunktion akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt als dessen Gegenteil $\overline{A}$, z.B. $\kappa(A) < \kappa(\overline{A})$. Analog dazu wird ein Konditional $(B|A)$ akzeptiert, wenn es einen geringeren Rang als dessen gegenteiliges Konditional $(\overline{B}|A)$ besitzt, z.B. $\kappa(AB)<\kappa(A\overline{B})$, vgl. \cite{beierle17}. Eine Wissensbasis $\mathcal{R}$ wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert. Um konsistente Wissensbasen zu generieren, wird im Algorithmus GenKB der Test auf Toleranz nach \cite{goldszmidt96}S.64 benötigt. Toleranz ist dabei folgendermaßen definiert:
 \begin{theorem}[Toleranz eines Konditionals einer Wissensbasis]
 \label{def:toleranz}
 Ein Konditional $(B|A)$ wird von einer Wissensbasis $\mathcal{R} = {(B_i|A_i)}$ toleriert, wenn eine Welt $\omega$ existiert die $(B|A)$ bestätigt und kein Konditional in $\mathcal{R}$ falsifiziert.
@@ -202,8 +200,7 @@ Ein Konditional $(B|A)$ wird von einer Wissensbasis $\mathcal{R} = {(B_i|A_i)}$ 
 \omega \models A \wedge B \bigwedge^n_{i=1}(B_i|A_i)
 \end{equation}
 \end{theorem}
-Ein Konditional $(B|A)$ nicht zu falsifizieren bedeutet in dem Zusammenhang, es entweder zu bestätigen in Form von $A \wedge B$, oder dass die Vorbedingung nicht zutrifft in Form von $\overline{A}$ also zusammengefasst $\overline{A} \vee B$. \\
-Mit dieser Definition von Toleranz kann nun die Konsistenz einer Wissensbasis definiert werden (siehe \cite{goldszmidt96}).
+Ein Konditional $(B|A)$ nicht zu falsifizieren bedeutet in dem Zusammenhang, es entweder zu bestätigen in Form von $A \wedge B$, oder dass die Vorbedingung nicht zutrifft in Form von $\overline{A}$ also zusammengefasst $\overline{A} \vee B$. Mit dieser Definition von Toleranz kann nun die Konsistenz einer Wissensbasis definiert werden (siehe \cite{goldszmidt96}).
 \begin{theorem}[Konsistenz einer Wissensbasis]
 \label{def:konsistenz}
 Eine Wissensbasis $\mathcal{R}$ ist konsistent gdw. für jede nicht leere Teilmenge $\mathcal{R}' \subseteq \mathcal{R}$ ein Konditional existiert welches von $\mathcal{R}'$ toleriert wird.

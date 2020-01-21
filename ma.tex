@@ -236,15 +236,13 @@ $\mathcal{R}$ und $\mathcal{R'}$ sind Wissensbasen. Für diese gilt dann:
 \end{theorem}
 \subsection{Isomorphie und Äquivalenzklassen}
 \label{sec:äquivalenz-wissensbasen}
-Durch Umbenennung von Variablen ist es möglich, neue Kombinationen von Welten, Konditionalen oder Wissensbasen zu schaffen, die sich außer dieser Umbenennung nicht von den bereits existierenden unterscheiden. Dieses Verhalten wird als Isomorphie beschrieben. Die Menge der durch Isomorphie ineinander umwandelbaren Dinge wird als Äquivalenzklasse bezeichnet. \\
-Beispielsweise enthält die Signatur $\Sigma_{abc}$ die mögliche Welt $\overline{a}bc$. Wenn jetzt $a$ in $b$ und $b$ in $a$ umbenannt wird, entsteht der Isomorphismus $a\overline{b}c$. Analog kann durch Umbenennung von $a$ und $c$ daraus $ab\overline{c}$ entstehen. Alle drei Varianten bilden zusammen eine Äquivalenzklasse. Entsprechend ergibt sich die folgende Definition.
+Durch Umbenennung von Variablen ist es möglich, neue Kombinationen von Welten, Konditionalen oder Wissensbasen zu schaffen, die sich außer dieser Umbenennung nicht von den bereits existierenden unterscheiden. Dieses Verhalten wird als Isomorphie beschrieben. Die Menge der durch Isomorphie ineinander umwandelbaren Dinge wird als Äquivalenzklasse bezeichnet. Beispielsweise enthält die Signatur $\Sigma_{abc}$ die mögliche Welt $\overline{a}bc$. Wenn jetzt $a$ in $b$ und $b$ in $a$ umbenannt wird, entsteht der Isomorphismus $a\overline{b}c$. Analog kann durch Umbenennung von $a$ und $c$ daraus $ab\overline{c}$ entstehen. Alle drei Varianten bilden zusammen eine Äquivalenzklasse. Entsprechend ergibt sich die folgende Definition.
 \begin{theorem}[Isomorphismus](entnommen aus \cite{beierle19}) \ \\
 $X, X'$ sind Welten, Aussagen, Wissensbasen oder Mengen dieser Dinge. $X$ und $X'$ sind dann isomorph $(X \simeq X')$, wenn eine Umbenennung in der Form $\rho(X) = X'$ existiert.
 \end{theorem}
 Für die Signatur $\Sigma_{abc}$ ergeben sich dann die folgenden vier Äquivalenzklassen: \\
 $[\Omega_{\Sigma abc}]_{/\simeq}=\{[abc]$, $[ab\overline{c}, a\overline{b}c\, \overline{a}bc], [a\overline{b}\overline{c}, \overline{a\\}b\overline{c}, \overline{a}\overline{b}c], [\overline{a}\overline{b}\overline{c}]\}$ \\
-Die Menge der Äquivalenzklassen in einer Menge $M$ mit dem Element $m \in M$ wird im Folgenden mit $[M]_{/\equiv}$ und die konkrete Äquivalenzklasse welche $m$ enthält mit $[m]_\equiv$ notiert.\\
-Mit Berücksichtigung von Äquivalenzklassen und der Ordnung $\dotl$ aus \autoref{sec:ordnungsrelation} wird in der nächsten Definition eine Ordnungsrelation konstruiert, die diese Äquivalenzen mit einbezieht.
+Die Menge der Äquivalenzklassen in einer Menge $M$ mit dem Element $m \in M$ wird im Folgenden mit $[M]_{/\equiv}$ und die konkrete Äquivalenzklasse welche $m$ enthält mit $[m]_\equiv$ notiert. Mit Berücksichtigung von Äquivalenzklassen und der Ordnung $\dotl$ aus \autoref{sec:ordnungsrelation} wird in der nächsten Definition eine Ordnungsrelation konstruiert, die diese Äquivalenzen mit einbezieht.
 
 
 \begin{theorem}[cNFC($\Sigma$) und Ordnungsrelation $\rdotl$](entnommen aus \cite{beierle19}) \ \\
@@ -273,8 +271,7 @@ Das Programm ist leicht zu benutzen, es bringt für alle Funktionen eine GUI mit
 java -Xmx12G -jar Conditionals.jar 
 \end{lstlisting}
 
-So legt der erste Parameter die Menge an maximal durch die JVM nutzbaren Arbeitsspeicher fest, hier im Beispiel sind das 12 GB. \\
-Wenn das Programm gestartet wurde, öffnet sich ein kleines Fenster. Darin kann der Benutzer dann  auswählen, ob er Konditionale betrachten oder Wissensbasen generieren will.
+So legt der erste Parameter die Menge an maximal durch die JVM nutzbaren Arbeitsspeicher fest, hier im Beispiel sind das 12 GB. Wenn das Programm gestartet wurde, öffnet sich ein kleines Fenster. Darin kann der Benutzer dann  auswählen, ob er Konditionale betrachten oder Wissensbasen generieren will.
 
 
 

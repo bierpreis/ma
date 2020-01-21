@@ -302,8 +302,17 @@ In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normal
 
 \subsubsection{Mengen möglicher Welten} %todo absatz sortieren
 %first part worldslist
-Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse \textit{WorldsList} dargestellt. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. \\
-algo create worldslists
+Die Darstellung der möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Ausdrücke auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse \textit{WorldsList} dargestellt, ein Klassendiagramm befindet sich in \autoref{pic:worldslist}. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence. Die Gesamtheit aller solcher möglicher Mengen einer Signatur bestimmt dann die Menge der möglichen Konditionale, die über einer Signatur gebildet werden können. \\
+
+
+\begin{figure}
+\includegraphics[width=0.45\linewidth]{bilder/worldslist.png}
+\caption{Klassendiagramm \textit{WorldsList}}
+\label{pic:worldslist}
+\end{figure}
+
+
+%algo create worldslists
 Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge in Form einer \textit{List<WorldsList>}. Im Algorithmus wird zunächst in Zeile 3 über alle Integers der möglichen Welten iteriert. In Zeilen 10-12 werden die \textit{WorldsLists} mit jeweils einem Element erstellt. In Zeile 4 wird dann über die bereits bestehenden \textit{WorldsLists} iteriert und jeweils alle Kombinationen mit der aktuellen ein-elementigen Welt als neue \textit{WorldsLists} erstellt. Am Ende enthält dann die \textit{List<WorldsList> subsetList} WorldsLists mit allen möglichen Teilmengen der ursprünglich übergebenen Liste von Integers. \\
 Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. Für die Signatur $\Sigma_{ab}$ sind es 15. Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden. Repräsentiert werden diese Mengen von Welten im Programm jeweils durch eine Instanz der Klasse WorldsList, von der ein vereinfachtes Diagramm in \autoref{pic:worldslist} gezeigt ist. 
 
@@ -336,11 +345,7 @@ private List<WorldsList> createSubSetList(List<Integer> inputList){
 
 
 
-\begin{figure}
-\includegraphics[width=0.45\linewidth]{bilder/worldslist.png}
-\caption{Klassendiagramm \textit{WorldsList}}
-\label{pic:worldslist}
-\end{figure}
+
 
 
 

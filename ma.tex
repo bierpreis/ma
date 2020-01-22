@@ -159,7 +159,7 @@ Der Ablauf dieser Arbeit ist wie folgt: Ganz am Anfang werden die Grundlagen zu 
 
 
 \section{Grundlagen}
-In diesem Abschnitt werden kurz die Grundlagen aufgeführt, auf denen der Hauptteil dieser Arbeit dann basiert. Die Inhalte und Darstellungen sind dabei aus den Kapiteln über Grundlagen aus \cite{beierle19} und \cite{beierle17} übernommen.
+In diesem Abschnitt werden kurz die Grundlagen aufgeführt, auf denen der Hauptteil dieser Arbeit basiert. Die Inhalte und Darstellungen sind dabei aus den Kapiteln über Grundlagen aus \cite{beierle19} und \cite{beierle17} übernommen.
 \subsection{Notation}
 Einzelne Atome, die betrachtet werden, werden mit Kleinbuchstaben wie $a, b, c,...\ $ bezeichnet. Aussagen über diese werden in Form von Großbuchstaben $A, B, C,...$ dargestellt, die Gesamtheit der Sprache wird als $\lag$ bezeichnet. Die Menge der möglichen Welten, die betrachtet werden, wird mit $\Omega$ beschrieben. In einer dieser Welten $\omega \in \Omega$  hat der Ausdruck $\omega \models A$ die Bedeutung, dass $A \in \lag$ in dieser Welt gilt. Des weiteren wird $\neg A$ als $\overline{A}$ und $A \wedge B$ als $AB$ abgekürzt.
 \subsection{Konditionale}
@@ -196,8 +196,7 @@ Für eine Ordnungsrelation $\leqslant$ auf meiner Menge $M$ wird dessen Entsprec
 
 
 Bei der Signatur $\Sigma_{abc}$ mit der Ordnungsrelation $a \dotl b \dotl c$ ergibt sich eine Ordnungsrelation für die möglichen Mengen wie folgt: $\{a\} \dotll_{set} \{b\} \dotll_{set} \{c\} \dotll_{set} \{a,b\} \dotll_{set} \{a,c\} \dotll_{set}\{b,c\} \dotll_{set} \{a, b, c\}$. \\
-Im weiteren Verlauf wird oft für die Darstellung von Konditionalen eine Notation mittels möglicher Welten verwendet. Dazu wird anstatt von Aussagenvariablen die Menge der möglichen Welten aufgeführt, in denen die Aussage gilt. Für eine Aussage $F$ also in der Form $\Omega_F = \{\omega | \omega \models F \}$. Ein vollständiges Beispiel für die Aussage $A\vee\overline{B}\vee\overline{C}$ sieht dann wie folgt aus: \\
-$\Omega_{a\vee\overline{b}\vee \overline{c}} = \{abc,ab\overline{c},a\overline{b}c,a\overline{b}\overline{c},\overline{a}b\overline{c},\overline{a}\overline{b}c,\overline{a}\overline{b}\overline{c}\}$ \\
+Im weiteren Verlauf wird oft für die Darstellung von Konditionalen eine Notation mittels möglicher Welten verwendet. Dazu wird anstatt von Aussagenvariablen die Menge der möglichen Welten aufgeführt, in denen die Aussage gilt. Für eine Aussage $F$ also wird die Form $\Omega_F = \{\omega | \omega \models F \}$ verwendet. Ein vollständiges Beispiel für die Aussage $A\vee\overline{B}\vee\overline{C}$ sieht dann wie folgt aus: $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{abc,ab\overline{c},a\overline{b}c,a\overline{b}\overline{c},\overline{a}b\overline{c},\overline{a}\overline{b}c,\overline{a}\overline{b}\overline{c}\}$. \\
 Um diese Notation etwas kompakter darzustellen, wird eine Repräsentation $[[\omega]]_{\dotl}$ für eine mögliche Welt unter der Signatur $\Sigma_{abc}$ per Zahl definiert, angelehnt an deren Interpretation als Binärzahl: 
 $[[abc]]_{\dotl}  = 7,\ 
 [[ab\overline{c}]]_{\dotl} = 6,\ 
@@ -206,9 +205,9 @@ $[[abc]]_{\dotl}  = 7,\
 [[\overline{a}bc]]_{\dotl} = 3,\ 
 [[\overline{a}b\overline{c}]]_{\dotl} = 2 ,\  
 [[\overline{a}\overline{b}c]]_{\dotl}  = 1,\ 
-[[\overline{a}\overline{b}\overline{c}]]_{\dotl} = 0 $ 
+[[\overline{a}\overline{b}\overline{c}]]_{\dotl} = 0 $ .
 Mit dieser Notation sieht das Beispiel von oben wie folgt aus: 
-$\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$
+$\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$.
 \begin{theorem}[Ordnungsrelation für Welten und Konditionale]\ \\ (entnommen aus \cite{beierle19})\ \\
 Mit einer Signatur $\Sigma$ und deren linearer Ordnung $\dotl$ sind die Ordnungen $\overset{\mathrm{\omega}}{\dotll}$ für Welten $\omega, \omega'$ und $\overset{\mathrm{c}}{\dotll}$ Konditionale $(B|A), (B'|A')$ wie folgt definiert:
 \begin{equation}
@@ -224,7 +223,7 @@ Mit einer Signatur $\Sigma$ und deren linearer Ordnung $\dotl$ sind die Ordnunge
 Da sich die Unterscheidung von $\overset{\mathrm{\omega}}{\dotl}$ und $\overset{\mathrm{c}}{\dotl}$ aus dem Kontext ergibt, wird der Einfachheit halber im weiterem Verlauf $\dotl$ verwendet. \\
 Mit der Signatur $\Sigma_{abc}$ ergibt sich für mögliche Welten beispielsweise $abc \dotl ab\overline{c} \dotl \overline{a}bc \dotl \overline{a} \overline{b} \overline{c}$. Ein Beispiel für die Ordnungsrelation für Konditionale ist $(abc|abc \vee ab \overline{c}) \dotl (abc | abc \vee \overline{a} \overline{b} \overline{c} )$ oder $(abc \vee \overline{a} \overline{b} \overline{c} | abc \vee ab \overline{c} \vee \overline{a} \overline{b} \overline{c}) \dotl (\overline{a} \overline{b} \overline{c} |  abc \vee ab \overline{c} \vee \overline{a} bc \vee \overline{a} \overline{b} \overline{c})$.
 \subsection{Normalform für Konditionale}
-Im Folgenden wird eine Normalform für Konditionale beschrieben. Das Ziel ist die klare Definition einer vollständigen und minimalen  Menge an nichttrivialen Konditionalen über einer Signatur $\Sigma$, die untereinander nicht äquivalent sind. Diese Normalform wird mit $NFC(\Sigma)$ (Normal Form Conditionals) bezeichnet.
+Das Ziel der Normalform ist die klare Definition einer vollständigen und minimalen  Menge an nichttrivialen Konditionalen über einer Signatur $\Sigma$. Die Konditionale sollen dabei untereinander nicht äquivalent sein. Diese Normalform wird als $NFC(\Sigma)$ (Normal Form Conditionals) bezeichnet.
 
 \begin{theorem}[Normalform für Konditionale](entnommen aus \cite{beierle19})\\
 Die folgende Charakterisierung beschreibt die Menge der Konditionale in Normalform über einer gegebenen Signatur $\Sigma$: \\ \\
@@ -232,14 +231,14 @@ $NFC(\Sigma) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}
 Für diese Menge gelten dann die folgenden drei Eigenschaften:\
  \begin{itemize}
 \item{Nichttrivialität: $NFC(\Sigma)$ enthält kein triviales Konditional.}
-\item{Vollständigkeit: für jedes nichttriviale Konditional in $\Sigma$ existiert ein äquivalentes Konditional in $NFC(\Sigma)$ }
+\item{Vollständigkeit: für jedes nichttriviale Konditional in $\Sigma$ existiert ein äquivalentes Konditional in $NFC(\Sigma)$.}
 \item{Minimalität: alle Konditionale in $NFC(\Sigma)$ sind paarweise nicht äquivalent.}
 \end{itemize}
 \end{theorem}
 
 \subsection{Wissensbasen}
 \label{sec:wissensbasen}
-Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden oft ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn88} oder \cite{spohn12}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfunktion wird einer Welt $\omega$ aus den möglichen Welten $\Omega$ eine natürliche Zahl mittels einer Funktion $\kappa$ zugeordnet, um deren Grad an Plausibilität zu beschreiben. Mindestens eine Welt bekommt den Wert 0 zugewiesen und wird damit am meisten plausibel gekennzeichnet, weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl einzelne Aussagen als auch Konditionale betrachtet werden.\\
+Eine endliche Menge $\mathcal{R} \subseteq (\lag | \lag)$ an Konditionalen wird als Wissensbasis bezeichnet. Um die Konsistenz einer Wissensbasis zu untersuchen, werden oft ordinale Rangfunktionen verwendet, welche im Folgenden kurz beschrieben werden. Rangfunktionen wurden von Wolfgang Spohn entwickelt, siehe dazu auch \cite{spohn88} oder \cite{spohn12}. Eine Rangfunktion ist eine Funktion in der Form $\kappa :  \Omega \rightarrow \mathbb{N}_0 $. Mit einer Rangfunktion wird einer Welt $\omega$ aus den möglichen Welten $\Omega$ eine natürliche Zahl mittels einer Funktion $\kappa$ zugeordnet, um deren Grad an Plausibilität zu beschreiben. Mindestens eine Welt bekommt den Wert 0 zugewiesen und wird damit am meisten plausibel gekennzeichnet. Weniger plausiblere Welten bekommen aufsteigend entsprechend ihrer Unplausibilität höhere Werte zugeordnet. Mittels solcher Rangfunktionen können sowohl einzelne Aussagen als auch Konditionale betrachtet werden.\\
 Rangfunktion für Aussagen:
 \[
  \kappa(A)=\begin{cases}

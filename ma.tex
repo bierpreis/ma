@@ -329,7 +329,7 @@ In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normal
 
 
 \subsubsection{Mengen möglicher Welten} 
-%todo: re read this subsection
+
 Die Darstellung von Konditionalen mit möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Formeln auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse \textit{WorldsList} dargestellt, ein Klassendiagramm befindet sich in \autoref{pic:worldslist}. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence.
 
 
@@ -341,7 +341,7 @@ Die Darstellung von Konditionalen mit möglichen Welten wurde in \autoref{sec:or
 
 
 
-Das wichtigste Attribut der Klasse \textit{WorldsList} ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen.
+Das wichtigste Attribut der Klasse \textit{WorldsList} ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Jede dieser Integers in dieser Liste stellt so eine mögliche Welt dar. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen.
 
 
 \begin{figure}

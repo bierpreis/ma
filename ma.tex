@@ -81,7 +81,19 @@ Konditionale}
 }}
 \def\RQEQ{{%
     \setbox0\hbox{$\prec$}%
-    \rlap{\hbox to \wd0{\hss \raisebox {0.01pt}{$\ \cdot$\hss}}}\box0
+    \rlap{\hbox to \wd0{\hss \raisebox {0.05pt}{$\ \cdot$\hss}}}\box0
+}}
+
+
+% rdotl eq
+\newcommand\rdotleq{\mathrel{%
+    \mathchoice{\RRQEQ}{\RRQEQ}{\RRQEQ}{\RRQEQ}%
+}}
+
+
+\def\RRQEQ{{%
+    \setbox0\hbox{$\preccurlyeq$}%
+    \rlap{\hbox to \wd0{\hss \raisebox {0.5pt}{$\ \cdot$\hss}}}\box0
 }}
 
 \begin{document}
@@ -1242,8 +1254,8 @@ Alle Abbildungen in diesem Dokument sind eigene Darstellungen. Die Klassendiagra
 \label{app:genkb}
 
 %todo: then fat
-%todo: line 1 rdotl should be rdotll
 \begin{lstlisting}[mathescape]
+then
 $L_1 \leftarrow \emptyset$
 $k \leftarrow 1$
 for $r \in cNFC(\Sigma)$ do
@@ -1254,7 +1266,7 @@ while $r \neq \emptyset $ do
   for $\langle \mathcal{R}, C \rangle \in L_k $ do
     for $r \in C $ do
       if $\mathcal{R} \cup \{r \} $ is consistent then
-        $D \leftarrow \{d|d \in C, d \rdotl r \} $
+        $D \leftarrow \{d|d \in C, d \rdotleq r \} $
         $L_{k+1} \leftarrow L_{k+1} \cup \{ \langle \mathcal{R} \cup \{r\}, C \setminus (\{\overline{r}\} \cup D ) \rangle \}$ 
   $k \leftarrow k + 1$
 return $ \mathcal{KB}  = \{\mathcal{R} | \langle \mathcal{R}, C \rangle \in L_i, i \in \{ 1, ..., k)  \}\}$

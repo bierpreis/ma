@@ -1259,7 +1259,7 @@ $L_1 \leftarrow \emptyset$
 $k \leftarrow 1$
 for $r \in cNFC(\Sigma)$ do
   $D \leftarrow \{d|d \in [r']_\simeq, r' \in cNFC(\Sigma), r' \rdotl r \}$
-  $L_1 \leftarrow L_1 \cup \{\langle \{r\}, NFC(\Sigma) \setminus (\overline{r} \cup D) \rangle \} $
+  $L_1 \leftarrow L_1 \cup \{\langle \{r\}, NFC(\Sigma) \setminus (\{\overline{r}\} \cup D) \rangle \} $
 while $r \neq \emptyset $ do
   $L_{k+1} \leftarrow \emptyset $
   for $\langle \mathcal{R}, C \rangle \in L_k $ do

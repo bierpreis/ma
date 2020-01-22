@@ -186,7 +186,7 @@ Als triviale Konditionale werden solche beschrieben, die keinen Mehrwert bieten,
 \subsection{Ordnungsrelation für Konditionale}
 \label{sec:ordnungsrelation}
 In diesem Abschnitt wird eine Ordnungsrelation für Konditionale definiert, unter der Konditionale später sowohl geordnet bearbeitet als auch gespeichert werden können.
-\begin{theorem}[Ordnungsrelation für Zeichen und Mengen](entnommen aus \cite{beierle19}) \ \\
+\begin{theorem}[Ordnungsrelation für Zeichen und Mengen]\ \\(entnommen aus \cite{beierle19}) \ \\
 Für eine Ordnungsrelation $\leqslant$ auf meiner Menge $M$ wird dessen Entsprechung für Zeichen als $\leqslant_{lex}$ notiert. Für die geordneten Mengen $S, S^\prime$ mit $S = \{e_1, ..., e_n\}$ und $S^\prime = \{e_{1}, ... , e_{n\prime}\}$ gilt:
 \begin{equation}
  S \leqslant_{set} S ^\prime \quad gdw. \quad n<n^\prime, \text{ oder } n = n ^\prime \text{ und } e_1...e_n  \leqslant_{lex}  e_1^\prime ... e_{n^\prime}^\prime
@@ -208,7 +208,7 @@ $[[abc]]_{\dotl}  = 7,\
 [[\overline{a}\overline{b}\overline{c}]]_{\dotl} = 0 $ .
 Mit dieser Notation sieht das Beispiel von oben wie folgt aus: 
 $\Omega_{a\vee\overline{b}\vee \overline{c}} = \{ 7,6,5,4,2,1,0\}$.
-\begin{theorem}[Ordnungsrelation für Welten und Konditionale]\ \\ (entnommen aus \cite{beierle19})\ \\
+\begin{theorem}[Ordnungsrelation für Welten und Konditionale]\ \\(entnommen aus \cite{beierle19})\\
 Mit einer Signatur $\Sigma$ und deren linearer Ordnung $\dotl$ sind die Ordnungen $\overset{\mathrm{\omega}}{\dotll}$ für Welten $\omega, \omega'$ und $\overset{\mathrm{c}}{\dotll}$ Konditionale $(B|A), (B'|A')$ wie folgt definiert:
 \begin{equation}
 \omega \overset{\mathrm{\omega}}{\dotll} \omega' \quad gdw. \quad [[\omega]]_{\dotl} \geqslant [[\omega']]_{\dotl}
@@ -225,7 +225,7 @@ Mit der Signatur $\Sigma_{abc}$ ergibt sich für mögliche Welten beispielsweise
 \subsection{Normalform für Konditionale}
 Das Ziel der Normalform ist die klare Definition einer vollständigen und minimalen  Menge an nichttrivialen Konditionalen über einer Signatur $\Sigma$. Die Konditionale sollen dabei untereinander nicht äquivalent sein. Diese Normalform wird als $NFC(\Sigma)$ (Normal Form Conditionals) bezeichnet.
 
-\begin{theorem}[Normalform für Konditionale](entnommen aus \cite{beierle19})\\
+\begin{theorem}[Normalform für Konditionale]\ \\(entnommen aus \cite{beierle19})\\
 Die folgende Charakterisierung beschreibt die Menge der Konditionale in Normalform über einer gegebenen Signatur $\Sigma$: \\ \\
 $NFC(\Sigma) = \{(B|A)|A \subseteq \Omega_A, B \subsetneq A, B \neq \emptyset \}$ \\ \\
 Für diese Menge gelten dann die folgenden drei Eigenschaften:\
@@ -254,19 +254,19 @@ Rangfunktion angewandt für Konditionale:
             \end{cases}
 \]
 Eine Aussage $A$ wird von einer Rangfunktion akzeptiert, wenn sie plausibler ist und damit einen geringeren Rang besitzt als dessen Gegenteil $\overline{A}$, z.B. $\kappa(A) < \kappa(\overline{A})$. Analog dazu wird ein Konditional $(B|A)$ akzeptiert, wenn es einen geringeren Rang als dessen gegenteiliges Konditional $(\overline{B}|A)$ besitzt, z.B. $\kappa(AB)<\kappa(A\overline{B})$, vgl. \cite{beierle17}. Eine Wissensbasis $\mathcal{R}$ wird dann als konsistent eingeschätzt, wenn es mindestens eine Rangfunktion gibt, die alle in der Wissensbasis enthaltenen Konditionale akzeptiert. Um konsistente Wissensbasen zu generieren, wird im Algorithmus GenKB der Test auf Toleranz benötigt. Toleranz ist dabei folgendermaßen definiert:
-\begin{theorem}[Toleranz eines Konditionals einer Wissensbasis]\ \\ \ (entnommen aus \cite{goldszmidt96})\\
+\begin{theorem}[Toleranz eines Konditionals einer Wissensbasis]\ \\(entnommen aus \cite{goldszmidt96})\\
 \label{def:toleranz}
 Ein Konditional $(B|A)$ wird von einer Wissensbasis $\mathcal{R} = {(B_i|A_i)}$ toleriert, wenn eine Welt $\omega$ existiert die $(B|A)$ bestätigt und kein Konditional in $\mathcal{R}$ falsifiziert.
 \begin{equation}
 \omega \models A \wedge B \bigwedge^n_{i=1}(B_i|A_i)
 \end{equation}
 \end{theorem}
-Ein Konditional $(B|A)$ nicht zu falsifizieren bedeutet in dem Zusammenhang, es entweder zu bestätigen in Form von $A \wedge B$, oder dass die Vorbedingung nicht zutrifft in Form von $\overline{A}$ also zusammengefasst $\overline{A} \vee B$. Mit dieser Definition von Toleranz kann nun die Konsistenz einer Wissensbasis definiert werden (siehe \cite{goldszmidt96}).
-\begin{theorem}[Konsistenz einer Wissensbasis]
+Ein Konditional $(B|A)$ nicht zu falsifizieren bedeutet in dem Zusammenhang, es entweder zu bestätigen in Form von $A \wedge B$, oder dass die Vorbedingung nicht zutrifft in Form von $\overline{A}$ also zusammengefasst $\overline{A} \vee B$. Mit dieser Definition von Toleranz kann nun die Konsistenz einer Wissensbasis definiert werden (vgl. \cite{goldszmidt96}).
+\begin{theorem}[Konsistenz einer Wissensbasis]\ \\ %todo cite hier rein 
 \label{def:konsistenz}
 Eine Wissensbasis $\mathcal{R}$ ist konsistent gdw. für jede nicht leere Teilmenge $\mathcal{R}' \subseteq \mathcal{R}$ ein Konditional existiert welches von $\mathcal{R}'$ toleriert wird.
 \end{theorem}
-Aus dieser Definition entsteht dann der in \autoref{code:consistency} gezeigte Algorithmus zum Testen einer Wissensbasis auf Konsistenz, ebenfalls entnommen aus \cite{goldszmidt96}. Der Input für den Algorithmus ist eine Wissensbasis $\mathcal{R}$. Der Output ist die geordnete Partition, wenn sie konsistent ist, oder andernfalls nichts.
+Aus dieser Definition entsteht dann der in \autoref{code:consistency} gezeigte Algorithmus zum Testen einer Wissensbasis auf Konsistenz, ebenfalls entnommen aus \cite{goldszmidt96}. Der Input für den Algorithmus ist eine Wissensbasis $\mathcal{R}$. Der Output ist die geordnete Partition, wenn der Algorithmus konsistent ist, oder andernfalls nichts.
 
 
 \begin{figure}[h]
@@ -298,7 +298,7 @@ $\mathcal{R}$ und $\mathcal{R'}$ sind Wissensbasen. Für diese gilt dann:
 \subsection{Isomorphie und Äquivalenzklassen}
 \label{sec:äquivalenz-wissensbasen}
 Durch Umbenennung von Variablen ist es möglich, neue Kombinationen von Welten, Konditionalen oder Wissensbasen zu schaffen, die sich außer dieser Umbenennung nicht von den bereits existierenden unterscheiden. Dieses Verhalten wird als Isomorphie beschrieben. Die Menge der durch Isomorphie ineinander umwandelbaren Dinge wird als Äquivalenzklasse bezeichnet. Beispielsweise enthält die Signatur $\Sigma_{abc}$ die mögliche Welt $\overline{a}bc$. Wenn jetzt $a$ in $b$ und $b$ in $a$ umbenannt wird, entsteht der Isomorphismus $a\overline{b}c$. Analog kann durch Umbenennung von $a$ und $c$ daraus $ab\overline{c}$ entstehen. Alle drei Varianten bilden zusammen eine Äquivalenzklasse. Entsprechend ergibt sich die folgende Definition.
-\begin{theorem}[Isomorphismus](entnommen aus \cite{beierle19}) \ \\
+\begin{theorem}[Isomorphismus]\ \\(entnommen aus \cite{beierle19}) \ \\
 $X, X'$ sind Welten, Aussagen, Wissensbasen oder Mengen dieser Dinge. $X$ und $X'$ sind dann isomorph $(X \simeq X')$, wenn eine Umbenennung in der Form $\rho(X) = X'$ existiert.
 \end{theorem}
 Für die Signatur $\Sigma_{abc}$ ergeben sich dann die folgenden vier Äquivalenzklassen: \\
@@ -306,7 +306,7 @@ $[\Omega_{\Sigma abc}]_{/\simeq}=\{[abc]$, $[ab\overline{c}, a\overline{b}c\, \o
 Die Menge der Äquivalenzklassen in einer Menge $M$ mit dem Element $m \in M$ wird im Folgenden mit $[M]_{/\equiv}$ und die konkrete Äquivalenzklasse welche $m$ enthält mit $[m]_\equiv$ notiert. Mit Berücksichtigung von Äquivalenzklassen und der Ordnung $\dotl$ aus \autoref{sec:ordnungsrelation} wird in der nächsten Definition eine Ordnungsrelation konstruiert, die diese Äquivalenzen mit einbezieht.
 
 
-\begin{theorem}[cNFC($\Sigma$) und Ordnungsrelation $\rdotl$](entnommen aus \cite{beierle19}) \ \\
+\begin{theorem}[cNFC($\Sigma$) und Ordnungsrelation $\rdotl$]\ \\(entnommen aus \cite{beierle19}) \ \\
 Gegeben sei eine Signatur $\Sigma$ mit der linearen Ordnung $\dotl$. Dann sind $[NFC(\Sigma)]_{/ \simeq}=\{[r_1]_\simeq,...,[r_m]_\simeq\}$ die Äquivalenzklassen von $NFC(\Sigma)$ induziert durch Isomorphismus. Für jedes $i \in \{1, ..., m\}$ ist dann das Konditional $r_i$ das minimale Element in $[r_i]_\simeq$ im Sinne von $\dotl$ ist und $r_1\dotl...\dotl r_m$.
 \begin{itemize}
 \item{Die kanonischen Konditionale in Normalform über $\Sigma$ sind $cNFC(\Sigma) = \{r_1, ..., r_m \}$.}

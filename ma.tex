@@ -1253,7 +1253,7 @@ Alle Abbildungen in diesem Dokument sind eigene Darstellungen. Die Klassendiagra
 \section{GenKB original Version}
 \label{app:genkb}
 
-%todo: then fat
+%dunno why then must be highlighted manually
 \begin{lstlisting}[mathescape]
 then
 $L_1 \leftarrow \emptyset$
@@ -1265,7 +1265,7 @@ while $r \neq \emptyset $ do
   $L_{k+1} \leftarrow \emptyset $
   for $\langle \mathcal{R}, C \rangle \in L_k $ do
     for $r \in C $ do
-      if $\mathcal{R} \cup \{r \} $ is consistent then
+      if $\mathcal{R} \cup \{r \} $ is consistent $\textbf{then}$
         $D \leftarrow \{d|d \in C, d \rdotleq r \} $
         $L_{k+1} \leftarrow L_{k+1} \cup \{ \langle \mathcal{R} \cup \{r\}, C \setminus (\{\overline{r}\} \cup D ) \rangle \}$ 
   $k \leftarrow k + 1$

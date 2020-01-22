@@ -1238,11 +1238,14 @@ Alle Abbildungen in diesem Dokument sind eigene Darstellungen. Die Klassendiagra
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 
 \section*{Anhang}
-\section{GenKB Original Version}
+\section{GenKB original Version}
 \label{app:genkb}
 \begin{lstlisting}[mathescape]
 $L_1 \leftarrow \emptyset$
 $k \leftarrow 1$
+for $r \in cNFC(\Sigma)$ do
+  $D \leftarrow \{d|d \in [r']_\simeq, r' \in cNFC(\Sigma), r' \rdotl r \}$
+  $L_1 \leftarrow L_1 \cup \{\langle \{r\}, NFC(\Sigma) \setminus (\overline{r} \cup D) \rangle \} $
 
 \end{lstlisting}
 

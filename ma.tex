@@ -4,14 +4,20 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{hyperref}
+
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 
-
+\usepackage{hyperref}
 \usepackage[toc]{appendix}
+
+
+\newcommand*{\Appendixautorefname}{appendix}
+
+
+\newcommand{\aref}[1]{\hyperref[#1]{Anhang~\ref{#1}}}
 
 %if this is changed, check if the url in the first java ref is shown correctly.
 \bibliographystyle{alpha}
@@ -891,10 +897,10 @@ Von der \textit{BlockingQueue<AbstractPair> lastIterationQueue} werden die Paare
 
 
 
-Im Folgenden ist die Implementierung von GenKB abgebildet. Dabei werden mit Kommentaren in der Form \glqq //line 1\grqq \space die Entsprechung der folgenden Zeilen im Original gekennzeichnet. Nach dem dargestelltem Code folgt dessen Erläuterung. 
+Im Folgenden ist die Implementierung von GenKB abgebildet. Dabei werden mit Kommentaren in der Form \glqq //line 1\grqq \space die Entsprechung der folgenden Zeilen im Original gekennzeichnet. Eine Abbildung der Version von GenKB, welche die Basis für diese Arbeit darstellte, befindet sich in \aref{app:genkb}. Entsprechend beziehen sich alle hier beschriebenen Zeilenangaben auf diese Version. Nach dem dargestelltem Code folgt dessen Erläuterung. 
 
 
-%todo: genkb im anhang erwähnen
+
 \begin{lstlisting}
 private void generateKbs() throws InterruptedException {
     //line 1
@@ -1206,12 +1212,13 @@ Die Betrachtung des Threadings mit dem Profiler bestätigt ansonsten naheliegend
 
 \newpage
 
+\appendix
 
 \section*{Abbildungsverzeichnis}
 Alle Abbildungen in diesem Dokument sind eigene Darstellungen. Die Klassendiagramme wurden mit der Software \glqq Dia\grqq \space erstellt. Die schematischen Darstellungen zum Überblick über das erstellte Programm sind ebenfalls mit der Software \glqq Dia\grqq \space erstellt. Screenshots  wurden mit dem Programm \glqq Xfce4-Screenshooter\grqq \space erstellt.
 
 \section*{Anhang}
-\subsection*{GenKB Original Version}
+\section{GenKB Original Version}
 \label{app:genkb}
 \begin{lstlisting}
 todo

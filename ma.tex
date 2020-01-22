@@ -140,7 +140,7 @@ Konditionale}
 
 
 \section{Einleitung}
-
+%todo: mehr beschreiben, was gemacht wird ? 
 Diese Arbeit hat zum Ziel Wissensbasen aus qualitativen Konditionalen auf eine systematische Art und Weise zu generieren. Dafür wird der in \cite{beierle19} entwickelte Algorithmus zur Berechnung aller Wissensbasen implementiert. Dabei soll ergründet werden, welchen Aufwand diese Generierung mit einer steigender Anzahl der darin  enthaltenden Konditionalen verursacht. Die als Ergebnis entstandenen Wissensbasen sollen dann dazu dienen, das System InfOCF (siehe \cite{beierle17}) experimentell zu evaluieren. \\
 Für die Bearbeitung der Aufgabe wird eine Java Programm erstellt und dessen Funktionsweise hier beschrieben. Das Programm ist so aufgebaut, dass es die Aufgabenstellung sowohl für die Signatur aus der eigentlichen Aufgabenstellung $\Sigma = \{a,b,c\}$ als auch für eine reduzierte Version mit $\Sigma = \{a,b\}$ bearbeiten kann. Diese reduzierte Version dient als Hilfestellung zur Bearbeitung der Aufgabe. Zusätzlich zeigt sich dadurch auch die Problemlösung an manchen stellen etwas besser nachvollziehbar. \\
 Der Ablauf dieser Arbeit ist wie folgt: Ganz am Anfang werden die Grundlagen zu Konditionalen und Wissensbasen kurz dargestellt, um eine Basis für das weitere Vorgehen zu schaffen. Die Aufgabenstellung wird dann in zwei Teilen bearbeitet: Im ersten Teil werden die Konditionale in Normalform berechnet und damit die Menge aller Konditionale $NFC$ gebildet. Anschließend werden auf dieser Menge die Äquivalenzklassen Untersucht und damit die Menge der kanonischen Konditionale $cNFC$ sowie die einzelnen Äquivalenzklassen berechnet. Dabei werden die Konditionale auch nach der Ordnungsrelation $\rdotl$ sortiert. Im zweiten Teil dieser Arbeit findet dann die eigentliche Generierung der Wissensbasen statt. Dazu wird der Algorithmus zur Generierung der Wissensbasen mit Hilfe einer geeigneter Datenverarbeitung implementiert.\\
@@ -1234,15 +1234,18 @@ Die Betrachtung des Threadings mit dem Profiler bestätigt ansonsten naheliegend
 \section*{Abbildungsverzeichnis}
 Alle Abbildungen in diesem Dokument sind eigene Darstellungen. Die Klassendiagramme wurden mit der Software \glqq Dia\grqq \space erstellt. Die schematischen Darstellungen zum Überblick über das erstellte Programm sind ebenfalls mit der Software \glqq Dia\grqq \space erstellt. Screenshots  wurden mit dem Programm \glqq Xfce4-Screenshooter\grqq \space erstellt.
 
-%this hides anhang from toc
+%this hides anhang from tocus
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 
 \section*{Anhang}
 \section{GenKB Original Version}
 \label{app:genkb}
-\begin{lstlisting}
-todo
+\begin{lstlisting}[mathescape]
+$L_1 \leftarrow \emptyset$
+$k \leftarrow 1$
+
 \end{lstlisting}
+
 
 
 

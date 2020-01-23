@@ -326,7 +326,7 @@ Das beschriebene Programm zum Generieren von Wissensbasen ist komplett in Java g
 
 
 \subsection{Benutzung des Programms}
-Das Programm ist leicht zu benutzen, es bringt für alle Funktionen eine GUI mit. Zum Starten führt man einfach die Datei \textit {Conditionals.jar} aus. Beim Starten des Programms ohne explizite Optionen für die JVM bekommt es automatisch einen vom Arbeitsspeicher des PCs abhängigen maximal verwendbaren Arbeitsspeicher zugewiesen. Wenn mit dem Programm keine sehr speicherintensiven Aktionen ausgeführt werden sollen, reicht das vermutlich aus. Es ist ansonsten auch möglich, dem Programm eine benutzerdefinierte maximale Menge an Arbeitsspeicher zuzuweisen. Dazu startet man das Programm in der Datei \textit{Conditionals.jar} mit folgendem Konsolenbefehl: 
+Das Programm ist leicht zu benutzen, es bringt für alle Funktionen eine grafische Benutzeroberfläche mit. Zum Starten führt man einfach die Datei \textit {Conditionals.jar} aus. Beim Starten des Programms ohne explizite Optionen für die JVM bekommt es automatisch einen vom Arbeitsspeicher des PCs abhängigen maximal verwendbaren Arbeitsspeicher zugewiesen. Wenn mit dem Programm keine sehr speicherintensiven Aktionen ausgeführt werden sollen ist das ausreichend. Es ist ansonsten auch möglich, dem Programm eine benutzerdefinierte maximale Menge an Arbeitsspeicher zuzuweisen. Dazu startet man das Programm in der Datei \textit{Conditionals.jar} mit folgendem Konsolenbefehl: 
 
 \begin{lstlisting}
 java -Xmx12G -jar Conditionals.jar 
@@ -342,7 +342,7 @@ So legt der erste Parameter die Menge an maximal durch die JVM nutzbaren Arbeits
 \subsection{Aufbau des Programms}
 
 
-In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu sehen. Die drei Elemente innerhalb des grau hinterlegten Bereichs sind für das eigentliche Generieren der Wissensbasen zuständig. Oben rechts ist die GUI abgebildet. Sie dient zum Setzen von Optionen, Starten des Programms und während der Laufzeit zum Anzeigen von verschiedenen Informationen zum Programmablauf. Unten links befindet sich der NfcCreator, hier werden die Konditionale NFC anhand der eingestellten Optionen erstellt. Diese Konditionale werden dann an den KBCreator übergeben, welcher für die eigentliche Generierung der Wissensbasen zuständig ist. Die GUI NfcViewer außerhalb des grauen Bereichs oben links ist optional und kann genutzt werden um die Konditionale nach verschiedenen Optionen zu erzeugen, zu betrachten und zu speichern.
+In \autoref{pic:overview} ist ein Gesamtüberblick auf das erstelle Programm zu sehen. Die drei Elemente innerhalb des grau hinterlegten Bereichs sind für das eigentliche Generieren der Wissensbasen zuständig. Oben rechts ist die grafische Benutzeroberfläche abgebildet. Sie dient zum Setzen von Optionen, Starten des Programms und während der Laufzeit zum Anzeigen von verschiedenen Informationen zum Programmablauf. Unten links ist der NfcCreator abgebildet, hier werden die Konditionale NFC anhand der eingestellten Optionen erstellt. Diese Konditionale werden dann an den KBCreator übergeben, welcher für die eigentliche Generierung der Wissensbasen zuständig ist. Die GUI NfcViewer außerhalb des grauen Bereichs oben links ist optional und kann genutzt werden um die Konditionale nach verschiedenen Optionen zu erzeugen, zu betrachten und zu speichern.
 
 \begin{figure}
 \includegraphics[width=0.7\linewidth]{bilder/overview.png}
@@ -358,7 +358,7 @@ Der weitere Ablauf der Arbeit ist wie folgt: Im nächsten Abschnitt wird die Ber
 \subsection{Berechnung der Konditionale in Normalform}
 \label{sec:nfc}
 
-In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens \textit{NfcCreator} erstellt. Durch das Berechnen der Konditionale dient das Programm dann als Grundlage für den Hauptteil dieser Arbeit, die Wissensbasen aus den Konditionalen zu erzeugen. Zusätzlich gibt für den NfcCreator noch eine kleine GUI, um die Konditionale mit verschiedenen Optionen erzeugen und betrachten zu können. Diese GUI wird am Ende dieses Abschnitts gezeigt. \\
+In diesem Abschnitt wird beschrieben, wie das erste Teilproblem, die Berechnung der Konditionale und deren Gruppierung in Äquivalenzklassen, gelöst wird. Dazu wurde ein Programm namens \textit{NfcCreator} erstellt. Durch das Berechnen der Konditionale dient das Programm dann als Grundlage für den Hauptteil dieser Arbeit, die Wissensbasen aus den Konditionalen zu erzeugen. Zusätzlich gibt es für den NfcCreator noch eine einfache grafische Benutzeroberfläche, um die Konditionale mit verschiedenen Optionen erzeugen und betrachten zu können. Diese GUI wird am Ende dieses Abschnitts gezeigt. \\
 In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normalform dargestellt. Dazu wird zuerst die Menge der möglichen Welten berechnet und daraus dann die Menge der Konditionale gebildet. Anschließend werden diese geordnet und in Äquivalenzklassen gruppiert.
 
 

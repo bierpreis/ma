@@ -144,7 +144,7 @@ Konditionale}
 
 
 \begin{abstract}
-In dieser Arbeit wird ein Algorithmus zum Erstellen von Wissensbasen über einer vorgegebenen Signatur experimentell evaluiert. Dazu wird ein Java Programm erstellt, welches den Algorithmus implementiert und dessen Ergebnisse persistent speichert.
+In dieser Arbeit wird ein Algorithmus zum Erstellen von Wissensbasen über einer vorgegebenen Signatur experimentell implementiert. Dazu wird ein Java Programm erstellt, welches den Algorithmus umsetzt und dessen Ergebnisse persistent speichert.
 \end{abstract}
 
 
@@ -267,7 +267,7 @@ Eine Wissensbasis $\mathcal{R}$ ist konsistent gdw. für jede nicht leere Teilme
 Aus dieser Definition entsteht dann der in \autoref{code:consistency} gezeigte Algorithmus zum Testen einer Wissensbasis auf Konsistenz, ebenfalls entnommen aus \cite{goldszmidt96}. Der Input für den Algorithmus ist eine Wissensbasis $\mathcal{R}$. Der Output ist die geordnete Partition, wenn der Algorithmus konsistent ist, oder andernfalls nichts.
 
 
-\begin{figure}[h]
+\begin{figure}
 %mathescape = true makes $$ work in here
 \begin{lstlisting}[mathescape=true]
 1: i = 0

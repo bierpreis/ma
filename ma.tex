@@ -362,18 +362,18 @@ In den folgenden Unterabschnitten wird die Berechnung der Konditionale in Normal
 
 \subsubsection{Mengen möglicher Welten} 
 
-Die Darstellung von Konditionalen mit möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Formeln auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse \textit{WorldsList} dargestellt. Ein Klassendiagramm zur Veranschaulichung befindet sich in \autoref{pic:worldslist}. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence.
+Die Darstellung von Konditionalen mit möglichen Welten wurde in \autoref{sec:ordnungsrelation} schon gezeigt, an diesem Punkt setzt die Betrachtung hier an. Wie bereits beschrieben lassen sich aussagenlogische Formeln auch als Mengen möglicher Welten ausdrücken. Diese Form wird zur Darstellung der Normalform für Konditionale verwendet. Eine solche Menge möglicher Welten wird im Folgenden mit einem Objekt der Klasse \textit{WorldsList} dargestellt. Ein Abbildung zur Veranschaulichung befindet sich in \autoref{pic:worldslist}. Objekte der Klasse WorldsList repräsentieren später in den Konditionalen dann Antecedent und Consequence.
 
 
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/worldslist.png}
-\caption{Klassendiagramm \textit{WorldsList}}
+\caption{Klasse \textit{WorldsList}}
 \label{pic:worldslist}
 \end{figure}
 
 
 
-Das wichtigste Attribut der Klasse \textit{WorldsList} ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Jede dieser Integers in dieser Liste stellt so eine mögliche Welt dar. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen.
+Das wichtigste Attribut der Klasse \textit{WorldsList} ist die Liste der möglichen Welten in Form einer \textit{List<Integer>}. Jede dieser Integer Werte in dieser Liste stellt so eine mögliche Welt dar. Die Klasse WorldsList selbst implementiert das Java Interface \textit{Comparable} und kann damit Objekte erzeugen, die standardisiert untereinander sortiert werden können. Entsprechend besitzt die Klasse die Methode \textit{compareTo(Object o)} zur Sortierung gemäß \autoref{def:sortierung-konditionale}. Dazu vergleicht das Objekt sich selbst mit einem Anderen (dieser Klasse) und gibt als Rückgabewert -1 zurück, wenn das aktuelle Objekt (\textit{this}) kleiner als das Übergebene ist, 0 wenn sie gleich sind und 1 wenn das aktuelle Objekt größer als das übergebene Objekt ist. Die Implementierung der \textit{compateTo(Object o)} Methode ist in \autoref{code:compare-worldslist} dargestellt. Das Interface  \textit{Comparable} und \textit{compareTo(Object o)} wird ähnlich wie hier später auch in anderen Klassen verwendet um die Sortierung von Objekten zu ermöglichen.
 
 
 \begin{figure}
@@ -447,7 +447,7 @@ renamingsList.add(worldsList);
 
 Im Folgenden wird nun die Funktionsweise Methode \textit{createRenamings()} genauer erklärt. Das Wesen einer Umbenennung einer WorldsList ist es, dass sich die enthaltene Liste der Welten ändert. Es wird für eine Umbenennung also ein neues Objekt der Klasse WorldsList mit einer neuen \textit{List<Integer>} Liste der möglichen Welten erstellt. Bei jeder möglichen Umbenennung ändern sich die enthaltenen möglichen Welten auf die selbe Weise, entsprechend wird die ursprüngliche \textit{List<Integer>} Liste der Welten nach einem charakteristischem Schema \glqq übersetzt\grqq. So ein Schema existiert für jede mögliche Umbenennung, entsprechend gibt es für $\Sigma_{ab}$ eines und für $\Sigma_{abc}$ drei davon. Da der Code für alle Umbenennungen viel Platz benötigt wird hier nicht die ganze Methode \textit{createRenamings} dargestellt. In \autoref{code:renaming} ist beispielhaft die Umbenennung $a-b$ mit der Signatur $\Sigma_{abc}$ gezeigt. In Zeile 1 wird die neue \textit{List<Integer>} erstellt, in die die übersetzten Werte mit einer Switch Anweisung eingetragen werden. Man sieht, dass sich  Welt 0 $(!a!b!c)$ und Welt 7 $(abc)$ nicht ändern, eine Umbenennung hat hier grundsätzlich keinen Einfluss. Welt 1 $(!a!bc)$ und Welt 6 $(ab!c)$ ändern sich bei der Umbenennung $a-b$ auch nicht. Die andern Welten werden durch die Umbenennung durch ein Äquivalent ersetzt. In Zeile 32 und 33 wird die neue WorldsList dann erstellt und in Zeile 34 wird sie in die \textit{List<WorldsList>} der Umbenennungen eingefügt.  Für die Umbenennungen $a-c$ und $b-c$ existiert jeweils ebenfalls ein entsprechendes Stück Code und so werden alle drei Umbenennungen realisiert. Mit $\Sigma_{ab}$ existiert nur eine Umbenennung und es wird einfach Welt 1 und 2 vertauscht. \\
 Um die Konditionale in Normalform zu bilden, müssen nun alle WordsLists basierend auf der Signatur $\Sigma$ berechnet werden. Das geschieht dadurch, das aus der Menge der möglichen Welten der Signatur alle möglichen Teilmengen gebildet werden. Jede dieser Teilmengen ergibt dann eine WorldsList. Die Menge dieser WorldsLists ergibt dann die Menge der möglichen Formeln für Antecedent und Consequence der Konditionale in Normalform. \\
-Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge in Form einer \textit{List<WorldsList>}. Im Algorithmus wird zunächst in Zeile 3 über alle Integers der möglichen Welten iteriert. In Zeilen 10-12 werden die \textit{WorldsLists} mit jeweils einem Element erstellt. In Zeile 4 wird dann über die bereits bestehenden \textit{WorldsLists} iteriert und jeweils alle Kombinationen mit der aktuellen einelementigen Welt als neue \textit{WorldsLists} erstellt. Am Ende enthält dann die \textit{List<WorldsList> subsetList} WorldsLists mit allen möglichen Teilmengen der ursprünglich übergebenen Liste von Integers. Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. Für die Signatur $\Sigma_{ab}$ sind es 15. Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden.
+Der Algorithmus, der alle Teilmengen aus den enthaltenen Welten einer Signatur berechnet, ist in \autoref{code:subsets} dargestellt. Als Input wird die Liste möglicher Welten der Signatur verwendet, der Output ist eine Liste aller Teilmengen des Inputs ohne der leeren Menge in Form einer \textit{List<WorldsList>}. Im Algorithmus wird zunächst in Zeile 3 über alle Integer Werte der möglichen Welten iteriert. In Zeilen 10-12 werden die \textit{WorldsLists} mit jeweils einem Element erstellt. In Zeile 4 wird dann über die bereits bestehenden \textit{WorldsLists} iteriert und jeweils alle Kombinationen mit der aktuellen einelementigen Welt als neue \textit{WorldsLists} erstellt. Am Ende enthält dann die \textit{List<WorldsList> subsetList} WorldsLists mit allen möglichen Teilmengen der ursprünglich übergebenen Liste von Integer Werten. Für die Signatur $\Sigma_{abc}$ ergeben sich damit 255 verschiedene Mengen von Welten. Für die Signatur $\Sigma_{ab}$ sind es 15. Diese können mit dem NFC-Viewer mit dem Button \glqq WORLDS\grqq \space dargestellt werden.
 
 
 
@@ -485,7 +485,7 @@ Die Klasse \textit{WConditional} (W wie worlds) dient dazu, mit zwei der im Absc
 
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/wconditional.png}
-\caption{Klassendiagramm \textit{WConditional}}
+\caption{Klasse \textit{WConditional}}
 \label{pic:wconditional}
 \end{figure}
 
@@ -714,12 +714,12 @@ Die Signatur wird mit der abstrakten Basisklasse \textit{AbstractSignature} und 
 
 
 
-Die grundlegende Klasse der Aussagenlogik ist die abstrakte Klasse AbstractFormula, welche in \autoref{pic:abstractformula} als Klassendiagramm dargestellt wird. Alle Aussagen basieren auf dieser Klasse und entsprechend erben alle Aussagen repräsentierenden Objekte von dieser. Sie stellt so die Schnittstelle für alle Aussagen dar und bietet auch selbst einige Funktionen. Die einzige Variable ist die gewählte Signatur \textit{signature} in Form einer Instanz von AbstractSignature als statisches Objekt für alle Instanzen von erbenden Objekten. Weiterhin besitzt die Klasse 6 Methoden, von denen 4 konkret implementiert und 2 abstrakt sind. Implementiert ist zum einen die Methode \textit{and(AbstractFormula otherFormula)}, sie gibt einfach ein Objekt \textit{Conjunction} zurück welches eine Konjunktion aus dem aktuellen (this) Objekt und dem Übergebenen ist. Überschrieben wird diese Methode nur in der Klasse Conjunction. Analog dazu verhält sich die Methode \textit{or(AbstractFormula otherFormua)}, welche ein Objekt der Klasse \textit{Disjunction} zurückgibt. Diese Methode wird ausschließlich von der Klasse \textit{Disjunction} überschrieben. Die dritte konkret implementierte Methode ist die Negation, aufrufbar mit \textit{neg()} ohne Parameter. Diese Methode gibt eine Negation in Form von \textit{new Negation(this)} zurück. Überschrieben wird diese Methode nur im der Klasse \textit{Negation} selbst. Die letzte konkrete Methode der Klasse \textit{AbstractFormula} ist die Methode \textit{equals(Object o)}, die in \autoref{code:equals-formula} gezeigt ist. Sie ist als \textit{final} deklariert und wird demzufolge von keiner erbenden Klasse überschrieben. Wie im Code zu sehen, überprüft die Methode zuerst, ob das übergebene Objekt eine Instanz der Klasse \textit{AbstractFormula} darstellt. Dann wird für alle möglichen Welten der Signatur geprüft, ob die Evaluierung der Welt des übergebenen Objekts das gleiche Ergebnis zurückgibt wie die Evaluierung des aktuellen Objekts (this). Ist das einmal nicht der Fall, wird sofort \textit{false} zurückgegeben. Wenn die Evaluierung für alle möglichen Welten das gleiche Ergebnis zurückgibt, sind die beiden Objekte gleich im Sinne der \textit{equals(Object o)} Methode. Weiterhin existieren die abstrakten Methoden \textit{evaluate(World world)} und \textit{toString()}, die jeweils von allen erbenden Klassen überschrieben werden.
+Die grundlegende Klasse der Aussagenlogik ist die abstrakte Klasse AbstractFormula, welche in \autoref{pic:abstractformula} als Diagramm dargestellt ist. Alle Aussagen basieren auf dieser Klasse und entsprechend erben alle Aussagen repräsentierenden Objekte von dieser. Sie stellt so die Schnittstelle für alle Aussagen dar und bietet auch selbst einige Funktionen. Die einzige Variable ist die gewählte Signatur \textit{signature} in Form einer Instanz von AbstractSignature als statisches Objekt für alle Instanzen von erbenden Objekten. Weiterhin besitzt die Klasse 6 Methoden, von denen 4 konkret implementiert und 2 abstrakt sind. Implementiert ist zum einen die Methode \textit{and(AbstractFormula otherFormula)}, sie gibt einfach ein Objekt \textit{Conjunction} zurück welches eine Konjunktion aus dem aktuellen (this) Objekt und dem Übergebenen ist. Überschrieben wird diese Methode nur in der Klasse Conjunction. Analog dazu verhält sich die Methode \textit{or(AbstractFormula otherFormua)}, welche ein Objekt der Klasse \textit{Disjunction} zurückgibt. Diese Methode wird ausschließlich von der Klasse \textit{Disjunction} überschrieben. Die dritte konkret implementierte Methode ist die Negation, aufrufbar mit \textit{neg()} ohne Parameter. Diese Methode gibt eine Negation in Form von \textit{new Negation(this)} zurück. Überschrieben wird diese Methode nur im der Klasse \textit{Negation} selbst. Die letzte konkrete Methode der Klasse \textit{AbstractFormula} ist die Methode \textit{equals(Object o)}, die in \autoref{code:equals-formula} gezeigt ist. Sie ist als \textit{final} deklariert und wird demzufolge von keiner erbenden Klasse überschrieben. Wie im Code zu sehen, überprüft die Methode zuerst, ob das übergebene Objekt eine Instanz der Klasse \textit{AbstractFormula} darstellt. Dann wird für alle möglichen Welten der Signatur geprüft, ob die Evaluierung der Welt des übergebenen Objekts das gleiche Ergebnis zurückgibt wie die Evaluierung des aktuellen Objekts (this). Ist das einmal nicht der Fall, wird sofort \textit{false} zurückgegeben. Wenn die Evaluierung für alle möglichen Welten das gleiche Ergebnis zurückgibt, sind die beiden Objekte gleich im Sinne der \textit{equals(Object o)} Methode. Weiterhin existieren die abstrakten Methoden \textit{evaluate(World world)} und \textit{toString()}, die jeweils von allen erbenden Klassen überschrieben werden.
 
 
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/AbstractFormula.png}
-\caption{Klassendiagramm \textit{AbstractFormula}}
+\caption{Klasse \textit{AbstractFormula}}
 \label{pic:abstractformula}
 \end{figure}
 
@@ -773,12 +773,12 @@ Negation ist die letzte hier beschriebene Implementierung von AbstractFormula. D
 
 
 
-Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional die Verarbeitung mit Aussagenlogik. Ein vereinfachtes Klassendiagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, wird im nächsten Abschnitt beschrieben. Als Attribute besitzt die Klasse neben der Nummer des Konditionals ein Antecedent und Consequence jeweils in Form einer AbstractFormula. Dazu kommt eine Referenz zu einem Konditional \textit{coutnerConditional} und eine Liste der äquivalenten Konditionale.
+Die Klasse PConditional repräsentiert ein Konditional und unterstützt im Gegensatz zur Klasse WConditional die Verarbeitung mit Aussagenlogik. Ein vereinfachtes Diagramm von PConditional ist in \autoref{pic:pconditional} zu sehen. Die meisten Attribute werden bei der Übersetzung von WConditional zu PConditional übernommen. Wie genau diese Übersetzung abläuft, wird im nächsten Abschnitt beschrieben. Als Attribute besitzt die Klasse neben der Nummer des Konditionals ein Antecedent und Consequence jeweils in Form einer AbstractFormula. Dazu kommt eine Referenz zu einem Konditional \textit{coutnerConditional} und eine Liste der äquivalenten Konditionale.
 
 
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/PConditional.png}
-\caption{Klassendiagramm \textit{PConditional}}
+\caption{Klasse \textit{PConditional}}
 \label{pic:pconditional}
 \end{figure}
 
@@ -834,12 +834,12 @@ Ein anderer Versuch, um die Vorteile beider Varianten zu kombinieren, wurde nach
 
 
 
-Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:knowledgebase} zu sehen. Als Instanzvariablen besitzt die Klasse die Nummer der Wissensbasis als \textit{long} Wert und eine Liste der in der Wissensbasis enthaltenen Konditionale in Form einer \textit{ArrayList<PConditional>}. Die Nummer der Wissensbasis wird immer gleich im Konstruktor von der GenKB Implementierung gesetzt und ist als eine \textit{final} Referenz implementiert, damit sie nachträglich nicht mehr geändert werden kann.
+Wissensbasen werden durch Objekte der Klasse KnowledgeBase repräsentiert. Ein vereinfachtes Diagramm ist in \autoref{pic:knowledgebase} zu sehen. Als Instanzvariablen besitzt die Klasse die Nummer der Wissensbasis als \textit{long} Wert und eine Liste der in der Wissensbasis enthaltenen Konditionale in Form einer \textit{ArrayList<PConditional>}. Die Nummer der Wissensbasis wird immer gleich im Konstruktor von der GenKB Implementierung gesetzt und ist als eine \textit{final} Referenz implementiert, damit sie nachträglich nicht mehr geändert werden kann.
 
 
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/KnowledgeBase.png}
-\caption{Klassendiagramm \textit{KnowledgeBase}}
+\caption{Klasse \textit{KnowledgeBase}}
 \label{pic:knowledgebase}
 \end{figure}
 
@@ -916,7 +916,7 @@ Von der \textit{BlockingQueue<AbstractPair> lastIterationQueue} werden die Paare
 
 \begin{figure}
 \includegraphics[width=0.5\linewidth]{bilder/genkb.png}
-\caption{Klassendiagramm \textit{GenKB}}
+\caption{Klasse \textit{GenKB}}
 \label{pic:genkb}
 \end{figure}
 
@@ -1032,7 +1032,7 @@ Ein etwas vereinfachtes Diagramm der Klasse AbstractPair ist in \autoref{pic:abs
 
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/AbstractPair.png}
-\caption{Klassendiagramm \textit{AbstractPair}}
+\caption{Klasse \textit{AbstractPair}}
 \label{pic:abstractpair}
 \end{figure}
 
@@ -1084,12 +1084,12 @@ Von den drei angesprochenen Varianten  sind \textit{CompressedRamBuffer} und \te
 
 
 
-\textit{AbstractPairBuffer} ist die Klasse, von welcher alle Varianten der Speicherverwaltung erben und hat dabei hauptsächlich den Charakter eine Schnittstelle. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:abstractpairbuffer} zu sehen. Die Klasse besitzt zwei \textit{BlockingQueues} als Instanzvariablen zur Verwaltung der Pairs, welche allerdings erst in den Implementierungen initialisiert werden.  BlockingQueues deshalb, weil sie erstens threadsicher sind und zweitens das im Anschluss beschriebene Blocking unterstützen. Die erste Queue heißt \textit{lastIterationQueue} und stellt die Paare zur Verarbeitung in einer Iteration $k$ bereit. Die zweite Queue heißt \textit{nextIterationQueue} und nimmt während einer Iteration $k$ die für die nächste Iteration $k+1$ erstellten Paare auf. Um die Weiterverarbeitung der Paare in den Queues kümmert sich dann jeweils ein eigener Thread innerhalb des \textit{AbstractPairBuffers}, namentlich \textit{lastIterationThread} und \textit{nextIterationThread}. 
+\textit{AbstractPairBuffer} ist die Klasse, von welcher alle Varianten der Speicherverwaltung erben und hat dabei hauptsächlich den Charakter eine Schnittstelle. Ein vereinfachtes Diagramm ist in \autoref{pic:abstractpairbuffer} zu sehen. Die Klasse besitzt zwei \textit{BlockingQueues} als Instanzvariablen zur Verwaltung der Pairs, welche allerdings erst in den Implementierungen initialisiert werden.  BlockingQueues deshalb, weil sie erstens threadsicher sind und zweitens das im Anschluss beschriebene Blocking unterstützen. Die erste Queue heißt \textit{lastIterationQueue} und stellt die Paare zur Verarbeitung in einer Iteration $k$ bereit. Die zweite Queue heißt \textit{nextIterationQueue} und nimmt während einer Iteration $k$ die für die nächste Iteration $k+1$ erstellten Paare auf. Um die Weiterverarbeitung der Paare in den Queues kümmert sich dann jeweils ein eigener Thread innerhalb des \textit{AbstractPairBuffers}, namentlich \textit{lastIterationThread} und \textit{nextIterationThread}. 
 
 
 \begin{figure}
 \includegraphics[width=0.45\linewidth]{bilder/AbstractPairBuffer.png}
-\caption{Klassendiagramm \textit{AbstractPairBuffer}}
+\caption{Klasse \textit{AbstractPairBuffer}}
 \label{pic:abstractpairbuffer}
 \end{figure}
 
@@ -1137,13 +1137,13 @@ Die Wissensbasen, die von GenKB generiert werden, sollen danach noch weiterverar
 
 
 
-\textit{AbstractKbWriter} ist die abstrakte Klasse die von den beiden Varianten der Verarbeitung von Wissensbasen implementiert wird. Ein vereinfachtes Klassendiagramm ist in \autoref{pic:abstractkbwriter} zu sehen. Es gibt zwei BlockingQueues als Instanzvariablen. Eine \textit{consistentQueue}, in welche GenKB die konsistenten Wissensbasen einfügt und die \textit{inconsistentQueue} in der GenKB die inkonsistenten Wissensbasen einreiht. Die beiden Queues werden auch direkt im Konstruktor des AbstractKbWriter als  \textit{ArrayBlockingQueue(50.000)} initialisiert, die genaue Größe ist hier unwichtig. Für jede der beiden BlockingQueues existiert jeweils ein eigener Thread, der sich um die Bearbeitung der Queues kümmert. Die beiden BlockingQueues koordinieren hier die Zusammenarbeit von GenKB und den beiden Writer Threads. Zum Iterationswechsel sind auch hier zwei Methoden vorhanden, \textit{prepareIteration(int k)} zur Vorbereitung einer neuen Iteration und \textit{finishIteration()} zum korrekten Beenden der aktuellen Iteration. Der AbstractKbWriter ist weiterhin die Stelle im Programm, an welcher die generierten Wissensbasen gezählt werden. Um diese Information an die grafische Benutzeroberfläche weiterzugeben, existieren die drei folgenden Getter: \textit{getTotalConsistentKbAmount()}, \textit{getTotalInconsistentKbAmount} und \textit{getIterationConsistentAmount()}.
+\textit{AbstractKbWriter} ist die abstrakte Klasse die von den beiden Varianten der Verarbeitung von Wissensbasen implementiert wird. Ein vereinfachtes Diagramm ist in \autoref{pic:abstractkbwriter} zu sehen. Es gibt zwei BlockingQueues als Instanzvariablen. Eine \textit{consistentQueue}, in welche GenKB die konsistenten Wissensbasen einfügt und die \textit{inconsistentQueue} in der GenKB die inkonsistenten Wissensbasen einreiht. Die beiden Queues werden auch direkt im Konstruktor des AbstractKbWriter als  \textit{ArrayBlockingQueue(50.000)} initialisiert, die genaue Größe ist hier unwichtig. Für jede der beiden BlockingQueues existiert jeweils ein eigener Thread, der sich um die Bearbeitung der Queues kümmert. Die beiden BlockingQueues koordinieren hier die Zusammenarbeit von GenKB und den beiden Writer Threads. Zum Iterationswechsel sind auch hier zwei Methoden vorhanden, \textit{prepareIteration(int k)} zur Vorbereitung einer neuen Iteration und \textit{finishIteration()} zum korrekten Beenden der aktuellen Iteration. Der AbstractKbWriter ist weiterhin die Stelle im Programm, an welcher die generierten Wissensbasen gezählt werden. Um diese Information an die grafische Benutzeroberfläche weiterzugeben, existieren die drei folgenden Getter: \textit{getTotalConsistentKbAmount()}, \textit{getTotalInconsistentKbAmount} und \textit{getIterationConsistentAmount()}.
 Daneben gibt es noch im  oberen gezeigten Diagramm nicht erwähnte Methoden, um weitere Informationen an die grafische Benutzeroberfläche weiterzugeben: Das sind hier Getter für die aktuell belegte Größe der Queues und eine Methode um die Threads außerplanmäßig über den Stop Button zu beenden.
 
 
 \begin{figure}
 \includegraphics[width=0.55\linewidth]{bilder/AbstractKbWriter.png}
-\caption{Klassendiagramm \textit{AbstractKbWriter}}
+\caption{Klasse \textit{AbstractKbWriter}}
 \label{pic:abstractkbwriter}
 \end{figure}
 
@@ -1241,7 +1241,7 @@ Die Betrachtung des Threadings mit dem Profiler bestätigt ansonsten naheliegend
 
 \section*{Abbildungsverzeichnis}
 
-Alle Abbildungen in diesem Dokument sind eigene Darstellungen. Die Klassendiagramme wurden mit der Software \glqq Dia\grqq \space erstellt, siehe dazu \cite{dia20}. Die schematischen Darstellungen zum Überblick über das erstellte Programm sind ebenfalls mit der Software \glqq Dia\grqq \space erstellt. Screenshots  wurden mit dem Programm \glqq Xfce4-Screenshooter\grqq \space erstellt.
+Alle Abbildungen in diesem Dokument sind eigene Darstellungen. Die UML Diagramme wurden mit der Software \glqq Dia\grqq \space erstellt, siehe dazu \cite{dia20}. Die schematischen Darstellungen zum Überblick über das erstellte Programm sind ebenfalls mit der Software \glqq Dia\grqq \space erstellt. Screenshots  wurden mit dem Programm \glqq Xfce4-Screenshooter\grqq \space erstellt.
 
 %this hides anhang from tocus
 \addtocontents{toc}{\protect\setcounter{tocdepth}{0}}

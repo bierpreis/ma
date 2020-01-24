@@ -689,7 +689,7 @@ Nachdem die Menge der Konditionale nun berechnet und sortiert ist, sollen daraus
 \subsubsection{Implementierung der Aussagenlogik}
 \label{sec:logic}
 
-Um bei der Generierung von Wissensbasen Aussagenlogik verwenden zu können, ist ein kleines Framework nötig welches die benötigten Elemente der Aussagenlogik als Java Objekte abbildet und somit die üblichen Operationen mit diesen ermöglicht. Die Idee die Logik so abzubilden wie hier  beschrieben stammt aus dem Framework zu InfOCF, die konkreten Implementierungen sind jedoch verschieden. Im Folgenden werden die verwendeten Elemente der Aussagenlogik als Java Implementierung kurz vorgestellt.
+Um bei der Generierung von Wissensbasen Aussagenlogik verwenden zu können, ist ein kleines Framework nötig welches die benötigten Elemente der Aussagenlogik als Java Objekte abbildet und somit die üblichen Operationen mit diesen ermöglicht. Die Idee die Logik so abzubilden wie hier beschrieben stammt aus der Bibliothek InfOCF, die konkreten Implementierungen sind jedoch verschieden. Im Folgenden werden die verwendeten Elemente der Aussagenlogik als Java Implementierung kurz vorgestellt.
 
 
 
@@ -1214,7 +1214,7 @@ Das ließe sich durch Multithreading lösen. Ein Ansatz für GenKB mit Multithre
 
 \subsection{Programmablauf mit Signatur $\Sigma_{ab}$}
 
-Mit der Signatur $\Sigma_{ab}$ kann das Programm tatsächlich alle Wissensbasen generieren. Dabei entstehen 364.144.824 konsistente und 364.304.482 inkonsistente Wissensbasen in 25 Iterationen. Die Wissensbasen als Ergebnis im InfOCF Format benötigen dafür 257.1 GB Festplattenspeicher, der ganze Vorgang hat auf dem Test PC 1 Stunde und 52 Minuten gedauert. Dabei wurde die Zwischenspeicherung der Daten im Arbeitsspeicher des PCs verwendet. Der JVM mussten dafür mindestens 23 GB RAM zugewiesen werden. \\
+Mit der Signatur $\Sigma_{ab}$ kann das Programm tatsächlich alle Wissensbasen generieren. Dabei entstehen 364.144.824 konsistente und 364.304.482 inkonsistente Wissensbasen in 25 Iterationen. Die Wissensbasen als Ergebnis im InfOCF Format benötigen dafür 257.1 GB Festplattenspeicher, der ganze Vorgang hat auf dem Test PC (aktueller Mittelklasse PC: AMD Ryzen 3600 und 32 GB RAM) 1 Stunde und 52 Minuten gedauert. Dabei wurde die Zwischenspeicherung der Daten im Arbeitsspeicher des PCs verwendet. Der JVM mussten dafür mindestens 23 GB RAM zugewiesen werden. \\
 Der Verlauf dieses Programmablaufs verlief etwa wie man es erwarten sollte: Die ersten Iterationen laufen sehr schnell. Mit steigendem k steigt dann die Menge der Paare pro Iteration. Das Maximum ist bei $k=13$ mit 58,3 Millionen Paaren erreicht, danach sinkt die Anzahl wieder. Mit steigendem $k$ dauert die Prüfung der Wissensbasen auf Konsistenz immer länger, wodurch sich die Dauer der Iterationen ebenfalls mit steigendem $k$ erhöht.
 
 

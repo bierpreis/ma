@@ -52,8 +52,7 @@ numbers = left,
 
 
 \author{Frank Leuchtmann}
-\title{Systematische Generierung konsistenter Mengen qualitativer
-Konditionale}
+\title{Systematische Generierung konsistenter Mengen qualitativer Konditionale}
 
 % this value solves the problem overfull hbox. it defines somehow max empty space in a line.
 \tolerance=1250
@@ -99,7 +98,8 @@ Konditionale}
 }}
 
 \begin{document}
-%\maketitle
+
+\pagenumbering{gobble} %mute page numbering
 
 
 \begin{titlepage}
@@ -143,6 +143,8 @@ Konditionale}
 \tableofcontents
 \newpage
 
+%
+\pagenumbering{arabic}
 
 %noindent verhindert einrückung
 \begin{abstract}\noindent
@@ -1246,10 +1248,10 @@ Die Betrachtung des Threadings mit dem Profiler bestätigt ansonsten naheliegend
 Alle Abbildungen in diesem Dokument sind eigene Darstellungen. Die UML Diagramme wurden mit der Software \glqq Dia\grqq \space erstellt, siehe dazu \cite{dia20}. Die schematischen Darstellungen zum Überblick über das erstellte Programm sind ebenfalls mit der Software \glqq Dia\grqq \space erstellt. Screenshots  wurden mit dem Programm \glqq Xfce4-Screenshooter\grqq \space erstellt.
 
 %this hides anhang from tocus
-\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
+%\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 
-\section*{Anhang}
-\section{GenKB original Version}
+
+\section{Anhang GenKB original Version}
 \label{app:genkb}
 
 %dunno why then must be highlighted manually

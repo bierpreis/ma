@@ -1,7 +1,15 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[german]{babel}
+
+%todo: this causes problems
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+%this fixes problem with text cannot be marked! duno why
+\usepackage{lmodern} 
+
+\usepackage[german]{babel}
+
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 
@@ -9,9 +17,9 @@
 \usepackage{graphicx}
 \usepackage{listings}
 
-%todo: correct?
+
 \usepackage[twoside,top=1.8cm,bottom=1.8cm]{geometry}
-%newgeometry{twoside,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
 
 \usepackage{hyperref}
 \usepackage[toc]{appendix}
